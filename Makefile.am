@@ -170,16 +170,16 @@ baseline_filtered.info: baseline.info
 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-test_raptoreum.info: baseline_filtered.info
+test_hashmonkeycoin.info: baseline_filtered.info
 	$(MAKE) -C src/ check
-	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_raptoreum -o $@
+	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_hashmonkeycoin -o $@
 	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
 
-test_raptoreum_filtered.info: test_raptoreum.info
+test_hashmonkeycoin_filtered.info: test_hashmonkeycoin.info
 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-functional_test.info: test_raptoreum_filtered.info
+functional_test.info: test_hashmonkeycoin_filtered.info
 	-@TIMEOUT=15 test/functional/test_runner.py $(EXTENDED_FUNCTIONAL_TESTS)
 	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src --t functional-tests -o $@
 	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
@@ -188,13 +188,13 @@ functional_test_filtered.info: functional_test.info
 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-test_raptoreum_coverage.info: baseline_filtered.info test_raptoreum_filtered.info
-	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_raptoreum_filtered.info -o $@
+test_hashmonkeycoin_coverage.info: baseline_filtered.info test_hashmonkeycoin_filtered.info
+	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_hashmonkeycoin_filtered.info -o $@
 
-total_coverage.info: test_raptoreum_filtered.info functional_test_filtered.info
-	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_raptoreum_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
+total_coverage.info: test_hashmonkeycoin_filtered.info functional_test_filtered.info
+	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_hashmonkeycoin_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
 
-test_raptoreum.coverage/.dirstamp:  test_raptoreum_coverage.info
+test_hashmonkeycoin.coverage/.dirstamp:  test_hashmonkeycoin_coverage.info
 	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 	@touch $@
 
@@ -202,7 +202,7 @@ total.coverage/.dirstamp: total_coverage.info
 	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 	@touch $@
 
-cov: test_raptoreum.coverage/.dirstamp total.coverage/.dirstamp
+cov: test_hashmonkeycoin.coverage/.dirstamp total.coverage/.dirstamp
 
 endif
 
@@ -271,6 +271,6 @@ clean-docs:
 	rm -rf doc/doxygen
 
 clean-local: clean-docs
-	rm -rf coverage_percent.txt test_raptoreum.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP) src/qt/moc_*
+	rm -rf coverage_percent.txt test_hashmonkeycoin.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP) src/qt/moc_*
 	rm -rf test/functional/__pycache__ test/functional/test_framework/__pycache__ test/cache
 	rm -rf osx_volname dist/

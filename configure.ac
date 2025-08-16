@@ -177,7 +177,7 @@ AC_ARG_ENABLE([ccache],
 
 dnl Suppress warnings from external headers like Boost, Qt.
 dnl May be useful if warnings from external headers clutter the build output
-dnl too much, so that it becomes difficult to spot Raptoreum Core warnings
+dnl too much, so that it becomes difficult to spot HashmonkeyCoin Core warnings
 dnl or if they cause a build failure with --enable-werror.
 AC_ARG_ENABLE([suppress-external-warnings],
   [AS_HELP_STRING([--enable-suppress-external-warnings], [Suppress warnings from external headers (default is no)])],
@@ -589,19 +589,19 @@ CORE_CPPFLAGS="$CORE_CPPFLAGS -DHAVE_BUILD_INFO"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build raptoreum-cli raptoreum-wallet (default=yes)])],
+  [build hashmonkeycoin-cli hashmonkeycoin-wallet (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
 AC_ARG_ENABLE([util-cli],
   [AS_HELP_STRING([--enable-util-cli],
-  [build raptoreum-cli])],
+  [build hashmonkeycoin-cli])],
   [build_bitcoin_cli=$enableval],
   [build_bitcoin_cli=$build_bitcoin_utils])
 
 AC_ARG_ENABLE([util-wallet],
   [AS_HELP_STRING([--enable-util-wallet],
-  [build raptoreum-wallet])],
+  [build hashmonkeycoin-wallet])],
   [build_bitcoin_wallet=$enableval],
   [build_bitcoin_wallet=$build_bitcoin_utils])
 
@@ -613,7 +613,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build raptoreumd daemon (default=yes)])],
+  [build hashmonkeycoind daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -822,7 +822,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-dnl The following macro will add the necessary defines to raptoreum-config.h, but
+dnl The following macro will add the necessary defines to hashmonkeycoin-config.h, but
 dnl they also need to be passed down to any subprojects. Pull the results out of
 dnl the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -1360,7 +1360,7 @@ if test "$use_boost" = "yes"; then
   dnl Check for boost libs
   AX_BOOST_BASE([1.64.0],[],[AC_MSG_ERROR([Boost is not available!])])
   if test "$want_boost" = "no"; then
-    AC_MSG_ERROR([only libraptoreumconsensus can be built without boost])
+    AC_MSG_ERROR([only libhashmonkeycoinconsensus can be built without boost])
   fi
   AX_BOOST_FILESYSTEM
   AX_BOOST_SYSTEM
@@ -1480,15 +1480,15 @@ AC_CHECK_LIB([gmp], [__gmpz_init], [GMP_LIBS=-lgmp], [AC_MSG_ERROR([libgmp missi
 dnl check for immer header
 AC_CHECK_HEADER([immer/map.hpp],, [AC_MSG_ERROR([immer map header not found])])
 
-AC_MSG_CHECKING([whether to build raptoreumd])
+AC_MSG_CHECKING([whether to build hashmonkeycoind])
 AM_CONDITIONAL([BUILD_BITCOIND], [test $build_bitcoind = "yes"])
 AC_MSG_RESULT([$build_bitcoind])
 
-AC_MSG_CHECKING([whether to build raptoreum-cli])
+AC_MSG_CHECKING([whether to build hashmonkeycoin-cli])
 AM_CONDITIONAL([BUILD_BITCOIN_CLI], [test $build_bitcoin_cli = "yes"])
 AC_MSG_RESULT([$build_bitcoin_cli])
 
-AC_MSG_CHECKING([whether to build raptoreum-wallet])
+AC_MSG_CHECKING([whether to build hashmonkeycoin-wallet])
 AM_CONDITIONAL([BUILD_BITCOIN_WALLET], [test $build_bitcoin_wallet = "yes"])
 AC_MSG_RESULT($build_bitcoin_wallet)
 
@@ -1496,7 +1496,7 @@ AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test $build_bitcoin_libs = "yes"])
 if test "$build_bitcoin_libs" = "yes"; then
   AC_DEFINE([HAVE_CONSENSUS_LIB], [1], [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libraptoreumconsensus.pc:libraptoreumconsensus.pc.in])
+  AC_CONFIG_FILES([libhashmonkeycoinconsensus.pc:libhashmonkeycoinconsensus.pc.in])
 fi
 AC_MSG_RESULT($build_bitcoin_libs)
 
@@ -1618,7 +1618,7 @@ if test "$bitcoin_enable_qt" != "no"; then
     AC_MSG_WARN([xgettext is required to update qt translations])
   fi
 
-  AC_MSG_CHECKING([whether to build test_raptoreum-qt])
+  AC_MSG_CHECKING([whether to build test_hashmonkeycoin-qt])
   if test "$use_gui_tests$bitcoin_enable_qt_test" = "yesyes"; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"
@@ -1629,7 +1629,7 @@ fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "$use_zmq" = "yes"])
 
-AC_MSG_CHECKING([whether to build test_raptoreum])
+AC_MSG_CHECKING([whether to build test_hashmonkeycoin])
 if test "$use_tests" = "yes"; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="yes"
