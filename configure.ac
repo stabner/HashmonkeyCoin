@@ -80,7 +80,15 @@ dnl See more: https://wiki.debian.org/RpathIssue
 LT_PREREQ([2.4.2])
 
 dnl Libtool init checks.
-LT_INIT([pic-only win32-dll])
+dnl Disable shared libraries on Windows/WSL to avoid undefined symbol issues
+case $host in
+  *mingw*|*w64*|*msys*)
+    LT_INIT([pic-only disable-shared])
+    ;;
+  *)
+    LT_INIT([pic-only win32-dll])
+    ;;
+esac
 
 dnl Check/return PATH for base programs.
 AC_PATH_TOOL([AR], [ar])
