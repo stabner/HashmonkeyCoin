@@ -41,8 +41,8 @@ config.status
 config.status.old
 configure
 libtool
-src/config/raptoreum-config.h
-src/config/raptoreum-config.h.in
+src/config/hashmonkeycoin-config.h
+src/config/hashmonkeycoin-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist

@@ -8,7 +8,7 @@
 #include <util/macro.h>
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif //HAVE_CONFIG_H
 
 // Check that required client information is defined
