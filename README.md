@@ -1,62 +1,191 @@
-HashmonkeyCoin Core v1.0.0
-==========================
+# HashmonkeyCoin (HMNY) - Community-Driven Cryptocurrency
 
-|CI|master|develop|
-|-|-|-|
+[![CI](https://github.com/stabner/HashmonkeyCoin/workflows/CI/badge.svg)](https://github.com/stabner/HashmonkeyCoin/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-HashmonkeyCoin (HMNY) is a decentralized cryptocurrency built on the Raptoreum codebase, designed to provide a fair and transparent mining experience with no developer fees and simplified smartnode functionality.
+**HashmonkeyCoin (HMNY)** is a community-driven, decentralized cryptocurrency built on the proven Raptoreum codebase. Designed with fairness and transparency at its core, HashmonkeyCoin eliminates developer fees and simplifies the mining experience while maintaining robust security features.
 
-Introduction
-HashmonkeyCoin is a fork of Raptoreum that focuses on simplicity and fairness. The project removes developer fees and simplifies the smartnode system while maintaining the core blockchain functionality and security features.
+## 🚀 Key Features
 
-Key Features:
-- **Block Reward**: 500 HMNY per block with Bitcoin-style halving every 210,240 blocks (4 years)
-- **No Developer Fees**: 100% of mining rewards go to miners
-- **Simplified Smartnodes**: Smartnode functionality is disabled for simplicity
-- **Fast Block Time**: 2-minute block time for quick confirmations
-- **Secure**: Based on proven Raptoreum/Dash codebase with enhanced security features
+### **Mining & Economics**
+- **Block Reward**: 500 HMNY per block
+- **Halving Schedule**: Bitcoin-style halving every 210,240 blocks (~4 years)
+- **Block Time**: 2-minute blocks for fast confirmations
+- **No Developer Fees**: 100% of mining rewards go directly to miners
+- **Fair Distribution**: No pre-mine, no ICO, community-driven launch
 
-HashmonkeyCoin aims to provide a fair and transparent cryptocurrency that puts miners first, with no hidden fees or complex governance structures.
+### **Network & Security**
+- **Consensus Algorithm**: GhostRider (RandomX + SHA256)
+- **Smartnodes**: Disabled for simplified, fair mining
+- **Network Ports**: 
+  - Mainnet: 10227
+  - Testnet: 10228
+- **Seed Node**: seednode.hashmonkey.cloud
+- **Address Prefix**: 'H' for mainnet addresses
 
-License
--------
+### **Technical Specifications**
+- **Genesis Block**: August 16, 2025
+- **Message Start**: 0x68, 0x6d, 0x6e, 0x79 (hmny)
+- **BIP44 Coin Type**: 200
+- **Base58 Prefixes**: 
+  - Public Key: 40 ('H')
+  - Script: 5 ('3')
 
-HashmonkeyCoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+## 🏗️ Community Development Roadmap
 
-Development Process
--------------------
+### **Phase 1: Infrastructure Development**
+- [ ] **Hashmonkeys.cloud Platform**
+  - Community website and portal
+  - Mining pool dashboard
+  - Network statistics and monitoring
+  - Community forums and communication channels
 
-The `master` branch is meant to be stable. Development is done in separate branches.
-[Tags](https://github.com/stabner/hashmonkeycoin/tags) are created to indicate new official,
-stable release versions of HashmonkeyCoin Core.
+### **Phase 2: Mining Pool Optimization**
+- [ ] **Reduced Pool Fees**
+  - Target: 0.5% pool fee (industry standard)
+  - Transparent fee structure
+  - Community voting on fee changes
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
+- [ ] **Enhanced Stratum Servers**
+  - Multiple global stratum servers for low latency
+  - Load balancing and failover systems
+  - DDoS protection and security measures
+  - Real-time server status monitoring
 
-Testing
--------
+### **Phase 3: Advanced Features**
+- [ ] **Mining Pool Features**
+  - PPLNS and PPS payment methods
+  - Solo mining options
+  - Mobile mining app
+  - Mining profitability calculator
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+- [ ] **Community Tools**
+  - Block explorer with advanced features
+  - Wallet integration guides
+  - Mining setup tutorials
+  - Community governance platform
 
-### Automated Testing
+## 🤝 Community-Driven Development
 
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
+HashmonkeyCoin is built by the community, for the community. We believe in:
 
-There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
+- **Transparency**: All development decisions are open for community discussion
+- **Fairness**: No hidden fees, no developer rewards, miners come first
+- **Innovation**: Community-driven feature development and improvements
+- **Accessibility**: Easy-to-use tools and comprehensive documentation
 
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
+### **Get Involved**
+- **Discord**: [Join our community](https://discord.gg/hashmonkeycoin)
+- **Telegram**: [HashmonkeyCoin Community](https://t.me/hashmonkeycoin)
+- **Reddit**: [r/HashmonkeyCoin](https://reddit.com/r/HashmonkeyCoin)
+- **GitHub**: [Contribute to development](https://github.com/stabner/HashmonkeyCoin)
 
-### Manual Quality Assurance (QA) Testing
+## 📦 Installation & Setup
 
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+### **System Requirements**
+- **OS**: Windows 10+, macOS 10.14+, Ubuntu 18.04+
+- **RAM**: 4GB minimum, 8GB recommended
+- **Storage**: 10GB free space
+- **Network**: Stable internet connection
+
+### **Quick Start**
+
+#### **Windows**
+```bash
+# Download the latest release from GitHub
+# Extract and run hashmonkeycoin-qt.exe
+```
+
+#### **Linux**
+```bash
+git clone https://github.com/stabner/HashmonkeyCoin.git
+cd HashmonkeyCoin
+./autogen.sh
+./configure
+make
+sudo make install
+```
+
+#### **macOS**
+```bash
+# Using Homebrew
+brew install hashmonkeycoin
+
+# Or build from source
+git clone https://github.com/stabner/HashmonkeyCoin.git
+cd HashmonkeyCoin
+./autogen.sh
+./configure
+make
+```
+
+### **Mining Setup**
+```bash
+# Example mining configuration
+./hashmonkeycoind -daemon
+./hashmonkeycoin-cli getnewaddress
+# Use the generated address in your mining software
+```
+
+## 🔧 Development
+
+### **Building from Source**
+```bash
+git clone https://github.com/stabner/HashmonkeyCoin.git
+cd HashmonkeyCoin
+./autogen.sh
+./configure
+make
+```
+
+### **Running Tests**
+```bash
+make check                    # Unit tests
+test/functional/test_runner.py # Integration tests
+```
+
+### **Contributing**
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## 📊 Network Statistics
+
+- **Current Block Height**: [Check Explorer](https://explorer.hashmonkey.cloud)
+- **Network Hashrate**: [Live Stats](https://hashmonkeys.cloud/stats)
+- **Difficulty**: [Current Difficulty](https://hashmonkeys.cloud/difficulty)
+- **Mining Pools**: [Pool List](https://hashmonkeys.cloud/pools)
+
+## 🛡️ Security
+
+HashmonkeyCoin inherits the robust security features from the Raptoreum codebase:
+- **GhostRider Algorithm**: Combines RandomX and SHA256 for ASIC resistance
+- **InstantSend**: Near-instant transaction confirmations
+- **ChainLocks**: Protection against 51% attacks
+- **LLMQ**: Long Living Masternode Quorums for consensus
+
+## 📄 License
+
+HashmonkeyCoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more information or see https://opensource.org/licenses/MIT.
+
+## 🙏 Acknowledgments
+
+- **Raptoreum Team**: For the original codebase and innovative features
+- **Dash Team**: For the underlying blockchain technology
+- **Bitcoin Core**: For the foundational blockchain concepts
+- **Community Contributors**: For ongoing development and support
+
+## 📞 Support
+
+- **Documentation**: [docs.hashmonkey.cloud](https://docs.hashmonkey.cloud)
+- **Support Forum**: [support.hashmonkey.cloud](https://support.hashmonkey.cloud)
+- **Email**: support@hashmonkey.cloud
+- **Discord**: [Community Support](https://discord.gg/hashmonkeycoin)
+
+---
+
+**HashmonkeyCoin - Built by the Community, for the Community** 🐒💎
+
+*Join us in building the future of fair and transparent cryptocurrency mining!*
