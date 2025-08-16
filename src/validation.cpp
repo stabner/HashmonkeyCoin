@@ -1089,53 +1089,23 @@ GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consens
     //     std::cout << "This is Testnet only build" << endl;
     //     exit(1);
     // }
-    double nSubsidy = 5000;      // (declaring the reward variable and its original/default amount)
-    const short owlings = 21262; // amount of blocks between 2 owlings
+    double nSubsidy = 500;       // (declaring the reward variable and its original/default amount)
+    const short owlings = 210240; // amount of blocks between 2 halvings (4 years)
     int multiplier;              // integer number of owlings
     int tempHeight;              // number of blocks since last anchor
-    if (nPrevHeight < 720) {
-        nSubsidy = Params().NetworkIDString() == CBaseChainParams::TESTNET ? 20000 : 4;
-    } else if ((nPrevHeight > 553531) && (nPrevHeight < 2105657)) {
-        tempHeight = nPrevHeight - 553532;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 10 + 10);
-    } else if ((nPrevHeight >= 2105657) && (nPrevHeight < 5273695)) {
-        tempHeight = nPrevHeight - 2105657;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 20 + 750);
-    } else if ((nPrevHeight >= 5273695) && (nPrevHeight < 7378633)) {
-        tempHeight = nPrevHeight - 5273695;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 10 + 3720);
-    } else if ((nPrevHeight >= 7378633) && (nPrevHeight < 8399209)) {
-        tempHeight = nPrevHeight - 7378633;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 5 + 4705);
-    } else if ((nPrevHeight >= 8399209) && (nPrevHeight < 14735285)) {
-        nSubsidy = 55;
-    } else if ((nPrevHeight >= 14735285) && (nPrevHeight < 15798385)) {
-        tempHeight = nPrevHeight - 14735285;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier + 4946);
-    } else if ((nPrevHeight >= 15798385) && (nPrevHeight < 25844304)) {
-        nSubsidy = 5;
-    } else if (nPrevHeight >= 25844304) {
-        nSubsidy = 0.001;
+    // Standard Bitcoin-style halving every 210240 blocks (4 years)
+    int halvings = nPrevHeight / owlings;
+    if (halvings >= 64) {
+        nSubsidy = 0; // No more rewards after 64 halvings
+    } else {
+        nSubsidy = nSubsidy / (1 << halvings); // Divide by 2^halvings
     }
     return nSubsidy * COIN;
 }
 
 CAmount GetSmartnodePayment(int nHeight, CAmount blockValue, CAmount specialTxFees) {
-    size_t mnCount = ::ChainActive().Tip() == nullptr ? 0 : deterministicMNManager->GetListForBlock(
-            ::ChainActive().Tip()).GetAllMNsCount();
-
-    if (mnCount >= 10 || Params().NetworkIDString().compare("test") == 0) {
-        int percentage = Params().GetConsensus().nCollaterals.getRewardPercentage(nHeight);
-        CAmount specialFeeReward = specialTxFees * Params().GetConsensus().nFutureRewardShare.smartnode;
-        return blockValue * percentage / 100 + specialFeeReward;
-    } else {
-        return 0;
-    }
+    // Smartnodes disabled for HashmonkeyCoin
+    return 0;
 }
 
 CoinsViews::CoinsViews(

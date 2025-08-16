@@ -1,6 +1,7 @@
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2014-2018 The Dash Core developers
 # Copyright (c) 2020-2022 The Raptoreum developers
+# Copyright (c) 2025 The HashmonkeyCoin developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,7 +21,7 @@ export PYTHONPATH
 
 if BUILD_BITCOIN_LIBS
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libraptoreumconsensus.pc
+pkgconfig_DATA = libhashmonkeycoinconsensus.pc
 endif
 
 BITCOIND_BIN=$(top_builddir)/src/$(BITCOIN_DAEMON_NAME)$(EXEEXT)
@@ -32,16 +33,16 @@ BITCOIN_WIN_INSTALLER=$(PACKAGE)-$(PACKAGE_VERSION)-win64-setup$(EXEEXT)
 empty :=
 space := $(empty) $(empty)
 
-OSX_APP=Raptoreum-Qt.app
+OSX_APP=HashmonkeyCoin-Qt.app
 OSX_VOLNAME = $(subst $(space),-,$(PACKAGE_NAME))
 OSX_DMG = $(OSX_VOLNAME).dmg
 OSX_DEPLOY_SCRIPT=$(top_srcdir)/contrib/macdeploy/macdeployqtplus
-OSX_INSTALLER_ICONS=$(top_srcdir)/src/qt/res/icons/raptoreum.icns
+OSX_INSTALLER_ICONS=$(top_srcdir)/src/qt/res/icons/hashmonkeycoin.icns
 OSX_PLIST=$(top_builddir)/share/qt/Info.plist #not installed
 
 DIST_DOCS = $(wildcard doc/*.md) $(wildcard doc/release-notes/*.md)
-DIST_CONTRIB = $(top_srcdir)/contrib/raptoreum-cli.bash-completion \
-	       $(top_srcdir)/contrib/raptoreumd.bash-completion \
+DIST_CONTRIB = $(top_srcdir)/contrib/hashmonkeycoin-cli.bash-completion \
+	       $(top_srcdir)/contrib/hashmonkeycoind.bash-completion \
 	       $(top_srcdir)/contrib/init
 DIST_SHARE = \
   $(top_srcdir)/share/genbuild.sh \
@@ -50,7 +51,7 @@ DIST_SHARE = \
 BIN_CHECKS=$(top_srcdir)/contrib/devtools/symbol-check.py \
            $(top_srcdir)/contrib/devtools/security-check.py
 
-WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/raptoreum.ico \
+WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/hashmonkeycoin.ico \
   $(top_srcdir)/share/pixmaps/nsis-header.bmp \
   $(top_srcdir)/share/pixmaps/nsis-wizard.bmp \
   $(top_srcdir)/doc/README_windows.txt
@@ -59,9 +60,9 @@ OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_INSTALLER_ICONS) \
   $(top_srcdir)/contrib/macdeploy/detached-sig-create.sh
 
 COVERAGE_INFO = $(COV_TOOL_WRAPPER) baseline.info \
-  test_raptoreum_filtered.info total_coverage.info \
+  test_hashmonkeycoin_filtered.info total_coverage.info \
   baseline_filtered.info functional_test.info functional_test_filtered.info \
-  test_raptoreum_coverage.info test_raptoreum.info
+  test_hashmonkeycoin_coverage.info test_hashmonkeycoin.info
 
 dist-hook:
 	-$(GIT) archive --format=tar HEAD -- src/clientversion.cpp | $(AMTAR) -C $(top_distdir) -xf -
@@ -93,11 +94,11 @@ $(OSX_APP)/Contents/Info.plist: $(OSX_PLIST)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/Resources/raptoreum.icns: $(OSX_INSTALLER_ICONS)
+$(OSX_APP)/Contents/Resources/hashmonkeycoin.icns: $(OSX_INSTALLER_ICONS)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/MacOS/Raptoreum-Qt: all-recursive
+$(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt: all-recursive
 	$(MKDIR_P) $(@D)
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM)  $(BITCOIN_QT_BIN) $@
 
@@ -106,8 +107,8 @@ $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings:
 	echo '{	CFBundleDisplayName = "$(PACKAGE_NAME)"; CFBundleName = "$(PACKAGE_NAME)"; }' > $@
 
 OSX_APP_BUILT=$(OSX_APP)/Contents/PkgInfo $(OSX_APP)/Contents/Resources/empty.lproj \
-  $(OSX_APP)/Contents/Resources/raptoreum.icns $(OSX_APP)/Contents/Info.plist \
-  $(OSX_APP)/Contents/MacOS/Raptoreum-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings
+  $(OSX_APP)/Contents/Resources/hashmonkeycoin.icns $(OSX_APP)/Contents/Info.plist \
+	$(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings
 
 osx_volname:
 	echo $(OSX_VOLNAME) >$@
@@ -123,10 +124,10 @@ APP_DIST_DIR=$(top_builddir)/dist
 $(OSX_DMG): deploydir
 	$(XORRISOFS) -D -l -V "$(OSX_VOLUME)" -no-pad -r -dir-mode 0755 -o $@ dist
 
-$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Raptoreum-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
+$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
 	INSTALL_NAME_TOOL=$(INSTALL_NAME_TOOL)  OTOOL=$(OTOOL) STRIP=$(STRIP) $(PYTHON) $(OSX_DEPLOY_SCRIPT) $(OSX_APP) $(OSX_VOLNAME) -translations-dir=$(QT_TRANSLATION_DIR)
 
-deploydir: $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Raptoreum-Qt
+deploydir: $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt
 endif !BUILD_DARWIN
 
 deploy: $(OSX_DMG)

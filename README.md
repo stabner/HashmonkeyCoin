@@ -1,38 +1,35 @@
-Raptoreum Core Latest v2.0.3
-===========================
+HashmonkeyCoin Core v1.0.0
+==========================
 
 |CI|master|develop|
 |-|-|-|
 
-The name Raptoreum is derived from the Victorian term for a bird of prey and ium/eum place for a pertaining to in this case birds of prey. The name comes from the team’s extensive experience in the security field with top level skills covering all aspects of it. This is a unique strength in the crypto community and will leverage well into a successful project.
+HashmonkeyCoin (HMNY) is a decentralized cryptocurrency built on the Raptoreum codebase, designed to provide a fair and transparent mining experience with no developer fees and simplified smartnode functionality.
 
 Introduction
-Raptoreum began as the fairly simple idea, introducing smart contracts which would allow on chain, trustless transfers (goodbye centralized marketplaces) on the Ravencoin codebase, however with the automation of assets and RTM (Raptoreum).
-The project has quickly evolved, adding innovative features that not only further expand the asset layer, but also introduce features that could help other Blockchain projects. Ravencoin unfortunately suffered several serious breaches of its asset layer so that code base has been abandoned by us. We are currently working with and building on Raptoreum code expending its capabilities significantly.
+HashmonkeyCoin is a fork of Raptoreum that focuses on simplicity and fairness. The project removes developer fees and simplifies the smartnode system while maintaining the core blockchain functionality and security features.
 
-Raptoreum is now a code fork of Dash and inherits current and optionally future features such as chain locks, oracles etc. We are further expanding capabilities by adding the following features:
-A)	The deployment of a unique asset layer.
-B)	The option to lock X amount of coins or assets into a special transaction. Coins are unlocked at a block number of choice or timestamp.
-C)	Trustless on chain transfers of assets and native coins VIA Smart Contracts.
-D)	Integrating, developing and deploying a VM protocol that would allow for smart contracts in 4 major programming languages as opposed to the situation with Ethereum being limited to solidity.
+Key Features:
+- **Block Reward**: 500 HMNY per block with Bitcoin-style halving every 210,240 blocks (4 years)
+- **No Developer Fees**: 100% of mining rewards go to miners
+- **Simplified Smartnodes**: Smartnode functionality is disabled for simplicity
+- **Fast Block Time**: 2-minute block time for quick confirmations
+- **Secure**: Based on proven Raptoreum/Dash codebase with enhanced security features
 
-These additional features open up the power and ease of use of Raptoreum’s features to a greater variety of industries under the Distributed Application umbrella. DAPP's are a critical part of driving widespread adoption as recently seen with DEFI and Raptoreum hopes to help provide further alternatives and possibilities for DAPP developers particularly in the field of opening up new programming languages for DAPP and contract development.
-
-It is one of our goals to not only innovate ideas for Raptoreum but to contribute back to the general crypto community with open-source features that anybody can use to help their Blockchain projects succeed.
-
+HashmonkeyCoin aims to provide a fair and transparent cryptocurrency that puts miners first, with no hidden fees or complex governance structures.
 
 License
 -------
 
-Raptoreum Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+HashmonkeyCoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is meant to be stable. Development is done in separate branches.
-[Tags](https://github.com/raptor3um/raptoreum/tags) are created to indicate new official,
-stable release versions of Raptoreum Core.
+[Tags](https://github.com/stabner/hashmonkeycoin/tags) are created to indicate new official,
+stable release versions of HashmonkeyCoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 

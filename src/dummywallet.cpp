@@ -28,7 +28,7 @@ public:
 
     void Construct(NodeContext &node) const override { LogPrintf("No wallet support compiled in!\n"); }
 
-    // Raptoreum specific code
+    // HashmonkeyCoin specific code
     void AutoLockSmartnodeCollaterals() const override {}
 
     void InitCoinJoinSettings() const override {}

@@ -1,10 +1,10 @@
-# bash programmable completion for raptoreum-cli(1)
+# bash programmable completion for hashmonkeycoin-cli(1)
 # Copyright (c) 2012-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# call $raptoreum-cli for RPC
-_raptoreum_rpc() {
+# call $hashmonkeycoin-cli for RPC
+_hashmonkeycoin_rpc() {
     # determine already specified args necessary for RPC
     local rpcargs=()
     for i in ${COMP_LINE}; do
@@ -14,23 +14,23 @@ _raptoreum_rpc() {
                 ;;
         esac
     done
-    $raptoreum_cli "${rpcargs[@]}" "$@"
+    $hashmonkeycoin_cli "${rpcargs[@]}" "$@"
 }
 
 # Add wallet accounts to COMPREPLY
-_raptoreum_accounts() {
+_hashmonkeycoin_accounts() {
     local accounts
-    accounts=$(_raptoreum_rpc listaccounts | awk -F '"' '{ print $2 }')
+    accounts=$(_hashmonkeycoin_rpc listaccounts | awk -F '"' '{ print $2 }')
     COMPREPLY=( "${COMPREPLY[@]}" $( compgen -W "$accounts" -- "$cur" ) )
 }
 
-_raptoreum_cli() {
+_hashmonkeycoin_cli() {
     local cur prev words=() cword
-    local raptoreum_cli
+    local hashmonkeycoin_cli
 
-    # save and use original argument to invoke raptoreum-cli for -help, help and RPC
-    # as raptoreum-cli might not be in $PATH
-    raptoreum_cli="$1"
+    # save and use original argument to invoke hashmonkeycoin-cli for -help, help and RPC
+    # as hashmonkeycoin-cli might not be in $PATH
+    hashmonkeycoin_cli="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -60,7 +60,7 @@ _raptoreum_cli() {
     if ((cword > 3)); then
         case ${words[cword-3]} in
             addmultisigaddress)
-                _raptoreum_accounts
+                _hashmonkeycoin_accounts
                 return 0
                 ;;
             getbalance|gettxout|importaddress|importpubkey|importprivkey|listreceivedbyaccount|listreceivedbyaddress|listsinceblock)
@@ -85,7 +85,7 @@ _raptoreum_cli() {
                 return 0
                 ;;
             move|setaccount)
-                _raptoreum_accounts
+                _hashmonkeycoin_accounts
                 return 0
                 ;;
         esac
@@ -101,7 +101,7 @@ _raptoreum_cli() {
             return 0
             ;;
         getaccountaddress|getaddressesbyaccount|getbalance|getnewaddress|getreceivedbyaccount|listtransactions|move|sendfrom|sendmany)
-            _raptoreum_accounts
+            _hashmonkeycoin_accounts
             return 0
             ;;
     esac
@@ -125,12 +125,12 @@ _raptoreum_cli() {
 
             # only parse -help if senseful
             if [[ -z "$cur" || "$cur" =~ ^- ]]; then
-                helpopts=$($raptoreum_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
+                helpopts=$($hashmonkeycoin_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
             fi
 
             # only parse help if senseful
             if [[ -z "$cur" || "$cur" =~ ^[a-z] ]]; then
-                commands=$(_raptoreum_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
+                commands=$(_hashmonkeycoin_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
             fi
 
             COMPREPLY=( $( compgen -W "$helpopts $commands" -- "$cur" ) )
@@ -143,7 +143,7 @@ _raptoreum_cli() {
             ;;
     esac
 } &&
-complete -F _raptoreum_cli raptoreum-cli
+complete -F _hashmonkeycoin_cli hashmonkeycoin-cli
 
 # Local variables:
 # mode: shell-script

@@ -619,7 +619,7 @@ UniValue sendasset(const JSONRPCRequest &request) {
                 "1. \"asset_id\"                (string, required) asset hash id or asset name\n"
                 "2. \"qty\"                     (numeric, required) number of assets you want to send to the address\n"
                 "3. \"to_address\"              (string, required) address to send the asset to\n"
-                "4. \"change_address\"          (string, optional, default = \"\") the transactions RTM change will be sent to this address\n"
+                "4. \"change_address\"          (string, optional, default = \"\") the transactions HMNY change will be sent to this address\n"
                 "5. \"asset_change_address\"    (string, optional, default = \"\") the transactions Asset change will be sent to this address\n"
 
                 "\nResult:\n"
@@ -644,7 +644,7 @@ UniValue sendasset(const JSONRPCRequest &request) {
     CAmount curBalance = pwallet->GetBalance().m_mine_trusted;
     if (curBalance == 0) {
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS,
-                           "Error: This wallet doesn't contain any RTM, transfering an asset requires a network fee");
+                           "Error: This wallet doesn't contain any HMNY, transfering an asset requires a network fee");
     }
 
     // get asset metadadta
@@ -688,7 +688,7 @@ UniValue sendasset(const JSONRPCRequest &request) {
     CTxDestination change_dest = DecodeDestination(change_address);
     if (!change_address.empty() && !IsValidDestination(change_dest))
         throw JSONRPCError(RPC_INVALID_PARAMETER,
-                           std::string("RTM change address must be a valid address. Invalid address: ") +
+                           std::string("HMNY change address must be a valid address. Invalid address: ") +
                            change_address);
 
     CTxDestination asset_change_dest = DecodeDestination(asset_change_address);

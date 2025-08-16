@@ -60,9 +60,9 @@ public:
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit {
-        RTM,
-        mRTM,
-        uRTM,
+        HMNY,
+        mHMNY,
+        uHMNY,
         ruffs
     };
 

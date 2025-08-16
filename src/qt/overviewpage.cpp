@@ -35,7 +35,7 @@ class TxViewDelegate : public QAbstractItemDelegate {
     Q_OBJECT
 public:
     explicit TxViewDelegate(QObject *parent = nullptr) :
-            QAbstractItemDelegate(), unit(BitcoinUnits::RTM) {
+            QAbstractItemDelegate(), unit(BitcoinUnits::HMNY) {
 
     }
 

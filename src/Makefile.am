@@ -101,16 +101,16 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += raptoreumd
+  bin_PROGRAMS += hashmonkeycoind
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += raptoreum-cli
+  bin_PROGRAMS += hashmonkeycoin-cli
 endif
 
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += raptoreum-wallet
+  bin_PROGRAMS += hashmonkeycoin-wallet
 endif
 endif
 
