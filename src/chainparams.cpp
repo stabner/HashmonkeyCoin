@@ -248,6 +248,18 @@ public:
         genesis = CreateGenesisBlock(1755295200, 1130, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
+        
+        // Output genesis block values for debugging
+        std::cout << "=== HashmonkeyCoin Genesis Block Values ===" << std::endl;
+        std::cout << "Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "Genesis Nonce: " << genesis.nNonce << std::endl;
+        std::cout << "=== Copy these values to replace the TODO comments ===" << std::endl;
+        std::cout << "assert(consensus.hashGenesisBlock == uint256S(\"" << consensus.hashGenesisBlock.ToString() << "\"));" << std::endl;
+        std::cout << "assert(genesis.hashMerkleRoot == uint256S(\"" << genesis.hashMerkleRoot.ToString() << "\"));" << std::endl;
+        std::cout << "genesis = CreateGenesisBlock(1755295200, " << genesis.nNonce << ", 0x20001fff, 4, 500 * COIN);" << std::endl;
+        std::cout << "================================================" << std::endl;
+        
         // TODO: Update these with the actual genesis block hash and merkle root after generation
         // assert(consensus.hashGenesisBlock == uint256S("0x..."));
         // assert(genesis.hashMerkleRoot == uint256S("0x..."));
