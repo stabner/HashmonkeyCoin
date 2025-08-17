@@ -3,6 +3,12 @@
 todo.txt
 reset-files.bash
 
+# Genesis block mining files
+genesis_*.cpp
+genesis_*.py
+genesis_*.sh
+mine_genesis.*
+
 *.tar.gz
 
 *.exe
