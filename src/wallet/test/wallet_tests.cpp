@@ -16,7 +16,7 @@
 #include <node/context.h>
 #include <policy/policy.h>
 #include <rpc/server.h>
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 #include <util/ref.h>
 #include <validation.h>
 #include <wallet/coincontrol.h>

@@ -17,7 +17,7 @@
 #include <qt/test/uritests.h>
 #include <qt/test/compattests.h>
 #include <qt/test/trafficgraphdatatests.h>
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 
 #if defined(ENABLE_WALLET)
 #include <qt/test/wallettests.h>

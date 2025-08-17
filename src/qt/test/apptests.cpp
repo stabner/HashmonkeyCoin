@@ -11,7 +11,7 @@
 #include <qt/networkstyle.h>
 #include <qt/rpcconsole.h>
 #include <shutdown.h>
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 #include <univalue.h>
 #include <validation.h>
 

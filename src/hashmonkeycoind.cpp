@@ -69,7 +69,7 @@ static bool AppInit(int argc, char *argv[]) {
         if (gArgs.IsArgSet("-version")) {
             strUsage += FormatParagraph(LicenseInfo()) + "\n";
         } else {
-            strUsage += "\nUsage: raptoreumd [options]           Start "
+            strUsage += "\nUsage: hashmonkeycoind [options]           Start "
             PACKAGE_NAME
             " Daemon\n";
             strUsage += "\n" + gArgs.GetHelpMessage();
@@ -100,12 +100,12 @@ static bool AppInit(int argc, char *argv[]) {
         for (int i = 1; i < argc; i++) {
             if (!IsSwitchChar(argv[i][0])) {
                 return InitError(strprintf(
-                        "Error: Command line contains unexpected token '%s', see raptoreumd -h for a list of options.\n",
+                        "Error: Command line contains unexpected token '%s', see hashmonkeycoind -h for a list of options.\n",
                         argv[i]));
             }
         }
 
-        // -server defaults to true for raptoreumd but not for the GUI so do this here
+        // -server defaults to true for hashmonkeycoind but not for the GUI so do this here
         gArgs.SoftSetBoolArg("-server", true);
         // Set this early so that parameter interactions go to console
         InitLogging();

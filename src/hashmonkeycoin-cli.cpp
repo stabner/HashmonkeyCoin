@@ -134,12 +134,12 @@ static int AppInitRPC(int argc, char *argv[]) {
         std::string strUsage = strprintf("%s RPC client version", PACKAGE_NAME) + " " + FormatFullVersion() + "\n";
         if (!gArgs.IsArgSet("-version")) {
             strUsage += "\nUsage:\n"
-                        "  raptoreum-cli [options] <command> [params]  " +
+                        "  hashmonkeycoin-cli [options] <command> [params]  " +
                         strprintf("Send command to %s", PACKAGE_NAME) + "\n" +
-                        "  raptoreum-cli [options] -named <command> [name=value] ... " +
+                        "  hashmonkeycoin-cli [options] -named <command> [name=value] ... " +
                         strprintf("Send command to %s (with named arguments)", PACKAGE_NAME) + "\n" +
-                        "  raptoreum-cli [options] help                List commands\n" +
-                        "  raptoreum-cli [options] help <command>      Get help for a command\n";
+                        "  hashmonkeycoin-cli [options] help                List commands\n" +
+                        "  hashmonkeycoin-cli [options] help <command>      Get help for a command\n";
 
             strUsage += "\n" + gArgs.GetHelpMessage();
         }
@@ -392,7 +392,7 @@ static UniValue CallRPC(BaseRequestHandler *rh, const std::string &strMethod, co
                                              http_errorstring(response.error));
         }
         throw CConnectionFailed(strprintf(
-                "Could not connect to the server %s:%d%s\n\nMake sure the raptoreumd server is running and that you are connecting to the correct RPC port.",
+                "Could not connect to the server %s:%d%s\n\nMake sure the hashmonkeycoind server is running and that you are connecting to the correct RPC port.",
                 host, port, responseErrorMessage));
     } else if (response.status == HTTP_UNAUTHORIZED) {
         if (failedToGetAuthCookie) {

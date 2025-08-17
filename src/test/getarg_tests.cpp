@@ -4,7 +4,7 @@
 
 #include <util/strencodings.h>
 #include <util/system.h>
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 
 #include <string>
 #include <utility>

@@ -12,7 +12,7 @@
 #include <script/sign.h>
 #include <util/system.h>
 #include <util/strencodings.h>
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 #include <rpc/util.h>
 
 #if defined(HAVE_CONSENSUS_LIB)
