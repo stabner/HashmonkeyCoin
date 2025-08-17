@@ -1226,7 +1226,7 @@ UniValue setgenerate(const JSONRPCRequest &request) {
     if (!node.connman)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
-    int numCores = GenerateRaptoreums(fGenerate, nGenProcLimit, Params(), node);
+            int numCores = GenerateHashmonkeyCoins(fGenerate, nGenProcLimit, Params(), node);
 
     nGenProcLimit = nGenProcLimit >= 0 ? nGenProcLimit : numCores;
     std::string msg = std::to_string(nGenProcLimit) + " of " + std::to_string(numCores);

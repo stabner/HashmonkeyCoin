@@ -511,9 +511,9 @@ static int CommandLineRPC(int argc, char *argv[]) {
                         if (errMsg.isStr())
                             strPrint += "error message:\n" + errMsg.get_str();
 
-                        if (errCode.isNum() && errCode.get_int() == RPC_WALLET_NOT_SPECIFIED) {
-                            strPrint += "\nTry adding \"-rpcwallet=<filename>\" option to raptoreum-cli command line.";
-                        }
+                                                 if (errCode.isNum() && errCode.get_int() == RPC_WALLET_NOT_SPECIFIED) {
+                             strPrint += "\nTry adding \"-rpcwallet=<filename>\" option to hashmonkeycoin-cli command line.";
+                         }
                     }
                 } else {
                     // Result

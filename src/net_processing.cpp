@@ -61,7 +61,7 @@
 #include <statsd_client.h>
 
 #if defined(NDEBUG)
-# error "Raptoreum Core cannot be compiled without assertions."
+# error "HashmonkeyCoin Core cannot be compiled without assertions."
 #endif
 
 /** Maximum number of in-flight objects from a peer */
