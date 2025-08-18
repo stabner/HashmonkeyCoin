@@ -13,17 +13,17 @@ mine_genesis.*
 
 *.exe
 *.pdb
-src/raptoreum
-src/raptoreumd
-src/raptoreum-cli
-src/raptoreum-wallet
+src/hashmonkeycoin
+src/hashmonkeycoind
+src/hashmonkeycoin-cli
+src/hashmonkeycoin-wallet
 src/test/fuzz
 !src/test/fuzz/*.*
-src/test/test_raptoreum
-src/test/test_raptoreum_fuzzy
+src/test/test_hashmonkeycoin
+src/test/test_hashmonkeycoin_fuzzy
 src/qt/test/test_hashmonkeycoin-qt
 src/qt/res/css/colors/*
-src/bench/bench_raptoreum
+src/bench/bench_hashmonkeycoin
 
 # autoreconf
 Makefile.in
@@ -115,7 +115,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_raptoreum.coverage/
+test_hashmonkeycoin.coverage/
 total.coverage/
 coverage_percent.txt
 /cov_tool_wraper.sh
