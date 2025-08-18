@@ -134,7 +134,7 @@ test/cache/*
 .autotools
 /doc/doxygen/
 
-libraptoreumconsensus.pc
+libhashmonkeycoinconsensus.pc
 contrib/devtools/split-debug.sh
 src/qt/raptoreum-qt.bash
 qa/pull-tester/tests-config.sh

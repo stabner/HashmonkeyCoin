@@ -39,8 +39,8 @@ bench_bench_raptoreum_SOURCES = \
   bench/poly1305.cpp \
   bench/prevector.cpp \
   bench/string_cast.cpp \
-  test/test_raptoreum.cpp \
-  test/test_raptoreum.h
+  test/test_hashmonkeycoin.cpp \
+test/test_hashmonkeycoin.h
 
 nodist_bench_bench_raptoreum_SOURCES = $(GENERATED_BENCH_FILES)
 
