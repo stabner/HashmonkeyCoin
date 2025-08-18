@@ -21,7 +21,7 @@ src/test/fuzz
 !src/test/fuzz/*.*
 src/test/test_raptoreum
 src/test/test_raptoreum_fuzzy
-src/qt/test/test_raptoreum-qt
+src/qt/test/test_hashmonkeycoin-qt
 src/qt/res/css/colors/*
 src/bench/bench_raptoreum
 
@@ -95,13 +95,13 @@ libconftest.dylib*
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-src/qt/raptoreum-qt
-Raptoreum-Qt.app
+src/qt/hashmonkeycoin-qt
+HashmonkeyCoin-Qt.app
 !/depends/Makefile
 
 # Unit-tests
 Makefile.test
-raptoreum-qt_test
+hashmonkeycoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -136,14 +136,14 @@ test/cache/*
 
 libhashmonkeycoinconsensus.pc
 contrib/devtools/split-debug.sh
-src/qt/raptoreum-qt.bash
+src/qt/hashmonkeycoin-qt.bash
 qa/pull-tester/tests-config.sh
 
 #development symlinks
-raptoreum-cli
-raptoreumd
-raptoreum-qt
-raptoreum-wallet
+hashmonkeycoin-cli
+hashmonkeycoind
+hashmonkeycoin-qt
+hashmonkeycoin-wallet
 make
 
 /docker/bin
@@ -160,7 +160,7 @@ dist/
 *.conf
 .settings/language.settings.xml
 
-/raptoreum.iml
+/hashmonkeycoin.iml
 /testnet3_binary/
 /testnet4/
 
