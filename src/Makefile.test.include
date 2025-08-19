@@ -176,12 +176,12 @@ CLEAN_BITCOIN_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
 
 CLEANFILES += $(CLEAN_BITCOIN_TEST)
 
-raptoreum_test: $(TEST_BINARY)
+hashmonkeycoin_test: $(TEST_BINARY)
 
-raptoreum_test_check: $(TEST_BINARY) FORCE
+hashmonkeycoin_test_check: $(TEST_BINARY) FORCE
 	$(MAKE) check-TESTS TESTS=$^
 
-raptoreum_test_clean : FORCE
+hashmonkeycoin_test_clean : FORCE
 	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_hashmonkeycoin_OBJECTS) $(TEST_BINARY)
 
 check-local:

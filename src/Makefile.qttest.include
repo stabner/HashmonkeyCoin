@@ -77,4 +77,4 @@ test_hashmonkeycoin_qt_check : qt/test/test_hashmonkeycoin-qt$(EXEEXT) FORCE
 	$(MAKE) check-TESTS TESTS=$^
 
 test_hashmonkeycoin_qt_clean: FORCE
-rm -f $(CLEAN_BITCOIN_QT_TEST) $(qt_test_test_hashmonkeycoin_qt_OBJECTS)
+	rm -f $(CLEAN_BITCOIN_QT_TEST) $(qt_test_test_hashmonkeycoin_qt_OBJECTS)
