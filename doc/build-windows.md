@@ -1,104 +1,158 @@
-WINDOWS BUILD NOTES
-====================
+# Building HashmonkeyCoin Core for Windows
 
-Below are some notes on how to build Raptoreum Core for Windows.
+This guide describes how to build HashmonkeyCoin Core for Windows using cross-compilation from Linux (WSL Ubuntu 24.04).
 
-The options known to work for building Raptoreum Core on Windows are:
+## Prerequisites
 
-* On Linux, using the [Mingw-w64](https://www.mingw-w64.org/) cross compiler tool chain. 
-and is the platform used to build the Raptoreum Core Windows release binaries.
-* On Windows, using [Windows
-Subsystem for Linux (WSL)](https://docs.microsoft.com/windows/wsl/about) and the Mingw-w64 cross compiler tool chain.
+### Install Required Dependencies
 
-Other options which may work, but which have not been extensively tested are (please contribute instructions):
+```bash
+# Update package list
+sudo apt update
 
-* On Windows, using a POSIX compatibility layer application such as [cygwin](https://www.cygwin.com/) or [msys2](https://www.msys2.org/).
+# Install cross-compilation toolchain
+sudo apt install -y gcc-mingw-w64 g++-mingw-w64 mingw-w64-tools
 
-Installing Windows Subsystem for Linux
----------------------------------------
+# Install build dependencies
+sudo apt install -y build-essential libtool autotools-dev automake pkg-config bsdmainutils python3
 
-* Follow the upstream installation instructions, available [here](https://docs.microsoft.com/windows/wsl/install-win10).
+# Install additional dependencies
+sudo apt install -y libssl-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
 
-Cross-compilation for Ubuntu and Windows Subsystem for Linux
-------------------------------------------------------------
+# Install Qt5 development packages (Ubuntu 24.04 compatible)
+sudo apt install -y qtbase5-dev qttools5-dev-tools qt5-qmake
 
-The steps below can be performed on Ubuntu or WSL. The depends system
-will also work on other Linux distributions, however the commands for
-installing the toolchain will be different.
-
-First, install the general dependencies:
-
-	sudo apt update
-	sudo apt upgrade
-	sudo apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git
-
-A host toolchain (`build-essential`) is necessary because some dependency
-packages need to build host utilities that are used in the build process.
-
-See [dependencies.md](dependencies.md) for a complete overview.
-
-If you want to build the windows installer with `make deploy` you need [NSIS](https://nsis.sourceforge.io/Main_Page):
-
-	sudo apt install nsis
-
-Acquire the source in the usual way:
-
-	git clone https://github.com/raptor3um/raptoreum.git
-	cd raptoreum
-
-## Building for 64-bit Windows
-
-The first step is to oinstall the mingw-w64 cross-compilation tool chain:
- - on modern systems (Ubuntu 21.04 Hirsute Hippo or newer, Debian 11 Bullseye or newer):
-
-```sh
-sudo apt install g++-mingw-w64-x86-64-posix
+# Install Berkeley DB and other libraries
+sudo apt install -y libdb++-dev libminiupnpc-dev libnatpmp-dev
 ```
 
- - on older systems:
+## Build Process
 
-```sh
-sudo apt install g++-mingw-w64-x86-64
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/stabner/HashmonkeyCoin.git
+cd HashmonkeyCoin
 ```
 
-Once the toolchain is installed the build steps are common:
+### Step 2: Clean Environment and Build Dependencies
 
-Note that for WSL the Raptoreum Core source path MUST be somewhere in the default mount file system, for
-example /usr/src/raptoreum, AND not under /mnt/d/. If this is not the case the dependency autoconf scripts will fail.
-This means you cannot use a directory that is located directly on the host Windows file system to perform the build.
+```bash
+# Clean Windows PATH variables that might interfere
+export PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
 
-Additional WSL Note:
-WSL support for [launching Win32 applications](https://docs.microsoft.com/en-us/archive/blogs/wsl/windows-and-ubuntu-interoperability#launching-win32-applications-from-within-wsl)
-results in `Autoconf` configure scripts being able to execute Windows Portable Executable files. This can cause
-unexpected behaviour during the build, such as Win32 error dialogs for missing libraries. The recommended approach
-is to temporarily disable WSL support for Win32 applications.
+# Build dependencies for Windows cross-compilation
+cd depends
+make HOST=x86_64-w64-mingw32 -j$(nproc)
+cd ..
+```
 
-Build using:
+### Step 3: Configure and Build
 
-    PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
-    sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status" # Disable WSL support for Win32 applications.
-    cd depends
-    make HOST=x86_64-w64-mingw32
-    cd ..
-    ./autogen.sh
-    CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
-    make # use "-j N" for N parallel jobs
-    sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status" # Enable WSL support for Win32 applications.
+```bash
+# Regenerate autotools files
+./autogen.sh
 
-## Depends system
+# Configure for Windows cross-compilation
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --host=x86_64-w64-mingw32
 
-For further documentation on the depends system see [README.md](../depends/README.md) in the depends directory.
+# Build the project
+make -j$(nproc)
+```
 
-Installation
--------------
+## Troubleshooting
 
-After building using the Windows subsystem it can be useful to copy the compiled
-executables to a directory on the Windows drive in the same directory structure
-as they appear in the release `.zip` archive. This can be done in the following
-way. This will install to `c:\workspace\raptoreum`, for example:
+### Common Issues and Solutions
 
-    make install DESTDIR=/mnt/c/workspace/raptoreum
+#### 1. "Cannot determine executable suffix" Error
 
-You can also create an installer using:
+This error has been fixed in the latest version. If you still encounter it:
 
-    make deploy
+```bash
+# Clean everything and rebuild
+cd depends
+make clean
+cd ..
+make clean
+
+# Rebuild dependencies
+cd depends
+make HOST=x86_64-w64-mingw32 V=1
+cd ..
+```
+
+#### 2. Qt5 Not Found
+
+If you get Qt5-related errors:
+
+```bash
+# Install Qt5 from universe repository
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install -y qt5-default
+
+# Or use Qt6 (if Qt5 is not available)
+sudo apt install -y qt6-base-dev qt6-tools-dev-tools
+```
+
+#### 3. Missing Dependencies
+
+If you get missing dependency errors:
+
+```bash
+# Install additional packages
+sudo apt install -y libminiupnpc-dev libnatpmp-dev libdb++-dev
+sudo apt install -y libssl-dev libevent-dev
+sudo apt install -y libboost-all-dev
+```
+
+#### 4. Build Fails with Compilation Errors
+
+If you encounter compilation errors:
+
+```bash
+# Build with verbose output to see detailed errors
+make V=1
+
+# Or build with fewer parallel jobs
+make -j1
+```
+
+## Build Output
+
+After successful build, you should find the following Windows executables in the `src` directory:
+
+- `hashmonkeycoind.exe` - The HashmonkeyCoin daemon
+- `hashmonkeycoin-qt.exe` - The HashmonkeyCoin GUI wallet
+- `hashmonkeycoin-cli.exe` - The HashmonkeyCoin command-line interface
+- `hashmonkeycoin-wallet.exe` - The HashmonkeyCoin wallet tool
+
+## Verification
+
+To verify the build was successful:
+
+```bash
+# Check if executables were created
+ls -la src/*.exe
+
+# Test the daemon
+./src/hashmonkeycoind.exe --version
+
+# Test the GUI
+./src/hashmonkeycoin-qt.exe --version
+```
+
+## Notes
+
+- The build process may take 30-60 minutes depending on your system
+- Make sure you have at least 4GB of free disk space
+- The build system has been optimized for WSL Ubuntu 24.04
+- All critical build issues have been fixed in the source code
+
+## Support
+
+If you encounter any issues not covered in this guide, please:
+
+1. Check the troubleshooting section above
+2. Ensure you're using the latest version from GitHub
+3. Report issues on the GitHub repository with detailed error messages
