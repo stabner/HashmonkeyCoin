@@ -12,7 +12,7 @@ $(package)_cflags_aarch64_darwin+=-march=armv8-a
 endef
 
 define $(package)_config_cmds
-  $($(package)_autoconf)
+  export ac_cv_exeext=.exe && export ac_cv_objext=o && export ac_cv_build_exeext= && $($(package)_autoconf)
 endef
 
 define $(package)_build_cmds
