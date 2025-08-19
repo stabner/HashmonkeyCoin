@@ -171,7 +171,7 @@ CoinStatsHashType ParseHashType(const UniValue &param, const CoinStatsHashType d
 }
 
 std::string HelpExampleCli(const std::string &methodname, const std::string &args) {
-    return "> raptoreum-cli " + methodname + " " + args + "\n";
+    return "> hashmonkeycoin-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(const std::string &methodname, const std::string &args) {

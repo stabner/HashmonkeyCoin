@@ -147,10 +147,10 @@ static const char *DEFAULT_ASMAP_FILENAME = "ip_asn.map";
  * The PID file facilities.
  */
 #ifndef WIN32
-static const char *RAPTOREUM_PID_FILENAME = "hashmonkeycoind.pid";
+static const char *HASHMONKEYCOIN_PID_FILENAME = "hashmonkeycoind.pid";
 
 static fs::path GetPidFile() {
-    return AbsPathForConfigVal(fs::path(gArgs.GetArg("-pid", RAPTOREUM_PID_FILENAME)));
+    return AbsPathForConfigVal(fs::path(gArgs.GetArg("-pid", HASHMONKEYCOIN_PID_FILENAME)));
 }
 
 [[nodiscard]] static bool CreatePidFile() {
@@ -546,7 +546,7 @@ void SetupServerArgs() {
 #ifndef WIN32
     gArgs.AddArg("-pid=<file>", strprintf(
             "Specify pid file. Relative paths will be prefixed by a net-specific datadir location. (default: %s)",
-            RAPTOREUM_PID_FILENAME), ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
+            HASHMONKEYCOIN_PID_FILENAME), ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
 #else
     hidden_args.emplace_back("-pid");
 #endif

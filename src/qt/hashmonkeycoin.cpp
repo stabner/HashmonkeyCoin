@@ -8,7 +8,7 @@
 #include <config/hashmonkeycoin-config.h>
 #endif
 
-#include <qt/raptoreum.h>
+#include <qt/hashmonkeycoin.h>
 #include <qt/bitcoingui.h>
 
 #include <chainparams.h>
