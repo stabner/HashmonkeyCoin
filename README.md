@@ -94,7 +94,29 @@ HashmonkeyCoin is built by the community, for the community. We believe in:
 ```bash
 # Download the latest release from GitHub
 # Extract and run hashmonkeycoin-qt.exe
+
+# Or build from source (WSL Ubuntu 24.04 recommended)
+git clone https://github.com/stabner/HashmonkeyCoin.git
+cd HashmonkeyCoin
+
+# Install dependencies
+sudo apt update
+sudo apt install -y gcc-mingw-w64 g++-mingw-w64 mingw-w64-tools build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libssl-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev qtbase5-dev qttools5-dev-tools qt5-qmake libdb++-dev libminiupnpc-dev libnatpmp-dev
+
+# Build for Windows
+export PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+cd depends
+make HOST=x86_64-w64-mingw32 -j$(nproc)
+cd ..
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --host=x86_64-w64-mingw32
+make -j$(nproc)
+
+# Find Windows executables in src/ directory
+ls -la src/*.exe
 ```
+
+**Note**: For detailed Windows build instructions and troubleshooting, see [doc/build-windows.md](doc/build-windows.md).
 
 #### **Linux**
 ```bash
