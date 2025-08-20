@@ -639,6 +639,11 @@ case $host in
     AC_CHECK_LIB([shlwapi],   [main], [], [AC_MSG_ERROR([libshlwapi missing])])
     AC_CHECK_LIB([iphlpapi],  [main], [], [AC_MSG_ERROR([libiphlpapi missing])])
     AC_CHECK_LIB([crypt32],   [main], [], [AC_MSG_ERROR([libcrypt32 missing])])
+    AC_CHECK_LIB([bcrypt],    [main], [], [AC_MSG_ERROR([libbcrypt missing])])
+    AC_CHECK_LIB([psapi],     [main], [], [AC_MSG_ERROR([libpsapi missing])])
+
+    dnl Explicitly link Windows libraries to avoid undefined symbols
+    LIBS="$LIBS -lbcrypt -lws2_32 -liphlpapi -lshlwapi"
 
     dnl -static is interpreted by libtool, where it has a different meaning.
     dnl In libtool-speak, it's -all-static.
