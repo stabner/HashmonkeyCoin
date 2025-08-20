@@ -50,15 +50,7 @@ dnl Require C++14 compiler (no GNU extensions)
 AX_CXX_COMPILE_STDCXX([14], [noext], [mandatory], [nodefault])
 
 dnl Libtool init checks.
-dnl Disable shared libraries on Windows/WSL to avoid undefined symbol issues
-case $host in
-  *mingw*|*w64*|*msys*)
-    LT_INIT([pic-only disable-shared])
-    ;;
-  *)
-    LT_INIT([pic-only])
-    ;;
-esac
+LT_INIT([pic-only])
 
 AC_PATH_TOOL(AR, ar)
 AC_PATH_TOOL(RANLIB, ranlib)
