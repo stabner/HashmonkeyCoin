@@ -171,7 +171,7 @@ void Enter(const char *pszName, const char *pszFile, int nLine) {
 
 bool TryEnter(const char *pszName, const char *pszFile, int nLine) {
     EnterCritical(pszName, pszFile, nLine, Base::mutex(), true);
-    Base::try_lock();
+    (void)Base::try_lock();
     if (!Base::owns_lock()) {
         LeaveCritical();
     }
