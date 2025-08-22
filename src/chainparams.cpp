@@ -643,7 +643,6 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
         vSporkAddresses = {"HMzdRTyKWSr7qwtnJpmM8Ek4V5wdA216a3"};
         nMinSporkKeys = 1;
         // devnets are started with no blocks and no MN, so we can't check for upgraded MN (as there are none)
@@ -786,7 +785,6 @@ public:
         nPoolMaxParticipants = 5;
         nPoolNewMaxParticipants = 20;
 
-        // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
         vSporkAddresses = {"HTrajAdKinwBgLyrKzUUHxLi8wrrEgtGBy"};
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
