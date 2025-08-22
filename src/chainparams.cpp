@@ -264,7 +264,7 @@ public:
         // assert(consensus.hashGenesisBlock == uint256S("0x..."));
         // assert(genesis.hashMerkleRoot == uint256S("0x..."));
 
-        vSeeds.emplace_back("seednode.hashmonkey.cloud");
+        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
         // HashmonkeyCoin addresses start with 'H'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
@@ -443,7 +443,7 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("47.151.9.131");
-        vSeeds.emplace_back("seednode.hashmonkey.cloud");
+        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
         // Testnet HashmonkeyCoin addresses start with 'H'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
