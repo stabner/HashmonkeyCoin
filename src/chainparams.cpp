@@ -323,7 +323,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"HSnoE1NSQtFvGaLcuynU4kAB8pKqeXaNwb"};
+        vSporkAddresses = {"HMHi5KvRw8xxx55wC5A4bUEXVpsfCv3yMH"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -494,7 +494,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"HLRDeJUPe14YH5h2oafML7Wne5bGZWxrkf"};
+        vSporkAddresses = {"HLJtKivAPue661jsqVXVVnk23x8K9g3qX5"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -644,7 +644,7 @@ public:
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
         // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {"HGKMiEgRT2vEgRcbbe35znrHERLxrvXSfu"};
+        vSporkAddresses = {"HTTrwf4HyCt5diXYP3eaKsVtoWtLnoUyRG"};
         nMinSporkKeys = 1;
         // devnets are started with no blocks and no MN, so we can't check for upgraded MN (as there are none)
         fBIP9CheckSmartnodesUpgraded = false;
@@ -787,7 +787,7 @@ public:
         nPoolNewMaxParticipants = 20;
 
         // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {"HFp5fgVPcVcqGsHjYXv3a65afQmdYiCErb"};
+        vSporkAddresses = {"HVrasuPVrDHuMdDrztdJWBJNXuULBUHbwB"};
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
