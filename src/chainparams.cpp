@@ -324,7 +324,7 @@ public:
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
         vSporkAddresses = {};
-        nMinSporkKeys = 0;
+        nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
@@ -495,7 +495,7 @@ public:
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
         vSporkAddresses = {};
-        nMinSporkKeys = 0;
+        nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
@@ -645,7 +645,7 @@ public:
 
         // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
         vSporkAddresses = {};
-        nMinSporkKeys = 0;
+        nMinSporkKeys = 1;
         // devnets are started with no blocks and no MN, so we can't check for upgraded MN (as there are none)
         fBIP9CheckSmartnodesUpgraded = false;
 
@@ -788,7 +788,7 @@ public:
 
         // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
         vSporkAddresses = {};
-        nMinSporkKeys = 0;
+        nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 0}};// 0% founder/dev fee - disabled
