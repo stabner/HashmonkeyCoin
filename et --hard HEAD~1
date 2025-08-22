@@ -1,0 +1,5 @@
+[33m508e23dea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Implement proper spork configuration with valid addresses for all network types
+[33mcf7766c75[m Add spork key generation tools for proper spork implementation
+[33mfb045602f[m Fix spork configuration by setting nMinSporkKeys to 0 to disable sporks temporarily
+[33mee24b002a[m Fix spork configuration by providing valid spork addresses for all network types
+[33m51bd5c034[m Fix spork validation error by setting nMinSporkKeys to 1 instead of 0
