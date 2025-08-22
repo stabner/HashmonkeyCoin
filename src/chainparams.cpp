@@ -323,7 +323,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {};
+        vSporkAddresses = {"HSporkAddressForHashmonkeyCoinMainnet123456789"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -494,7 +494,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {};
+        vSporkAddresses = {"HSporkAddressForHashmonkeyCoinTestnet123456789"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -644,7 +644,7 @@ public:
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
         // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {};
+        vSporkAddresses = {"HSporkAddressForHashmonkeyCoinDevnet123456789"};
         nMinSporkKeys = 1;
         // devnets are started with no blocks and no MN, so we can't check for upgraded MN (as there are none)
         fBIP9CheckSmartnodesUpgraded = false;
@@ -787,7 +787,7 @@ public:
         nPoolNewMaxParticipants = 20;
 
         // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {};
+        vSporkAddresses = {"HSporkAddressForHashmonkeyCoinRegtest123456789"};
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
