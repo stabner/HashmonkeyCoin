@@ -1,6 +1,84 @@
 # Building HashmonkeyCoin Core for Windows
 
-This guide describes how to build HashmonkeyCoin Core for Windows using cross-compilation from Linux (WSL Ubuntu 24.04).
+## Quick Build Commands
+
+### Standard Build (Single Core)
+```bash
+PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status"
+cd depends
+make HOST=x86_64-w64-mingw32
+cd ..
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+make
+sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status"
+```
+
+### Fast Build (Multi-Core - Recommended)
+```bash
+PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status"
+cd depends
+make HOST=x86_64-w64-mingw32 -j$(nproc)
+cd ..
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+make -j$(nproc)
+sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status"
+```
+
+### Ultra Fast Build (All Cores)
+```bash
+PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status"
+cd depends
+make HOST=x86_64-w64-mingw32 -j$(nproc)
+cd ..
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+make -j$(nproc) -O
+sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status"
+```
+
+## Build Speed Optimization Tips
+
+### 1. **Parallel Compilation**
+- Use `-j$(nproc)` to use all available CPU cores
+- Use `-j4` for 4 cores, `-j8` for 8 cores, etc.
+- The `-O` flag enables parallel job scheduling
+
+### 2. **Skip Dependencies (If Already Built)**
+If you've already built dependencies, you can skip that step:
+```bash
+cd depends
+make HOST=x86_64-w64-mingw32 -j$(nproc)
+cd ..
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+make -j$(nproc)
+```
+
+### 3. **Clean Build vs Incremental**
+- **Incremental build** (faster): Just run `make -j$(nproc)` if you only changed source files
+- **Clean build**: Run `make clean` first if you changed configuration or dependencies
+
+### 4. **System Optimization**
+- Close other applications to free up RAM and CPU
+- Ensure you have at least 8GB RAM available
+- Use an SSD for faster disk I/O
+
+## Expected Build Times
+- **Single core**: 2-4 hours
+- **4 cores**: 45-90 minutes  
+- **8 cores**: 25-45 minutes
+- **16+ cores**: 15-30 minutes
+
+## Troubleshooting
+If you get memory errors with high `-j` values, reduce the number:
+```bash
+make -j4  # Use 4 cores instead
+```
 
 ## Prerequisites
 
