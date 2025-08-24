@@ -79,7 +79,7 @@ const std::string gCoinJoinName = "CoinJoin";
 */
 int nWalletBackups = 10;
 
-const char *const BITCOIN_CONF_FILENAME = "raptoreum.conf";
+const char *const BITCOIN_CONF_FILENAME = "hashmonkeycoin.conf";
 
 ArgsManager gArgs;
 
@@ -960,7 +960,7 @@ bool ArgsManager::ReadConfigFiles(std::string &error, bool ignore_invalid_keys) 
             }
         }
     } else {
-        // Create an empty raptoreum.conf if it does not exist
+        // Create an empty hashmonkeycoin.conf if it does not exist
         FILE *configFile = fopen(GetConfigFile(confPath).string().c_str(), "a");
         if (configFile != nullptr)
             fclose(configFile);
