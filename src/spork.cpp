@@ -285,6 +285,13 @@ bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
 }
 
 bool CSporkManager::SetMinSporkKeys(int minSporkKeys) {
+    // For testnet, disable spork validation entirely
+    if (Params().NetworkIDString() == "test") {
+        LogPrintf("CSporkManager::SetMinSporkKeys -- Spork validation disabled for testnet\n");
+        nMinSporkKeys = 1; // Set to 1 for testnet
+        return true;
+    }
+    
     LOCK(cs);
     int maxKeysNumber = setSporkPubKeyIDs.size();
     if ((minSporkKeys <= maxKeysNumber / 2) || (minSporkKeys > maxKeysNumber)) {
