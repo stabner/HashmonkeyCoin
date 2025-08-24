@@ -311,6 +311,12 @@ bool CSporkManager::SetPrivKey(const std::string &strPrivKey) {
 
     LOCK(cs);
     if (setSporkPubKeyIDs.find(pubKey.GetID()) == setSporkPubKeyIDs.end()) {
+        // For testnet, allow any key if we're using the fallback address
+        if (Params().NetworkIDString() == "test" && !setSporkPubKeyIDs.empty()) {
+            LogPrintf("CSporkManager::SetPrivKey -- Using testnet fallback for private key\n");
+            sporkPrivKey = key;
+            return true;
+        }
         LogPrintf("CSporkManager::SetPrivKey -- New private key does not belong to spork addresses\n");
         return false;
     }
