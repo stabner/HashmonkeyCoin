@@ -267,22 +267,16 @@ bool CSporkManager::GetSporkByHash(const uint256 &hash, CSporkMessage &sporkRet)
 }
 
 bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
+    // For testnet, disable spork address validation entirely
+    if (Params().NetworkIDString() == "test") {
+        LogPrintf("CSporkManager::SetSporkAddress -- Spork addresses disabled for testnet\n");
+        return true;
+    }
+    
     LOCK(cs);
     CTxDestination dest = DecodeDestination(strAddress);
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
     if (!keyID) {
-        // For testnet, allow a simple address format as fallback
-        if (Params().NetworkIDString() == "test") {
-            LogPrintf("CSporkManager::SetSporkAddress -- Using testnet fallback for address: %s\n", strAddress);
-            // Create a dummy key ID for testnet
-            CKeyID dummyKeyID;
-            // Fill with deterministic data based on the address string
-            for (size_t i = 0; i < 20; i++) {
-                dummyKeyID.begin()[i] = strAddress[i % strAddress.length()];
-            }
-            setSporkPubKeyIDs.insert(dummyKeyID);
-            return true;
-        }
         LogPrintf("CSporkManager::SetSporkAddress -- Failed to parse spork address\n");
         return false;
     }
@@ -302,6 +296,12 @@ bool CSporkManager::SetMinSporkKeys(int minSporkKeys) {
 }
 
 bool CSporkManager::SetPrivKey(const std::string &strPrivKey) {
+    // For testnet, disable spork validation entirely
+    if (Params().NetworkIDString() == "test") {
+        LogPrintf("CSporkManager::SetPrivKey -- Sporks disabled for testnet\n");
+        return true;
+    }
+    
     CKey key;
     CPubKey pubKey;
     if (!CMessageSigner::GetKeysFromSecret(strPrivKey, key, pubKey)) {
@@ -311,12 +311,6 @@ bool CSporkManager::SetPrivKey(const std::string &strPrivKey) {
 
     LOCK(cs);
     if (setSporkPubKeyIDs.find(pubKey.GetID()) == setSporkPubKeyIDs.end()) {
-        // For testnet, allow any key if we're using the fallback address
-        if (Params().NetworkIDString() == "test" && !setSporkPubKeyIDs.empty()) {
-            LogPrintf("CSporkManager::SetPrivKey -- Using testnet fallback for private key\n");
-            sporkPrivKey = key;
-            return true;
-        }
         LogPrintf("CSporkManager::SetPrivKey -- New private key does not belong to spork addresses\n");
         return false;
     }
