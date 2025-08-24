@@ -63,6 +63,12 @@ void CSporkManager::Clear() {
 
 void CSporkManager::CheckAndRemove() {
     LOCK(cs);
+    // For testnet, skip spork validation entirely
+    if (Params().NetworkIDString() == "test") {
+        LogPrintf("CSporkManager::CheckAndRemove -- Spork validation disabled for testnet\n");
+        return;
+    }
+    
     bool fSporkAddressIsSet = !setSporkPubKeyIDs.empty();
     assert(fSporkAddressIsSet);
 
