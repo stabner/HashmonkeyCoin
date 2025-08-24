@@ -7,6 +7,7 @@
 
 #include <atomic>
 #include <string>
+#include <chainparams.h>
 
 class CSmartnodeSync;
 
@@ -56,9 +57,21 @@ public:
 
     static void SendGovernanceSyncRequest(CNode *pnode, CConnman &connman);
 
-    bool IsBlockchainSynced() const { return nCurrentAsset > SMARTNODE_SYNC_BLOCKCHAIN; }
+    bool IsBlockchainSynced() const { 
+        // For testnet, always return true to bypass smartnode sync
+        if (Params().NetworkIDString() == "test") {
+            return true;
+        }
+        return nCurrentAsset > SMARTNODE_SYNC_BLOCKCHAIN; 
+    }
 
-    bool IsSynced() const { return nCurrentAsset == SMARTNODE_SYNC_FINISHED; }
+    bool IsSynced() const { 
+        // For testnet, always return true to bypass smartnode sync
+        if (Params().NetworkIDString() == "test") {
+            return true;
+        }
+        return nCurrentAsset == SMARTNODE_SYNC_FINISHED; 
+    }
 
     int GetAssetID() const { return nCurrentAsset; }
 

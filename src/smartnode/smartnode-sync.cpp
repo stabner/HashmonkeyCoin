@@ -115,6 +115,12 @@ void CSmartnodeSync::ProcessMessage(CNode *pfrom, const std::string &strCommand,
 }
 
 void CSmartnodeSync::ProcessTick(CConnman &connman) {
+    // For testnet, disable smartnode sync entirely
+    if (Params().NetworkIDString() == "test") {
+        LogPrintf("CSmartnodeSync::ProcessTick -- Smartnode sync disabled for testnet\n");
+        return;
+    }
+    
     static int nTick = 0;
     nTick++;
 
