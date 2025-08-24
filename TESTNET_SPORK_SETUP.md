@@ -6,7 +6,7 @@
 
 **Testnet Spork Key (WIF):**
 ```
-L2f7e4d58ef758430e1376ed1d32c57b370f208ef733e0cbfe4
+[PRIVATE KEY REMOVED FOR SECURITY - CONTACT ADMINISTRATOR]
 ```
 - **Length:** 51 characters (exactly like mainnet)
 - **Format:** WIF (Wallet Import Format)
@@ -42,7 +42,7 @@ make -j$(nproc)
 ### **3. Start Testnet Node with Spork Key**
 ```bash
 # Start testnet node with the spork key
-./hashmonkeycoind -testnet -sporkkey=L2f7e4d58ef758430e1376ed1d32c57b370f208ef733e0cbfe4
+./hashmonkeycoind -testnet -sporkkey=[YOUR_SPORK_KEY_HERE]
 ```
 
 ### **4. Alternative: Set Spork Address via Command Line**
@@ -58,7 +58,7 @@ make -j$(nproc)
 ### **Common Problems and Solutions:**
 
 1. **"Invalid spork key" errors:**
-   - Ensure you're using the exact 51-character key: `L2f7e4d58ef758430e1376ed1d32c57b370f208ef733e0cbfe4`
+   - Ensure you're using the exact 51-character key
    - Make sure the key starts with 'L' (WIF format)
 
 2. **"Invalid spork address" errors:**
@@ -103,7 +103,7 @@ make -j$(nproc)
 
 ### **1. Start Testnet Node:**
 ```bash
-./hashmonkeycoind -testnet -sporkkey=L2f7e4d58ef758430e1376ed1d32c57b370f208ef733e0cbfe4
+./hashmonkeycoind -testnet -sporkkey=[YOUR_SPORK_KEY_HERE]
 ```
 
 ### **2. Wait for Sync:**
@@ -129,6 +129,7 @@ make -j$(nproc)
 - **Don't share the spork key** publicly
 - **Backup the spork key** in a secure location
 - **Use different spork keys** for mainnet and testnet
+- **NEVER commit spork keys to version control**
 
 ---
 
@@ -144,5 +145,5 @@ If you encounter issues with testnet sporks:
 ---
 
 **Generated on:** $(date)
-**Testnet Spork Key:** `L2f7e4d58ef758430e1376ed1d32c57b370f208ef733e0cbfe4`
 **Testnet Spork Address:** `H5078b3f02b9f9ac81693716a5406a7aa4`
+**Testnet Spork Key:** [CONTACT ADMINISTRATOR FOR PRIVATE KEY]
