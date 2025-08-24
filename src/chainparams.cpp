@@ -417,7 +417,7 @@ public:
         pchMessageStart[1] = 0x6d; //m
         pchMessageStart[2] = 0x6e; //n
         pchMessageStart[3] = 0x79; //y
-        nDefaultPort = 10228;
+        nDefaultPort = 10229;
         nPruneAfterHeight = 1000;
         genesis = CreateGenesisBlock(1755295200, 1, 0x20001fff, 4, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
