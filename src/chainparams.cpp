@@ -249,20 +249,10 @@ public:
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
         consensus.hashGenesisBlock = genesis.GetHash();
         
-        // Output genesis block values for debugging
-        std::cout << "=== HashmonkeyCoin Genesis Block Values ===" << std::endl;
-        std::cout << "Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
-        std::cout << "Genesis Nonce: " << genesis.nNonce << std::endl;
-        std::cout << "=== Copy these values to replace the TODO comments ===" << std::endl;
-        std::cout << "assert(consensus.hashGenesisBlock == uint256S(\"" << consensus.hashGenesisBlock.ToString() << "\"));" << std::endl;
-        std::cout << "assert(genesis.hashMerkleRoot == uint256S(\"" << genesis.hashMerkleRoot.ToString() << "\"));" << std::endl;
-        std::cout << "genesis = CreateGenesisBlock(1755295200, " << genesis.nNonce << ", 0x20001fff, 4, 500 * COIN);" << std::endl;
-        std::cout << "================================================" << std::endl;
+
         
-        // TODO: Update these with the actual genesis block hash and merkle root after generation
-        // assert(consensus.hashGenesisBlock == uint256S("0x..."));
-        // assert(genesis.hashMerkleRoot == uint256S("0x..."));
+        assert(consensus.hashGenesisBlock == uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a"));
+        assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -433,9 +423,8 @@ public:
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TODO: Update these with the actual genesis block hash and merkle root after generation
-        // assert(consensus.hashGenesisBlock == uint256S("0x..."));
-        // assert(genesis.hashMerkleRoot == uint256S("0x..."));
+        assert(consensus.hashGenesisBlock == uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a"));
+        assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -586,9 +575,8 @@ public:
         genesis = CreateGenesisBlock(1755295200, 2841, 0x20001fff, 4, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TODO: Update these with the actual genesis block hash and merkle root after generation
-        // assert(consensus.hashGenesisBlock == uint256S("0x..."));
-        // assert(genesis.hashMerkleRoot == uint256S("0x..."));
+        assert(consensus.hashGenesisBlock == uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a"));
+        assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
@@ -762,9 +750,8 @@ public:
         genesis = CreateGenesisBlock(1755295200, 2, 0x207fffff, 4, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TODO: Update these with the actual genesis block hash and merkle root after generation
-        // assert(consensus.hashGenesisBlock == uint256S("0x..."));
-        // assert(genesis.hashMerkleRoot == uint256S("0x..."));
+        assert(consensus.hashGenesisBlock == uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a"));
+        assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
