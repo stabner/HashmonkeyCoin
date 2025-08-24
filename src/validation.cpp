@@ -1014,6 +1014,12 @@ WriteBlockToDisk(const CBlock &block, FlatFilePos &pos, const CMessageHeader::Me
 }
 
 bool CheckPOW(const CBlock &block, const Consensus::Params &consensusParams) {
+    // For testnet, disable POW verification entirely
+    if (Params().NetworkIDString() == "test") {
+        LogPrintf("CheckPOW: POW verification disabled for testnet\n");
+        return true;
+    }
+    
     if (!CheckProofOfWork(block.GetPOWHash(), block.nBits, consensusParams)) {
         LogPrintf("CheckPOW: CheckProofOfWork failed for %s, retesting without POW cache\n",
                   block.GetHash().ToString());

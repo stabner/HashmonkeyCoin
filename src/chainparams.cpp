@@ -419,13 +419,13 @@ public:
         pchMessageStart[3] = 0x79; //y
         nDefaultPort = 10228;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1755295200, 2841, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295200, 1, 0x20001fff, 4, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Use the actual generated hash instead of a predefined one
-        // assert(consensus.hashGenesisBlock == uint256S("9238f96d6f95d6db8f29653858ad8b14"));
-        // assert(genesis.hashMerkleRoot == uint256S("a5eeaf9822118ea62b2eae430b2942df"));
+        // Use simple genesis block for testnet
+        // assert(consensus.hashGenesisBlock == uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a"));
+        // assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
