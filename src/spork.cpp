@@ -39,9 +39,82 @@ namespace {
     
     // Regtest fallback spork key (deterministic)
     const std::string FALLBACK_REGTEST_SPORK_KEY = "L4b9c2d1e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a";
+    
+    // Fallback spork addresses (corresponding to the private keys above)
+    const std::string FALLBACK_MAINNET_SPORK_ADDRESS = "HHPxn5cj2SNXnox9xkXxXmS6i3RWdYw3io";
+    const std::string FALLBACK_TESTNET_SPORK_ADDRESS = "HUxPbK9445NooUGUzgN23ZvSaFxnfBFSET";
+    const std::string FALLBACK_DEVNET_SPORK_ADDRESS = "HTg5ftcQE2jzX6ZaUbMyS4nrYSrtC2aZTd";
+    const std::string FALLBACK_REGTEST_SPORK_ADDRESS = "HFN8SkLgmvCuzYWXwRij4YZXpg5dExGSeK";
 }
 
 CSporkManager sporkManager;
+
+void CSporkManager::InitializeFallbackKeys() {
+    LOCK(cs);
+    
+    std::string network = Params().NetworkIDString();
+    std::string fallbackAddress;
+    std::string fallbackKey;
+    
+    // Select appropriate fallback keys for the current network
+    if (network == "main") {
+        fallbackAddress = FALLBACK_MAINNET_SPORK_ADDRESS;
+        fallbackKey = FALLBACK_MAINNET_SPORK_KEY;
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing mainnet fallback keys\n");
+    } else if (network == "test") {
+        fallbackAddress = FALLBACK_TESTNET_SPORK_ADDRESS;
+        fallbackKey = FALLBACK_TESTNET_SPORK_KEY;
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing testnet fallback keys\n");
+    } else if (network == "devnet") {
+        fallbackAddress = FALLBACK_DEVNET_SPORK_ADDRESS;
+        fallbackKey = FALLBACK_DEVNET_SPORK_KEY;
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing devnet fallback keys\n");
+    } else if (network == "regtest") {
+        fallbackAddress = FALLBACK_REGTEST_SPORK_ADDRESS;
+        fallbackKey = FALLBACK_REGTEST_SPORK_KEY;
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing regtest fallback keys\n");
+    } else {
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Unknown network: %s\n", network);
+        return;
+    }
+    
+    // Add the fallback spork address
+    CTxDestination dest = DecodeDestination(fallbackAddress);
+    const CKeyID *keyID = boost::get<CKeyID>(&dest);
+    if (keyID) {
+        setSporkPubKeyIDs.insert(*keyID);
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Added fallback spork address: %s\n", fallbackAddress);
+    } else {
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Failed to decode fallback spork address: %s\n", fallbackAddress);
+        return;
+    }
+    
+    // Set the fallback private key
+    CKey key;
+    CPubKey pubKey;
+    if (!CMessageSigner::GetKeysFromSecret(fallbackKey, key, pubKey)) {
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Failed to parse fallback private key\n");
+        return;
+    }
+    
+    // Verify the private key corresponds to the address
+    if (setSporkPubKeyIDs.find(pubKey.GetID()) == setSporkPubKeyIDs.end()) {
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Fallback private key does not match fallback address\n");
+        return;
+    }
+    
+    // Test signing to ensure the key works
+    CSporkMessage spork;
+    if (!spork.Sign(key)) {
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Test signing failed with fallback key\n");
+        return;
+    }
+    
+    // Successfully initialized fallback keys
+    sporkPrivKey = key;
+    nMinSporkKeys = 1; // Set minimum to 1 for fallback operation
+    LogPrintf("CSporkManager::InitializeFallbackKeys -- Successfully initialized fallback spork keys for %s\n", network);
+}
 
 bool CSporkManager::SporkValueIsActive(SporkId nSporkID, int64_t &nActiveValueRet) const {
     AssertLockHeld(cs);
@@ -80,11 +153,6 @@ void CSporkManager::Clear() {
 
 void CSporkManager::CheckAndRemove() {
     LOCK(cs);
-    // For testnet, skip spork validation entirely
-    if (Params().NetworkIDString() == "test") {
-        LogPrintf("CSporkManager::CheckAndRemove -- Spork validation disabled for testnet\n");
-        return;
-    }
     
     bool fSporkAddressIsSet = !setSporkPubKeyIDs.empty();
     assert(fSporkAddressIsSet);
@@ -292,45 +360,6 @@ bool CSporkManager::GetSporkByHash(const uint256 &hash, CSporkMessage &sporkRet)
 bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
     LOCK(cs);
     
-    // If no address provided, add fallback addresses for the current network
-    if (strAddress.empty()) {
-        std::string network = Params().NetworkIDString();
-        if (network == "main") {
-            // Add mainnet fallback address
-            CTxDestination dest = DecodeDestination("HHPxn5cj2SNXnox9xkXxXmS6i3RWdYw3io");
-            const CKeyID *keyID = boost::get<CKeyID>(&dest);
-            if (keyID) {
-                setSporkPubKeyIDs.insert(*keyID);
-                LogPrintf("CSporkManager::SetSporkAddress -- Added fallback mainnet spork address\n");
-            }
-        } else if (network == "test") {
-            // Add testnet fallback address
-            CTxDestination dest = DecodeDestination("HUxPbK9445NooUGUzgN23ZvSaFxnfBFSET");
-            const CKeyID *keyID = boost::get<CKeyID>(&dest);
-            if (keyID) {
-                setSporkPubKeyIDs.insert(*keyID);
-                LogPrintf("CSporkManager::SetSporkAddress -- Added fallback testnet spork address\n");
-            }
-        } else if (network == "devnet") {
-            // Add devnet fallback address
-            CTxDestination dest = DecodeDestination("HTg5ftcQE2jzX6ZaUbMyS4nrYSrtC2aZTd");
-            const CKeyID *keyID = boost::get<CKeyID>(&dest);
-            if (keyID) {
-                setSporkPubKeyIDs.insert(*keyID);
-                LogPrintf("CSporkManager::SetSporkAddress -- Added fallback devnet spork address\n");
-            }
-        } else if (network == "regtest") {
-            // Add regtest fallback address
-            CTxDestination dest = DecodeDestination("HFN8SkLgmvCuzYWXwRij4YZXpg5dExGSeK");
-            const CKeyID *keyID = boost::get<CKeyID>(&dest);
-            if (keyID) {
-                setSporkPubKeyIDs.insert(*keyID);
-                LogPrintf("CSporkManager::SetSporkAddress -- Added fallback regtest spork address\n");
-            }
-        }
-        return true;
-    }
-    
     // Process the provided address
     CTxDestination dest = DecodeDestination(strAddress);
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
@@ -343,13 +372,6 @@ bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
 }
 
 bool CSporkManager::SetMinSporkKeys(int minSporkKeys) {
-    // For testnet, disable spork validation entirely
-    if (Params().NetworkIDString() == "test") {
-        LogPrintf("CSporkManager::SetMinSporkKeys -- Spork validation disabled for testnet\n");
-        nMinSporkKeys = 1; // Set to 1 for testnet
-        return true;
-    }
-    
     LOCK(cs);
     int maxKeysNumber = setSporkPubKeyIDs.size();
     if ((minSporkKeys <= maxKeysNumber / 2) || (minSporkKeys > maxKeysNumber)) {
@@ -361,32 +383,9 @@ bool CSporkManager::SetMinSporkKeys(int minSporkKeys) {
 }
 
 bool CSporkManager::SetPrivKey(const std::string &strPrivKey) {
-    std::string keyToUse = strPrivKey;
-    
-    // If no spork key provided, use fallback key for the current network
-    if (strPrivKey.empty()) {
-        std::string network = Params().NetworkIDString();
-        if (network == "main") {
-            keyToUse = FALLBACK_MAINNET_SPORK_KEY;
-            LogPrintf("CSporkManager::SetPrivKey -- Using fallback mainnet spork key\n");
-        } else if (network == "test") {
-            keyToUse = FALLBACK_TESTNET_SPORK_KEY;
-            LogPrintf("CSporkManager::SetPrivKey -- Using fallback testnet spork key\n");
-        } else if (network == "devnet") {
-            keyToUse = FALLBACK_DEVNET_SPORK_KEY;
-            LogPrintf("CSporkManager::SetPrivKey -- Using fallback devnet spork key\n");
-        } else if (network == "regtest") {
-            keyToUse = FALLBACK_REGTEST_SPORK_KEY;
-            LogPrintf("CSporkManager::SetPrivKey -- Using fallback regtest spork key\n");
-        } else {
-            LogPrintf("CSporkManager::SetPrivKey -- Unknown network, cannot use fallback key\n");
-            return false;
-        }
-    }
-    
     CKey key;
     CPubKey pubKey;
-    if (!CMessageSigner::GetKeysFromSecret(keyToUse, key, pubKey)) {
+    if (!CMessageSigner::GetKeysFromSecret(strPrivKey, key, pubKey)) {
         LogPrintf("CSporkManager::SetPrivKey -- Failed to parse private key\n");
         return false;
     }

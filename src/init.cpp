@@ -1870,20 +1870,16 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
         StartScriptCheckWorkerThreads(script_threads);
     }
 
-    // Initialize spork addresses - use provided addresses or fallback to hardcoded addresses
+    // Initialize fallback spork keys BEFORE any validation
+    // This ensures the daemon can start without user configuration
+    sporkManager.InitializeFallbackKeys();
+    
+    // Now handle user-provided spork configuration (if any)
     std::vector <std::string> vSporkAddresses;
     if (gArgs.IsArgSet("-sporkaddr")) {
         vSporkAddresses = gArgs.GetArgs("-sporkaddr");
-    } else {
-        vSporkAddresses = Params().SporkAddresses();
-    }
-    
-    // If no spork addresses are configured, add fallback addresses
-    if (vSporkAddresses.empty()) {
-        if (!sporkManager.SetSporkAddress("")) {
-            return InitError(_("Failed to set fallback spork addresses"));
-        }
-    } else {
+        // Clear fallback addresses and use user-provided ones
+        sporkManager.Clear();
         for (const auto &address: vSporkAddresses) {
             if (!sporkManager.SetSporkAddress(address)) {
                 return InitError(_("Invalid spork address specified with -sporkaddr"));
@@ -1896,11 +1892,12 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
         return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
     }
 
-
-    // Always initialize spork key - use provided key or fallback to hardcoded key
-    std::string sporkKey = gArgs.IsArgSet("-sporkkey") ? gArgs.GetArg("-sporkkey", "") : "";
-    if (!sporkManager.SetPrivKey(sporkKey)) {
-        return InitError(_("Unable to sign spork message, wrong key?"));
+    // Handle user-provided spork key (if any)
+    if (gArgs.IsArgSet("-sporkkey")) {
+        std::string sporkKey = gArgs.GetArg("-sporkkey", "");
+        if (!sporkManager.SetPrivKey(sporkKey)) {
+            return InitError(_("Unable to sign spork message, wrong key?"));
+        }
     }
 
     assert(!node.scheduler);

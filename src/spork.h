@@ -317,6 +317,13 @@ public:
     bool SetPrivKey(const std::string &strPrivKey);
 
     /**
+     * InitializeFallbackKeys initializes hardcoded fallback spork keys and addresses
+     * for the current network. This should be called before any config validation
+     * to ensure the daemon can start without user configuration.
+     */
+    void InitializeFallbackKeys();
+
+    /**
      * ToString returns the string representation of the SporkManager.
      */
     std::string ToString() const;
