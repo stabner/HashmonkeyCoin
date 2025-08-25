@@ -44,9 +44,6 @@ namespace llmq {
     class CFinalCommitment;
 } // namespace llmq
 
-// Forward declaration for dummy smartnode
-class CDummySmartnodeManager;
-
 class CDeterministicMNState {
 private:
     int nPoSeBanHeight{-1};
@@ -382,7 +379,7 @@ public:
         for (const auto &p: mnMap) {
             if (!onlyValid || IsMNValid(p.second, height)) {
                 // Skip dummy smartnode for payments and governance
-                if (CDummySmartnodeManager::IsDummySmartnode(p.second)) {
+                if (p.second && p.second->GetInternalId() == 0xDEADBEEF) {
                     continue;
                 }
                 cb(p.second);
@@ -395,7 +392,7 @@ public:
         for (const auto &p: mnMap) {
             if (!onlyValid || IsMNValid(p.second)) {
                 // Skip dummy smartnode for payments and governance
-                if (CDummySmartnodeManager::IsDummySmartnode(p.second)) {
+                if (p.second && p.second->GetInternalId() == 0xDEADBEEF) {
                     continue;
                 }
                 cb(p.second);
