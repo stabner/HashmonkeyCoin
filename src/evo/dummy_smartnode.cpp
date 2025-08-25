@@ -19,7 +19,7 @@ CDeterministicMNCPtr CDummySmartnodeManager::CreateDummySmartnode() {
     dmn->proTxHash = GetDummyProTxHash();
     
     // Set collateral outpoint to a dummy value (no real collateral)
-    dmn->collateralOutpoint = COutPoint(uint256::ONE, 0);
+    dmn->collateralOutpoint = COutPoint(uint256(), 0);
     
     // Set operator reward to 0 (no rewards)
     dmn->nOperatorReward = 0;
@@ -46,8 +46,8 @@ CDeterministicMNCPtr CDummySmartnodeManager::CreateDummySmartnode() {
     state->scriptOperatorPayout = CScript(); // Empty script for operator payout
     
     // Set confirmed hash to a dummy value
-    state->confirmedHash = uint256::ONE;
-    state->confirmedHashWithProRegTxHash = uint256::ONE;
+    state->confirmedHash = uint256();
+    state->confirmedHashWithProRegTxHash = uint256();
     
     // Assign the state to the smartnode
     dmn->pdmnState = state;
@@ -131,8 +131,7 @@ CService CDummySmartnodeManager::GetDummyService() {
     port = 1024 + (port % (65535 - 1024));
     
     // Create CNetAddr from IP and then CService
-    CNetAddr netAddr;
-    netAddr.SetIP(ip);
+    CNetAddr netAddr(ip);
     return CService(netAddr, port);
 }
 
