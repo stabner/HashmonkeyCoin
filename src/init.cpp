@@ -1870,15 +1870,24 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
         StartScriptCheckWorkerThreads(script_threads);
     }
 
+    // Initialize spork addresses - use provided addresses or fallback to hardcoded addresses
     std::vector <std::string> vSporkAddresses;
     if (gArgs.IsArgSet("-sporkaddr")) {
         vSporkAddresses = gArgs.GetArgs("-sporkaddr");
     } else {
         vSporkAddresses = Params().SporkAddresses();
     }
-    for (const auto &address: vSporkAddresses) {
-        if (!sporkManager.SetSporkAddress(address)) {
-            return InitError(_("Invalid spork address specified with -sporkaddr"));
+    
+    // If no spork addresses are configured, add fallback addresses
+    if (vSporkAddresses.empty()) {
+        if (!sporkManager.SetSporkAddress("")) {
+            return InitError(_("Failed to set fallback spork addresses"));
+        }
+    } else {
+        for (const auto &address: vSporkAddresses) {
+            if (!sporkManager.SetSporkAddress(address)) {
+                return InitError(_("Invalid spork address specified with -sporkaddr"));
+            }
         }
     }
 
@@ -1888,10 +1897,10 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     }
 
 
-    if (gArgs.IsArgSet("-sporkkey")) { // spork priv key
-        if (!sporkManager.SetPrivKey(gArgs.GetArg("-sporkkey", ""))) {
-            return InitError(_("Unable to sign spork message, wrong key?"));
-        }
+    // Always initialize spork key - use provided key or fallback to hardcoded key
+    std::string sporkKey = gArgs.IsArgSet("-sporkkey") ? gArgs.GetArg("-sporkkey", "") : "";
+    if (!sporkManager.SetPrivKey(sporkKey)) {
+        return InitError(_("Unable to sign spork message, wrong key?"));
     }
 
     assert(!node.scheduler);
