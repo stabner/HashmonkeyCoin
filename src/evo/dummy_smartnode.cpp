@@ -131,7 +131,9 @@ CService CDummySmartnodeManager::GetDummyService() {
     port = 1024 + (port % (65535 - 1024));
     
     // Create CNetAddr from IP and then CService
-    CNetAddr netAddr(ip);
+    struct in_addr addr;
+    addr.s_addr = ip;
+    CNetAddr netAddr(addr);
     return CService(netAddr, port);
 }
 
