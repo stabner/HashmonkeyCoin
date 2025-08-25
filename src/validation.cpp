@@ -1096,7 +1096,7 @@ GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consens
     //     exit(1);
     // }
     double nSubsidy = 500;       // (declaring the reward variable and its original/default amount)
-    const short owlings = 210240; // amount of blocks between 2 halvings (4 years)
+    const int owlings = 210240; // amount of blocks between 2 halvings (4 years)
     int multiplier;              // integer number of owlings
     int tempHeight;              // number of blocks since last anchor
     // Standard Bitcoin-style halving every 210240 blocks (4 years)
