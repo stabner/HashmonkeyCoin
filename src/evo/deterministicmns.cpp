@@ -6,6 +6,7 @@
 #include <evo/deterministicmns.h>
 #include <evo/specialtx.h>
 #include <evo/simplifiedmns.h>
+#include <evo/dummy_smartnode.h>
 #include <llmq/quorums_commitment.h>
 #include <llmq/quorums_utils.h>
 
@@ -1002,6 +1003,10 @@ CDeterministicMNList CDeterministicMNManager::GetListForBlock(const CBlockIndex 
         if (!evoDb.Read(std::make_pair(DB_LIST_DIFF, pindex->GetBlockHash()), diff)) {
             // no snapshot and no diff on disk means that it's the initial snapshot
             snapshot = CDeterministicMNList(pindex->GetBlockHash(), -1, 0);
+            
+            // Inject dummy smartnode for testing/development
+            InjectDummySmartnode(snapshot);
+            
             mnListsCache.emplace(pindex->GetBlockHash(), snapshot);
             break;
         }
@@ -1256,4 +1261,14 @@ void CDeterministicMNManager::DoMaintenance() {
     LOCK(cs);
     CleanupCache(loc_to_cleanup);
     did_cleanup = loc_to_cleanup;
+}
+
+void CDeterministicMNManager::InjectDummySmartnode(CDeterministicMNList& mnList) {
+    // Create the dummy smartnode
+    auto dummyMN = CDummySmartnodeManager::CreateDummySmartnode();
+    
+    // Add it to the smartnode list
+    mnList.AddMN(dummyMN, true);
+    
+    LogPrintf("CDeterministicMNManager::%s -- Injected dummy smartnode: %s\n", __func__, dummyMN->proTxHash.ToString());
 }
