@@ -95,7 +95,10 @@ CKeyID CDummySmartnodeManager::GetDummyOwnerKey() {
     uint256 hash;
     hasher.Finalize(hash.begin());
     
-    return CKeyID(hash);
+    // Convert uint256 to uint160 for CKeyID
+    uint160 key160;
+    memcpy(key160.begin(), hash.begin(), 20);
+    return CKeyID(key160);
 }
 
 CKeyID CDummySmartnodeManager::GetDummyVotingKey() {
@@ -106,7 +109,10 @@ CKeyID CDummySmartnodeManager::GetDummyVotingKey() {
     uint256 hash;
     hasher.Finalize(hash.begin());
     
-    return CKeyID(hash);
+    // Convert uint256 to uint160 for CKeyID
+    uint160 key160;
+    memcpy(key160.begin(), hash.begin(), 20);
+    return CKeyID(key160);
 }
 
 CService CDummySmartnodeManager::GetDummyService() {
@@ -118,13 +124,16 @@ CService CDummySmartnodeManager::GetDummyService() {
     hasher.Finalize(hash.begin());
     
     // Use the first 4 bytes for IP and last 2 bytes for port
-    uint32_t ip = hash.GetUint32(0);
-    uint16_t port = hash.GetUint32(1) & 0xFFFF;
+    uint32_t ip = hash.GetUint64(0) & 0xFFFFFFFF;
+    uint16_t port = (hash.GetUint64(1) >> 32) & 0xFFFF;
     
     // Ensure port is in valid range (1024-65535)
     port = 1024 + (port % (65535 - 1024));
     
-    return CService(ip, port);
+    // Create CNetAddr from IP and then CService
+    CNetAddr netAddr;
+    netAddr.SetIP(ip);
+    return CService(netAddr, port);
 }
 
 CScript CDummySmartnodeManager::GetDummyPayoutScript() {
@@ -135,7 +144,9 @@ CScript CDummySmartnodeManager::GetDummyPayoutScript() {
     uint256 hash;
     hasher.Finalize(hash.begin());
     
-    // Create a P2PKH script from the hash
-    CKeyID keyID(hash);
+    // Convert uint256 to uint160 for CKeyID
+    uint160 key160;
+    memcpy(key160.begin(), hash.begin(), 20);
+    CKeyID keyID(key160);
     return GetScriptForDestination(keyID);
 }
