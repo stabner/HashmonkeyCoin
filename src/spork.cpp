@@ -335,14 +335,6 @@ bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
 bool CSporkManager::SetMinSporkKeys(int minSporkKeys) {
     LOCK(cs);
     int maxKeysNumber = setSporkPubKeyIDs.size();
-    
-    // Special case for automatic spork operation with single fallback key
-    if (maxKeysNumber == 1 && minSporkKeys == 1) {
-        LogPrintf("CSporkManager::SetMinSporkKeys -- Allowing single spork key for automatic operation\n");
-        nMinSporkKeys = minSporkKeys;
-        return true;
-    }
-    
     if ((minSporkKeys <= maxKeysNumber / 2) || (minSporkKeys > maxKeysNumber)) {
         LogPrintf("CSporkManager::SetMinSporkKeys -- Invalid min spork signers number: %d\n", minSporkKeys);
         return false;
