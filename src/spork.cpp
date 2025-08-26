@@ -25,22 +25,10 @@
 
 const std::string CSporkManager::SERIALIZATION_VERSION_STRING = "CSporkManager-Version-2";
 
-// Hardcoded fallback spork keys for automatic operation
-// These are deterministic keys generated specifically for HashmonkeyCoin
+// Hardcoded fallback spork addresses for automatic operation
+// These correspond to the addresses defined in chainparams.cpp
 namespace {
-    // Mainnet fallback spork key (deterministic)
-    const std::string FALLBACK_MAINNET_SPORK_KEY = "L5JUiFw8Hpt4Yw8P7n3ZTcUsgd1Yq2FSN3eYnfr2fKtk6MhR9FkB";
-    
-    // Testnet fallback spork key (deterministic)
-    const std::string FALLBACK_TESTNET_SPORK_KEY = "L2f7e4d58ef758430e1376ed1d32c57b370f208ef733e0cbfe4";
-    
-    // Devnet fallback spork key (deterministic)
-    const std::string FALLBACK_DEVNET_SPORK_KEY = "L3a8b9c2d1e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5";
-    
-    // Regtest fallback spork key (deterministic)
-    const std::string FALLBACK_REGTEST_SPORK_KEY = "L4b9c2d1e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a";
-    
-    // Fallback spork addresses (corresponding to the private keys above)
+    // Fallback spork addresses (from chainparams.cpp)
     const std::string FALLBACK_MAINNET_SPORK_ADDRESS = "HHPxn5cj2SNXnox9xkXxXmS6i3RWdYw3io";
     const std::string FALLBACK_TESTNET_SPORK_ADDRESS = "HUxPbK9445NooUGUzgN23ZvSaFxnfBFSET";
     const std::string FALLBACK_DEVNET_SPORK_ADDRESS = "HTg5ftcQE2jzX6ZaUbMyS4nrYSrtC2aZTd";
@@ -54,31 +42,26 @@ void CSporkManager::InitializeFallbackKeys() {
     
     std::string network = Params().NetworkIDString();
     std::string fallbackAddress;
-    std::string fallbackKey;
     
-    // Select appropriate fallback keys for the current network
+    // Select appropriate fallback address for the current network
     if (network == "main") {
         fallbackAddress = FALLBACK_MAINNET_SPORK_ADDRESS;
-        fallbackKey = FALLBACK_MAINNET_SPORK_KEY;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing mainnet fallback keys\n");
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing mainnet fallback address\n");
     } else if (network == "test") {
         fallbackAddress = FALLBACK_TESTNET_SPORK_ADDRESS;
-        fallbackKey = FALLBACK_TESTNET_SPORK_KEY;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing testnet fallback keys\n");
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing testnet fallback address\n");
     } else if (network == "devnet") {
         fallbackAddress = FALLBACK_DEVNET_SPORK_ADDRESS;
-        fallbackKey = FALLBACK_DEVNET_SPORK_KEY;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing devnet fallback keys\n");
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing devnet fallback address\n");
     } else if (network == "regtest") {
         fallbackAddress = FALLBACK_REGTEST_SPORK_ADDRESS;
-        fallbackKey = FALLBACK_REGTEST_SPORK_KEY;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing regtest fallback keys\n");
+        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing regtest fallback address\n");
     } else {
         LogPrintf("CSporkManager::InitializeFallbackKeys -- Unknown network: %s\n", network);
         return;
     }
     
-    // Add the fallback spork address
+    // Add the fallback spork address for validation
     CTxDestination dest = DecodeDestination(fallbackAddress);
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
     if (keyID) {
@@ -89,31 +72,9 @@ void CSporkManager::InitializeFallbackKeys() {
         return;
     }
     
-    // Set the fallback private key
-    CKey key;
-    CPubKey pubKey;
-    if (!CMessageSigner::GetKeysFromSecret(fallbackKey, key, pubKey)) {
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Failed to parse fallback private key\n");
-        return;
-    }
-    
-    // Verify the private key corresponds to the address
-    if (setSporkPubKeyIDs.find(pubKey.GetID()) == setSporkPubKeyIDs.end()) {
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Fallback private key does not match fallback address\n");
-        return;
-    }
-    
-    // Test signing to ensure the key works
-    CSporkMessage spork;
-    if (!spork.Sign(key)) {
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Test signing failed with fallback key\n");
-        return;
-    }
-    
-    // Successfully initialized fallback keys
-    sporkPrivKey = key;
-    nMinSporkKeys = 1; // Set minimum to 1 for fallback operation
-    LogPrintf("CSporkManager::InitializeFallbackKeys -- Successfully initialized fallback spork keys for %s\n", network);
+    // Set minimum spork keys to 1 for automatic operation
+    nMinSporkKeys = 1;
+    LogPrintf("CSporkManager::InitializeFallbackKeys -- Successfully initialized fallback spork address for %s\n", network);
 }
 
 bool CSporkManager::SporkValueIsActive(SporkId nSporkID, int64_t &nActiveValueRet) const {
