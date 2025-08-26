@@ -981,15 +981,19 @@ std::string ArgsManager::GetChainName() const {
     bool fRegTest = ArgsManagerHelper::GetNetBoolArg(*this, "-regtest", true);
     bool fDevNet = ArgsManagerHelper::GetNetBoolArg(*this, "-devnet", false);
     bool fTestNet = ArgsManagerHelper::GetNetBoolArg(*this, "-testnet", true);
+    bool fMainNet = ArgsManagerHelper::GetNetBoolArg(*this, "-mainnet", false);
 
-    int nameParamsCount = (fRegTest ? 1 : 0) + (fDevNet ? 1 : 0) + (fTestNet ? 1 : 0);
+    int nameParamsCount = (fRegTest ? 1 : 0) + (fDevNet ? 1 : 0) + (fTestNet ? 1 : 0) + (fMainNet ? 1 : 0);
     if (nameParamsCount > 1)
-        throw std::runtime_error("Only one of -regtest, -testnet or -devnet can be used.");
+        throw std::runtime_error("Only one of -regtest, -testnet, -devnet or -mainnet can be used.");
 
     if (fDevNet) return CBaseChainParams::DEVNET;
     if (fRegTest) return CBaseChainParams::REGTEST;
+    if (fMainNet) return CBaseChainParams::MAIN;
     if (fTestNet) return CBaseChainParams::TESTNET;
-    return CBaseChainParams::MAIN;
+    
+    // Default to testnet for safety - prevents accidental mainnet usage
+    return CBaseChainParams::TESTNET;
 }
 
 std::string ArgsManager::GetDevNetName() const {

@@ -43,6 +43,7 @@ void SetupChainParamsBaseOptions() {
                  "This is intended for regression testing tools and app development.",
                  ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::CHAINPARAMS);
     gArgs.AddArg("-testnet", "Use the test chain", ArgsManager::ALLOW_ANY, OptionsCategory::CHAINPARAMS);
+    gArgs.AddArg("-mainnet", "Use the main chain (explicitly opt-in for safety)", ArgsManager::ALLOW_ANY, OptionsCategory::CHAINPARAMS);
     gArgs.AddArg(
             "-vbparams=<deployment>:<start>:<end>(:<window>:<threshold/thresholdstart>(:<thresholdmin>:<falloffcoeff>))",
             "Use given start/end times for specified version bits deployment (regtest-only). "

@@ -10,6 +10,7 @@
 #endif
 
 #include <chainparams.h>
+#include <chainparamsbase.h>
 #include <clientversion.h>
 #include <compat.h>
 #include <fs.h>
@@ -94,6 +95,19 @@ static bool AppInit(int argc, char *argv[]) {
             SelectParams(gArgs.GetChainName());
         } catch (const std::exception &e) {
             return InitError(strprintf("%s\n", e.what()));
+        }
+        
+        // Safety warning for mainnet usage
+        if (gArgs.GetChainName() == CBaseChainParams::MAIN) {
+            tfm::format(std::cout, "\n"
+                "************************************************************************\n"
+                "* WARNING: You are running HashmonkeyCoin on MAINNET!                  *\n"
+                "*                                                                      *\n"
+                "* This is the live network with real coins. Make sure you understand  *\n"
+                "* what you are doing and have proper security measures in place.      *\n"
+                "*                                                                      *\n"
+                "* For testing, use: -testnet or -regtest                              *\n"
+                "************************************************************************\n\n");
         }
 
         // Error out when loose non-argument tokens are encountered on command line
