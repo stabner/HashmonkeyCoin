@@ -151,6 +151,14 @@ public:
 
     int MinSporkKeys() const { return nMinSporkKeys; }
 
+    // Get the primary spork address for this network
+    const std::string& SporkAddress() const { 
+        return vSporkAddresses.empty() ? strEmpty : vSporkAddresses[0]; 
+    }
+
+    // Get testnet spork private key (empty for mainnet)
+    const std::string& TestnetSporkPrivKey() const { return strTestnetSporkPriv; }
+
     bool BIP9CheckSmartnodesUpgraded() const { return fBIP9CheckSmartnodesUpgraded; }
 
 protected:
@@ -189,6 +197,8 @@ protected:
     std::vector <std::string> vSporkAddresses;
     int nMinSporkKeys;
     bool fBIP9CheckSmartnodesUpgraded;
+    std::string strTestnetSporkPriv; // Only used on testnet/regtest for auto-sporks
+    static const std::string strEmpty; // Empty string for fallback
 };
 
 /**
@@ -214,5 +224,8 @@ UpdateManager& Updates();
 void SelectParams(const std::string &chain);
 
 void UpdateLLMQParams(size_t totalMnCount, int height, const CBlockIndex* blockIndex, bool lowLLMQParams = false);
+
+// Static member definition
+const std::string CChainParams::strEmpty = "";
 
 #endif // HASHMONKEYCOIN_CHAINPARAMS_H

@@ -1870,19 +1870,30 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
         StartScriptCheckWorkerThreads(script_threads);
     }
 
-    // Initialize fallback spork keys BEFORE any validation
-    // This ensures the daemon can start without user configuration
-    sporkManager.InitializeFallbackKeys();
+    // Initialize spork configuration
+    const CChainParams& params = Params();
     
-    // Now handle user-provided spork configuration (if any)
-    std::vector <std::string> vSporkAddresses;
-    if (gArgs.IsArgSet("-sporkaddr")) {
-        vSporkAddresses = gArgs.GetArgs("-sporkaddr");
-        // Clear fallback addresses and use user-provided ones
-        sporkManager.Clear();
-        for (const auto &address: vSporkAddresses) {
-            if (!sporkManager.SetSporkAddress(address)) {
-                return InitError(_("Invalid spork address specified with -sporkaddr"));
+    // Get spork address from command line or use default from chainparams
+    std::string sporkAddr = gArgs.GetArg("-sporkaddr", params.SporkAddress());
+    if (!sporkManager.SetSporkAddress(sporkAddr)) {
+        return InitError(_("Invalid spork address for this network: ") + sporkAddr);
+    }
+    
+    // For testnet/regtest, allow built-in dev key if user didn't pass -sporkkey
+    if (params.NetworkIDString() != CBaseChainParams::MAIN) {
+        std::string sporkPriv = gArgs.GetArg("-sporkkey", params.TestnetSporkPrivKey());
+        if (!sporkPriv.empty()) {
+            if (!sporkManager.SetPrivKey(sporkPriv)) {
+                return InitError(_("Unable to parse testnet spork private key"));
+            }
+        }
+    } else {
+        // MAINNET: do NOT load any private key automatically
+        // (You'll supply it manually later only when you need to broadcast sporks.)
+        if (gArgs.IsArgSet("-sporkkey")) {
+            std::string sporkKey = gArgs.GetArg("-sporkkey", "");
+            if (!sporkManager.SetPrivKey(sporkKey)) {
+                return InitError(_("Unable to sign spork message, wrong key?"));
             }
         }
     }
@@ -1890,14 +1901,6 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
     if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
         return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
-    }
-
-    // Handle user-provided spork key (if any)
-    if (gArgs.IsArgSet("-sporkkey")) {
-        std::string sporkKey = gArgs.GetArg("-sporkkey", "");
-        if (!sporkManager.SetPrivKey(sporkKey)) {
-            return InitError(_("Unable to sign spork message, wrong key?"));
-        }
     }
 
     assert(!node.scheduler);

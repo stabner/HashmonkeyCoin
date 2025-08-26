@@ -25,57 +25,7 @@
 
 const std::string CSporkManager::SERIALIZATION_VERSION_STRING = "CSporkManager-Version-2";
 
-// Hardcoded fallback spork addresses for automatic operation
-// These correspond to the addresses defined in chainparams.cpp
-namespace {
-    // Fallback spork addresses (from chainparams.cpp)
-    const std::string FALLBACK_MAINNET_SPORK_ADDRESS = "HHPxn5cj2SNXnox9xkXxXmS6i3RWdYw3io";
-    const std::string FALLBACK_TESTNET_SPORK_ADDRESS = "HUxPbK9445NooUGUzgN23ZvSaFxnfBFSET";
-    const std::string FALLBACK_DEVNET_SPORK_ADDRESS = "HTg5ftcQE2jzX6ZaUbMyS4nrYSrtC2aZTd";
-    const std::string FALLBACK_REGTEST_SPORK_ADDRESS = "HFN8SkLgmvCuzYWXwRij4YZXpg5dExGSeK";
-}
-
 CSporkManager sporkManager;
-
-void CSporkManager::InitializeFallbackKeys() {
-    LOCK(cs);
-    
-    std::string network = Params().NetworkIDString();
-    std::string fallbackAddress;
-    
-    // Select appropriate fallback address for the current network
-    if (network == "main") {
-        fallbackAddress = FALLBACK_MAINNET_SPORK_ADDRESS;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing mainnet fallback address\n");
-    } else if (network == "test") {
-        fallbackAddress = FALLBACK_TESTNET_SPORK_ADDRESS;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing testnet fallback address\n");
-    } else if (network == "devnet") {
-        fallbackAddress = FALLBACK_DEVNET_SPORK_ADDRESS;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing devnet fallback address\n");
-    } else if (network == "regtest") {
-        fallbackAddress = FALLBACK_REGTEST_SPORK_ADDRESS;
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Initializing regtest fallback address\n");
-    } else {
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Unknown network: %s\n", network);
-        return;
-    }
-    
-    // Add the fallback spork address for validation
-    CTxDestination dest = DecodeDestination(fallbackAddress);
-    const CKeyID *keyID = boost::get<CKeyID>(&dest);
-    if (keyID) {
-        setSporkPubKeyIDs.insert(*keyID);
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Added fallback spork address: %s\n", fallbackAddress);
-    } else {
-        LogPrintf("CSporkManager::InitializeFallbackKeys -- Failed to decode fallback spork address: %s\n", fallbackAddress);
-        return;
-    }
-    
-    // Set minimum spork keys to 1 for automatic operation
-    nMinSporkKeys = 1;
-    LogPrintf("CSporkManager::InitializeFallbackKeys -- Successfully initialized fallback spork address for %s\n", network);
-}
 
 bool CSporkManager::SporkValueIsActive(SporkId nSporkID, int64_t &nActiveValueRet) const {
     AssertLockHeld(cs);

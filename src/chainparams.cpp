@@ -316,6 +316,7 @@ public:
         vSporkAddresses = {"HHPxn5cj2SNXnox9xkXxXmS6i3RWdYw3io"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
+        strTestnetSporkPriv = ""; // Mainnet: No private key in code for security
 
         checkpointData = {
                 {{5145, uint256S("0x64c9cc82f05f4326e49fd4b21a48494b02b12a707de67a47c7e8e1102b0f1d9b")},
@@ -487,6 +488,7 @@ public:
         vSporkAddresses = {"HUxPbK9445NooUGUzgN23ZvSaFxnfBFSET"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
+        strTestnetSporkPriv = ""; // TODO: Add testnet spork private key for auto-sporks
 
         checkpointData = {
                 {
@@ -779,6 +781,7 @@ public:
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
+        strTestnetSporkPriv = ""; // TODO: Add regtest spork private key for auto-sporks
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 0}};// 0% founder/dev fee - disabled
         consensus.nFounderPayment = FounderPayment(rewardStructures, 0, "");
 
