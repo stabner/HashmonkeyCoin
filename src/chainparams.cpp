@@ -25,6 +25,9 @@
 
 #include <chainparamsseeds.h>
 
+// Static member definition
+const std::string CChainParams::strEmpty = "";
+
 static size_t lastCheckMnCount = 0;
 static int lastCheckHeight = 0;
 static bool lastCheckedLowLLMQParams = false;

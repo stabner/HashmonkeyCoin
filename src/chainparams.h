@@ -225,7 +225,4 @@ void SelectParams(const std::string &chain);
 
 void UpdateLLMQParams(size_t totalMnCount, int height, const CBlockIndex* blockIndex, bool lowLLMQParams = false);
 
-// Static member definition
-const std::string CChainParams::strEmpty = "";
-
 #endif // HASHMONKEYCOIN_CHAINPARAMS_H
