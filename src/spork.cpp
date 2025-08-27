@@ -271,6 +271,12 @@ bool CSporkManager::GetSporkByHash(const uint256 &hash, CSporkMessage &sporkRet)
 bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
     LOCK(cs);
     
+    // Allow empty addresses for regtest
+    if (strAddress.empty() && Params().NetworkIDString() == CBaseChainParams::REGTEST) {
+        LogPrintf("CSporkManager::SetSporkAddress -- Using empty spork address for regtest\n");
+        return true;
+    }
+    
     // Process the provided address
     CTxDestination dest = DecodeDestination(strAddress);
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
