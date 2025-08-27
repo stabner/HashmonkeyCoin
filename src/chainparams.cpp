@@ -780,7 +780,7 @@ public:
         nPoolMaxParticipants = 5;
         nPoolNewMaxParticipants = 20;
 
-        vSporkAddresses = {"HFN8SkLgmvCuzYWXwRij4YZXpg5dExGSeK"};
+        vSporkAddresses = {""}; // Temporary empty address to allow daemon to start
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
