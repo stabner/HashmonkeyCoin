@@ -66,6 +66,11 @@ void CSporkManager::CheckAndRemove() {
     LOCK(cs);
     
     bool fSporkAddressIsSet = !setSporkPubKeyIDs.empty();
+    // Allow empty spork addresses for regtest
+    if (!fSporkAddressIsSet && Params().NetworkIDString() == CBaseChainParams::REGTEST) {
+        LogPrintf("CSporkManager::CheckAndRemove -- Skipping spork validation for regtest with no spork addresses\n");
+        return;
+    }
     assert(fSporkAddressIsSet);
 
     auto itActive = mapSporksActive.begin();
