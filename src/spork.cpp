@@ -291,6 +291,14 @@ bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
 bool CSporkManager::SetMinSporkKeys(int minSporkKeys) {
     LOCK(cs);
     int maxKeysNumber = setSporkPubKeyIDs.size();
+    
+    // Allow minSporkKeys = 1 when maxKeysNumber = 0 for regtest
+    if (maxKeysNumber == 0 && minSporkKeys == 1 && Params().NetworkIDString() == CBaseChainParams::REGTEST) {
+        LogPrintf("CSporkManager::SetMinSporkKeys -- Allowing min spork keys = 1 for regtest with no spork addresses\n");
+        nMinSporkKeys = minSporkKeys;
+        return true;
+    }
+    
     if ((minSporkKeys <= maxKeysNumber / 2) || (minSporkKeys > maxKeysNumber)) {
         LogPrintf("CSporkManager::SetMinSporkKeys -- Invalid min spork signers number: %d\n", minSporkKeys);
         return false;
