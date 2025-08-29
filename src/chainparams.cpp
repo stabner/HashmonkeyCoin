@@ -489,10 +489,10 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"HUxPbK9445NooUGUzgN23ZvSaFxnfBFSET"};
+        vSporkAddresses = {"H8MVfQEtNR8sWuH5zJBMx9tHg1Bd1EChAK"}; // Using regtest address for now, will update with proper testnet address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
-        strTestnetSporkPriv = ""; // TODO: Add testnet spork private key for auto-sporks
+        strTestnetSporkPriv = "Kztt7JyteDBeY6n64d7uMt7NaG8iigYJJjmT7RzQiDrjtgVWYSXR"; // Using regtest private key for now
 
         checkpointData = {
                 {
@@ -779,11 +779,11 @@ public:
         nPoolMaxParticipants = 5;
         nPoolNewMaxParticipants = 20;
 
-        vSporkAddresses = {""}; // Temporary empty address to allow daemon to start
+        vSporkAddresses = {"HBUSyjvqH9SMADqB8NFZyxkrkezAAgp8wg"};
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
-        strTestnetSporkPriv = ""; // TODO: Add regtest spork private key for auto-sporks
+        strTestnetSporkPriv = "L2BGGrjw3FVgvq2arNadVNhHBRfa65s6am5QC6ozjc2tGmduyTxs"; // Regtest spork private key for auto-sporks
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 0}};// 0% founder/dev fee - disabled
         consensus.nFounderPayment = FounderPayment(rewardStructures, 0, "");
 
