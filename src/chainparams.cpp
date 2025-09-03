@@ -489,10 +489,10 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"H8MVfQEtNR8sWuH5zJBMx9tHg1Bd1EChAK"}; // Using regtest address for now, will update with proper testnet address
+        vSporkAddresses = {"mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}; // TODO: Generate proper testnet spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
-        strTestnetSporkPriv = "Kztt7JyteDBeY6n64d7uMt7NaG8iigYJJjmT7RzQiDrjtgVWYSXR"; // Using regtest private key for now
+        strTestnetSporkPriv = ""; // No private key for testnet - use CLI to set
 
         checkpointData = {
                 {
