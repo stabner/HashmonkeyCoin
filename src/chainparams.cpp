@@ -440,12 +440,12 @@ public:
         vSeeds.emplace_back("47.151.9.131");
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
-        // Testnet HashmonkeyCoin addresses start with 'H'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
-        // Testnet HashmonkeyCoin script addresses start with '3'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 5);
-        // Testnet HashmonkeyCoin private keys start with '5' or 'K'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 128);
+        // Testnet HashmonkeyCoin addresses start with 'o' or 'n'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 111);
+        // Testnet HashmonkeyCoin script addresses start with '2'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 196);
+        // Testnet HashmonkeyCoin private keys start with '9'
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
         // Testnet HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         // Testnet HashmonkeyCoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
