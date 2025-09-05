@@ -418,13 +418,13 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0"); // 0
 
-        pchMessageStart[0] = 0x68; //h
-        pchMessageStart[1] = 0x6d; //m
-        pchMessageStart[2] = 0x6e; //n
-        pchMessageStart[3] = 0x79; //y
+        pchMessageStart[0] = 0x74; //t
+        pchMessageStart[1] = 0x65; //e
+        pchMessageStart[2] = 0x73; //s
+        pchMessageStart[3] = 0x74; //t
         nDefaultPort = 10229;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1755295200, 1, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295200, 2, 0x20001fff, 4, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
 
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -489,7 +489,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {""}; // Empty spork address for testnet
+        vSporkAddresses = {"oTestnetSporkAddress123456789012345678901234567890"}; // Testnet spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
         strTestnetSporkPriv = ""; // No private key for testnet - use CLI to set
