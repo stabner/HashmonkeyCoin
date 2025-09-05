@@ -297,9 +297,9 @@ bool CSporkManager::SetMinSporkKeys(int minSporkKeys) {
     LOCK(cs);
     int maxKeysNumber = setSporkPubKeyIDs.size();
     
-    // Allow minSporkKeys = 1 when maxKeysNumber = 0 for regtest
-    if (maxKeysNumber == 0 && minSporkKeys == 1 && Params().NetworkIDString() == CBaseChainParams::REGTEST) {
-        LogPrintf("CSporkManager::SetMinSporkKeys -- Allowing min spork keys = 1 for regtest with no spork addresses\n");
+    // Allow minSporkKeys = 1 when maxKeysNumber = 0 for regtest and testnet
+    if (maxKeysNumber == 0 && minSporkKeys == 1 && (Params().NetworkIDString() == CBaseChainParams::REGTEST || Params().NetworkIDString() == CBaseChainParams::TESTNET)) {
+        LogPrintf("CSporkManager::SetMinSporkKeys -- Allowing min spork keys = 1 for %s with no spork addresses\n", Params().NetworkIDString().c_str());
         nMinSporkKeys = minSporkKeys;
         return true;
     }
