@@ -489,7 +489,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"HV8QM4f9EHbov2q2Q2wpUHKg99efHjnofv"}; // Real testnet spork address
+        vSporkAddresses = {""}; // Empty spork address for testnet
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
         strTestnetSporkPriv = ""; // No private key for testnet - use CLI to set
@@ -597,7 +597,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         vSeeds.emplace_back("47.151.26.43");
-        //vSeeds.push_back(CDNSSeedData("raptoreumevo.org",  "devnet-seed.raptoreumevo.org"));
+        //vSeeds.push_back(CDNSSeedData("hashmonkeycoinevo.org",  "devnet-seed.hashmonkeycoinevo.org"));
 
         // Devnet HashmonkeyCoin addresses start with 'H'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);

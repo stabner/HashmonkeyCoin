@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -276,9 +276,9 @@ bool CSporkManager::GetSporkByHash(const uint256 &hash, CSporkMessage &sporkRet)
 bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
     LOCK(cs);
     
-    // Allow empty addresses for regtest
-    if (strAddress.empty() && Params().NetworkIDString() == CBaseChainParams::REGTEST) {
-        LogPrintf("CSporkManager::SetSporkAddress -- Using empty spork address for regtest\n");
+    // Allow empty addresses for regtest and testnet
+    if (strAddress.empty() && (Params().NetworkIDString() == CBaseChainParams::REGTEST || Params().NetworkIDString() == CBaseChainParams::TESTNET)) {
+        LogPrintf("CSporkManager::SetSporkAddress -- Using empty spork address for %s\n", Params().NetworkIDString().c_str());
         return true;
     }
     
