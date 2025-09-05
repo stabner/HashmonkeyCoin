@@ -135,6 +135,57 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext &context, cons
     }
 }
 
+/* GUI-aware message handler for initialization errors */
+bool guiThreadSafeMessageBox(const std::string &message, const std::string &caption, unsigned int style) {
+    bool fSecure = style & CClientUIInterface::SECURE;
+    style &= ~CClientUIInterface::SECURE;
+    bool prefix = !(style & CClientUIInterface::MSG_NOPREFIX);
+    style &= ~CClientUIInterface::MSG_NOPREFIX;
+
+    std::string strCaption;
+    if (prefix) {
+        switch (style) {
+            case CClientUIInterface::MSG_ERROR:
+                strCaption += _("Error");
+                break;
+            case CClientUIInterface::MSG_WARNING:
+                strCaption += _("Warning");
+                break;
+            case CClientUIInterface::MSG_INFORMATION:
+                strCaption += _("Information");
+                break;
+            default:
+                strCaption += caption + "; "; // Use supplied caption (can be empty)
+        }
+    }
+
+    if (!fSecure) {
+        LogPrintf("%s%s\n", strCaption, message);
+    }
+    
+    // Try to show GUI message box if QApplication exists
+    if (QApplication::instance()) {
+        QMessageBox::Icon icon = QMessageBox::Information;
+        if (style & CClientUIInterface::MSG_ERROR) {
+            icon = QMessageBox::Critical;
+        } else if (style & CClientUIInterface::MSG_WARNING) {
+            icon = QMessageBox::Warning;
+        }
+        
+        QMessageBox msgBox;
+        msgBox.setIcon(icon);
+        msgBox.setWindowTitle(QString::fromStdString(strCaption.empty() ? PACKAGE_NAME : strCaption));
+        msgBox.setText(QString::fromStdString(message));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+        return true;
+    } else {
+        // Fallback to console output
+        tfm::format(std::cerr, "%s%s\n", strCaption, message);
+        return false;
+    }
+}
+
 BitcoinCore::BitcoinCore(interfaces::Node &node)
         : QObject(), m_node(node) {
 }
@@ -449,7 +500,7 @@ int GuiMain(int argc, char *argv[]) {
     std::unique_ptr <interfaces::Node> node = interfaces::MakeNode(&node_context);
 
     // Subscribe to global signals from core
-    std::unique_ptr <interfaces::Handler> handler_message_box = node->handleMessageBox(noui_ThreadSafeMessageBox);
+    std::unique_ptr <interfaces::Handler> handler_message_box = node->handleMessageBox(guiThreadSafeMessageBox);
     std::unique_ptr <interfaces::Handler> handler_question = node->handleQuestion(noui_ThreadSafeQuestion);
     std::unique_ptr <interfaces::Handler> handler_init_message = node->handleInitMessage(noui_InitMessage);
 
