@@ -413,7 +413,7 @@ public:
         );
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0"); // 0
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000001"); // Minimal work for testnet
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0"); // 0
@@ -440,7 +440,7 @@ public:
         vSeeds.emplace_back("47.151.9.131");
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
-        // Testnet HashmonkeyCoin addresses start with 'o' or 'n'
+        // Testnet HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 111);
         // Testnet HashmonkeyCoin script addresses start with '2'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 196);
@@ -489,21 +489,21 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"mxmXcbYBVJrNcrKM26GmrXqKFqR2fVaRnF"}; // Testnet spork address
+        vSporkAddresses = {"yNsMZhEhYqv14TgdYb1NS2UmNZjE8FSJxa"}; // Valid testnet spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
-        strTestnetSporkPriv = "cQmcpvSFzcvwTFxFWjVAzUdyy4LbSaELf938mwrV2Vd7UCmiFe2K"; // Testnet spork private key
+        strTestnetSporkPriv = "931wyuRNVYvhg18Uu9bky5Qg1z4QbxaJ7fefNBzjBPiLRqcd33F"; // Valid testnet spork private key
 
         checkpointData = {
                 {
-
+                        {0, consensus.hashGenesisBlock} // Genesis block checkpoint
                 }
         };
 
         chainTxData = ChainTxData{
-                1712153599, // * UNIX timestamp of last known number of transactions (Block 17670)
-                22643,    // * total number of transactions between genesis and that timestamp
-                0.02108492915974094        // * estimated number of transactions per second after that timestamp
+                1755295200, // * UNIX timestamp of genesis block
+                0,          // * total number of transactions (new testnet)
+                0.0         // * estimated number of transactions per second (new testnet)
         };
 
     }
