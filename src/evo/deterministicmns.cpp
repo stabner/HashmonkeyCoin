@@ -285,6 +285,22 @@ CDeterministicMNList::CalculateScores(const uint256 &modifier) const {
     return scores;
 }
 
+std::vector<CDeterministicMNCPtr> CDeterministicMNList::CalculateQuorum(size_t maxSize, const uint256 &modifier) const {
+    auto scores = CalculateScores(modifier);
+    
+    // sort is deterministic, so it's safe to use std::sort here
+    std::sort(scores.begin(), scores.end());
+    
+    std::vector<CDeterministicMNCPtr> result;
+    result.reserve(std::min(maxSize, scores.size()));
+    
+    for (size_t i = 0; i < std::min(maxSize, scores.size()); i++) {
+        result.emplace_back(scores[i].second);
+    }
+    
+    return result;
+}
+
 int CDeterministicMNList::CalcMaxPoSePenalty() const {
     // Maximum PoSe penalty is dynamic and equals the number of registered MNs
     // It's however at least 100.
