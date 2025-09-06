@@ -22,4 +22,4 @@ FORMS += \
     ../src/qt/forms/createwalletdialog.ui
 
 RESOURCES += \
-    ../src/qt/raptoreum.qrc
+    ../src/qt/hashmonkeycoin.qrc

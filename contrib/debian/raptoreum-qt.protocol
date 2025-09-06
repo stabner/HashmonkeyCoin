@@ -1,6 +1,6 @@
 [Protocol]
-exec=raptoreum-qt '%u'
-protocol=raptoreum
+exec=hashmonkeycoin-qt '%u'
+protocol=hashmonkeycoin
 input=none
 output=none
 helper=true

@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,14 +42,14 @@
 
 // Uncomment the following line to enable debugging messages
 // or enable on a per file basis prior to inclusion of util.h
-//#define ENABLE_RAPTOREUM_DEBUG
-#ifdef ENABLE_RAPTOREUM_DEBUG
+//#define ENABLE_hashmonkeycoin_DEBUG
+#ifdef ENABLE_hashmonkeycoin_DEBUG
 #define DBG( x ) x
 #else
 #define DBG(x)
 #endif
 
-//Raptoreum only features
+//hashmonkeycoin only features
 
 extern bool fSmartnodeMode;
 extern bool fDisableGovernance;

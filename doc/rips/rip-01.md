@@ -1,5 +1,5 @@
 <pre>
-  Raptoreum Improvement Proposal
+  hashmonkeycoin Improvement Proposal
   RIP: 01
   Title: Round Voting
   Author: Jami Bradley <codeiskey@protonmail.com>

@@ -1,39 +1,39 @@
-Raptoreum Core
+hashmonkeycoin Core
 ==========
 
-This is the official reference wallet for Raptoreum digital currency and comprises the backbone of the Raptoreum peer-to-peer network. You can [download Raptoreum Core](https://www.raptoreum.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for hashmonkeycoin digital currency and comprises the backbone of the hashmonkeycoin peer-to-peer network. You can [download hashmonkeycoin Core](https://www.hashmonkeycoin.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Raptoreum on your native platform.
+The following are some helpful notes on how to run hashmonkeycoin on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/raptoreum-qt` (GUI) or
-- `bin/raptoreumd` (headless)
+- `bin/hashmonkeycoin-qt` (GUI) or
+- `bin/hashmonkeycoind` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run raptoreum-qt.exe.
+Unpack the files into a directory, and then run hashmonkeycoin-qt.exe.
 
 ### OS X
 
-Drag Raptoreum-Qt to your applications folder, and then run Raptoreum-Qt.
+Drag hashmonkeycoin-Qt to your applications folder, and then run hashmonkeycoin-Qt.
 
 ### Need Help?
 
-* See the [Raptoreum documentation](https://docs.raptoreum.org)
+* See the [hashmonkeycoin documentation](https://docs.hashmonkeycoin.org)
 for help and more information.
-* See the [Raptoreum Developer Documentation](https://raptoreum-docs.github.io/) 
+* See the [hashmonkeycoin Developer Documentation](https://hashmonkeycoin-docs.github.io/) 
 for technical specifications and implementation details.
-* Ask for help on [Raptoreum Nation Discord](http://raptoreumchat.org)
-* Ask for help on the [Raptoreum Forum](https://raptoreum.org/forum)
+* Ask for help on [hashmonkeycoin Nation Discord](http://hashmonkeycoinchat.org)
+* Ask for help on the [hashmonkeycoin Forum](https://hashmonkeycoin.org/forum)
 
 Building
 ---------------------
-The following are developer notes on how to build Raptoreum Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build hashmonkeycoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OS X Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -44,7 +44,7 @@ The following are developer notes on how to build Raptoreum Core on your native 
 
 Development
 ---------------------
-The Raptoreum Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The hashmonkeycoin Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Release Notes](release-notes.md)
@@ -60,8 +60,8 @@ The Raptoreum Core repo's [root README](/README.md) contains relevant informatio
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [Raptoreum Forum](https://raptoreum.org/forum), in the Development & Technical Discussion board.
-* Discuss on [Raptoreum Nation Discord](http://raptoreumchat.org)
+* Discuss on the [hashmonkeycoin Forum](https://hashmonkeycoin.org/forum), in the Development & Technical Discussion board.
+* Discuss on [hashmonkeycoin Nation Discord](http://hashmonkeycoinchat.org)
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

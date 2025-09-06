@@ -1,4 +1,4 @@
-// Copyright (c) 2024 The Raptoreum developers
+// Copyright (c) 2024 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

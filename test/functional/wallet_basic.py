@@ -330,14 +330,14 @@ class WalletTest(BitcoinTestFramework):
         # This will raise an exception for attempting to dump the private key of an address you do not own
         assert_raises_rpc_error(-4, "Private key for address %s is not known" % temp_address, self.nodes[0].dumpprivkey, temp_address)
 
-        # This will raise an exception for attempting to get the private key of an invalid Raptoreum address
-        assert_raises_rpc_error(-5, "Invalid Raptoreum address", self.nodes[0].dumpprivkey, "invalid")
+        # This will raise an exception for attempting to get the private key of an invalid hashmonkeycoin address
+        assert_raises_rpc_error(-5, "Invalid hashmonkeycoin address", self.nodes[0].dumpprivkey, "invalid")
 
-        # This will raise an exception for attempting to set a label for an invalid Raptoreum address
-        assert_raises_rpc_error(-5, "Invalid Raptoreum address", self.nodes[0].setlabel, "invalid address", "label")
+        # This will raise an exception for attempting to set a label for an invalid hashmonkeycoin address
+        assert_raises_rpc_error(-5, "Invalid hashmonkeycoin address", self.nodes[0].setlabel, "invalid address", "label")
 
         # This will raise an exception for importing an invalid address
-        assert_raises_rpc_error(-5, "Invalid Raptoreum address or script", self.nodes[0].importaddress, "invalid")
+        assert_raises_rpc_error(-5, "Invalid hashmonkeycoin address or script", self.nodes[0].importaddress, "invalid")
 
         # This will raise an exception for attempting to import a pubkey that isn't in hex
         assert_raises_rpc_error(-5, "Pubkey must be a hex string", self.nodes[0].importpubkey, "not hex")
@@ -482,8 +482,8 @@ class WalletTest(BitcoinTestFramework):
 
         # Test getaddressinfo on external address. Note that these addresses are taken from disablewallet.py
         assert_raises_rpc_error(-5, "Invalid address", self.nodes[0].getaddressinfo, "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy")
-        address_info = self.nodes[0].getaddressinfo("yjQ5gLvGRtmq1cwc4kePLCrzQ8GVCh9Gaz")
-        assert_equal(address_info['address'], "yjQ5gLvGRtmq1cwc4kePLCrzQ8GVCh9Gaz")
+        address_info = self.nodes[0].getaddressinfo("yjQ5gLvGHMNYq1cwc4kePLCrzQ8GVCh9Gaz")
+        assert_equal(address_info['address'], "yjQ5gLvGHMNYq1cwc4kePLCrzQ8GVCh9Gaz")
         assert_equal(address_info["scriptPubKey"], "76a914fd2b4d101724a76374fccbc5b6df7670a75d7cd088ac")
         assert not address_info["ismine"]
         assert not address_info["iswatchonly"]

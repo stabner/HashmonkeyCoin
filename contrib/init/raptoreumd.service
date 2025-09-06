@@ -1,15 +1,15 @@
 [Unit]
-Description=Raptoreum's distributed currency daemon
+Description=HashmonkeyCoin's distributed currency daemon
 After=network.target
 
 [Service]
-User=raptoreumcore
-Group=raptoreumcore
+User=hashmonkeycoin
+Group=hashmonkeycoin
 
 Type=forking
-PIDFile=/var/lib/raptoreumd/raptoreumd.pid
-ExecStart=/usr/bin/raptoreumd -daemon -pid=/var/lib/raptoreumd/raptoreumd.pid \
--conf=/etc/raptoreumcore/raptoreum.conf -datadir=/var/lib/raptoreumd -disablewallet
+PIDFile=/var/lib/hashmonkeycoind/hashmonkeycoind.pid
+ExecStart=/usr/bin/hashmonkeycoind -daemon -pid=/var/lib/hashmonkeycoind/hashmonkeycoind.pid \
+-conf=/etc/hashmonkeycoin/hashmonkeycoin.conf -datadir=/var/lib/hashmonkeycoind -disablewallet
 
 Restart=always
 PrivateTmp=true

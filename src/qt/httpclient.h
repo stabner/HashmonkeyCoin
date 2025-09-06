@@ -1,9 +1,10 @@
-//
-// Created by tri on 8/7/24.
-//
+// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_HTTPCLIENT_H
-#define RAPTOREUM_HTTPCLIENT_H
+#ifndef HASHMONKEYCOIN_HTTPCLIENT_H
+#define HASHMONKEYCOIN_HTTPCLIENT_H
 
 #include <QObject>
 #include <QUrl>
@@ -35,4 +36,4 @@ private:
     QNetworkAccessManager* manager;
 };
 
-#endif //RAPTOREUM_HTTPCLIENT_H
+#endif //HASHMONKEYCOIN_HTTPCLIENT_H

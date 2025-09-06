@@ -1,0 +1,26 @@
+[1mdiff --git a/src/chainparams.cpp b/src/chainparams.cpp[m
+[1mindex cd710e568..cd967567e 100644[m
+[1m--- a/src/chainparams.cpp[m
+[1m+++ b/src/chainparams.cpp[m
+[36m@@ -489,10 +489,10 @@[m [mpublic:[m
+         nPoolMaxParticipants = 20;[m
+         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes[m
+ [m
+[31m-        vSporkAddresses = {"HV8QM4f9EHbov2q2Q2wpUHKg99efHjnofv"}; // Real testnet spork address[m
+[32m+[m[32m        vSporkAddresses = {"oSporkTestnetHashmonkeyCoin2024Valid"}; // Valid testnet spork address (starts with 'o')[m
+         nMinSporkKeys = 1;[m
+         fBIP9CheckSmartnodesUpgraded = true;[m
+[31m-        strTestnetSporkPriv = ""; // No private key for testnet - use CLI to set[m
+[32m+[m[32m        strTestnetSporkPriv = "9TestnetSporkPrivateKeyHashmonkeyCoin2024Valid"; // Testnet spork private key[m
+ [m
+         checkpointData = {[m
+                 {[m
+[36m@@ -597,7 +597,7 @@[m [mpublic:[m
+         vFixedSeeds.clear();[m
+         vSeeds.clear();[m
+         vSeeds.emplace_back("47.151.26.43");[m
+[31m-        //vSeeds.push_back(CDNSSeedData("raptoreumevo.org",  "devnet-seed.raptoreumevo.org"));[m
+[32m+[m[32m        //vSeeds.push_back(CDNSSeedData("hashmonkeycoinevo.org",  "devnet-seed.hashmonkeycoinevo.org"));[m
+ [m
+         // Devnet HashmonkeyCoin addresses start with 'H'[m
+         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);[m

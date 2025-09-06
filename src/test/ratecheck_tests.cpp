@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The hashmonkeycoin developers
 
 #include <governance/governance.h>
 

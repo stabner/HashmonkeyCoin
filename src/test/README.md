@@ -5,44 +5,44 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the raptoreumd tests manually, launch `src/test/test_raptoreum`. To recompile
+To run the hashmonkeycoind tests manually, launch `src/test/test_hashmonkeycoin`. To recompile
 after a test file was modified, run `make` and then run the test again. If you
 modify a non-test file, use `make -C src/test` to recompile only what's needed
-to run the raptoreumd tests.
+to run the hashmonkeycoind tests.
 
-To add more raptoreumd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more hashmonkeycoind tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
-To run the raptoreum-qt tests manually, launch `src/qt/test/test_raptoreum-qt`
+To run the hashmonkeycoin-qt tests manually, launch `src/qt/test/test_hashmonkeycoin-qt`
 
-To add more raptoreum-qt tests, add them to the `src/qt/test/` directory and
+To add more hashmonkeycoin-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.
 
 ### Running individual tests
 
-test_raptoreum has some built-in command-line arguments; for
+test_hashmonkeycoin has some built-in command-line arguments; for
 example, to run just the getarg_tests verbosely:
 
-    test_raptoreum --log_level=all --run_test=getarg_tests
+    test_hashmonkeycoin --log_level=all --run_test=getarg_tests
 
-... or to run just the doubleraptoreum test:
+... or to run just the doublehashmonkeycoin test:
 
-    test_raptoreum --run_test=getarg_tests/doubleraptoreum
+    test_hashmonkeycoin --run_test=getarg_tests/doublehashmonkeycoin
 
-Run `test_raptoreum --help` for the full list.
+Run `test_hashmonkeycoin --help` for the full list.
 
 ### Note on adding test cases
 
 The sources in this directory are unit test cases.  Boost includes a
-unit testing framework, and since Raptoreum Core already uses boost, it makes
+unit testing framework, and since hashmonkeycoin Core already uses boost, it makes
 sense to simply use this framework rather than require developers to
 configure some other framework (we want as few impediments to creating
 unit tests as possible).
 
-The build system is setup to compile an executable called `test_raptoreum`
+The build system is setup to compile an executable called `test_hashmonkeycoin`
 that runs all of the unit tests.  The main source file is called
-test_raptoreum.cpp. To add a new unit test file to our test suite you need
+test_hashmonkeycoin.cpp. To add a new unit test file to our test suite you need
 to add the file to `src/Makefile.test.include`. The pattern is to create
 one test file for each class or source file for which you want to create
 unit tests.  The file naming convention is `<source_filename>_tests.cpp`

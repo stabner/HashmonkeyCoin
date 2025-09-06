@@ -1,5 +1,4 @@
-// Copyright (c) 2018-2019 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -256,29 +255,6 @@ std::vector <CDeterministicMNCPtr> CDeterministicMNList::GetProjectedMNPayees(in
         result.resize(nCount);
     }
 
-    return result;
-}
-
-std::vector <CDeterministicMNCPtr>
-CDeterministicMNList::CalculateQuorum(size_t maxSize, const uint256 &modifier) const {
-    auto scores = CalculateScores(modifier);
-
-    // sort is descending order
-    std::sort(scores.rbegin(), scores.rend(), [](const std::pair <arith_uint256, CDeterministicMNCPtr> &a,
-                                                 const std::pair <arith_uint256, CDeterministicMNCPtr> &b) {
-        if (a.first == b.first) {
-            // this should actually never happen, but we should stay compatible with how the non-deterministic MNs did the sorting
-            return a.second->collateralOutpoint < b.second->collateralOutpoint;
-        }
-        return a.first < b.first;
-    });
-
-    // take top maxSize entries and return it
-    std::vector <CDeterministicMNCPtr> result;
-    result.resize(std::min(maxSize, scores.size()));
-    for (size_t i = 0; i < result.size(); i++) {
-        result[i] = std::move(scores[i].second);
-    }
     return result;
 }
 

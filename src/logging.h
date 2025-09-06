@@ -59,7 +59,7 @@ namespace BCLog {
         LEVELDB = (1 << 20),
         LOCK = (1 << 21),
 
-        //Start Raptoreum
+        //Start hashmonkeycoin
         CHAINLOCKS = ((uint64_t) 1 << 32),
         GOBJECT = ((uint64_t) 1 << 33),
         INSTANTSEND = ((uint64_t) 1 << 34),
@@ -78,7 +78,7 @@ namespace BCLog {
               | MNPAYMENTS | MNSYNC | COINJOIN | SPORK | NETCONN | QUORUMS | UPDATES,
 
         NET_NETCONN = NET | NETCONN, // use this to have something logged in NET and NETCONN as well
-        //End Raptoreum
+        //End hashmonkeycoin
 
         ALL = ~(uint64_t) 0,
     };

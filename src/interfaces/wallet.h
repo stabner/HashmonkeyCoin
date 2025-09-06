@@ -58,7 +58,7 @@ namespace interfaces {
     using WalletValueMap = std::map<std::string, std::string>;
 
     namespace CoinJoin {
-//! Interface for the wallet constrained src/coinjoin part of a raptoreum node (raptoreumd process).
+//! Interface for the wallet constrained src/coinjoin part of a hashmonkeycoin node (hashmonkeycoind process).
         class Client {
         public:
             virtual ~Client() {}
@@ -77,7 +77,7 @@ namespace interfaces {
 
             virtual bool isMixing() = 0;
 
-            virtual bool startMixing() = 0;
+            virtual bool staHMNYixing() = 0;
 
             virtual void stopMixing() = 0;
         };

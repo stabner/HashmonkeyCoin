@@ -1,6 +1,5 @@
-// Copyright (c) 2014-2019 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_COINJOIN_COINJOIN_CLIENT_H
@@ -222,7 +221,7 @@ public:
 
     LOCKS_EXCLUDED(cs_deqsessions);
 
-    bool StartMixing();
+    bool StaHMNYixing();
 
     void StopMixing();
 

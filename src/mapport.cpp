@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2020 The Bitcoin Core developers
-// Copyright (c)      2022 The Raptoreum developers
+// Copyright (c)      2022 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING ot https://www.opensource.org/licenses/mit-license.php.
 
@@ -87,7 +87,7 @@ static bool NatpmpDiscover(natpmp_t* natpmp, struct in_addr& external_ipv4_addr)
 static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_addr, uint16_t private_port, bool& external_ip_discovered)
 {
   const uint16_t suggested_external_port = g_mapport_external_port ? g_mapport_external_port : private_port;
-  const int r_send = sendnewportmappingrequest(natpmp, NATPMP_PROTOCOL_TCP, private_port, suggested_external_port, 3600 /*seconds*/);
+  const int r_send = sendnewpoHMNYappingrequest(natpmp, NATPMP_PROTOCOL_TCP, private_port, suggested_external_port, 3600 /*seconds*/);
   if (r_send == 12 /* OK */) {
     int r_read;
     natpmpresp_t response;
@@ -96,7 +96,7 @@ static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_
     } while (r_read == NATPMP_TRYAGAIN);
 
     if (r_read == 0) {
-      auto pm = response.pnu.newportmapping;
+      auto pm = response.pnu.newpoHMNYapping;
       if (private_port == pm.privateport && pm.lifetime > 0) {
         g_mapport_external_port = pm.mappedpublicport;
         const CService external{external_ipv4_addr, pm.mappedpublicport};
@@ -115,7 +115,7 @@ static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_
       LogPrintf("natpmp: readnatpmpresponseorretry() for port mapping failed with %d error.\n", r_read);
     }
   } else {
-    LogPrintf("natpmp: sendnewportmappingrequest() failed with %d error.\n", r_send);
+    LogPrintf("natpmp: sendnewpoHMNYappingrequest() failed with %d error.\n", r_send);
   }
 
   return false;
@@ -134,12 +134,12 @@ static bool ProcessNatpmp()
     } while (ret && g_mapport_interrupt.sleep_for(PORT_MAPPING_REANNOUNCE_PERIOD));
     g_mapport_interrupt.reset();
 
-    const int r_send = sendnewportmappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, private_port, g_mapport_external_port, /* remove a port mapping */ 0);
+    const int r_send = sendnewpoHMNYappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, private_port, g_mapport_external_port, /* remove a port mapping */ 0);
     g_mapport_external_port = 0;
     if (r_send == 12 /* OK */) {
       LogPrintf("natpmp: Port mapping removed successfully.\n");
     } else {
-      LogPrintf("natpmp: sendnewportmappingrequest(0) failed with %d error.\n", r_send);
+      LogPrintf("natpmp: sendnewpoHMNYappingrequest(0) failed with %d error.\n", r_send);
     }
   }
 
@@ -193,11 +193,11 @@ static bool ProcessUpnp()
     std::string strDesc = PACKAGE_NAME " " + FormatFullVersion();
 
     do {
-      r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype, port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
+      r = UPNP_AddPoHMNYapping(urls.controlURL, data.first.servicetype, port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
 
       if (r != UPNPCOMMAND_SUCCESS) {
         ret = false;
-        LogPrintf("AddPortMapping(%s, %s, %s) failed with code %d (%s)\n", port, port, lanaddr, r, strupnperror(r));
+        LogPrintf("AddPoHMNYapping(%s, %s, %s) failed with code %d (%s)\n", port, port, lanaddr, r, strupnperror(r));
         break;
       } else {
         ret = true;
@@ -206,8 +206,8 @@ static bool ProcessUpnp()
     } while (g_mapport_interrupt.sleep_for(PORT_MAPPING_REANNOUNCE_PERIOD));
     g_mapport_interrupt.reset();
 
-    r = UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, port.c_str(), "TCP", 0);
-    LogPrintf("UPNP_DeletePortMapping() returned: %d\n", r);
+    r = UPNP_DeletePoHMNYapping(urls.controlURL, data.first.servicetype, port.c_str(), "TCP", 0);
+    LogPrintf("UPNP_DeletePoHMNYapping() returned: %d\n", r);
     freeUPNPDevlist(devlist); devlist = nullptr;
     FreeUPNPUrls(&urls);
   } else {
@@ -301,7 +301,7 @@ static void MapPortProtoSetEnabled(MapPortProtoFlag proto, bool enabled)
   }
 }
 
-void StartMapPort(bool use_upnp, bool use_natpmp)
+void StaHMNYapPort(bool use_upnp, bool use_natpmp)
 {
   MapPortProtoSetEnabled(MapPortProtoFlag::UPNP, use_upnp);
   MapPortProtoSetEnabled(MapPortProtoFlag::NAT_PMP, use_natpmp);
@@ -326,7 +326,7 @@ void StopMapPort()
 
 #else // #if defined(USE_NATPMP) || defined(USE_UPNP)
 
-void StartMapPort(bool use_upnp, bool use_natpmp) {
+void StaHMNYapPort(bool use_upnp, bool use_natpmp) {
     // Intentionally left blank.
 }
 

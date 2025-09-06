@@ -25,7 +25,7 @@
 #include <boost/test/unit_test.hpp>
 #include <univalue.h>
 
-extern UniValue importmulti(const JSONRPCRequest &request);
+extern UniValue impoHMNYulti(const JSONRPCRequest &request);
 
 extern UniValue dumpwallet(const JSONRPCRequest &request);
 
@@ -284,7 +284,7 @@ GetBlockPos()
 
 .nFile});
 
-// Verify importmulti RPC returns failure for a key whose creation time is
+// Verify impoHMNYulti RPC returns failure for a key whose creation time is
 // before the missing block, and success for a key whose creation time is
 // after.
 {
@@ -338,7 +338,7 @@ setArray();
 request.params.
 push_back(keys);
 
-UniValue response = importmulti(request);
+UniValue response = impoHMNYulti(request);
 BOOST_CHECK_EQUAL(response
 .
 
@@ -347,7 +347,7 @@ write(),
                   "timestamp %d. There was an error reading a block from time %d, which is after or within %d "
                   "seconds of key creation, and could contain transactions pertaining to the key. As a result, "
                   "transactions and coins using this key may not appear in the wallet. This error could be caused "
-                  "by pruning or data corruption (see raptoreumd log for details) and could be dealt with by "
+                  "by pruning or data corruption (see hashmonkeycoind log for details) and could be dealt with by "
                   "downloading and rescanning the relevant blocks (see -reindex and -rescan "
                   "options).\"}},{\"success\":true}]",
                   0, oldTip->GetBlockTimeMax(), TIMESTAMP_WINDOW)

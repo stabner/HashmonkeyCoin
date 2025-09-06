@@ -1,5 +1,5 @@
 // Copyright (c) 2018-2022 The Bitcoin Core developers
-// Copyright (c)      2022 The Raptoreum developers
+// Copyright (c)      2022 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://opensource.org/licenses/mit-license.php.
 
@@ -60,7 +60,7 @@ static void SetInternalName(std::string name) {}
 #endif
 
 void util::ThreadRename(std::string &&name) {
-    SetThreadName(("rtm-" + name).c_str());;
+    SetThreadName(("HMNY-" + name).c_str());;
     SetInternalName(std::move(name));
 }
 

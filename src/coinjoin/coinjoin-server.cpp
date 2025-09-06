@@ -1,6 +1,5 @@
-// Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <coinjoin/coinjoin-server.h>

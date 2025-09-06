@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -140,7 +140,7 @@ std::string LabelFromValue(const UniValue &value) {
 
 UniValue getnewaddress(const JSONRPCRequest &request) {
     RPCHelpMan{"getnewaddress",
-               "\nReturns a new Raptoreum address for receiving payments.\n"
+               "\nReturns a new hashmonkeycoin address for receiving payments.\n"
                "If 'label' is specified, it is added to the address book \n"
                "so payments received with the address will be associated with 'label'.\n",
                {
@@ -148,7 +148,7 @@ UniValue getnewaddress(const JSONRPCRequest &request) {
                         "The label name for the address to be linked to. It can also be set to the empty string \"\" to represent the default label. The label does not need to exist, it will be created if there is no label by the given name."},
                },
                RPCResult{
-                       RPCResult::Type::STR, "address", "The new raptoreum address"
+                       RPCResult::Type::STR, "address", "The new hashmonkeycoin address"
                },
                RPCExamples{
                        HelpExampleCli("getnewaddress", "")
@@ -193,7 +193,7 @@ UniValue getnewaddress(const JSONRPCRequest &request) {
 
 UniValue getrawchangeaddress(const JSONRPCRequest &request) {
     RPCHelpMan{"getrawchangeaddress",
-               "\nReturns a new Raptoreum address, for receiving change.\n"
+               "\nReturns a new hashmonkeycoin address, for receiving change.\n"
                "This is for use with raw transactions, NOT normal use.\n",
                {},
                RPCResult{
@@ -241,7 +241,7 @@ UniValue setlabel(const JSONRPCRequest &request) {
                "\nSets the label associated with the given address.\n",
                {
                        {"address", RPCArg::Type::STR, RPCArg::Optional::NO,
-                        "The raptoreum address to be associated with a label."},
+                        "The hashmonkeycoin address to be associated with a label."},
                        {"label", RPCArg::Type::STR, RPCArg::Optional::NO, "The label to assign to the address."},
                },
                RPCResult{RPCResult::Type::NONE, "", ""},
@@ -259,7 +259,7 @@ UniValue setlabel(const JSONRPCRequest &request) {
 
     CTxDestination dest = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Raptoreum address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid hashmonkeycoin address");
     }
 
     std::string old_label = pwallet->mapAddressBook[dest].name;
@@ -294,7 +294,7 @@ SendMoney(CWallet *const pwallet, const CTxDestination &address, CAmount nValue,
         mapValue["DS"] = "1";
     }
 
-    // Parse Raptoreum address
+    // Parse hashmonkeycoin address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -325,7 +325,7 @@ UniValue sendtoaddress(const JSONRPCRequest &request) {
                "\nSend an amount to a given address." +
                HELP_REQUIRING_PASSPHRASE,
                {
-                       {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The Raptoreum address to send to."},
+                       {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The hashmonkeycoin address to send to."},
                        {"amount", RPCArg::Type::AMOUNT, RPCArg::Optional::NO,
                         "The amount in " + CURRENCY_UNIT + " to send. eg 0.1"},
                        {"future", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED_NAMED_ARG,
@@ -464,7 +464,7 @@ UniValue listaddressgroupings(const JSONRPCRequest &request) {
                                 {
                                         {RPCResult::Type::ARR, "", "",
                                          {
-                                                 {RPCResult::Type::STR, "address", "The raptoreum address"},
+                                                 {RPCResult::Type::STR, "address", "The hashmonkeycoin address"},
                                                  {RPCResult::Type::STR_AMOUNT, "amount",
                                                   "The amount in " + CURRENCY_UNIT},
                                                  {RPCResult::Type::STR, "label", /* optional */ true, "The label"},
@@ -518,7 +518,7 @@ UniValue listaddressbalances(const JSONRPCRequest &request) {
                        RPCResult::Type::ARR, "", "",
                        {
                                {RPCResult::Type::STR_AMOUNT, "amount",
-                                "The raptoreum address and the amount in " + CURRENCY_UNIT},
+                                "The hashmonkeycoin address and the amount in " + CURRENCY_UNIT},
                        }
                },
                RPCExamples{
@@ -557,7 +557,7 @@ UniValue signmessage(const JSONRPCRequest &request) {
                HELP_REQUIRING_PASSPHRASE,
                {
                        {"address", RPCArg::Type::STR, RPCArg::Optional::NO,
-                        "The Raptoreum address to use for the private key."},
+                        "The hashmonkeycoin address to use for the private key."},
                        {"message", RPCArg::Type::STR, RPCArg::Optional::NO, "The message to create a signature of."},
                },
                RPCResult{
@@ -617,7 +617,7 @@ UniValue getreceivedbyaddress(const JSONRPCRequest &request) {
     RPCHelpMan{"getreceivedbyaddress",
                "\nReturns the total amount received by the given address in transactions with at least minconf confirmations.\n",
                {
-                       {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The Raptoreum address for transactions."},
+                       {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The hashmonkeycoin address for transactions."},
                        {"minconf", RPCArg::Type::NUM, /* default */ "1",
                         "Only include transactions confirmed at least this many times."},
                        {"addlocked", RPCArg::Type::BOOL, /* default */ "false",
@@ -649,10 +649,10 @@ UniValue getreceivedbyaddress(const JSONRPCRequest &request) {
 
     LOCK(pwallet->cs_wallet);
 
-    // Raptoreum address
+    // hashmonkeycoin address
     CTxDestination dest = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Raptoreum address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid hashmonkeycoin address");
     }
     CScript scriptPubKey = GetScriptForDestination(dest);
     if (!IsMine(*pwallet, scriptPubKey)) {
@@ -846,7 +846,7 @@ UniValue sendmany(const JSONRPCRequest &request) {
                        {"amounts", RPCArg::Type::OBJ, RPCArg::Optional::NO, "A json object with addresses and amounts",
                         {
                                 {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO,
-                                 "The Raptoreum address is the key, the numeric amount (can be string) in " +
+                                 "The hashmonkeycoin address is the key, the numeric amount (can be string) in " +
                                  CURRENCY_UNIT + " is the value"},
                         },
                        },
@@ -954,7 +954,7 @@ UniValue sendmany(const JSONRPCRequest &request) {
     for (const std::string &name_: keys) {
         CTxDestination dest = DecodeDestination(name_);
         if (!IsValidDestination(dest)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raptoreum address: ") + name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid hashmonkeycoin address: ") + name_);
         }
 
         if (destinations.count(dest)) {
@@ -1002,7 +1002,7 @@ UniValue sendmany(const JSONRPCRequest &request) {
 UniValue addmultisigaddress(const JSONRPCRequest &request) {
     RPCHelpMan{"addmultisigaddress",
                "\nAdd a nrequired-to-sign multisignature address to the wallet. Requires a new wallet backup.\n"
-               "Each key is a Raptoreum address or hex-encoded public key.\n"
+               "Each key is a hashmonkeycoin address or hex-encoded public key.\n"
                "This functionality is only intended for use with non-watchonly addresses.\n"
                "See `importaddress` for watchonly p2sh address support.\n"
                "If 'label' is specified, assign address to that label.\n",
@@ -1010,10 +1010,10 @@ UniValue addmultisigaddress(const JSONRPCRequest &request) {
                        {"nrequired", RPCArg::Type::NUM, RPCArg::Optional::NO,
                         "The number of required signatures out of the n keys or addresses."},
                        {"keys", RPCArg::Type::ARR, RPCArg::Optional::NO,
-                        "A json array of raptoreum addresses or hex-encoded public keys",
+                        "A json array of hashmonkeycoin addresses or hex-encoded public keys",
                         {
                                 {"key", RPCArg::Type::STR, RPCArg::Optional::OMITTED,
-                                 "raptoreum address or hex-encoded public key"},
+                                 "hashmonkeycoin address or hex-encoded public key"},
                         },
                        },
                        {"label", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG,
@@ -1665,7 +1665,7 @@ UniValue listtransactions(const JSONRPCRequest &request) {
                                                                           {
                                                                               { RPCResult::Type::BOOL, "involvesWatchonly", "Only returns true if imported addresses were involved in transaction" },
                                                                               {
-                                                                                  RPCResult::Type::STR, "address", "The raptoreum address of the transaction. Not present for\n"
+                                                                                  RPCResult::Type::STR, "address", "The hashmonkeycoin address of the transaction. Not present for\n"
                                                                                                                    "move transactions (category = move)."
                                                                               },
                                                                               {
@@ -1762,21 +1762,21 @@ UniValue listtransactions(const JSONRPCRequest &request) {
     if ((nFrom + nCount) > (int) ret.size())
         nCount = ret.size() - nFrom;
 
-    std::vector <UniValue> arrTmp = ret.getValues();
+    std::vector <UniValue> arHMNYp = ret.getValues();
 
-    std::vector<UniValue>::iterator first = arrTmp.begin();
+    std::vector<UniValue>::iterator first = arHMNYp.begin();
     std::advance(first, nFrom);
-    std::vector<UniValue>::iterator last = arrTmp.begin();
+    std::vector<UniValue>::iterator last = arHMNYp.begin();
     std::advance(last, nFrom + nCount);
 
-    if (last != arrTmp.end()) arrTmp.erase(last, arrTmp.end());
-    if (first != arrTmp.begin()) arrTmp.erase(arrTmp.begin(), first);
+    if (last != arHMNYp.end()) arHMNYp.erase(last, arHMNYp.end());
+    if (first != arHMNYp.begin()) arHMNYp.erase(arHMNYp.begin(), first);
 
-    std::reverse(arrTmp.begin(), arrTmp.end()); // Return oldest to newest
+    std::reverse(arHMNYp.begin(), arHMNYp.end()); // Return oldest to newest
 
     ret.clear();
     ret.setArray();
-    ret.push_backV(arrTmp);
+    ret.push_backV(arHMNYp);
 
     return ret;
 }
@@ -1805,7 +1805,7 @@ UniValue listsinceblock(const JSONRPCRequest &request) {
                                         {RPCResult::Type::OBJ, "", "", Cat(Cat < std::vector < RPCResult >> (
                                                                                    {
                                                                                        { RPCResult::Type::BOOL, "involvesWatchonly", "Only returns true if imported addresses were involved in transaction" },
-                                                                                       { RPCResult::Type::STR, "address", "The raptoreum address of the transaction. Not present for move transactions (category = move)." },
+                                                                                       { RPCResult::Type::STR, "address", "The hashmonkeycoin address of the transaction. Not present for move transactions (category = move)." },
                                                                                        { RPCResult::Type::STR, "category", "The transaction category. 'send' has negative amounts, 'receive' has positive amounts." },
                                                                                        {
                                                                                            RPCResult::Type::NUM, "amount", "The amount in " +
@@ -1959,7 +1959,7 @@ UniValue gettransaction(const JSONRPCRequest &request) {
                                                  {RPCResult::Type::BOOL, "involvesWatchonly",
                                                   "Only returns true if imported addresses were involved in transaction"},
                                                  {RPCResult::Type::STR, "address",
-                                                  "The raptoreum address involved in the transaction."},
+                                                  "The hashmonkeycoin address involved in the transaction."},
                                                  {RPCResult::Type::STR, "category",
                                                   "The category, either 'send' or 'receive'.\n"},
                                                  {RPCResult::Type::STR_AMOUNT, "amount",
@@ -2158,7 +2158,7 @@ UniValue keypoolrefill(const JSONRPCRequest &request) {
 UniValue walletpassphrase(const JSONRPCRequest &request) {
     RPCHelpMan{"walletpassphrase",
                "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
-               "This is needed prior to performing transactions related to private keys such as sending raptoreum\n"
+               "This is needed prior to performing transactions related to private keys such as sending hashmonkeycoin\n"
                "\nNote:\n"
                "Issuing the walletpassphrase command while the wallet is already unlocked will set a new unlock\n"
                "time that overrides the old one.\n",
@@ -2348,7 +2348,7 @@ UniValue encryptwallet(const JSONRPCRequest &request) {
                RPCExamples{
                        "\nEncrypt your wallet\n"
                        + HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
-                       "\nNow set the passphrase to use the wallet, such as for signing or sending raptoreum\n"
+                       "\nNow set the passphrase to use the wallet, such as for signing or sending hashmonkeycoin\n"
                        + HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
                        "\nNow we can do something like sign\n"
                        + HelpExampleCli("signmessage", "\"address\" \"test message\"") +
@@ -2392,7 +2392,7 @@ UniValue lockunspent(const JSONRPCRequest &request) {
                "\nUpdates list of temporarily unspendable outputs.\n"
                "Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.\n"
                "If no transaction outputs are specified when unlocking then all current locked transaction outputs are unlocked.\n"
-               "A locked transaction output will not be chosen by automatic coin selection, when spending raptoreum.\n"
+               "A locked transaction output will not be chosen by automatic coin selection, when spending hashmonkeycoin.\n"
                "Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list\n"
                "is always cleared (by virtue of process exit) when a node stops or fails.\n"
                "Also see the listunspent call\n",
@@ -2972,7 +2972,7 @@ UniValue upgradetohd(const JSONRPCRequest &request) {
 static UniValue loadwallet(const JSONRPCRequest &request) {
     RPCHelpMan{"loadwallet",
                "\nLoads a wallet from a wallet file or directory."
-               "\nNote that all wallet command-line options used when starting raptoreumd will be"
+               "\nNote that all wallet command-line options used when starting hashmonkeycoind will be"
                "\napplied to the new wallet (eg -upgradewallet, rescan, etc).\n",
                {
                        {"filename", RPCArg::Type::STR, RPCArg::Optional::NO, "The wallet directory or .dat file."},
@@ -3133,9 +3133,9 @@ static UniValue listunspent(const JSONRPCRequest &request) {
                        {"minconf", RPCArg::Type::NUM, /* default */ "1", "The minimum confirmations to filter"},
                        {"maxconf", RPCArg::Type::NUM, /* default */ "9999999", "The maximum confirmations to filter"},
                        {"addresses", RPCArg::Type::ARR, /* default */ "empty array",
-                        "A json array of raptoreum addresses to filter",
+                        "A json array of hashmonkeycoin addresses to filter",
                         {
-                                {"address", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "raptoreum address"},
+                                {"address", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "hashmonkeycoin address"},
                         },
                        },
                        {"include_unsafe", RPCArg::Type::BOOL, /* default */ "true",
@@ -3165,7 +3165,7 @@ static UniValue listunspent(const JSONRPCRequest &request) {
                                 {
                                         {RPCResult::Type::STR_HEX, "txid", "the transaction id"},
                                         {RPCResult::Type::NUM, "vout", "the vout value"},
-                                        {RPCResult::Type::STR, "address", "the raptoreum address"},
+                                        {RPCResult::Type::STR, "address", "the hashmonkeycoin address"},
                                         {RPCResult::Type::STR, "label",
                                          "The associated label, or \"\" for the default label"},
                                         {RPCResult::Type::STR, "scriptPubKey", "the script key"},
@@ -3223,7 +3223,7 @@ static UniValue listunspent(const JSONRPCRequest &request) {
             CTxDestination dest = DecodeDestination(input.get_str());
             if (!IsValidDestination(dest)) {
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                                   std::string("Invalid Raptoreum address: ") + input.get_str());
+                                   std::string("Invalid hashmonkeycoin address: ") + input.get_str());
             }
             if (!destinations.insert(dest).second) {
                 throw JSONRPCError(RPC_INVALID_PARAMETER,
@@ -3387,7 +3387,7 @@ void FundTransaction(CWallet *const pwallet, CMutableTransaction &tx, CAmount &f
                 CTxDestination dest = DecodeDestination(options["changeAddress"].get_str());
 
                 if (!IsValidDestination(dest)) {
-                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid raptoreum address");
+                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid hashmonkeycoin address");
                 }
 
                 coinControl.destChange = dest;
@@ -3473,7 +3473,7 @@ static UniValue fundrawtransaction(const JSONRPCRequest &request) {
                         "for backward compatibility: passing in a true instead of an object will result in {\"includeWatching\":true}",
                         {
                                 {"changeAddress", RPCArg::Type::STR, /* default */ "pool address",
-                                 "The Raptoreum address to receive the change"},
+                                 "The hashmonkeycoin address to receive the change"},
                                 {"changePosition", RPCArg::Type::NUM, /* default */ "random",
                                  "The index of the change output"},
                                 {"includeWatching", RPCArg::Type::BOOL, /* default */ "false",
@@ -3786,16 +3786,16 @@ static UniValue AddressBookDataToJSON(const CAddressBookData &data, const bool v
 
 UniValue getaddressinfo(const JSONRPCRequest &request) {
     RPCHelpMan{"getaddressinfo",
-               "\nReturn information about the given raptoreum address. Some information requires the address\n"
+               "\nReturn information about the given hashmonkeycoin address. Some information requires the address\n"
                "to be in the wallet.\n",
                {
                        {"address", RPCArg::Type::STR, RPCArg::Optional::NO,
-                        "The raptoreum address to get the information of."},
+                        "The hashmonkeycoin address to get the information of."},
                },
                RPCResult{
                        RPCResult::Type::OBJ, "", "",
                        {
-                               {RPCResult::Type::STR, "address", "The raptoreum address validated."},
+                               {RPCResult::Type::STR, "address", "The hashmonkeycoin address validated."},
                                {RPCResult::Type::STR_HEX, "scriptPubKey",
                                 "The hex-encoded scriptPubKey generated by the address."},
                                {RPCResult::Type::BOOL, "ismine", "If the address is yours."},
@@ -4042,7 +4042,7 @@ UniValue importprunedfunds(const JSONRPCRequest &request);
 
 UniValue removeprunedfunds(const JSONRPCRequest &request);
 
-UniValue importmulti(const JSONRPCRequest &request);
+UniValue impoHMNYulti(const JSONRPCRequest &request);
 
 UniValue rescanblockchain(const JSONRPCRequest &request);
 
@@ -4087,7 +4087,7 @@ static const CRPCCommand commands[] =
                 {"wallet",          "getwalletinfo",                &getwalletinfo,                {}},
                 {"wallet",          "importaddress",                &importaddress,                {"address",        "label",                "rescan",            "p2sh"}},
                 {"wallet",          "importelectrumwallet",         &importelectrumwallet,         {"filename",       "index"}},
-                {"wallet",          "importmulti",                  &importmulti,                  {"requests",       "options"}},
+                {"wallet",          "impoHMNYulti",                  &impoHMNYulti,                  {"requests",       "options"}},
                 {"wallet",          "importprivkey",                &importprivkey,                {"privkey",        "label",                "rescan"}},
                 {"wallet",          "importprunedfunds",            &importprunedfunds,            {"rawtransaction", "txoutproof"}},
                 {"wallet",          "importpubkey",                 &importpubkey,                 {"pubkey",         "label",                "rescan"}},

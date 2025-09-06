@@ -470,7 +470,7 @@ const char *const wordlist[] = {
         "dance",
         "danger",
         "daring",
-        "raptoreum",
+        "rapid",
         "daughter",
         "dawn",
         "day",

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,10 +18,10 @@ static const int MODEL_UPDATE_DELAY_SYNC = 10000;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* RaptoreumGUI -- Size of icons in status bar */
+/* HashmonkeyCoinGUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 18;
 
-/* RaptoreumGUI -- Size of button icons e.g. in SendCoinEntry or SignVerifyMessageDialog */
+/* HashmonkeyCoinGUI -- Size of button icons e.g. in SendCoinEntry or SignVerifyMessageDialog */
 static const int BUTTON_ICONSIZE = 23;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -47,11 +47,11 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Raptoreum"
-#define QAPP_ORG_DOMAIN "raptoreum.com"
-#define QAPP_APP_NAME_DEFAULT "Raptoreum-Qt"
-#define QAPP_APP_NAME_TESTNET "Raptoreum-Qt-testnet"
-#define QAPP_APP_NAME_DEVNET "Raptoreum-Qt-%s"
-#define QAPP_APP_NAME_REGTEST "Raptoreum-Qt-regtest"
+#define QAPP_ORG_NAME "HashmonkeyCoin"
+#define QAPP_ORG_DOMAIN "hashmonkeycoin.com"
+#define QAPP_APP_NAME_DEFAULT "HashmonkeyCoin-Qt"
+#define QAPP_APP_NAME_TESTNET "HashmonkeyCoin-Qt-testnet"
+#define QAPP_APP_NAME_DEVNET "HashmonkeyCoin-Qt-%s"
+#define QAPP_APP_NAME_REGTEST "HashmonkeyCoin-Qt-regtest"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

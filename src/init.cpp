@@ -1454,7 +1454,7 @@ bool AppInitBasicSetup() {
     // ********************************************************* Step 1: setup
 #ifdef _MSC_VER
     // Turn off Microsoft heap dump noise
-    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+    _CrtSetRepoHMNYode(_CRT_WARN, _CRTDBG_MODE_FILE);
     _CrtSetReportFile(_CRT_WARN, CreateFileA("NUL", GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, 0));
     // Disable confusing "helpful" text message on abort, Ctrl-C
     _set_abort_behavior(0, _WRITE_ABORT_MSG | _CALL_REPORTFAULT);
@@ -2697,7 +2697,7 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     Discover();
 
     // Map ports with UPnP
-    StartMapPort(gArgs.GetBoolArg("-upnp", DEFAULT_UPNP), gArgs.GetBoolArg("-natpmp", DEFAULT_NATPMP));
+    StaHMNYapPort(gArgs.GetBoolArg("-upnp", DEFAULT_UPNP), gArgs.GetBoolArg("-natpmp", DEFAULT_NATPMP));
 
     CConnman::Options connOptions;
     connOptions.nLocalServices = nLocalServices;

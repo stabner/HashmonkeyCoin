@@ -1,5 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -176,7 +175,7 @@ public
     void requestedSyncWarningInfo();
 
 
-    /** Update selected RTM amount from transactionview */
+    /** Update selected HMNY amount from transactionview */
     void trxAmount(QString amount);
 
     Q_SIGNALS:

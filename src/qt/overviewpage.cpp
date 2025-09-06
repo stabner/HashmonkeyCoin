@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -255,7 +255,7 @@ void OverviewPage::setClientModel(ClientModel *model) {
 void OverviewPage::setWalletModel(WalletModel *model) {
     this->walletModel = model;
     if (model && model->getOptionsModel()) {
-        // update the display unit, to not use the default ("RTM")
+        // update the display unit, to not use the default ("HMNY")
         updateDisplayUnit();
         // Keep up to date with wallet
         interfaces::Wallet &wallet = model->wallet();
@@ -670,7 +670,7 @@ void OverviewPage::toggleCoinJoin() {
         walletModel->coinJoin().stopMixing();
     } else {
         ui->toggleCoinJoin->setText(tr("Stop %1").arg(strCoinJoinName));
-        walletModel->coinJoin().startMixing();
+        walletModel->coinJoin().staHMNYixing();
     }
 }
 

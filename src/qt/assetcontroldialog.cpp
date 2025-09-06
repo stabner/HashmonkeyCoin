@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2014-2020 The Dash Core developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -734,7 +734,7 @@ void AssetControlDialog::updateView() {
             if (ExtractDestination(out.txout.scriptPubKey, outputAddress)) {
                 sAddress = QString::fromStdString(EncodeDestination(outputAddress));
 
-                // if listMode or change => show raptoreum address. In tree mode, address is not shown again for direct wallet address outputs
+                // if listMode or change => show hashmonkeycoin address. In tree mode, address is not shown again for direct wallet address outputs
                 if (!treeMode || (!(sAddress == sWalletAddress))) {
                     itemOutput->setText(COLUMN_ADDRESS, sAddress);
                 }

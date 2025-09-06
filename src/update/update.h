@@ -1,5 +1,5 @@
-#ifndef RAPTOREUM_UPDATE_HPP
-#define RAPTOREUM_UPDATE_HPP
+#ifndef hashmonkeycoin_UPDATE_HPP
+#define hashmonkeycoin_UPDATE_HPP
 
 
 #include <assert.h>
@@ -369,4 +369,4 @@ private :
 
 };
 
-#endif // RAPTOREUM_UPDATE_HPP
+#endif // hashmonkeycoin_UPDATE_HPP

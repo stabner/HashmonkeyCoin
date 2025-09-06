@@ -736,10 +736,10 @@ CBlockPolicyEstimator::estimateCombinedFee(unsigned int confTarget, double succe
                 }
             }
             if (confTarget > shortStats->GetMaxConfirms()) {
-                double shortMax = shortStats->EstimateMedianVal(shortStats->GetMaxConfirms(), SUFFICIENT_TXS_SHORT,
+                double shoHMNYax = shortStats->EstimateMedianVal(shortStats->GetMaxConfirms(), SUFFICIENT_TXS_SHORT,
                                                                 successThreshold, true, nBestSeenHeight, &tempResult);
-                if (shortMax > 0 && (estimate == -1 || shortMax < estimate)) {
-                    estimate = shortMax;
+                if (shoHMNYax > 0 && (estimate == -1 || shoHMNYax < estimate)) {
+                    estimate = shoHMNYax;
                     if (result) *result = tempResult;
                 }
             }

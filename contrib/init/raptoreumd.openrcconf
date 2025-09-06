@@ -1,31 +1,31 @@
-# /etc/conf.d/raptoreumd: config file for /etc/init.d/raptoreumd
+# /etc/conf.d/hashmonkeycoind: config file for /etc/init.d/hashmonkeycoind
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/raptoreumcore/raptoreum.conf"
+#BITCOIND_CONFIGFILE="/etc/hashmonkeycoin/hashmonkeycoin.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/raptoreumd"
+#BITCOIND_PIDDIR="/var/run/hashmonkeycoind"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/raptoreumd.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/hashmonkeycoind.pid"
 
-# Where to write raptoreumd data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/raptoreumd"
+# Where to write hashmonkeycoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/hashmonkeycoind"
 
-# User and group to own raptoreumd process
-#BITCOIND_USER="raptoreumcore"
-#BITCOIND_GROUP="raptoreumcore"
+# User and group to own hashmonkeycoind process
+#BITCOIND_USER="hashmonkeycoin"
+#BITCOIND_GROUP="hashmonkeycoin"
 
-# Path to raptoreumd executable
-#BITCOIND_BIN="/usr/bin/raptoreumd"
+# Path to hashmonkeycoind executable
+#BITCOIND_BIN="/usr/bin/hashmonkeycoind"
 
-# Nice value to run raptoreumd under
+# Nice value to run hashmonkeycoind under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
 #BITCOIND_OPTS=""
 
-# The timeout in seconds OpenRC will wait for raptoreumd to terminate
+# The timeout in seconds OpenRC will wait for hashmonkeycoind to terminate
 # after a SIGTERM has been raised.
 # Note that this will be mapped as argument to start-stop-daemon's
 # '--retry' option, which means you can specify a retry schedule

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -398,20 +398,20 @@ void BitcoinGUI::stopConnectingAnimation() {
 
 void BitcoinGUI::createActions() {
     sendCoinsMenuAction = new QAction(tr(" Send"), this);
-    sendCoinsMenuAction->setStatusTip(tr("Send coins to a Raptoreum address"));
+    sendCoinsMenuAction->setStatusTip(tr("Send coins to a hashmonkeycoin address"));
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
     QString strCoinJoinName = QString::fromStdString(gCoinJoinName);
     coinJoinCoinsMenuAction = new QAction(QString(" %1").arg(strCoinJoinName), this);
-    coinJoinCoinsMenuAction->setStatusTip(tr("Send %1 funds to a Raptoreum address").arg(strCoinJoinName));
+    coinJoinCoinsMenuAction->setStatusTip(tr("Send %1 funds to a hashmonkeycoin address").arg(strCoinJoinName));
     coinJoinCoinsMenuAction->setToolTip(coinJoinCoinsMenuAction->statusTip());
 
     receiveCoinsMenuAction = new QAction(tr(" Receive"), this);
-    receiveCoinsMenuAction->setStatusTip(tr("Request payments (generates QR codes and raptoreum: URIs)"));
+    receiveCoinsMenuAction->setStatusTip(tr("Request payments (generates QR codes and hashmonkeycoin: URIs)"));
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
 
     sendAssetsMenuAction = new QAction(tr(" Send Asset"), this);
-    sendAssetsMenuAction->setStatusTip(tr("Send assets to a Raptoreum address"));
+    sendAssetsMenuAction->setStatusTip(tr("Send assets to a hashmonkeycoin address"));
     sendAssetsMenuAction->setToolTip(sendAssetsMenuAction->statusTip());
 
     createAssetsMenuAction = new QAction(tr(" Create Asset"), this);
@@ -464,10 +464,10 @@ void BitcoinGUI::createActions() {
     lockWalletAction = new QAction(tr("&Lock Wallet"), this);
 
     signMessageAction = new QAction(tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your Raptoreum addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your hashmonkeycoin addresses to prove you own them"));
     verifyMessageAction = new QAction(tr("&Verify message..."), this);
     verifyMessageAction->setStatusTip(
-            tr("Verify messages to ensure they were signed with specified Raptoreum addresses"));
+            tr("Verify messages to ensure they were signed with specified hashmonkeycoin addresses"));
 
     openInfoAction = new QAction(tr("&Information"), this);
     openInfoAction->setStatusTip(tr("Show diagnostic information"));
@@ -500,7 +500,7 @@ void BitcoinGUI::createActions() {
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a raptoreum: URI"));
+    openAction->setStatusTip(tr("Open a hashmonkeycoin: URI"));
 
     m_open_wallet_action = new QAction(tr("Open Wallet"), this);
     m_open_wallet_action->setEnabled(false);
@@ -517,7 +517,7 @@ void BitcoinGUI::createActions() {
     showHelpMessageAction = new QAction(tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
     showHelpMessageAction->setStatusTip(
-            tr("Show the %1 help message to get a list with possible Raptoreum command-line options").arg(
+            tr("Show the %1 help message to get a list with possible hashmonkeycoin command-line options").arg(
                     PACKAGE_NAME));
 
     showCoinJoinHelpAction = new QAction(tr("%1 &information").arg(strCoinJoinName), this);
@@ -1342,7 +1342,7 @@ void BitcoinGUI::updateNetworkState() {
     fNetworkActivePrev = fNetworkActive;
 
     if (fNetworkActive) {
-        labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Raptoreum network", "", count));
+        labelConnectionsIcon->setToolTip(tr("%n active connection(s) to hashmonkeycoin network", "", count));
     } else {
         labelConnectionsIcon->setToolTip(tr("Network activity disabled"));
         icon = "connect_0";

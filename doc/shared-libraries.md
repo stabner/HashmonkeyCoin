@@ -3,7 +3,7 @@ Shared Libraries
 
 ## hashmonkeycoinconsensus
 
-The purpose of this library is to make the verification functionality that is critical to Raptoreum's consensus available to other applications, e.g. to language bindings.
+The purpose of this library is to make the verification functionality that is critical to hashmonkeycoin's consensus available to other applications, e.g. to language bindings.
 
 ### API
 
@@ -24,7 +24,7 @@ The interface is defined in the C header `hashmonkeycoinconsensus.h` located in 
 - `unsigned int txToLen` - The number of bytes for the `txTo`.
 - `unsigned int nIn` - The index of the input in `txTo` that spends the `scriptPubKey`.
 - `unsigned int flags` - The script validation flags *(see below)*.
-- `raptoreumconsensus_error* err` - Will have the error/success code for the operation *(see below)*.
+- `hashmonkeycoinconsensus_error* err` - Will have the error/success code for the operation *(see below)*.
 
 ##### Script Flags
 - `hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_NONE`

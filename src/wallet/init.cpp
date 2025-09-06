@@ -37,7 +37,7 @@ public:
     //! Add wallets that should be opened to list of chain clients.
     void Construct(NodeContext &node) const override;
 
-    // Raptoreum Specific Wallet Init
+    // hashmonkeycoin Specific Wallet Init
     void AutoLockSmartnodeCollaterals() const override;
 
     void InitCoinJoinSettings() const override;
@@ -260,7 +260,7 @@ void WalletInit::InitCoinJoinSettings() const {
         if (pwallet->IsLocked()) {
             coinJoinClientManagers.at(pwallet->GetName())->StopMixing();
         } else if (fAutoStart) {
-            coinJoinClientManagers.at(pwallet->GetName())->StartMixing();
+            coinJoinClientManagers.at(pwallet->GetName())->StaHMNYixing();
         }
     }
     LogPrintf("CoinJoin: autostart=%d, multisession=%d," /* Continued */

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
     // Don't remove this, it's needed to access
     // QApplication:: and QCoreApplication:: in the tests
     BitcoinApplication app(*node);
-    app.setApplicationName("RTM-Qt-test");
+    app.setApplicationName("HMNY-Qt-test");
 
     AppTests app_tests(app);
     if (QTest::qExec(&app_tests) != 0) {

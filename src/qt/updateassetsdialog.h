@@ -1,9 +1,9 @@
-// Copyright (c) 2023 The Raptoreum developers
+// Copyright (c) 2023 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_QT_UPDATEASSETSDIALOG_H
-#define RAPTOREUM_QT_UPDATEASSETSDIALOG_H
+#ifndef hashmonkeycoin_QT_UPDATEASSETSDIALOG_H
+#define hashmonkeycoin_QT_UPDATEASSETSDIALOG_H
 
 #include <qt/walletmodel.h>
 
@@ -146,4 +146,4 @@ private:
     int secDelay;
 };
 
-#endif // RAPTOREUM_QT_UPDATEASSETSDIALOG_H
+#endif // hashmonkeycoin_QT_UPDATEASSETSDIALOG_H

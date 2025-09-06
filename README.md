@@ -3,7 +3,7 @@
 [![CI](https://github.com/stabner/HashmonkeyCoin/workflows/CI/badge.svg)](https://github.com/stabner/HashmonkeyCoin/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**HashmonkeyCoin (HMNY)** is a community-driven, decentralized cryptocurrency built on the proven Raptoreum codebase. Designed with fairness and transparency at its core, HashmonkeyCoin eliminates developer fees and simplifies the mining experience while maintaining robust security features.
+**HashmonkeyCoin (HMNY)** is a community-driven, decentralized cryptocurrency built on the proven hashmonkeycoin codebase. Designed with fairness and transparency at its core, HashmonkeyCoin eliminates developer fees and simplifies the mining experience while maintaining robust security features.
 
 ## 🚀 Key Features
 
@@ -182,7 +182,7 @@ test/functional/test_runner.py # Integration tests
 
 ## 🛡️ Security
 
-HashmonkeyCoin inherits the robust security features from the Raptoreum codebase:
+HashmonkeyCoin inherits the robust security features from the hashmonkeycoin codebase:
 - **GhostRider Algorithm**: Combines RandomX and SHA256 for ASIC resistance
 - **InstantSend**: Near-instant transaction confirmations
 - **ChainLocks**: Protection against 51% attacks
@@ -194,7 +194,7 @@ HashmonkeyCoin Core is released under the terms of the MIT license. See [COPYING
 
 ## 🙏 Acknowledgments
 
-- **Raptoreum Team**: For the original codebase and innovative features
+- **hashmonkeycoin Team**: For the original codebase and innovative features
 - **Dash Team**: For the underlying blockchain technology
 - **Bitcoin Core**: For the foundational blockchain concepts
 - **Community Contributors**: For ongoing development and support
