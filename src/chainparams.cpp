@@ -489,10 +489,10 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {}; // Temporarily empty - will be set with proper key
+        vSporkAddresses = {"mghPWMiNfnsZUHsGpMqY6SRaQXB5uAh9Zt"}; // Valid testnet spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
-        strTestnetSporkPriv = ""; // Temporarily empty - will be set with proper key
+        strTestnetSporkPriv = "cPFVEzAP2AzaGVZLg2LqQzQoKH8bR5cBudWKoG1pUbZPMg2MmUrH"; // Valid testnet spork private key
 
         checkpointData = {
                 {
