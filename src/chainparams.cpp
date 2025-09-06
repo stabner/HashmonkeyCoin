@@ -489,7 +489,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"oTestnetSporkAddress123456789012345678901234567890"}; // Testnet spork address
+        vSporkAddresses = {""}; // Empty spork address for testnet
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
         strTestnetSporkPriv = ""; // No private key for testnet - use CLI to set
