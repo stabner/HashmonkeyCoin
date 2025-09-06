@@ -492,7 +492,7 @@ public:
         vSporkAddresses = {"yNsMZhEhYqv14TgdYb1NS2UmNZjE8FSJxa"}; // Valid testnet spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
-        strTestnetSporkPriv = "931wyuRNVYvhg18Uu9bky5Qg1z4QbxaJ7fefNBzjBPiLRqcd33F"; // Valid testnet spork private key
+        strTestnetSporkPriv = ""; // Temporarily empty - will be set with proper key
 
         checkpointData = {
                 {
