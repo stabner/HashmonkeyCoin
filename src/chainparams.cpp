@@ -317,7 +317,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"HHPxn5cj2SNXnox9xkXxXmS6i3RWdYw3io"};
+        vSporkAddresses = {"HC6Mvkm57jsY7ZwdRMDdcB4PNuMTUJeCcE"}; // Valid mainnet spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
         strTestnetSporkPriv = ""; // Mainnet: No private key in code for security
