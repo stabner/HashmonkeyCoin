@@ -4042,7 +4042,7 @@ UniValue importprunedfunds(const JSONRPCRequest &request);
 
 UniValue removeprunedfunds(const JSONRPCRequest &request);
 
-UniValue impoHMNYulti(const JSONRPCRequest &request);
+UniValue importmulti(const JSONRPCRequest &request);
 
 UniValue rescanblockchain(const JSONRPCRequest &request);
 
@@ -4087,7 +4087,7 @@ static const CRPCCommand commands[] =
                 {"wallet",          "getwalletinfo",                &getwalletinfo,                {}},
                 {"wallet",          "importaddress",                &importaddress,                {"address",        "label",                "rescan",            "p2sh"}},
                 {"wallet",          "importelectrumwallet",         &importelectrumwallet,         {"filename",       "index"}},
-                {"wallet",          "impoHMNYulti",                  &impoHMNYulti,                  {"requests",       "options"}},
+                {"wallet",          "importmulti",                  &importmulti,                  {"requests",       "options"}},
                 {"wallet",          "importprivkey",                &importprivkey,                {"privkey",        "label",                "rescan"}},
                 {"wallet",          "importprunedfunds",            &importprunedfunds,            {"rawtransaction", "txoutproof"}},
                 {"wallet",          "importpubkey",                 &importpubkey,                 {"pubkey",         "label",                "rescan"}},
