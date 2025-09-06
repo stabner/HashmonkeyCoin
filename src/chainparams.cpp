@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The hashmonkeycoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -489,10 +489,10 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {""}; // Empty spork address for testnet
+        vSporkAddresses = {"mxmXcbYBVJrNcrKM26GmrXqKFqR2fVaRnF"}; // Testnet spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
-        strTestnetSporkPriv = ""; // No private key for testnet - use CLI to set
+        strTestnetSporkPriv = "cQmcpvSFzcvwTFxFWjVAzUdyy4LbSaELf938mwrV2Vd7UCmiFe2K"; // Testnet spork private key
 
         checkpointData = {
                 {
