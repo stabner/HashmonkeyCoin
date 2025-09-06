@@ -453,7 +453,7 @@ public:
 
         // Testnet HashmonkeyCoin BIP44 coin type is '1' (All coin's testnet default)
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
-        nExtCoinType = strExtCoinType.empty() ? 10227 : std::stoi(strExtCoinType);
+        nExtCoinType = strExtCoinType.empty() ? 1 : std::stoi(strExtCoinType);
 
 
         // long living quorum params
