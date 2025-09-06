@@ -243,7 +243,7 @@ public:
         pchMessageStart[1] = 0x6d;//m
         pchMessageStart[2] = 0x6e;//n
         pchMessageStart[3] = 0x79;//y
-        nDefaultPort = 10227;
+        nDefaultPort = 11227;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
@@ -422,7 +422,7 @@ public:
         pchMessageStart[1] = 0x65; //e
         pchMessageStart[2] = 0x73; //s
         pchMessageStart[3] = 0x74; //t
-        nDefaultPort = 10229;
+        nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
         genesis = CreateGenesisBlock(1755295200, 2, 0x20001fff, 4, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out to avoid assertion failure
