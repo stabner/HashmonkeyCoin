@@ -247,10 +247,10 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        // Use pre-computed genesis block for mainnet
-        consensus.hashGenesisBlock = uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a");
+        // Create genesis block for mainnet
         genesis = CreateGenesisBlock(1755295200, 1130, 0x20001fff, 4, 500 * COIN);
         genesis.hashMerkleRoot = uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded");
+        consensus.hashGenesisBlock = genesis.GetHash();
         VerifyGenesisPOW(genesis);
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
@@ -419,10 +419,10 @@ public:
         pchMessageStart[3] = 0x74; //t
         nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
-        // Use pre-computed genesis block for testnet
-        consensus.hashGenesisBlock = uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a");
+        // Create genesis block for testnet
         genesis = CreateGenesisBlock(1755295200, 2, 0x20001fff, 4, 500 * COIN);
         genesis.hashMerkleRoot = uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded");
+        consensus.hashGenesisBlock = genesis.GetHash();
         VerifyGenesisPOW(genesis);
 
         vFixedSeeds.clear();
@@ -572,10 +572,10 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        // Use pre-computed genesis block for devnet
-        consensus.hashGenesisBlock = uint256S("8b0e46dd6bb8f06fcf1cbaa98b0e100125fb7efc792e94643448739e80beb12a");
+        // Create genesis block for devnet
         genesis = CreateGenesisBlock(1755295200, 2841, 0x20001fff, 4, 500 * COIN);
         genesis.hashMerkleRoot = uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded");
+        consensus.hashGenesisBlock = genesis.GetHash();
         VerifyGenesisPOW(genesis);
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
