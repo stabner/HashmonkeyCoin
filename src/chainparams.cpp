@@ -128,6 +128,35 @@ static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount &rew
     assert(false);
 }
 
+/// Genesis block auto-miner function
+void MineGenesisBlock(CBlock& genesis, const Consensus::Params& consensus) {
+    std::cout << "🔍 Mining genesis block for current network..." << std::endl;
+
+    arith_uint256 hashTarget;
+    hashTarget.SetCompact(genesis.nBits);
+    uint256 hash;
+
+    while (true) {
+        hash = genesis.GetHash();
+        if (UintToArith256(hash) <= hashTarget)
+            break;
+        ++genesis.nNonce;
+        if (genesis.nNonce == 0) {
+            std::cout << "⚠️ Nonce wrapped, incrementing time" << std::endl;
+            ++genesis.nTime;
+        }
+    }
+
+    std::cout << "✅ FOUND GENESIS BLOCK" << std::endl;
+    std::cout << "nTime: " << genesis.nTime << std::endl;
+    std::cout << "nNonce: " << genesis.nNonce << std::endl;
+    std::cout << "nBits: " << std::hex << genesis.nBits << std::dec << std::endl;
+    std::cout << "hashGenesisBlock: " << genesis.GetHash().ToString() << std::endl;
+    std::cout << "hashMerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
+
+    exit(0); // Stop the daemon so you can copy the values
+}
+
 /// Verify the POW hash is valid for the genesis block
 static void VerifyGenesisPOW(const CBlock &genesis) {
     arith_uint256 bnTarget;
@@ -250,31 +279,6 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
 
-        // Genesis block auto-miner
-        if (genesis.nNonce == 0) {
-            std::cout << "=== MAINNET GENESIS BLOCK FINDER ===" << std::endl;
-            std::cout << "Searching for genesis block..." << std::endl;
-            arith_uint256 hashTarget;
-            hashTarget.SetCompact(genesis.nBits);
-            uint256 hash;
-            while (true) {
-                hash = genesis.GetHash();
-                if (UintToArith256(hash) <= hashTarget) break;
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) {
-                    std::cout << "Nonce wrapped, incrementing time" << std::endl;
-                    ++genesis.nTime;
-                }
-            }
-
-            std::cout << "FOUND MAINNET GENESIS BLOCK!" << std::endl;
-            std::cout << "nTime: " << genesis.nTime << std::endl;
-            std::cout << "nNonce: " << genesis.nNonce << std::endl;
-            std::cout << "nBits: " << std::hex << genesis.nBits << std::dec << std::endl;
-            std::cout << "hashGenesisBlock: " << genesis.GetHash().ToString() << std::endl;
-            std::cout << "hashMerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
-            exit(1); // Stop execution so you can copy values
-        }
 
         // TEMPORARY: Comment out assert to let daemon find correct nonce
         // assert(consensus.hashGenesisBlock == uint256S("d2ccb533436bee9531347072e788c18273f7d0f6dc7d00045f9b7104ff18283a"));
@@ -451,31 +455,6 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
 
-        // Genesis block auto-miner
-        if (genesis.nNonce == 0) {
-            std::cout << "=== TESTNET GENESIS BLOCK FINDER ===" << std::endl;
-            std::cout << "Searching for genesis block..." << std::endl;
-            arith_uint256 hashTarget;
-            hashTarget.SetCompact(genesis.nBits);
-            uint256 hash;
-            while (true) {
-                hash = genesis.GetHash();
-                if (UintToArith256(hash) <= hashTarget) break;
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) {
-                    std::cout << "Nonce wrapped, incrementing time" << std::endl;
-                    ++genesis.nTime;
-                }
-            }
-
-            std::cout << "FOUND TESTNET GENESIS BLOCK!" << std::endl;
-            std::cout << "nTime: " << genesis.nTime << std::endl;
-            std::cout << "nNonce: " << genesis.nNonce << std::endl;
-            std::cout << "nBits: " << std::hex << genesis.nBits << std::dec << std::endl;
-            std::cout << "hashGenesisBlock: " << genesis.GetHash().ToString() << std::endl;
-            std::cout << "hashMerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
-            exit(1); // Stop execution so you can copy values
-        }
 
         // TEMPORARY: Comment out assert to let daemon find correct nonce
         // assert(consensus.hashGenesisBlock == uint256S("4f68ed236063f6c5bbd4c1a1a21158a7620bb2ea9ccf0e312986b3a5a65d174b"));
@@ -633,31 +612,6 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
 
-        // Genesis block auto-miner
-        if (genesis.nNonce == 0) {
-            std::cout << "=== DEVNET GENESIS BLOCK FINDER ===" << std::endl;
-            std::cout << "Searching for genesis block..." << std::endl;
-            arith_uint256 hashTarget;
-            hashTarget.SetCompact(genesis.nBits);
-            uint256 hash;
-            while (true) {
-                hash = genesis.GetHash();
-                if (UintToArith256(hash) <= hashTarget) break;
-                ++genesis.nNonce;
-                if (genesis.nNonce == 0) {
-                    std::cout << "Nonce wrapped, incrementing time" << std::endl;
-                    ++genesis.nTime;
-                }
-            }
-
-            std::cout << "FOUND DEVNET GENESIS BLOCK!" << std::endl;
-            std::cout << "nTime: " << genesis.nTime << std::endl;
-            std::cout << "nNonce: " << genesis.nNonce << std::endl;
-            std::cout << "nBits: " << std::hex << genesis.nBits << std::dec << std::endl;
-            std::cout << "hashGenesisBlock: " << genesis.GetHash().ToString() << std::endl;
-            std::cout << "hashMerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
-            exit(1); // Stop execution so you can copy values
-        }
 
         // TEMPORARY: Comment out assert to let daemon find correct nonce
         // assert(consensus.hashGenesisBlock == uint256S("bea160a6c975994fbaa53ead20f527a0af1f5fe58ccaac6315a25f85ae6a6967"));
@@ -1087,6 +1041,14 @@ std::unique_ptr <CChainParams> CreateChainParams(const std::string &chain) {
 void SelectParams(const std::string &network) {
     SelectBaseParams(network);
     globalChainParams = CreateChainParams(network);
+    
+    // ✅ Now mine the genesis block AFTER the correct network has been selected
+    CBlock& genesis = const_cast<CBlock&>(globalChainParams->GenesisBlock());
+    const Consensus::Params& consensus = globalChainParams->GetConsensus();
+
+    if (genesis.nNonce == 0) {
+        MineGenesisBlock(genesis, consensus);
+    }
 }
 
 void UpdateLLMQParams(size_t totalMnCount, int height, const CBlockIndex* blockIndex, bool lowLLMQParams) {
