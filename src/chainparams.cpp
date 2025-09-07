@@ -251,7 +251,7 @@ public:
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
 
         // Genesis block auto-miner
-        if (consensus.hashGenesisBlock != uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")) {
+        if (genesis.nNonce == 0) {
             std::cout << "=== MAINNET GENESIS BLOCK FINDER ===" << std::endl;
             std::cout << "Searching for genesis block..." << std::endl;
             arith_uint256 hashTarget;
@@ -452,7 +452,7 @@ public:
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
 
         // Genesis block auto-miner
-        if (consensus.hashGenesisBlock != uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")) {
+        if (genesis.nNonce == 0) {
             std::cout << "=== TESTNET GENESIS BLOCK FINDER ===" << std::endl;
             std::cout << "Searching for genesis block..." << std::endl;
             arith_uint256 hashTarget;
@@ -634,7 +634,7 @@ public:
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
 
         // Genesis block auto-miner
-        if (consensus.hashGenesisBlock != uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")) {
+        if (genesis.nNonce == 0) {
             std::cout << "=== DEVNET GENESIS BLOCK FINDER ===" << std::endl;
             std::cout << "Searching for genesis block..." << std::endl;
             arith_uint256 hashTarget;
