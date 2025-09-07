@@ -154,5 +154,5 @@ roughly 1 in a trillion chance of not detecting the errors.
 
 All RPCs in hashmonkeycoin Core will include the checksum in their output. Only
 certain RPCs require checksums on input, including `deriveaddress` and
-`impoHMNYulti`. The checksum for a descriptor without one can be computed
+`importmulti`. The checksum for a descriptor without one can be computed
 using the `getdescriptorinfo` RPC.

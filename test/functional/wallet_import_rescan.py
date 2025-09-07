@@ -5,7 +5,7 @@
 """Test wallet import RPCs.
 
 Test rescan behavior of importaddress, importpubkey, importprivkey, and
-impoHMNYulti RPCs with different types of keys and rescan options.
+importmulti RPCs with different types of keys and rescan options.
 
 In the first part of the test, node 0 creates an address for each type of
 import RPC call and sends BTC to it. Then other nodes import the addresses,
@@ -55,7 +55,7 @@ class Variant(collections.namedtuple("Variant", "call data rescan prune")):
             assert_equal(response, None)
 
         elif self.call in (Call.multiaddress, Call.multiscript):
-            response = self.node.impoHMNYulti([{
+            response = self.node.importmulti([{
                 "scriptPubKey": {
                     "address": self.address["address"]
                 } if self.call == Call.multiaddress else self.address["scriptPubKey"],

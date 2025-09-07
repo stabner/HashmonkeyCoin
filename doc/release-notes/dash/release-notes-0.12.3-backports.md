@@ -30,10 +30,10 @@
 - [`00a0bc710`](https://github.com/raptor3um/hashmonkeycoin/commit/00a0bc710) Remove "TODO: fix off-by-one"
 - [`625252fb4`](https://github.com/raptor3um/hashmonkeycoin/commit/625252fb4) Allow to pass redirect_stderr=True to initialize_chain and use in wallet-dump.py
 - [`d56ac5a74`](https://github.com/raptor3um/hashmonkeycoin/commit/d56ac5a74) Fix import-rescan.py and add workaround for pruning mode
-- [`1ba125621`](https://github.com/raptor3um/hashmonkeycoin/commit/1ba125621) Merge #9761: Use 2 hour grace period for key timestamps in impoHMNYulti rescans
+- [`1ba125621`](https://github.com/raptor3um/hashmonkeycoin/commit/1ba125621) Merge #9761: Use 2 hour grace period for key timestamps in importmulti rescans
 - [`75421c37b`](https://github.com/raptor3um/hashmonkeycoin/commit/75421c37b) Merge #9764: wallet: Prevent "overrides a member function but is not marked 'override'" warnings
-- [`43f697866`](https://github.com/raptor3um/hashmonkeycoin/commit/43f697866) Merge #9108: Use impoHMNYulti timestamp when importing watch only keys (on top of #9682)
-- [`6f86725d0`](https://github.com/raptor3um/hashmonkeycoin/commit/6f86725d0) Merge #9682: Require timestamps for impoHMNYulti keys
+- [`43f697866`](https://github.com/raptor3um/hashmonkeycoin/commit/43f697866) Merge #9108: Use importmulti timestamp when importing watch only keys (on top of #9682)
+- [`6f86725d0`](https://github.com/raptor3um/hashmonkeycoin/commit/6f86725d0) Merge #9682: Require timestamps for importmulti keys
 - [`9c5032c54`](https://github.com/raptor3um/hashmonkeycoin/commit/9c5032c54) Explicitly start nodes with -usehd=1 in wallet-dump.py
 - [`a92b7b2ed`](https://github.com/raptor3um/hashmonkeycoin/commit/a92b7b2ed) Add missed change from previous backport to wallet-dump.py
 - [`9bb9e9ea7`](https://github.com/raptor3um/hashmonkeycoin/commit/9bb9e9ea7) Merge #9077: [qa] Increase wallet-dump RPC timeout
@@ -97,7 +97,7 @@
 - [`4321788cc`](https://github.com/raptor3um/hashmonkeycoin/commit/4321788cc) Merge #9953: Fix shutdown hang with >= 8 -addnodes set
 - [`bd0b0daaa`](https://github.com/raptor3um/hashmonkeycoin/commit/bd0b0daaa) Merge #9892: Bugfix: Only install manpages for built programs
 - [`818fc1eaf`](https://github.com/raptor3um/hashmonkeycoin/commit/818fc1eaf) Merge #9891: depends: make osx output deterministic
-- [`a16d3b005`](https://github.com/raptor3um/hashmonkeycoin/commit/a16d3b005) Merge #9829: Fix impoHMNYulti returning rescan errors for wrong keys
+- [`a16d3b005`](https://github.com/raptor3um/hashmonkeycoin/commit/a16d3b005) Merge #9829: Fix importmulti returning rescan errors for wrong keys
 - [`16b2a1d1b`](https://github.com/raptor3um/hashmonkeycoin/commit/16b2a1d1b) Merge #9791: Avoid VLA in hash.h
 - [`39f08b6e6`](https://github.com/raptor3um/hashmonkeycoin/commit/39f08b6e6) Merge #9865: Change bitcoin address in RPC help message
 - [`3693eb157`](https://github.com/raptor3um/hashmonkeycoin/commit/3693eb157) Merge #9879: [doc] Update doc/bips.md for BIP90 implementation
@@ -108,11 +108,11 @@
 - [`d88030845`](https://github.com/raptor3um/hashmonkeycoin/commit/d88030845) Merge #9824: qa: Check return code when stopping nodes
 - [`f09ae21c3`](https://github.com/raptor3um/hashmonkeycoin/commit/f09ae21c3) Merge #9820: Fix pruning test broken by 2 hour manual prune window
 - [`0e8be439c`](https://github.com/raptor3um/hashmonkeycoin/commit/0e8be439c) Merge #9711: [Trivial] Remove incorrect help message from gettxoutproof()
-- [`ac981ec3c`](https://github.com/raptor3um/hashmonkeycoin/commit/ac981ec3c) Merge #9773: Return errors from impoHMNYulti if complete rescans are not successful
+- [`ac981ec3c`](https://github.com/raptor3um/hashmonkeycoin/commit/ac981ec3c) Merge #9773: Return errors from importmulti if complete rescans are not successful
 - [`0a6f63bb2`](https://github.com/raptor3um/hashmonkeycoin/commit/0a6f63bb2) Merge #9817: Fix segfault crash when shutdown the GUI in disablewallet mode
 - [`15a035b9c`](https://github.com/raptor3um/hashmonkeycoin/commit/15a035b9c) Merge #9798: Fix Issue #9775 (Check returned value of fopen)
 - [`8d2edc469`](https://github.com/raptor3um/hashmonkeycoin/commit/8d2edc469) Merge #9813: Read/write mempool.dat as a binary.
-- [`199b07a89`](https://github.com/raptor3um/hashmonkeycoin/commit/199b07a89) Merge #9760: [wallet] Remove impoHMNYulti always-true check
+- [`199b07a89`](https://github.com/raptor3um/hashmonkeycoin/commit/199b07a89) Merge #9760: [wallet] Remove importmulti always-true check
 - [`3ab5fab7f`](https://github.com/raptor3um/hashmonkeycoin/commit/3ab5fab7f) Merge #9786: boost: remove iostreams includes
 - [`5e596423a`](https://github.com/raptor3um/hashmonkeycoin/commit/5e596423a) Merge #9785: Avoid variable length arrays
 - [`11a5f2e6a`](https://github.com/raptor3um/hashmonkeycoin/commit/11a5f2e6a) Rename and hashmonkeycoinify .manpages files
@@ -125,7 +125,7 @@
 - [`5f88c6451`](https://github.com/raptor3um/hashmonkeycoin/commit/5f88c6451) Merge #9675: Fix typo and spelling inconsistency in CONTRIBUTING.md
 - [`52819ca9b`](https://github.com/raptor3um/hashmonkeycoin/commit/52819ca9b) Merge #9763: [Trivial] Update comments referencing main.cpp
 - [`bb2c1624c`](https://github.com/raptor3um/hashmonkeycoin/commit/bb2c1624c) Merge #9771: Add missing cs_wallet lock that triggers new lock held assertion
-- [`da8808fba`](https://github.com/raptor3um/hashmonkeycoin/commit/da8808fba) Merge #9756: Return error when impoHMNYulti called with invalid address.
+- [`da8808fba`](https://github.com/raptor3um/hashmonkeycoin/commit/da8808fba) Merge #9756: Return error when importmulti called with invalid address.
 - [`136d8606c`](https://github.com/raptor3um/hashmonkeycoin/commit/136d8606c) Merge #9758: Selectively suppress deprecation warnings
 - [`f2b556008`](https://github.com/raptor3um/hashmonkeycoin/commit/f2b556008) Merge #9553: Use z = std::max(x - y, 0) instead of z = x - y; if (z < 0) z = 0;
 - [`132edbda8`](https://github.com/raptor3um/hashmonkeycoin/commit/132edbda8) Merge #9755: Bugfix: Qt/Options: Restore persistent "restart required" notice
@@ -160,7 +160,7 @@
 - [`3824192e4`](https://github.com/raptor3um/hashmonkeycoin/commit/3824192e4) Update testnet chainparams to use correct heights for BIP34/BIP65/BIP66
 - [`715be73c6`](https://github.com/raptor3um/hashmonkeycoin/commit/715be73c6) Fix listsinceblock.py
 - [`9bc404a8c`](https://github.com/raptor3um/hashmonkeycoin/commit/9bc404a8c) Add "setbip69enabled" RPC usable by tests only
-- [`6bee150e8`](https://github.com/raptor3um/hashmonkeycoin/commit/6bee150e8) Require timestamps for impoHMNYulti keys
+- [`6bee150e8`](https://github.com/raptor3um/hashmonkeycoin/commit/6bee150e8) Require timestamps for importmulti keys
 - [`611cb6f27`](https://github.com/raptor3um/hashmonkeycoin/commit/611cb6f27) Fix new hashmonkeycoin-tx tests
 - [`86753a890`](https://github.com/raptor3um/hashmonkeycoin/commit/86753a890) Add spaces around + in updateGlobalFeeVariables
 - [`228d774a6`](https://github.com/raptor3um/hashmonkeycoin/commit/228d774a6) Fix use of distdir and docker build dir
@@ -434,8 +434,8 @@
 - [`e9f250d68`](https://github.com/raptor3um/hashmonkeycoin/commit/e9f250d68) Merge #8993: Trivial: Fix doxygen comment: the transaction is returned in txOut
 - [`9be4217df`](https://github.com/raptor3um/hashmonkeycoin/commit/9be4217df) Merge #8982: Eliminating Inconsistencies in Textual Output
 - [`beef6e784`](https://github.com/raptor3um/hashmonkeycoin/commit/beef6e784) Merge #8990: moveonly: move `coincontrol` to `src/wallet`
-- [`6cacb79c0`](https://github.com/raptor3um/hashmonkeycoin/commit/6cacb79c0) Merge #8980: RPC: impoHMNYulti: Avoid using boost::variant::operator!=, which is only in newer boost versions
-- [`efded3ca9`](https://github.com/raptor3um/hashmonkeycoin/commit/efded3ca9) Merge #7551: Add impoHMNYulti RPC call
+- [`6cacb79c0`](https://github.com/raptor3um/hashmonkeycoin/commit/6cacb79c0) Merge #8980: RPC: importmulti: Avoid using boost::variant::operator!=, which is only in newer boost versions
+- [`efded3ca9`](https://github.com/raptor3um/hashmonkeycoin/commit/efded3ca9) Merge #7551: Add importmulti RPC call
 - [`bd8e9fbba`](https://github.com/raptor3um/hashmonkeycoin/commit/bd8e9fbba) Merge #8774: Qt refactors to better abstract wallet access
 - [`dc9556a89`](https://github.com/raptor3um/hashmonkeycoin/commit/dc9556a89) Merge #7948: RPC: augment getblockchaininfo bip9_softforks data
 - [`3b084b25b`](https://github.com/raptor3um/hashmonkeycoin/commit/3b084b25b) Remove unnecessary function prototypes

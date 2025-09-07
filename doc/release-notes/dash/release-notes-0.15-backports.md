@@ -84,7 +84,7 @@
 - [`f76d53d73`](https://github.com/raptor3um/hashmonkeycoin/commit/f76d53d73) hashmonkeycoinify a few strings in tests
 - [`4770830bb`](https://github.com/raptor3um/hashmonkeycoin/commit/4770830bb) Drop accidently added lines in release-notes.md
 - [`1c65e0859`](https://github.com/raptor3um/hashmonkeycoin/commit/1c65e0859) Fix "os" import in wallet-dump.py
-- [`f61698937`](https://github.com/raptor3um/hashmonkeycoin/commit/f61698937) Merge #11483: Fix impoHMNYulti bug when importing an already imported key
+- [`f61698937`](https://github.com/raptor3um/hashmonkeycoin/commit/f61698937) Merge #11483: Fix importmulti bug when importing an already imported key
 - [`f8f55c25c`](https://github.com/raptor3um/hashmonkeycoin/commit/f8f55c25c) Merge #11465: rpc: Update named args documentation for importprivkey
 - [`1313ee3d4`](https://github.com/raptor3um/hashmonkeycoin/commit/1313ee3d4) Merge #11397: net: Improve and document SOCKS code
 - [`08513bfff`](https://github.com/raptor3um/hashmonkeycoin/commit/08513bfff) Merge #11437: [Docs] Update Windows build instructions for using WSL and Ubuntu 17.04
@@ -482,7 +482,7 @@
 - [`e740604f6`](https://github.com/raptor3um/hashmonkeycoin/commit/e740604f6) No need for zero initialization of devnet params
 - [`50652674b`](https://github.com/raptor3um/hashmonkeycoin/commit/50652674b) Merge #8855: Use a proper factory for creating chainparams
 - [`175d68ac2`](https://github.com/raptor3um/hashmonkeycoin/commit/175d68ac2) Merge #10426: Replace bytes_serialized with bogosize
-- [`51525efd6`](https://github.com/raptor3um/hashmonkeycoin/commit/51525efd6) Merge #10403: Fix impoHMNYulti failure to return rescan errors
+- [`51525efd6`](https://github.com/raptor3um/hashmonkeycoin/commit/51525efd6) Merge #10403: Fix importmulti failure to return rescan errors
 - [`35bafa14b`](https://github.com/raptor3um/hashmonkeycoin/commit/35bafa14b) Merge #10515: [test] Add test for getchaintxstats
 - [`44a55019b`](https://github.com/raptor3um/hashmonkeycoin/commit/44a55019b) Merge #10478: rpc: Add listen address to incoming connections in `getpeerinfo`
 - [`40cec429b`](https://github.com/raptor3um/hashmonkeycoin/commit/40cec429b) Merge #10471: Denote functions CNode::GetRecvVersion() and CNode::GetRefCount()  as const
