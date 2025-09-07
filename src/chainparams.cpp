@@ -247,7 +247,31 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295300, 65, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
+        
+        // TEMPORARY: Find correct nonce for mainnet with original timestamp
+        if (genesis.nNonce == 0) {
+            std::cout << "🔍 Mining MAINNET genesis block with nTime=1755295200..." << std::endl;
+            arith_uint256 hashTarget;
+            hashTarget.SetCompact(genesis.nBits);
+            uint256 hash;
+            while (true) {
+                hash = genesis.GetHash();
+                if (UintToArith256(hash) <= hashTarget) break;
+                ++genesis.nNonce;
+                if (genesis.nNonce == 0) {
+                    std::cout << "⚠️ Nonce wrapped, incrementing time" << std::endl;
+                    ++genesis.nTime;
+                }
+            }
+            std::cout << "✅ FOUND MAINNET GENESIS BLOCK!" << std::endl;
+            std::cout << "nTime: " << genesis.nTime << std::endl;
+            std::cout << "nNonce: " << genesis.nNonce << std::endl;
+            std::cout << "hashGenesisBlock: " << genesis.GetHash().ToString() << std::endl;
+            std::cout << "hashMerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
+            exit(0);
+        }
+        
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0004695cf93ecd2bba1ca9919a22b14d5efae18fc12db032bc0d21beab471b0b"));
