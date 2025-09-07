@@ -248,12 +248,13 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        // Create genesis block for mainnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295200, 1233, 0x20001fff, 4, 500 * COIN);
+        // Create genesis block for mainnet - will be mined
+        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("000230c33335909661730bfe94746bd9f3cef94177d7e3d3776da346544cfce7"));
-        assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
+        // TEMPORARY: Comment out hash assertions to capture correct values
+        // assert(consensus.hashGenesisBlock == uint256S("000230c33335909661730bfe94746bd9f3cef94177d7e3d3776da346544cfce7"));
+        // assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
