@@ -248,7 +248,7 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295200, 4337, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("1b77d57dcbdcce06169871cca36fd6ec097bfad52c0fbcf2542939691220659c"));
