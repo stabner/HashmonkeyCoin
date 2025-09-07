@@ -247,10 +247,16 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        // Create genesis block for mainnet
-        genesis = CreateGenesisBlock(1755295200, 1130, 0x20001fff, 4, 500 * COIN);
-        VerifyGenesisPOW(genesis);
-        consensus.hashGenesisBlock = genesis.GetHash();
+        // Create genesis block for mainnet - TEMPORARY DEBUG
+        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
+        
+        std::cout << "Generated Mainnet Genesis Block:" << std::endl;
+        std::cout << "  nTime = " << genesis.nTime << std::endl;
+        std::cout << "  nNonce = " << genesis.nNonce << std::endl;
+        std::cout << "  hashGenesisBlock = " << genesis.GetHash().ToString() << std::endl;
+        std::cout << "  hashMerkleRoot = " << genesis.hashMerkleRoot.ToString() << std::endl;
+        
+        assert(false); // Force crash so we can copy the values
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -418,12 +424,16 @@ public:
         pchMessageStart[3] = 0x74; //t
         nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
-        // Create genesis block for testnet with correct nonce
-        genesis = CreateGenesisBlock(1755295200, 2, 0x20001fff, 4, 500 * COIN);
-        VerifyGenesisPOW(genesis);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("d2ccb533436bee9531347072e788c18273f7d0f6dc7d00045f9b7104ff18283a"));
-        assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
+        // Create genesis block for testnet - TEMPORARY DEBUG
+        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
+        
+        std::cout << "Generated Testnet Genesis Block:" << std::endl;
+        std::cout << "  nTime = " << genesis.nTime << std::endl;
+        std::cout << "  nNonce = " << genesis.nNonce << std::endl;
+        std::cout << "  hashGenesisBlock = " << genesis.GetHash().ToString() << std::endl;
+        std::cout << "  hashMerkleRoot = " << genesis.hashMerkleRoot.ToString() << std::endl;
+        
+        assert(false); // Force crash so we can copy the values
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -572,10 +582,16 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        // Create genesis block for devnet
-        genesis = CreateGenesisBlock(1755295200, 2841, 0x20001fff, 4, 500 * COIN);
-        VerifyGenesisPOW(genesis);
-        consensus.hashGenesisBlock = genesis.GetHash();
+        // Create genesis block for devnet - TEMPORARY DEBUG
+        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
+        
+        std::cout << "Generated Devnet Genesis Block:" << std::endl;
+        std::cout << "  nTime = " << genesis.nTime << std::endl;
+        std::cout << "  nNonce = " << genesis.nNonce << std::endl;
+        std::cout << "  hashGenesisBlock = " << genesis.GetHash().ToString() << std::endl;
+        std::cout << "  hashMerkleRoot = " << genesis.hashMerkleRoot.ToString() << std::endl;
+        
+        assert(false); // Force crash so we can copy the values
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
