@@ -249,7 +249,29 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295200, 1233, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
+        
+        // TEMPORARY: Re-mine with exact current parameters
+        std::cout << "🔍 Re-mining MAINNET with current CreateGenesisBlock parameters..." << std::endl;
+        arith_uint256 hashTarget;
+        hashTarget.SetCompact(genesis.nBits);
+        uint256 hash;
+        while (true) {
+            hash = genesis.GetHash();
+            if (UintToArith256(hash) <= hashTarget) break;
+            ++genesis.nNonce;
+            if (genesis.nNonce == 0) {
+                std::cout << "⚠️ Nonce wrapped, incrementing time" << std::endl;
+                ++genesis.nTime;
+            }
+        }
+        std::cout << "✅ FOUND MAINNET GENESIS BLOCK!" << std::endl;
+        std::cout << "nTime: " << genesis.nTime << std::endl;
+        std::cout << "nNonce: " << genesis.nNonce << std::endl;
+        std::cout << "hashGenesisBlock: " << genesis.GetHash().ToString() << std::endl;
+        std::cout << "hashMerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        exit(0);
+        
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("000230c33335909661730bfe94746bd9f3cef94177d7e3d3776da346544cfce7"));
