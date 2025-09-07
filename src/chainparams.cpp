@@ -1051,8 +1051,8 @@ void SelectParams(const std::string& network)
     CBlock& genesis = const_cast<CBlock&>(globalChainParams->GenesisBlock());
     const Consensus::Params& consensus = globalChainParams->GetConsensus();
 
-    // Only mine if hardcoded hash doesn't match
-    if (genesis.GetHash() != consensus.hashGenesisBlock) {
+    // Only mine if nNonce is 0 (not yet mined)
+    if (genesis.nNonce == 0) {
         MineGenesisBlock(genesis, consensus);
     }
 }

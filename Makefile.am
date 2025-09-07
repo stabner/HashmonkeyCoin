@@ -28,6 +28,7 @@ BITCOIND_BIN=$(top_builddir)/src/$(BITCOIN_DAEMON_NAME)$(EXEEXT)
 BITCOIN_QT_BIN=$(top_builddir)/src/qt/$(BITCOIN_GUI_NAME)$(EXEEXT)
 BITCOIN_CLI_BIN=$(top_builddir)/src/$(BITCOIN_CLI_NAME)$(EXEEXT)
 BITCOIN_WALLET_BIN=$(top_builddir)/src/$(BITCOIN_WALLET_TOOL_NAME)$(EXEEXT)
+GENESIS_GENERATOR_BIN=$(top_builddir)/src/genesis_generator$(EXEEXT)
 BITCOIN_WIN_INSTALLER=$(PACKAGE)-$(PACKAGE_VERSION)-win64-setup$(EXEEXT)
 
 empty :=
@@ -274,3 +275,9 @@ clean-local: clean-docs
 	rm -rf coverage_percent.txt test_hashmonkeycoin.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP) src/qt/moc_*
 	rm -rf test/functional/__pycache__ test/functional/test_framework/__pycache__ test/cache
 	rm -rf osx_volname dist/
+
+# Genesis generator target
+genesis_generator: $(GENESIS_GENERATOR_BIN)
+
+$(GENESIS_GENERATOR_BIN): $(top_builddir)/src/genesis_generator.o $(top_builddir)/src/libhashmonkeycoin_common.a $(top_builddir)/src/libhashmonkeycoin_util.a
+	$(AM_V_CXXLD)$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
