@@ -249,7 +249,7 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet - will be mined
-        genesis = CreateGenesisBlock(1755295200, 0, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1757300000, 0, 0x1e0ffff0, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
@@ -423,7 +423,7 @@ public:
         nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
         // Create genesis block for testnet - will be mined
-        genesis = CreateGenesisBlock(1755295300, 0, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1757300100, 0, 0x1e0ffff0, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
@@ -577,8 +577,8 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        // Create genesis block for devnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295400, 0, 0x20001fff, 4, 500 * COIN);
+        // Create genesis block for devnet - will be mined
+        genesis = CreateGenesisBlock(1757300200, 0, 0x1e0ffff0, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
@@ -1008,32 +1008,28 @@ std::unique_ptr <CChainParams> CreateChainParams(const std::string &chain) {
 
 void MineGenesisBlock(CBlock& genesis, const Consensus::Params& consensus)
 {
-    std::cout << "\n🔍 Mining genesis block..." << std::endl;
+    std::cout << "\n⛏️ Mining genesis block... please wait..." << std::endl;
 
     arith_uint256 hashTarget;
     hashTarget.SetCompact(genesis.nBits);
-    uint256 hash;
 
+    uint256 hash;
     while (true) {
         hash = genesis.GetHash();
         if (UintToArith256(hash) <= hashTarget)
             break;
 
         ++genesis.nNonce;
-        if (genesis.nNonce == 0) {
-            std::cout << "⚠️ Nonce wrapped, incrementing time" << std::endl;
-            ++genesis.nTime;
-        }
+        if (genesis.nNonce == 0) ++genesis.nTime; // handle overflow
     }
 
-    std::cout << "\n✅ FOUND GENESIS BLOCK" << std::endl;
-    std::cout << "nTime: " << genesis.nTime << std::endl;
-    std::cout << "nNonce: " << genesis.nNonce << std::endl;
-    std::cout << "nBits: 0x" << std::hex << genesis.nBits << std::dec << std::endl;
-    std::cout << "hashGenesisBlock: " << genesis.GetHash().ToString() << std::endl;
-    std::cout << "hashMerkleRoot:   " << genesis.hashMerkleRoot.ToString() << std::endl;
-
-    exit(0); // Exit after mining
+    std::cout << "\n✅ GENESIS BLOCK FOUND:\n" << std::endl;
+    std::cout << "  nTime: " << genesis.nTime << std::endl;
+    std::cout << "  nNonce: " << genesis.nNonce << std::endl;
+    std::cout << "  nBits: 0x" << std::hex << genesis.nBits << std::dec << std::endl;
+    std::cout << "  Hash: " << genesis.GetHash().ToString() << std::endl;
+    std::cout << "  MerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
+    exit(0); // exit after printing
 }
 
 void SelectParams(const std::string& network)
