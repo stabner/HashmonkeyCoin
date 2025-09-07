@@ -142,8 +142,7 @@ static void VerifyGenesisPOW(const CBlock &genesis) {
                 std::cerr << "VerifyGenesisPOW:  provided nNonce (" << genesis.nNonce << ") invalid" << std::endl;
                 std::cerr << "   nonce: " << block.nNonce << ", pow hash: 0x" << hash.ToString()
                           << ", block hash: 0x" << block.GetHash().ToString() << std::endl;
-                // Temporarily remove assert to find correct nonce
-                std::cerr << "   WARNING: Nonce mismatch but continuing to find correct value..." << std::endl;
+                assert(genesis.nNonce == block.nNonce);
             }
             return;
         }
@@ -248,11 +247,10 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295200, 4337, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295200, 797, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMPORARY: Remove hash assertion to capture correct hash
-        std::cout << "MAINNET: hashGenesisBlock = " << consensus.hashGenesisBlock.ToString() << std::endl;
+        assert(consensus.hashGenesisBlock == uint256S("d2ccb533436bee9531347072e788c18273f7d0f6dc7d00045f9b7104ff18283a"));
         assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
@@ -422,11 +420,10 @@ public:
         nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
         // Create genesis block for testnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295300, 0, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295300, 797, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMPORARY: Remove hash assertion to capture correct hash
-        std::cout << "TESTNET: hashGenesisBlock = " << consensus.hashGenesisBlock.ToString() << std::endl;
+        assert(consensus.hashGenesisBlock == uint256S("4f68ed236063f6c5bbd4c1a1a21158a7620bb2ea9ccf0e312986b3a5a65d174b"));
         assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vFixedSeeds.clear();
@@ -577,11 +574,10 @@ public:
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         // Create genesis block for devnet with correct hardcoded values
-        genesis = CreateGenesisBlock(1755295400, 0, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1755295400, 3387, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMPORARY: Remove hash assertion to capture correct hash
-        std::cout << "DEVNET: hashGenesisBlock = " << consensus.hashGenesisBlock.ToString() << std::endl;
+        assert(consensus.hashGenesisBlock == uint256S("bea160a6c975994fbaa53ead20f527a0af1f5fe58ccaac6315a25f85ae6a6967"));
         assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
