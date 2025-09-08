@@ -980,7 +980,7 @@ std::string ArgsManager::GetChainName() const {
     LOCK(cs_args);
     bool fRegTest = ArgsManagerHelper::GetNetBoolArg(*this, "-regtest", true);
     bool fDevNet = ArgsManagerHelper::GetNetBoolArg(*this, "-devnet", false);
-    bool fTestNet = ArgsManagerHelper::GetNetBoolArg(*this, "-testnet", true);
+    bool fTestNet = ArgsManagerHelper::GetNetBoolArg(*this, "-testnet", false);
     bool fMainNet = ArgsManagerHelper::GetNetBoolArg(*this, "-mainnet", false);
 
     int nameParamsCount = (fRegTest ? 1 : 0) + (fDevNet ? 1 : 0) + (fTestNet ? 1 : 0) + (fMainNet ? 1 : 0);
@@ -992,8 +992,8 @@ std::string ArgsManager::GetChainName() const {
     if (fMainNet) return CBaseChainParams::MAIN;
     if (fTestNet) return CBaseChainParams::TESTNET;
     
-    // Default to testnet for safety - prevents accidental mainnet usage
-    return CBaseChainParams::TESTNET;
+    // Default to mainnet for genesis block mining
+    return CBaseChainParams::MAIN;
 }
 
 std::string ArgsManager::GetDevNetName() const {
