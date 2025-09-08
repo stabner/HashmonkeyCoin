@@ -249,7 +249,7 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet - will be mined
-        genesis = CreateGenesisBlock(1757300000, 0, 0x1f00ffff, 1, 500 * COIN);
+        genesis = CreateGenesisBlock(1757300001, 0, 0x1f00ffff, 1, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
@@ -423,7 +423,7 @@ public:
         nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
         // Create genesis block for testnet - will be mined
-        genesis = CreateGenesisBlock(1757300100, 0, 0x1f00ffff, 1, 500 * COIN);
+        genesis = CreateGenesisBlock(1757300002, 0, 0x1f00ffff, 1, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
@@ -578,7 +578,7 @@ public:
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         // Create genesis block for devnet - will be mined
-        genesis = CreateGenesisBlock(1757300200, 0, 0x1f00ffff, 1, 500 * COIN);
+        genesis = CreateGenesisBlock(1757300003, 0, 0x1f00ffff, 1, 500 * COIN);
         // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
