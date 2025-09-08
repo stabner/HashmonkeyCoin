@@ -250,7 +250,7 @@ public:
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet - will be mined
         genesis = CreateGenesisBlock(1757300000, 0, 0x1e0ffff0, 1, 500 * COIN);
-        VerifyGenesisPOW(genesis);
+        // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
         // assert(consensus.hashGenesisBlock == uint256S("000230c33335909661730bfe94746bd9f3cef94177d7e3d3776da346544cfce7"));
@@ -424,7 +424,7 @@ public:
         nPruneAfterHeight = 1000;
         // Create genesis block for testnet - will be mined
         genesis = CreateGenesisBlock(1757300100, 0, 0x1e0ffff0, 1, 500 * COIN);
-        VerifyGenesisPOW(genesis);
+        // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
         // assert(consensus.hashGenesisBlock == uint256S("0004695cf93ecd2bba1ca9919a22b14d5efae18fc12db032bc0d21beab471b0b"));
@@ -579,7 +579,7 @@ public:
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         // Create genesis block for devnet - will be mined
         genesis = CreateGenesisBlock(1757300200, 0, 0x1e0ffff0, 1, 500 * COIN);
-        VerifyGenesisPOW(genesis);
+        // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
         consensus.hashGenesisBlock = genesis.GetHash();
         // TEMPORARY: Comment out hash assertions to capture correct values
         // assert(consensus.hashGenesisBlock == uint256S("0008f2fb1af8ad4db531e5f07d55845a09afc05edd9de46d526feb7e22b399dc"));
@@ -1015,7 +1015,7 @@ void MineGenesisBlock(CBlock& genesis, const Consensus::Params& consensus)
 
     uint256 hash;
     while (true) {
-        hash = genesis.GetHash();
+        hash = genesis.GetPOWHash();
         if (UintToArith256(hash) <= hashTarget)
             break;
 
@@ -1027,7 +1027,8 @@ void MineGenesisBlock(CBlock& genesis, const Consensus::Params& consensus)
     std::cout << "  nTime: " << genesis.nTime << std::endl;
     std::cout << "  nNonce: " << genesis.nNonce << std::endl;
     std::cout << "  nBits: 0x" << std::hex << genesis.nBits << std::dec << std::endl;
-    std::cout << "  Hash: " << genesis.GetHash().ToString() << std::endl;
+    std::cout << "  POW Hash: " << genesis.GetPOWHash().ToString() << std::endl;
+    std::cout << "  Block Hash: " << genesis.GetHash().ToString() << std::endl;
     std::cout << "  MerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
     exit(0); // exit after printing
 }
