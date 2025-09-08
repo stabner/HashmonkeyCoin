@@ -1041,6 +1041,8 @@ void SelectParams(const std::string& network)
         globalChainParams = std::make_unique<CTestNetParams>();
     else if (network == CBaseChainParams::DEVNET)
         globalChainParams = std::make_unique<CDevNetParams>(gArgs);
+    else if (network == CBaseChainParams::REGTEST)
+        globalChainParams = std::make_unique<CRegTestParams>(gArgs);
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, network));
 
