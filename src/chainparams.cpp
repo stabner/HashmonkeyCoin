@@ -248,13 +248,11 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        // Create genesis block for mainnet - will be mined
-        genesis = CreateGenesisBlock(1757300001, 0, 0x1f00ffff, 1, 500 * COIN);
-        // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
+        // Create genesis block for mainnet
+        genesis = CreateGenesisBlock(1757300001, 32035, 0x1f00ffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMPORARY: Comment out hash assertions to capture correct values
-        // assert(consensus.hashGenesisBlock == uint256S("000230c33335909661730bfe94746bd9f3cef94177d7e3d3776da346544cfce7"));
-        // assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
+        assert(consensus.hashGenesisBlock == uint256S("0x015317e6f0ffd47af6786cf6bde2a15a0c723d2c25f79ce826814e792dd0d944"));
+        assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -422,13 +420,11 @@ public:
         pchMessageStart[3] = 0x74; //t
         nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
-        // Create genesis block for testnet - will be mined
-        genesis = CreateGenesisBlock(1757300002, 0, 0x1f00ffff, 1, 500 * COIN);
-        // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
+        // Create genesis block for testnet
+        genesis = CreateGenesisBlock(1757300002, 164980, 0x1f00ffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMPORARY: Comment out hash assertions to capture correct values
-        // assert(consensus.hashGenesisBlock == uint256S("0004695cf93ecd2bba1ca9919a22b14d5efae18fc12db032bc0d21beab471b0b"));
-        // assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
+        assert(consensus.hashGenesisBlock == uint256S("0x6b034954a364b5e41ec0f60046c1b7b37a442b7d18656fa73b82e380b60edb6c"));
+        assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -577,13 +573,11 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        // Create genesis block for devnet - will be mined
-        genesis = CreateGenesisBlock(1757300003, 0, 0x1f00ffff, 1, 500 * COIN);
-        // VerifyGenesisPOW(genesis); // Commented out - will be mined in SelectParams
+        // Create genesis block for devnet
+        genesis = CreateGenesisBlock(1757300003, 37814, 0x1f00ffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMPORARY: Comment out hash assertions to capture correct values
-        // assert(consensus.hashGenesisBlock == uint256S("0008f2fb1af8ad4db531e5f07d55845a09afc05edd9de46d526feb7e22b399dc"));
-        // assert(genesis.hashMerkleRoot == uint256S("159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00b9251f8b3d5a810f275e51ca6705387b62471611e37b1b3604be5fc1930201"));
+        assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
@@ -1041,19 +1035,10 @@ void SelectParams(const std::string& network)
         globalChainParams = std::make_unique<CTestNetParams>();
     else if (network == CBaseChainParams::DEVNET)
         globalChainParams = std::make_unique<CDevNetParams>(gArgs);
-    else if (network == CBaseChainParams::REGTEST)
-        globalChainParams = std::make_unique<CRegTestParams>(gArgs);
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, network));
 
-    // Call genesis finder AFTER selecting network
-    CBlock& genesis = const_cast<CBlock&>(globalChainParams->GenesisBlock());
-    const Consensus::Params& consensus = globalChainParams->GetConsensus();
-
-    // Only mine if nNonce is 0 (not yet mined)
-    if (genesis.nNonce == 0) {
-        MineGenesisBlock(genesis, consensus);
-    }
+    // Genesis blocks are now hardcoded with correct values
 }
 
 void UpdateLLMQParams(size_t totalMnCount, int height, const CBlockIndex* blockIndex, bool lowLLMQParams) {
