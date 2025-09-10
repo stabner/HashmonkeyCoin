@@ -191,15 +191,10 @@ bool Intro::pickDataDirectory(interfaces::Node &node) {
 
     if (!fs::exists(GUIUtil::qstringToBoostPath(dataDir)) ||
         gArgs.GetBoolArg("-choosedatadir", DEFAULT_CHOOSE_DATADIR) || dataDirDefaultCurrent != dataDirDefaultSettings) {
-        /* Use selectParams here to guarantee Params() can be used by node interface */
-        try {
-            node.selectParams(gArgs.GetChainName());
-        } catch (const std::exception &) {
-            return false;
-        }
-
+        /* Note: selectParams will be called later after config file is read */
         /* Let the user choose one */
-        Intro intro(0, node.getAssumedChainStateSize(), node.getAssumedChainStateSize());
+        // Use default values since Params() is not yet initialized
+        Intro intro(0, 0, 0);
         GUIUtil::disableMacFocusRect(&intro);
         GUIUtil::loadStyleSheet(true);
         intro.setDataDirectory(dataDirDefaultCurrent);
