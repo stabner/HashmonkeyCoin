@@ -1000,32 +1000,7 @@ std::unique_ptr <CChainParams> CreateChainParams(const std::string &chain) {
     throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }
 
-void MineGenesisBlock(CBlock& genesis, const Consensus::Params& consensus)
-{
-    std::cout << "\n⛏️ Mining genesis block... please wait..." << std::endl;
-
-    arith_uint256 hashTarget;
-    hashTarget.SetCompact(genesis.nBits);
-
-    uint256 hash;
-    while (true) {
-        hash = genesis.GetPOWHash();
-        if (UintToArith256(hash) <= hashTarget)
-            break;
-
-        ++genesis.nNonce;
-        if (genesis.nNonce == 0) ++genesis.nTime; // handle overflow
-    }
-
-    std::cout << "\n✅ GENESIS BLOCK FOUND:\n" << std::endl;
-    std::cout << "  nTime: " << genesis.nTime << std::endl;
-    std::cout << "  nNonce: " << genesis.nNonce << std::endl;
-    std::cout << "  nBits: 0x" << std::hex << genesis.nBits << std::dec << std::endl;
-    std::cout << "  POW Hash: " << genesis.GetPOWHash().ToString() << std::endl;
-    std::cout << "  Block Hash: " << genesis.GetHash().ToString() << std::endl;
-    std::cout << "  MerkleRoot: " << genesis.hashMerkleRoot.ToString() << std::endl;
-    exit(0); // exit after printing
-}
+// MineGenesisBlock function removed - genesis blocks are now hardcoded
 
 void SelectParams(const std::string& network)
 {
