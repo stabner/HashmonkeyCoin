@@ -931,7 +931,10 @@ bool ArgsManager::ReadConfigFiles(std::string &error, bool ignore_invalid_keys) 
             {
                 LOCK(cs_args);
                 m_config_args.erase("-includeconf");
-                m_config_args.erase(std::string("-") + chain_id + ".includeconf");
+                m_config_args.erase("-main.includeconf");
+                m_config_args.erase("-test.includeconf");
+                m_config_args.erase("-regtest.includeconf");
+                m_config_args.erase("-devnet.includeconf");
             }
 
             for (const std::string &to_include: includeconf) {
