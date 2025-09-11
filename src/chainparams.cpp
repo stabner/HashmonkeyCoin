@@ -250,6 +250,7 @@ public:
         m_assumed_chain_state_size = 2;
         // Create genesis block for mainnet
         genesis = CreateGenesisBlock(1757300001, 32035, 0x1f00ffff, 1, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x015317e6f0ffd47af6786cf6bde2a15a0c723d2c25f79ce826814e792dd0d944"));
         assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
@@ -422,6 +423,7 @@ public:
         nPruneAfterHeight = 1000;
         // Create genesis block for testnet
         genesis = CreateGenesisBlock(1757300002, 164980, 0x1f00ffff, 1, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x6b034954a364b5e41ec0f60046c1b7b37a442b7d18656fa73b82e380b60edb6c"));
         assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
@@ -575,6 +577,7 @@ public:
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         // Create genesis block for devnet
         genesis = CreateGenesisBlock(1757300003, 37814, 0x1f00ffff, 1, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00b9251f8b3d5a810f275e51ca6705387b62471611e37b1b3604be5fc1930201"));
         assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
@@ -749,6 +752,7 @@ public:
         UpdateBudgetParametersFromArgs(args);
 
         genesis = CreateGenesisBlock(1755295200, 0, 0x207fffff, 4, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         // For regtest, we'll use a simple approach - just verify the genesis block is valid
         consensus.hashGenesisBlock = genesis.GetHash();
         // Regtest genesis block - no need for hardcoded assertions
