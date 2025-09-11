@@ -168,10 +168,7 @@ namespace interfaces {
                 return gArgs.SoftSetBoolArg(arg, value);
             }
 
-            void selectParams(const std::string &network) override { 
-                SelectBaseParams(network);
-                SelectParams(network); 
-            }
+            void selectParams(const std::string &network) override { SelectParams(network); }
 
             uint64_t getAssumedBlockchainSize() override { return Params().AssumedBlockchainSize(); }
 

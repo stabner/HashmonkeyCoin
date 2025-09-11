@@ -1004,6 +1004,7 @@ std::unique_ptr <CChainParams> CreateChainParams(const std::string &chain) {
 
 void SelectParams(const std::string& network)
 {
+    SelectBaseParams(network);
     if (network == CBaseChainParams::MAIN)
         globalChainParams = std::make_unique<CMainParams>();
     else if (network == CBaseChainParams::TESTNET)

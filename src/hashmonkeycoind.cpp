@@ -92,7 +92,6 @@ static bool AppInit(int argc, char *argv[]) {
         }
         // Check for -testnet or -regtest parameter (Params() calls are only valid after this clause)
         try {
-            SelectBaseParams(gArgs.GetChainName());
             SelectParams(gArgs.GetChainName());
         } catch (const std::exception &e) {
             return InitError(strprintf("%s\n", e.what()));

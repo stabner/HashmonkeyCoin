@@ -70,7 +70,6 @@ static bool WalletAppInit(int argc, char *argv[]) {
         return false;
     }
     // Check for -testnet or -regtest parameter (Params() calls are only valid after this clause)
-    SelectBaseParams(gArgs.GetChainName());
     SelectParams(gArgs.GetChainName());
 
     return true;
