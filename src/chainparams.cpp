@@ -1005,16 +1005,7 @@ std::unique_ptr <CChainParams> CreateChainParams(const std::string &chain) {
 void SelectParams(const std::string& network)
 {
     SelectBaseParams(network);
-    if (network == CBaseChainParams::MAIN)
-        globalChainParams = std::make_unique<CMainParams>();
-    else if (network == CBaseChainParams::TESTNET)
-        globalChainParams = std::make_unique<CTestNetParams>();
-    else if (network == CBaseChainParams::DEVNET)
-        globalChainParams = std::make_unique<CDevNetParams>(gArgs);
-    else
-        throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, network));
-
-    // Genesis blocks are now hardcoded with correct values
+    globalChainParams = CreateChainParams(network);
 }
 
 void UpdateLLMQParams(size_t totalMnCount, int height, const CBlockIndex* blockIndex, bool lowLLMQParams) {
