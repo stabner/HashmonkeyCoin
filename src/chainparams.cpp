@@ -421,14 +421,16 @@ public:
         pchMessageStart[3] = 0x74; //t
         nDefaultPort = 11229;
         nPruneAfterHeight = 1000;
+        // TEMPORARY: Disable genesis block creation to test if this is causing QT wallet crash
         // Create genesis block for testnet
-        genesis = CreateGenesisBlock(1757300002, 164980, 0x1f00ffff, 1, 500 * COIN);
-        // TEMPORARY: Disable VerifyGenesisPOW to test if this is causing QT wallet crash
+        // genesis = CreateGenesisBlock(1757300002, 164980, 0x1f00ffff, 1, 500 * COIN);
         // VerifyGenesisPOW(genesis);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        // TEMPORARY: Disable assertions to test if these are causing QT wallet crash
+        // consensus.hashGenesisBlock = genesis.GetHash();
         // assert(consensus.hashGenesisBlock == uint256S("0x6b034954a364b5e41ec0f60046c1b7b37a442b7d18656fa73b82e380b60edb6c"));
         // assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
+        
+        // TEMPORARY: Use hardcoded values directly
+        consensus.hashGenesisBlock = uint256S("0x6b034954a364b5e41ec0f60046c1b7b37a442b7d18656fa73b82e380b60edb6c");
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -487,7 +489,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"mghPWMiNfnsZUHsGpMqY6SRaQXB5uAh9Zt"}; // Valid testnet spork address
+        vSporkAddresses = {"mghPWMiNfnsZUHsGpMqY6SRaQXB5uAh9Zt"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
         strTestnetSporkPriv = "cPFVEzAP2AzaGVZLg2LqQzQoKH8bR5cBudWKoG1pUbZPMg2MmUrH"; // Valid testnet spork private key
