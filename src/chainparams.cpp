@@ -423,7 +423,8 @@ public:
         nPruneAfterHeight = 1000;
         // Create genesis block for testnet
         genesis = CreateGenesisBlock(1757300002, 164980, 0x1f00ffff, 1, 500 * COIN);
-        VerifyGenesisPOW(genesis);
+        // TEMPORARY: Disable VerifyGenesisPOW to test if this is causing QT wallet crash
+        // VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x6b034954a364b5e41ec0f60046c1b7b37a442b7d18656fa73b82e380b60edb6c"));
         assert(genesis.hashMerkleRoot == uint256S("0x159b52901f83892ab2c375945d6798ac32bd575407faef258de401115f41eded"));
