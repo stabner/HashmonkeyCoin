@@ -911,18 +911,12 @@ bool ArgsManager::ReadConfigFiles(std::string &error, bool ignore_invalid_keys) 
             emptyIncludeConf = m_override_args.count("-includeconf") == 0;
         }
         if (emptyIncludeConf) {
+            std::string chain_id = GetChainName();
             std::vector <std::string> includeconf(GetArgs("-includeconf"));
             {
                 // We haven't yet set m_network (that happens in SelectParams()), so manually
-                // check for network.includeconf args for all possible networks.
-                std::vector <std::string> includeconf_net;
-                includeconf_net = GetArgs("-main.includeconf");
-                includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
-                includeconf_net = GetArgs("-test.includeconf");
-                includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
-                includeconf_net = GetArgs("-regtest.includeconf");
-                includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
-                includeconf_net = GetArgs("-devnet.includeconf");
+                // check for network.includeconf args.
+                std::vector <std::string> includeconf_net(GetArgs(std::string("-") + chain_id + ".includeconf"));
                 includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
             }
 
@@ -931,10 +925,7 @@ bool ArgsManager::ReadConfigFiles(std::string &error, bool ignore_invalid_keys) 
             {
                 LOCK(cs_args);
                 m_config_args.erase("-includeconf");
-                m_config_args.erase("-main.includeconf");
-                m_config_args.erase("-test.includeconf");
-                m_config_args.erase("-regtest.includeconf");
-                m_config_args.erase("-devnet.includeconf");
+                m_config_args.erase(std::string("-") + chain_id + ".includeconf");
             }
 
             for (const std::string &to_include: includeconf) {
@@ -953,16 +944,14 @@ bool ArgsManager::ReadConfigFiles(std::string &error, bool ignore_invalid_keys) 
             // Warn about recursive -includeconf
             includeconf = GetArgs("-includeconf");
             {
-                // Check for recursive includeconf for all possible networks
-                std::vector <std::string> includeconf_net;
-                includeconf_net = GetArgs("-main.includeconf");
+                std::vector <std::string> includeconf_net(GetArgs(std::string("-") + chain_id + ".includeconf"));
                 includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
-                includeconf_net = GetArgs("-test.includeconf");
-                includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
-                includeconf_net = GetArgs("-regtest.includeconf");
-                includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
-                includeconf_net = GetArgs("-devnet.includeconf");
-                includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
+                std::string chain_id_final = GetChainName();
+                if (chain_id_final != chain_id) {
+                    // Also warn about recursive includeconf for the chain that was specified in one of the includeconfs
+                    includeconf_net = GetArgs(std::string("-") + chain_id_final + ".includeconf");
+                    includeconf.insert(includeconf.end(), includeconf_net.begin(), includeconf_net.end());
+                }
             }
             for (const std::string &to_include: includeconf) {
                 tfm::format(std::cerr,
@@ -991,7 +980,7 @@ std::string ArgsManager::GetChainName() const {
     LOCK(cs_args);
     bool fRegTest = ArgsManagerHelper::GetNetBoolArg(*this, "-regtest", true);
     bool fDevNet = ArgsManagerHelper::GetNetBoolArg(*this, "-devnet", false);
-    bool fTestNet = ArgsManagerHelper::GetNetBoolArg(*this, "-testnet", false);
+    bool fTestNet = ArgsManagerHelper::GetNetBoolArg(*this, "-testnet", true);
     bool fMainNet = ArgsManagerHelper::GetNetBoolArg(*this, "-mainnet", false);
 
     int nameParamsCount = (fRegTest ? 1 : 0) + (fDevNet ? 1 : 0) + (fTestNet ? 1 : 0) + (fMainNet ? 1 : 0);
