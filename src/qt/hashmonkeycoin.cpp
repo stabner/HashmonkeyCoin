@@ -500,7 +500,7 @@ int GuiMain(int argc, char *argv[]) {
     std::unique_ptr <interfaces::Node> node = interfaces::MakeNode(&node_context);
 
     // Subscribe to global signals from core
-    std::unique_ptr <interfaces::Handler> handler_message_box = node->handleMessageBox(guiThreadSafeMessageBox);
+    std::unique_ptr <interfaces::Handler> handler_message_box = node->handleMessageBox(noui_ThreadSafeMessageBox);
     std::unique_ptr <interfaces::Handler> handler_question = node->handleQuestion(noui_ThreadSafeQuestion);
     std::unique_ptr <interfaces::Handler> handler_init_message = node->handleInitMessage(noui_InitMessage);
 
