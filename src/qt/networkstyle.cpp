@@ -13,6 +13,8 @@
 #include <tinyformat.h>
 #include <util/system.h>
 
+#include <QDebug>
+
 #include <QApplication>
 
 static const struct {
