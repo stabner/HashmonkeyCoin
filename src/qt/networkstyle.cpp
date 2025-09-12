@@ -64,7 +64,8 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
         titleAddText(qApp->translate("SplashScreen", _titleAddText)),
         badgeColor(QColor(0, 141, 228)) {
     // Allow for separate UI settings for testnets
-    QApplication::setApplicationName(appName);
+    // TEMPORARY FIX: Disable application name change for testnet to test if this causes crash
+    // QApplication::setApplicationName(appName);
     // load pixmap
     QPixmap appIconPixmap(":/icons/hashmonkeycoin");
 
