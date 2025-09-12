@@ -68,6 +68,13 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
     // QApplication::setApplicationName(appName);
     // load pixmap
     QPixmap appIconPixmap(":/icons/hashmonkeycoin");
+    // TEMPORARY FIX: Check if icon loaded successfully to debug testnet crash
+    if (appIconPixmap.isNull()) {
+        qDebug() << "ERROR: Failed to load hashmonkeycoin icon from Qt resources";
+        // Try to load a fallback or create a simple icon
+        appIconPixmap = QPixmap(32, 32);
+        appIconPixmap.fill(Qt::red); // Simple red square as fallback
+    }
 
     if (iconColorHueShift != 0 && iconColorSaturationReduction != 0) {
         // generate QImage from QPixmap
