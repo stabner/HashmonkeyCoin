@@ -47,6 +47,7 @@
         <file alias="transaction_abandoned">res/icons/transaction_abandoned.png</file>
         <file alias="transaction_locked">res/icons/transaction_locked.png</file>
         <file alias="warning">res/icons/warning.png</file>
+        <file alias="hashmonkeycoin">res/icons/hashmonkeycoin.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="general">res/css/general.css</file>

@@ -13,8 +13,6 @@
 #include <tinyformat.h>
 #include <util/system.h>
 
-#include <QDebug>
-
 #include <QApplication>
 
 static const struct {
@@ -66,17 +64,9 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
         titleAddText(qApp->translate("SplashScreen", _titleAddText)),
         badgeColor(QColor(0, 141, 228)) {
     // Allow for separate UI settings for testnets
-    // TEMPORARY FIX: Disable application name change for testnet to test if this causes crash
-    // QApplication::setApplicationName(appName);
+    QApplication::setApplicationName(appName);
     // load pixmap
     QPixmap appIconPixmap(":/icons/hashmonkeycoin");
-    // TEMPORARY FIX: Check if icon loaded successfully to debug testnet crash
-    if (appIconPixmap.isNull()) {
-        qDebug() << "ERROR: Failed to load hashmonkeycoin icon from Qt resources";
-        // Try to load a fallback or create a simple icon
-        appIconPixmap = QPixmap(32, 32);
-        appIconPixmap.fill(Qt::red); // Simple red square as fallback
-    }
 
     if (iconColorHueShift != 0 && iconColorSaturationReduction != 0) {
         // generate QImage from QPixmap
