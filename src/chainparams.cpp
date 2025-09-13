@@ -143,8 +143,7 @@ static void VerifyGenesisPOW(const CBlock &genesis) {
                 std::cerr << "   nonce: " << block.nNonce << ", pow hash: 0x" << hash.ToString()
                           << ", block hash: 0x" << block.GetHash().ToString() << std::endl;
                 std::cerr << "   WARNING: Nonce mismatch - hardcoded: " << genesis.nNonce << ", found: " << block.nNonce << std::endl;
-                // TEMPORARY: Comment out assert to see what nonce is actually found
-                // assert(genesis.nNonce == block.nNonce);
+                assert(genesis.nNonce == block.nNonce);
             }
             return;
         }
@@ -419,7 +418,7 @@ public:
         pchMessageStart[1] = 0x65; //e
         pchMessageStart[2] = 0x73; //s
         pchMessageStart[3] = 0x74; //t
-        nDefaultPort = 11229;
+        nDefaultPort = 11230;
         nPruneAfterHeight = 1000;
         // Create genesis block for testnet
         genesis = CreateGenesisBlock(1757300002, 164980, 0x1f00ffff, 1, 500 * COIN);
