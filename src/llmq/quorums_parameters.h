@@ -319,6 +319,24 @@ namespace Consensus {
     
     // Stub for CQuorumUpdateVoteVec
     typedef std::vector<CQuorumUpdateVote> CQuorumUpdateVoteVec;
+    
+    // LLMQ parameter definitions that chainparams.cpp expects
+    static const LLMQParams llmq3_60 = {};
+    static const LLMQParams llmq5_60 = {};
+    static const LLMQParams llmq5_85 = {};
+    static const LLMQParams llmq10_60 = {};
+    static const LLMQParams llmq20_60 = {};
+    static const LLMQParams llmq20_85 = {};
+    static const LLMQParams llmq40_60 = {};
+    static const LLMQParams llmq40_85 = {};
+    static const LLMQParams llmq50_60 = {};
+    static const LLMQParams llmq100_67_mainnet = {};
+    static const LLMQParams llmq100_67_testnet = {};
+    static const LLMQParams llmq200_60 = {};
+    static const LLMQParams llmq200_85 = {};
+    static const LLMQParams llmq200_2 = {};
+    static const LLMQParams llmq400_60 = {};
+    static const LLMQParams llmq400_85 = {};
 }
 
 #endif // BITCOIN_LLMQ_QUORUMS_PARAMETERS_H
