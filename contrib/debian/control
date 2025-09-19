@@ -1,0 +1,52 @@
+Source: raptoreum
+Section: utils
+Priority: optional
+Maintainer: Holger Schinzel <holger@raptoreum.org>
+Uploaders: Holger Schinzel <holger@raptoreum.org>
+Build-Depends: debhelper,
+ devscripts,
+ automake,
+ libtool,
+ bash-completion,
+ libdb4.8++-dev,
+ libssl-dev,
+ pkg-config,
+ libevent-dev,
+ libboost-system1.48-dev | libboost-system-dev (>> 1.47),
+ libboost-filesystem1.48-dev | libboost-filesystem-dev (>> 1.47),
+ libboost-thread1.48-dev | libboost-thread-dev (>> 1.47),
+ libboost-test1.48-dev | libboost-test-dev (>> 1.47),
+ libminiupnpc8-dev | libminiupnpc-dev,
+ qttools5-dev-tools, qttools5-dev,
+ libqrencode-dev,
+ python,
+ libzmq3-dev
+Standards-Version: 3.9.2
+Homepage: https://www.raptoreum.org/
+Vcs-Git: git://github.com/raptor3um/raptoreum.git
+Vcs-Browser: https://github.com/raptor3um/raptoreum
+
+Package: raptoreumd
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - daemon
+ Raptoreum is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Raptoreum uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Raptoreum Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides the daemon, raptoreumd, and the CLI tool
+ raptoreum-cli to interact with the daemon.
+
+Package: raptoreum-qt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - Qt GUI
+ Raptoreum is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Raptoreum uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Raptoreum Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides Raptoreum-Qt, a GUI for Raptoreum based on Qt.
