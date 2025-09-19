@@ -279,6 +279,7 @@ namespace Consensus {
         int recoveryMembers = 0;
         int minDKGScore = 0;
         int maxDKGScore = 0;
+        const char* name = "";  // Stub name field for chainparams.cpp compatibility
     };
 }
 
@@ -296,5 +297,26 @@ static const Consensus::LLMQParams llmq100_60 = {};
 static const Consensus::LLMQParams llmq100_85 = {};
 static const Consensus::LLMQParams llmq100_67_mainnet = {};
 static const Consensus::LLMQParams llmq100_67_testnet = {};
+
+// Additional missing LLMQ parameter definitions
+static const Consensus::LLMQParams llmq20_60 = {};
+static const Consensus::LLMQParams llmq20_85 = {};
+static const Consensus::LLMQParams llmq5_85 = {};
+static const Consensus::LLMQParams llmq40_60 = {};
+static const Consensus::LLMQParams llmq40_85 = {};
+static const Consensus::LLMQParams llmq200_60 = {};
+static const Consensus::LLMQParams llmq200_85 = {};
+static const Consensus::LLMQParams llmq200_2 = {};
+
+// Missing types that LLMQ system expects
+namespace Consensus {
+    // Stub for CQuorumUpdateVote
+    struct CQuorumUpdateVote {
+        // Empty stub - all functionality disabled
+    };
+    
+    // Stub for CQuorumUpdateVoteVec
+    typedef std::vector<CQuorumUpdateVote> CQuorumUpdateVoteVec;
+}
 
 #endif // BITCOIN_LLMQ_QUORUMS_PARAMETERS_H
