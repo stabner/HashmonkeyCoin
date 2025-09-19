@@ -97,7 +97,8 @@ namespace Consensus {
         LLMQType llmqTypeInstantSend{LLMQ_NONE};
         LLMQType llmqTypePlatform{LLMQ_NONE};
 
-        FounderPayment nFounderPayment;
+        // HashmonkeyCoin: Founder payment system disabled - no dev fees
+        // FounderPayment nFounderPayment;
         FutureRewardShare nFutureRewardShare;
         SmartnodeCollaterals nCollaterals;
         int smartnodePaymentFixedBlock;

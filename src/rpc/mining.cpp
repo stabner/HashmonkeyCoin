@@ -847,17 +847,18 @@ static UniValue getblocktemplate(const JSONRPCRequest &request) {
     result.pushKV("superblocks_started", pindexPrev->nHeight + 1 > consensusParams.nSuperblockStartBlock);
     result.pushKV("superblocks_enabled", AreSuperblocksEnabled());
 
+    // HashmonkeyCoin: Founder payment system disabled - no dev fees
     UniValue founderObj(UniValue::VOBJ);
-    FounderPayment founderPayment = Params().GetConsensus().nFounderPayment;
-    if (pblock->txoutFounder != CTxOut()) {
-        CTxDestination founder_addr;
-        ExtractDestination(pblock->txoutFounder.scriptPubKey, founder_addr);
-        founderObj.pushKV("payee", EncodeDestination(founder_addr).c_str());
-        founderObj.pushKV("script", HexStr(pblock->txoutFounder.scriptPubKey));
-        founderObj.pushKV("amount", pblock->txoutFounder.nValue);
-    }
+    // FounderPayment founderPayment = Params().GetConsensus().nFounderPayment;
+    // if (pblock->txoutFounder != CTxOut()) {
+    //     CTxDestination founder_addr;
+    //     ExtractDestination(pblock->txoutFounder.scriptPubKey, founder_addr);
+    //     founderObj.pushKV("payee", EncodeDestination(founder_addr).c_str());
+    //     founderObj.pushKV("script", HexStr(pblock->txoutFounder.scriptPubKey));
+    //     founderObj.pushKV("amount", pblock->txoutFounder.nValue);
+    // }
     result.pushKV("founder", founderObj);
-    result.pushKV("founder_payments_started", pindexPrev->nHeight + 1 > founderPayment.getStartBlock());
+    result.pushKV("founder_payments_started", false);
 
     result.pushKV("coinbase_payload", HexStr(pblock->vtx[0]->vExtraPayload));
 

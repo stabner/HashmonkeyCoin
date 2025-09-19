@@ -83,13 +83,14 @@ bool CheckTransaction(const CTransaction &tx, CValidationState &state, int nHeig
         }
         if (tx.vin[0].scriptSig.size() < minCbSize || tx.vin[0].scriptSig.size() > 100)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
-        FounderPayment founderPayment = Params().GetConsensus().nFounderPayment;
-        CAmount founderReward = founderPayment.getFounderPaymentAmount(nHeight, blockReward);
-        int founderStartHeight = founderPayment.getStartBlock();
-        if (nHeight > founderStartHeight && founderReward &&
-            !founderPayment.IsBlockPayeeValid(tx, nHeight, blockReward)) {
-            return state.DoS(100, false, REJECT_INVALID, "bad-cb-founder-payment-not-found");
-        }
+        // HashmonkeyCoin: Founder payment system disabled - no dev fees
+        // FounderPayment founderPayment = Params().GetConsensus().nFounderPayment;
+        // CAmount founderReward = founderPayment.getFounderPaymentAmount(nHeight, blockReward);
+        // int founderStartHeight = founderPayment.getStartBlock();
+        // if (nHeight > founderStartHeight && founderReward &&
+        //     !founderPayment.IsBlockPayeeValid(tx, nHeight, blockReward)) {
+        //     return state.DoS(100, false, REJECT_INVALID, "bad-cb-founder-payment-not-found");
+        // }
         //don't allow assets on coinbase. coinbase assets are not implemented
         for (auto vout : tx.vout) {
             if (vout.scriptPubKey.IsAssetScript()) {

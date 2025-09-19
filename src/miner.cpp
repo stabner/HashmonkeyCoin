@@ -237,8 +237,9 @@ std::unique_ptr <CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript &s
     // get some info back to pass to getblocktemplate
     FillBlockPayments(coinbaseTx, nHeight, normalBlockReward, pblocktemplate->voutSmartnodePayments,
                       pblocktemplate->voutSuperblockPayments, nSpecialTxFees);
-    FounderPayment founderPayment = chainparams.GetConsensus().nFounderPayment;
-    founderPayment.FillFounderPayment(coinbaseTx, nHeight, normalBlockReward, pblock->txoutFounder);
+    // HashmonkeyCoin: Founder payment system disabled - no dev fees
+    // FounderPayment founderPayment = chainparams.GetConsensus().nFounderPayment;
+    // founderPayment.FillFounderPayment(coinbaseTx, nHeight, normalBlockReward, pblock->txoutFounder);
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vTxFees[0] = -nFees;
     pblocktemplate->vSpecialTxFees[0] = -nSpecialTxFees;

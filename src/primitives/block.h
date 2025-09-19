@@ -71,7 +71,8 @@ public:
     // network and disk
     std::vector <CTransactionRef> vtx;
 
-    mutable CTxOut txoutFounder; // founder payment
+    // HashmonkeyCoin: Founder payment system disabled - no dev fees
+    // mutable CTxOut txoutFounder; // founder payment
     // memory only
     mutable bool fChecked;
 
@@ -95,7 +96,8 @@ public:
         CBlockHeader::SetNull();
         vtx.clear();
         fChecked = false;
-        txoutFounder = CTxOut();
+        // HashmonkeyCoin: Founder payment system disabled - no dev fees
+        // txoutFounder = CTxOut();
     }
 
     CBlockHeader GetBlockHeader() const {
