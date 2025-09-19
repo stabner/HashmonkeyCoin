@@ -313,6 +313,8 @@ namespace Consensus {
     // Stub for CQuorumUpdateVote
     struct CQuorumUpdateVote {
         // Empty stub - all functionality disabled
+        int bit = 0;
+        int votes = 0;
     };
     
     // Stub for CQuorumUpdateVoteVec
