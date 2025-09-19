@@ -303,19 +303,20 @@ public:
 //        	std::cout << "mainnet is disable" << endl;
 //        	exit(0);
 //        }
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
-        consensus.nCollaterals = SmartnodeCollaterals(
-                {{88720,   600000 * COIN},
-                 {132720,  800000 * COIN},
-                 {176720,  1000000 * COIN},
-                 {220720,  1250000 * COIN},
-                 {264720,  1500000 * COIN},
-                 {INT_MAX, 1800000 * COIN}
-                },
-                {{5761,    0},
-                 {INT_MAX, 20}}
-        );
+        // HashmonkeyCoin: Smartnode functionality disabled
+        // std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        // consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
+        // consensus.nCollaterals = SmartnodeCollaterals(
+        //         {{88720,   600000 * COIN},
+        //          {132720,  800000 * COIN},
+        //          {176720,  1000000 * COIN},
+        //          {220720,  1250000 * COIN},
+        //          {264720,  1500000 * COIN},
+        //          {INT_MAX, 1800000 * COIN}
+        //         },
+        //         {{5761,    0},
+        //          {INT_MAX, 20}}
+        // );
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
@@ -490,14 +491,16 @@ public:
         consensus.llmqTypeInstantSend = Consensus::LLMQ_50_60;
         consensus.llmqTypePlatform = Consensus::LLMQ_100_67;
 
-        consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 60000 * COIN}},
-                {{INT_MAX, 20}});
+        // HashmonkeyCoin: Smartnode functionality disabled
+        // consensus.nCollaterals = SmartnodeCollaterals(
+        //         {{INT_MAX, 60000 * COIN}},
+        //         {{INT_MAX, 20}});
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "rghjACzPtVAN2wydgDbn9Jq1agREu6rH1e");
+        // HashmonkeyCoin: Smartnode functionality disabled
+        // std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        // consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "rghjACzPtVAN2wydgDbn9Jq1agREu6rH1e");
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
@@ -614,11 +617,12 @@ public:
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
-        consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 60000 * COIN}},
-                {{INT_MAX, 20}});
+        // HashmonkeyCoin: Smartnode functionality disabled
+        // std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        // consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
+        // consensus.nCollaterals = SmartnodeCollaterals(
+        //         {{INT_MAX, 60000 * COIN}},
+        //         {{INT_MAX, 20}});
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -765,10 +769,11 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 10 * COIN}},
-                {{240,     0},
-                 {INT_MAX, 20}});
+        // HashmonkeyCoin: Smartnode functionality disabled
+        // consensus.nCollaterals = SmartnodeCollaterals(
+        //         {{INT_MAX, 10 * COIN}},
+        //         {{240,     0},
+        //          {INT_MAX, 20}});
 
         pchMessageStart[0] = 0x72; //r
         pchMessageStart[1] = 0x68; //h
@@ -814,8 +819,9 @@ public:
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 500, "yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc");
+        // HashmonkeyCoin: Smartnode functionality disabled
+        // std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        // consensus.nFounderPayment = FounderPayment(rewardStructures, 500, "yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc");
 
         checkpointData = {
                 {
