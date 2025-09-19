@@ -142,11 +142,11 @@ BITCOIN_CORE_H = \
   checkpoints.h \
   checkqueue.h \
   clientversion.h \
-  coinjoin/coinjoin.h \
-  coinjoin/coinjoin-client.h \
-  coinjoin/coinjoin-client-options.h \
-  coinjoin/coinjoin-server.h \
-  coinjoin/coinjoin-util.h \
+  # coinjoin/coinjoin.h \
+  # coinjoin/coinjoin-client.h \
+  # coinjoin/coinjoin-client-options.h \
+  # coinjoin/coinjoin-server.h \
+  # coinjoin/coinjoin-util.h \
   coins.h \
   compat.h \
   compat/assumptions.h \
@@ -163,21 +163,21 @@ BITCOIN_CORE_H = \
   cuckoocache.h \
   ctpl_stl.h \
   cxxtimer.hpp \
-  evo/cbtx.h \
-  evo/deterministicmns.h \
-  evo/evodb.h \
-  evo/mnauth.h \
-  evo/providertx.h \
-  evo/simplifiedmns.h \
-  evo/specialtx.h \
+  # evo/cbtx.h \
+  # evo/deterministicmns.h \
+  # evo/evodb.h \
+  # evo/mnauth.h \
+  # evo/providertx.h \
+  # evo/simplifiedmns.h \
+  # evo/specialtx.h \
   dsnotificationinterface.h \
-  governance/governance.h \
-  governance/governance-classes.h \
-  governance/governance-exceptions.h \
-  governance/governance-object.h \
-  governance/governance-validators.h \
-  governance/governance-vote.h \
-  governance/governance-votedb.h \
+  # governance/governance.h \
+  # governance/governance-classes.h \
+  # governance/governance-exceptions.h \
+  # governance/governance-object.h \
+  # governance/governance-validators.h \
+  # governance/governance-vote.h \
+  # governance/governance-votedb.h \
   future/fee.h \
   future/utils.h \
   flat-database.h \
@@ -202,28 +202,28 @@ BITCOIN_CORE_H = \
   keystore.h \
   dbwrapper.h \
   limitedmap.h \
-  llmq/quorums.h \
-  llmq/quorums_blockprocessor.h \
-  llmq/quorums_commitment.h \
-  llmq/quorums_chainlocks.h \
-  llmq/quorums_debug.h \
-  llmq/quorums_dkgsessionhandler.h \
-  llmq/quorums_dkgsessionmgr.h \
-  llmq/quorums_dkgsession.h \
-  llmq/quorums_init.h \
-  llmq/quorums_instantsend.h \
-  llmq/quorums_signing.h \
-  llmq/quorums_signing_shares.h \
-  llmq/quorums_utils.h \
-  llmq/quorums_parameters.h \
+  # llmq/quorums.h \
+  # llmq/quorums_blockprocessor.h \
+  # llmq/quorums_commitment.h \
+  # llmq/quorums_chainlocks.h \
+  # llmq/quorums_debug.h \
+  # llmq/quorums_dkgsessionhandler.h \
+  # llmq/quorums_dkgsessionmgr.h \
+  # llmq/quorums_dkgsession.h \
+  # llmq/quorums_init.h \
+  # llmq/quorums_instantsend.h \
+  # llmq/quorums_signing.h \
+  # llmq/quorums_signing_shares.h \
+  # llmq/quorums_utils.h \
+  # llmq/quorums_parameters.h \
   logging.h \
   logging_timer.h \
-  smartnode/activesmartnode.h \
-  smartnode/smartnode-meta.h \
-  smartnode/smartnode-payments.h \
-  smartnode/smartnode-sync.h \
-  smartnode/smartnode-utils.h \
-  smartnode/smartnode-collaterals.h \
+  # smartnode/activesmartnode.h \
+  # smartnode/smartnode-meta.h \
+  # smartnode/smartnode-payments.h \
+  # smartnode/smartnode-sync.h \
+  # smartnode/smartnode-utils.h \
+  # smartnode/smartnode-collaterals.h \
   mapport.h \
   memusage.h \
   merkleblock.h \
@@ -358,19 +358,19 @@ libhashmonkeycoin_server_a_SOURCES = \
   blockfilter.cpp \
   chain.cpp \
   checkpoints.cpp \
-  coinjoin/coinjoin.cpp \
-  coinjoin/coinjoin-client-options.cpp\
-  coinjoin/coinjoin-server.cpp \
+  # coinjoin/coinjoin.cpp \
+  # coinjoin/coinjoin-client-options.cpp\
+  # coinjoin/coinjoin-server.cpp \
   consensus/tx_verify.cpp \
   dbwrapper.cpp \
   dsnotificationinterface.cpp \
-  evo/cbtx.cpp \
-  evo/deterministicmns.cpp \
-  evo/evodb.cpp \
-  evo/mnauth.cpp \
-  evo/providertx.cpp \
-  evo/simplifiedmns.cpp \
-  evo/specialtx.cpp \
+  # evo/cbtx.cpp \
+  # evo/deterministicmns.cpp \
+  # evo/evodb.cpp \
+  # evo/mnauth.cpp \
+  # evo/providertx.cpp \
+  # evo/simplifiedmns.cpp \
+  # evo/specialtx.cpp \
   flatfile.cpp \
   httprpc.cpp \
   httpserver.cpp \
@@ -380,31 +380,31 @@ libhashmonkeycoin_server_a_SOURCES = \
   index/txindex.cpp \
   init.cpp \
   mapport.cpp \
-  governance/governance.cpp \
-  governance/governance-classes.cpp \
-  governance/governance-object.cpp \
-  governance/governance-validators.cpp \
-  governance/governance-vote.cpp \
-  governance/governance-votedb.cpp \
+  # governance/governance.cpp \
+  # governance/governance-classes.cpp \
+  # governance/governance-object.cpp \
+  # governance/governance-validators.cpp \
+  # governance/governance-vote.cpp \
+  # governance/governance-votedb.cpp \
   future/fee.cpp \
-  llmq/quorums.cpp \
-  llmq/quorums_blockprocessor.cpp \
-  llmq/quorums_commitment.cpp \
-  llmq/quorums_chainlocks.cpp \
-  llmq/quorums_debug.cpp \
-  llmq/quorums_dkgsessionhandler.cpp \
-  llmq/quorums_dkgsessionmgr.cpp \
-  llmq/quorums_dkgsession.cpp \
-  llmq/quorums_init.cpp \
-  llmq/quorums_instantsend.cpp \
-  llmq/quorums_signing.cpp \
-  llmq/quorums_signing_shares.cpp \
-  llmq/quorums_utils.cpp \
-  smartnode/activesmartnode.cpp \
-  smartnode/smartnode-meta.cpp \
-  smartnode/smartnode-payments.cpp \
-  smartnode/smartnode-sync.cpp \
-  smartnode/smartnode-utils.cpp \
+  # llmq/quorums.cpp \
+  # llmq/quorums_blockprocessor.cpp \
+  # llmq/quorums_commitment.cpp \
+  # llmq/quorums_chainlocks.cpp \
+  # llmq/quorums_debug.cpp \
+  # llmq/quorums_dkgsessionhandler.cpp \
+  # llmq/quorums_dkgsessionmgr.cpp \
+  # llmq/quorums_dkgsession.cpp \
+  # llmq/quorums_init.cpp \
+  # llmq/quorums_instantsend.cpp \
+  # llmq/quorums_signing.cpp \
+  # llmq/quorums_signing_shares.cpp \
+  # llmq/quorums_utils.cpp \
+  # smartnode/activesmartnode.cpp \
+  # smartnode/smartnode-meta.cpp \
+  # smartnode/smartnode-payments.cpp \
+  # smartnode/smartnode-sync.cpp \
+  # smartnode/smartnode-utils.cpp \
   messagesigner.cpp \
   miner.cpp \
   net.cpp \
@@ -422,8 +422,8 @@ libhashmonkeycoin_server_a_SOURCES = \
   pow.cpp \
   rest.cpp \
   rpc/blockchain.cpp \
-  rpc/smartnode.cpp \
-  rpc/governance.cpp \
+  # rpc/smartnode.cpp \
+  # rpc/governance.cpp \
   rpc/mining.cpp \
   rpc/misc.cpp \
   rpc/net.cpp \
@@ -469,9 +469,9 @@ endif
 libhashmonkeycoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libhashmonkeycoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libhashmonkeycoin_wallet_a_SOURCES = \
-  coinjoin/coinjoin-client.cpp \
-  coinjoin/coinjoin-client-options.cpp \
-  coinjoin/coinjoin-util.cpp \
+  # coinjoin/coinjoin-client.cpp \
+  # coinjoin/coinjoin-client-options.cpp \
+  # coinjoin/coinjoin-util.cpp \
   interfaces/wallet.cpp \
   wallet/bdb.cpp \
   wallet/coincontrol.cpp \
@@ -674,7 +674,7 @@ libhashmonkeycoin_common_a_SOURCES = \
   bip39.cpp \
   bloom.cpp \
   chainparams.cpp \
-  smartnode/smartnode-collaterals.cpp \
+  # smartnode/smartnode-collaterals.cpp \
   future/utils.cpp \
   coins.cpp \
   compressor.cpp \
