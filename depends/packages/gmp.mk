@@ -8,6 +8,8 @@ define $(package)_set_vars
 $(package)_config_opts+=--enable-cxx --enable-fat --with-pic --disable-shared
 $(package)_cflags_armv7l_linux+=-march=armv7-a
 $(package)_cflags_aarch64_darwin+=-march=armv8-a
+# Fix for cross-compilation issues in WSL
+$(package)_config_opts+=--disable-assembly ac_cv_prog_cc_g=yes ac_cv_prog_cc_works=yes ac_cv_prog_cc_cross=yes
 endef
 
 define $(package)_config_cmds
