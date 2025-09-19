@@ -3091,7 +3091,8 @@ void CWallet::AvailableCoins(std::vector <COutput> &vCoins, std::map <std::strin
     vCoins.clear();
     mapAssetCoins.clear();
     CoinType nCoinType = coinControl ? coinControl->nCoinType : CoinType::ALL_COINS;
-    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    // HashmonkeyCoin: Smartnode functionality disabled
+    // SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
 
     CAmount nTotal = 0;
     bool fHMNYLimitHit = false;
@@ -4027,7 +4028,8 @@ CWallet::SelectCoinsGroupedByAddresses(bool fSkipDenominated, bool fAnonymizable
     }
 
     CAmount nSmallestDenom = CCoinJoin::GetSmallestDenomination();
-    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    // HashmonkeyCoin: Smartnode functionality disabled
+    // SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
 
     // Tally
     std::map <CTxDestination, CompactTallyItem> mapTally;

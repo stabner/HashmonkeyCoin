@@ -10,7 +10,8 @@
 #include <uint256.h>
 #include <founder_payment.h>
 #include <llmq/quorums_parameters.h>
-#include <smartnode/smartnode-collaterals.h>
+// HashmonkeyCoin: Smartnode functionality disabled
+// #include <smartnode/smartnode-collaterals.h>
 
 namespace Consensus {
 
@@ -100,7 +101,8 @@ namespace Consensus {
         // HashmonkeyCoin: Founder payment system disabled - no dev fees
         // FounderPayment nFounderPayment;
         FutureRewardShare nFutureRewardShare;
-        SmartnodeCollaterals nCollaterals;
+        // HashmonkeyCoin: Smartnode functionality disabled
+        // SmartnodeCollaterals nCollaterals;
         int smartnodePaymentFixedBlock;
         int nFutureForkBlock;
     };
