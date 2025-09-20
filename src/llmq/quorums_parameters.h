@@ -1,356 +1,531 @@
-// HashmonkeyCoin: LLMQ system disabled - stub header
-#ifndef BITCOIN_LLMQ_QUORUMS_PARAMETERS_H
-#define BITCOIN_LLMQ_QUORUMS_PARAMETERS_H
+// Copyright (c) 2010 Satoshi Nakamoto
+// Copyright (c) 2009-2014 The Bitcoin Core developers
+// Copyright (c) 2014-2020 The Dash Core developers
+// Copyright (c) 2020-2023 The Raptoreum developers
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#ifndef BITCOIN_LLMQ_PARAMS_H
+#define BITCOIN_LLMQ_PARAMS_H
 
 #include <cstdint>
+#include <string_view>
 
 namespace Consensus {
-    // Stub enum for LLMQ types - all functionality disabled
+
     enum LLMQType : uint8_t {
-        LLMQ_INVALID = 0,
-        LLMQ_NONE = 1,
-        LLMQ_50_60 = 2,
-        LLMQ_400_60 = 3,
-        LLMQ_400_85 = 4,
-        LLMQ_100_67 = 5,
-        LLMQ_60_75 = 6,
-        LLMQ_25_67 = 7,
-        LLMQ_10_60 = 8,
-        LLMQ_5_60 = 9,
-        LLMQ_3_60 = 10,
-        LLMQ_100_60 = 11,
-        LLMQ_100_85 = 12,
-        LLMQ_100_67_2 = 13,
-        LLMQ_100_67_3 = 14,
-        LLMQ_100_67_4 = 15,
-        LLMQ_100_67_5 = 16,
-        LLMQ_100_67_6 = 17,
-        LLMQ_100_67_7 = 18,
-        LLMQ_100_67_8 = 19,
-        LLMQ_100_67_9 = 20,
-        LLMQ_100_67_10 = 21,
-        LLMQ_100_67_11 = 22,
-        LLMQ_100_67_12 = 23,
-        LLMQ_100_67_13 = 24,
-        LLMQ_100_67_14 = 25,
-        LLMQ_100_67_15 = 26,
-        LLMQ_100_67_16 = 27,
-        LLMQ_100_67_17 = 28,
-        LLMQ_100_67_18 = 29,
-        LLMQ_100_67_19 = 30,
-        LLMQ_100_67_20 = 31,
-        LLMQ_100_67_21 = 32,
-        LLMQ_100_67_22 = 33,
-        LLMQ_100_67_23 = 34,
-        LLMQ_100_67_24 = 35,
-        LLMQ_100_67_25 = 36,
-        LLMQ_100_67_26 = 37,
-        LLMQ_100_67_27 = 38,
-        LLMQ_100_67_28 = 39,
-        LLMQ_100_67_29 = 40,
-        LLMQ_100_67_30 = 41,
-        LLMQ_100_67_31 = 42,
-        LLMQ_100_67_32 = 43,
-        LLMQ_100_67_33 = 44,
-        LLMQ_100_67_34 = 45,
-        LLMQ_100_67_35 = 46,
-        LLMQ_100_67_36 = 47,
-        LLMQ_100_67_37 = 48,
-        LLMQ_100_67_38 = 49,
-        LLMQ_100_67_39 = 50,
-        LLMQ_100_67_40 = 51,
-        LLMQ_100_67_41 = 52,
-        LLMQ_100_67_42 = 53,
-        LLMQ_100_67_43 = 54,
-        LLMQ_100_67_44 = 55,
-        LLMQ_100_67_45 = 56,
-        LLMQ_100_67_46 = 57,
-        LLMQ_100_67_47 = 58,
-        LLMQ_100_67_48 = 59,
-        LLMQ_100_67_49 = 60,
-        LLMQ_100_67_50 = 61,
-        LLMQ_100_67_51 = 62,
-        LLMQ_100_67_52 = 63,
-        LLMQ_100_67_53 = 64,
-        LLMQ_100_67_54 = 65,
-        LLMQ_100_67_55 = 66,
-        LLMQ_100_67_56 = 67,
-        LLMQ_100_67_57 = 68,
-        LLMQ_100_67_58 = 69,
-        LLMQ_100_67_59 = 70,
-        LLMQ_100_67_60 = 71,
-        LLMQ_100_67_61 = 72,
-        LLMQ_100_67_62 = 72,
-        LLMQ_100_67_63 = 73,
-        LLMQ_100_67_64 = 74,
-        LLMQ_100_67_65 = 75,
-        LLMQ_100_67_66 = 76,
-        LLMQ_100_67_67 = 77,
-        LLMQ_100_67_68 = 78,
-        LLMQ_100_67_69 = 79,
-        LLMQ_100_67_70 = 80,
-        LLMQ_100_67_71 = 81,
-        LLMQ_100_67_72 = 82,
-        LLMQ_100_67_73 = 83,
-        LLMQ_100_67_74 = 84,
-        LLMQ_100_67_75 = 85,
-        LLMQ_100_67_76 = 86,
-        LLMQ_100_67_77 = 87,
-        LLMQ_100_67_78 = 88,
-        LLMQ_100_67_79 = 89,
-        LLMQ_100_67_80 = 90,
-        LLMQ_100_67_81 = 91,
-        LLMQ_100_67_82 = 92,
-        LLMQ_100_67_83 = 93,
-        LLMQ_100_67_84 = 94,
-        LLMQ_100_67_85 = 95,
-        LLMQ_100_67_86 = 96,
-        LLMQ_100_67_87 = 97,
-        LLMQ_100_67_88 = 98,
-        LLMQ_100_67_89 = 99,
-        LLMQ_100_67_90 = 100,
-        LLMQ_100_67_91 = 101,
-        LLMQ_100_67_92 = 102,
-        LLMQ_100_67_93 = 103,
-        LLMQ_100_67_94 = 104,
-        LLMQ_100_67_95 = 105,
-        LLMQ_100_67_96 = 106,
-        LLMQ_100_67_97 = 107,
-        LLMQ_100_67_98 = 108,
-        LLMQ_100_67_99 = 109,
-        LLMQ_100_67_100 = 110,
-        LLMQ_100_67_101 = 111,
-        LLMQ_100_67_102 = 112,
-        LLMQ_100_67_103 = 113,
-        LLMQ_100_67_104 = 114,
-        LLMQ_100_67_105 = 115,
-        LLMQ_100_67_106 = 116,
-        LLMQ_100_67_107 = 117,
-        LLMQ_100_67_108 = 118,
-        LLMQ_100_67_109 = 119,
-        LLMQ_100_67_110 = 120,
-        LLMQ_100_67_111 = 121,
-        LLMQ_100_67_112 = 122,
-        LLMQ_100_67_113 = 123,
-        LLMQ_100_67_114 = 124,
-        LLMQ_100_67_115 = 125,
-        LLMQ_100_67_116 = 126,
-        LLMQ_100_67_117 = 127,
-        LLMQ_100_67_118 = 128,
-        LLMQ_100_67_119 = 129,
-        LLMQ_100_67_120 = 130,
-        LLMQ_100_67_121 = 131,
-        LLMQ_100_67_122 = 132,
-        LLMQ_100_67_123 = 133,
-        LLMQ_100_67_124 = 134,
-        LLMQ_100_67_125 = 135,
-        LLMQ_100_67_126 = 136,
-        LLMQ_100_67_127 = 137,
-        LLMQ_100_67_128 = 138,
-        LLMQ_100_67_129 = 139,
-        LLMQ_100_67_130 = 140,
-        LLMQ_100_67_131 = 141,
-        LLMQ_100_67_132 = 142,
-        LLMQ_100_67_133 = 143,
-        LLMQ_100_67_134 = 144,
-        LLMQ_100_67_135 = 145,
-        LLMQ_100_67_136 = 146,
-        LLMQ_100_67_137 = 147,
-        LLMQ_100_67_138 = 148,
-        LLMQ_100_67_139 = 149,
-        LLMQ_100_67_140 = 150,
-        LLMQ_100_67_141 = 151,
-        LLMQ_100_67_142 = 152,
-        LLMQ_100_67_143 = 153,
-        LLMQ_100_67_144 = 154,
-        LLMQ_100_67_145 = 155,
-        LLMQ_100_67_146 = 156,
-        LLMQ_100_67_147 = 157,
-        LLMQ_100_67_148 = 158,
-        LLMQ_100_67_149 = 159,
-        LLMQ_100_67_150 = 160,
-        LLMQ_100_67_151 = 161,
-        LLMQ_100_67_152 = 162,
-        LLMQ_100_67_153 = 163,
-        LLMQ_100_67_154 = 164,
-        LLMQ_100_67_155 = 165,
-        LLMQ_100_67_156 = 166,
-        LLMQ_100_67_157 = 167,
-        LLMQ_100_67_158 = 168,
-        LLMQ_100_67_159 = 169,
-        LLMQ_100_67_160 = 170,
-        LLMQ_100_67_161 = 171,
-        LLMQ_100_67_162 = 172,
-        LLMQ_100_67_163 = 173,
-        LLMQ_100_67_164 = 174,
-        LLMQ_100_67_165 = 175,
-        LLMQ_100_67_166 = 176,
-        LLMQ_100_67_167 = 177,
-        LLMQ_100_67_168 = 178,
-        LLMQ_100_67_169 = 179,
-        LLMQ_100_67_170 = 180,
-        LLMQ_100_67_171 = 181,
-        LLMQ_100_67_172 = 182,
-        LLMQ_100_67_173 = 183,
-        LLMQ_100_67_174 = 184,
-        LLMQ_100_67_175 = 185,
-        LLMQ_100_67_176 = 186,
-        LLMQ_100_67_177 = 187,
-        LLMQ_100_67_178 = 188,
-        LLMQ_100_67_179 = 189,
-        LLMQ_100_67_180 = 190,
-        LLMQ_100_67_181 = 191,
-        LLMQ_100_67_182 = 192,
-        LLMQ_100_67_183 = 193,
-        LLMQ_100_67_184 = 194,
-        LLMQ_100_67_185 = 195,
-        LLMQ_100_67_186 = 196,
-        LLMQ_100_67_187 = 197,
-        LLMQ_100_67_188 = 198,
-        LLMQ_100_67_189 = 199,
-        LLMQ_100_67_190 = 200,
-        LLMQ_100_67_191 = 201,
-        LLMQ_100_67_192 = 202,
-        LLMQ_100_67_193 = 203,
-        LLMQ_100_67_194 = 204,
-        LLMQ_100_67_195 = 205,
-        LLMQ_100_67_196 = 206,
-        LLMQ_100_67_197 = 207,
-        LLMQ_100_67_198 = 208,
-        LLMQ_100_67_199 = 209,
-        LLMQ_100_67_200 = 210,
-        LLMQ_100_67_201 = 211,
-        LLMQ_100_67_202 = 212,
-        LLMQ_100_67_203 = 213,
-        LLMQ_100_67_204 = 214,
-        LLMQ_100_67_205 = 215,
-        LLMQ_100_67_206 = 216,
-        LLMQ_100_67_207 = 217,
-        LLMQ_100_67_208 = 218,
-        LLMQ_100_67_209 = 219,
-        LLMQ_100_67_210 = 220,
-        LLMQ_100_67_211 = 221,
-        LLMQ_100_67_212 = 222,
-        LLMQ_100_67_213 = 223,
-        LLMQ_100_67_214 = 224,
-        LLMQ_100_67_215 = 225,
-        LLMQ_100_67_216 = 226,
-        LLMQ_100_67_217 = 227,
-        LLMQ_100_67_218 = 228,
-        LLMQ_100_67_219 = 229,
-        LLMQ_100_67_220 = 230,
-        LLMQ_100_67_221 = 231,
-        LLMQ_100_67_222 = 232,
-        LLMQ_100_67_223 = 233,
-        LLMQ_100_67_224 = 234,
-        LLMQ_100_67_225 = 235,
-        LLMQ_100_67_226 = 236,
-        LLMQ_100_67_227 = 237,
-        LLMQ_100_67_228 = 238,
-        LLMQ_100_67_229 = 239,
-        LLMQ_100_67_230 = 240,
-        LLMQ_100_67_231 = 241,
-        LLMQ_100_67_232 = 242,
-        LLMQ_100_67_233 = 243,
-        LLMQ_100_67_234 = 244,
-        LLMQ_100_67_235 = 245,
-        LLMQ_100_67_236 = 246,
-        LLMQ_100_67_237 = 247,
-        LLMQ_100_67_238 = 248,
-        LLMQ_100_67_239 = 249,
-        LLMQ_100_67_240 = 250,
-        LLMQ_100_67_241 = 251,
-        LLMQ_100_67_242 = 252,
-        LLMQ_100_67_243 = 253,
-        LLMQ_100_67_244 = 254,
-        LLMQ_100_67_245 = 255
+        LLMQ_NONE     = 0xFF,
+        LLMQ_INVALID  = 0x00, // Do not use - flag to indicate new serialization
+        LLMQ_50_60    = 1,    // 50 members, 30 (60%) threshold, one per hour
+        LLMQ_400_60   = 2,    // 400 members, 240 (60%) threshold, one every 12 hours
+        LLMQ_400_85   = 3,    // 400 members, 340 (85%) threshold, one every 24 hours
+        LLMQ_100_67   = 4,    // 100 members, 67 (67%) threshold, one per hour
+
+        // these are LLMQ set when network still young
+        // LLMQ_10_60 = 4, // 10 members, 6 (60%) threshold, one per hour
+        // LLMQ_40_60 = 5, // 40 members, 24 (60%) threshold, one every 12 hours
+        // LLMQ_40_85 = 6, // 40 members, 34 (85%) threshold, one every 24 hours
+
+        // for testing only
+        LLMQ_5_60     = 100,  // 5 members, 3 (60%) threshold, one every 12 hours. Params might be different when use -llmqtestparams
+        LLMQ_TEST_V17 = 101,  // 3 members, 2 (66%) threshold, one per hour
     };
 
-    // Stub struct for LLMQ parameters - all functionality disabled
+// Configures a LLMQ and its DKG
+// See https://github.com/raptoreum/dips/blob/master/dip-0006.md for more details
     struct LLMQParams {
-        LLMQType type = LLMQ_INVALID;  // Add missing type member
-        int size = 0;
-        int minSize = 0;  // Add missing minSize member
-        int threshold = 0;
-        int dkgInterval = 0;
-        int dkgPhaseBlocks = 0;
-        int dkgMiningWindowStart = 0;
-        int dkgMiningWindowEnd = 0;
-        int dkgBadVotesThreshold = 0;
-        int signingActiveQuorumCount = 0;
-        int keepOldConnections = 0;
-        int recoveryMembers = 0;
-        int minDKGScore = 0;
-        int maxDKGScore = 0;
-        const char* name = "";  // Stub name field for chainparams.cpp compatibility
+        LLMQType type;
+
+        // not consensus critical, only used in logging, RPC and UI
+        std::string_view name;
+
+        // the size of the quorum, e.g. 50 or 400
+        int size;
+
+        // The minimum number of valid members after the DKK. If less members are determined valid, no commitment can be
+        // created. Should be higher then the threshold to allow some room for failing nodes, otherwise quorum might end up
+        // not being able to ever created a recovered signature if more nodes fail after the DKG
+        int minSize;
+
+        // The threshold required to recover a final signature. Should be at least 50%+1 of the quorum size. This value
+        // also controls the size of the public key verification vector and has a large influence on the performance of
+        // recovery. It also influences the amount of minimum messages that need to be exchanged for a single signing session.
+        // This value has the most influence on the security of the quorum. The number of total malicious smartnodes
+        // required to negatively influence signing sessions highly correlates to the threshold percentage.
+        int threshold;
+
+        // The interval in number blocks for DKGs and the creation of LLMQs. If set to 24 for example, a DKG will start
+        // every 24 blocks, which is approximately once every hour.
+        int dkgInterval;
+
+        // The number of blocks per phase in a DKG session. There are 6 phases plus the mining phase that need to be processed
+        // per DKG. Set this value to a number of blocks so that each phase has enough time to propagate all required
+        // messages to all members before the next phase starts. If blocks are produced too fast, whole DKG sessions will
+        // fail.
+        int dkgPhaseBlocks;
+
+        // The starting block inside the DKG interval for when mining of commitments starts. The value is inclusive.
+        // Starting from this block, the inclusion of (possibly null) commitments is enforced until the first non-null
+        // commitment is mined. The chosen value should be at least 5 * dkgPhaseBlocks so that it starts right after the
+        // finalization phase.
+        int dkgMiningWindowStart;
+
+        // The ending block inside the DKG interval for when mining of commitments ends. The value is inclusive.
+        // Choose a value so that miners have enough time to receive the commitment and mine it. Also take into consideration
+        // that miners might omit real commitments and revert to always including null commitments. The mining window should
+        // be large enough so that other miners have a chance to produce a block containing a non-null commitment. The window
+        // should at the same time not be too large so that not too much space is wasted with null commitments in case a DKG
+        // session failed.
+        int dkgMiningWindowEnd;
+
+        // In the complaint phase, members will vote on other members being bad (missing valid contribution). If at least
+        // dkgBadVotesThreshold have voted for another member to be bad, it will considered to be bad by all other members
+        // as well. This serves as a protection against late-comers who send their contribution on the bring of
+        // phase-transition, which would otherwise result in inconsistent views of the valid members set
+        int dkgBadVotesThreshold;
+
+        // Number of quorums to consider "active" for signing sessions
+        int signingActiveQuorumCount;
+
+        // Used for intra-quorum communication. This is the number of quorums for which we should keep old connections. This
+        // should be at least one more then the active quorums set.
+        int keepOldConnections;
+
+        // How many members should we try to send all sigShares to before we give up.
+        int recoveryMembers;
     };
-}
 
-// Stub LLMQ parameter definitions - all functionality disabled
-static const Consensus::LLMQParams llmq50_60 = {};
-static const Consensus::LLMQParams llmq400_60 = {};
-static const Consensus::LLMQParams llmq400_85 = {};
-static const Consensus::LLMQParams llmq100_67 = {};
-static const Consensus::LLMQParams llmq60_75 = {};
-static const Consensus::LLMQParams llmq25_67 = {};
-static const Consensus::LLMQParams llmq10_60 = {};
-static const Consensus::LLMQParams llmq5_60 = {};
-static const Consensus::LLMQParams llmq3_60 = {};
-static const Consensus::LLMQParams llmq100_60 = {};
-static const Consensus::LLMQParams llmq100_85 = {};
-static const Consensus::LLMQParams llmq100_67_mainnet = {};
-static const Consensus::LLMQParams llmq100_67_testnet = {};
+    static constexpr LLMQParams
+    llmq200_2 = {
+            .type = LLMQ_50_60,
+            .name = "llmq_200_2",
+            .size = 200,
+            .minSize = 2,
+            .threshold = 2,
 
-// Additional missing LLMQ parameter definitions
-static const Consensus::LLMQParams llmq20_60 = {};
-static const Consensus::LLMQParams llmq20_85 = {};
-static const Consensus::LLMQParams llmq5_85 = {};
-static const Consensus::LLMQParams llmq40_60 = {};
-static const Consensus::LLMQParams llmq40_85 = {};
-static const Consensus::LLMQParams llmq200_60 = {};
-static const Consensus::LLMQParams llmq200_85 = {};
-static const Consensus::LLMQParams llmq200_2 = {};
+            .dkgInterval = 30, // one DKG per hour
+            .dkgPhaseBlocks = 2,
+            .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 18,
+            .dkgBadVotesThreshold = 8,
 
-// Missing types that LLMQ system expects
-namespace Consensus {
-    // Stub for CQuorumUpdateVote
-    struct CQuorumUpdateVote {
-        // Empty stub - all functionality disabled
-        int bit = 0;
-        int votes = 0;
-        
-        // Add missing serialization methods
-        template<typename Stream>
-        void Serialize(Stream& s) const {
-            // Stub implementation - do nothing
+            .signingActiveQuorumCount = 2, // just a few ones to allow easier testing
+
+            .keepOldConnections = 3,
+            .recoveryMembers = 3,
+    };
+
+    static constexpr LLMQParams
+    llmq3_60 = {
+            .type = LLMQ_50_60,
+            .name = "llmq_3_60",
+            .size = 3,
+            .minSize = 2,
+            .threshold = 2,
+
+            .dkgInterval = 30, // one DKG per hour
+            .dkgPhaseBlocks = 2,
+            .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 18,
+            .dkgBadVotesThreshold = 2,
+
+            .signingActiveQuorumCount = 2, // just a few ones to allow easier testing
+
+            .keepOldConnections = 3,
+            .recoveryMembers = 3,
+    };
+
+    static constexpr LLMQParams
+    llmq5_60 = {
+            .type = LLMQ_400_60,
+            .name = "llmq_5_60",
+            .size = 5,
+            .minSize = 4,
+            .threshold = 3,
+
+            .dkgInterval = 30 * 12, // one DKG every 12 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 28,
+            .dkgBadVotesThreshold = 30,
+
+            .signingActiveQuorumCount = 4, // two days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 5,
+    };
+
+    static constexpr LLMQParams
+    llmq5_85 = {
+            .type = LLMQ_400_85,
+            .name = "llmq_5_85",
+            .size = 5,
+            .minSize = 4,
+            .threshold = 3,
+
+            .dkgInterval = 30 * 24, // one DKG every 24 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 48, // give it a larger mining window to make sure it is mined
+            .dkgBadVotesThreshold = 30,
+
+            .signingActiveQuorumCount = 4, // four days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 5,
+    };
+
+    static constexpr LLMQParams
+    llmq20_60 = {
+            .type = LLMQ_400_60,
+            .name = "llmq_20_60",
+            .size = 20,
+            .minSize = 15,
+            .threshold = 12,
+
+            .dkgInterval = 30 * 12, // one DKG every 12 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 28,
+            .dkgBadVotesThreshold = 30,
+
+            .signingActiveQuorumCount = 4, // two days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 5,
+    };
+
+    static constexpr LLMQParams
+    llmq20_85 = {
+            .type = LLMQ_400_85,
+            .name = "llmq_20_85",
+            .size = 20,
+            .minSize = 18,
+            .threshold = 17,
+
+            .dkgInterval = 30 * 24, // one DKG every 24 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 48, // give it a larger mining window to make sure it is mined
+            .dkgBadVotesThreshold = 30,
+
+            .signingActiveQuorumCount = 4, // four days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 5,
+    };
+
+    static constexpr LLMQParams
+    llmq10_60 = {
+            .type = LLMQ_50_60,
+            .name = "llmq_10_60",
+            .size = 10,
+            .minSize = 8,
+            .threshold = 7,
+
+            .dkgInterval = 30, // one DKG per hour
+            .dkgPhaseBlocks = 2,
+            .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 18,
+            .dkgBadVotesThreshold = 8,
+
+            .signingActiveQuorumCount = 6, // just a few ones to allow easier testing
+
+            .keepOldConnections = 7,
+            .recoveryMembers = 7,
+    };
+
+    static constexpr LLMQParams
+    llmq40_60 = {
+            .type = LLMQ_400_60,
+            .name = "llmq_40_60",
+            .size = 40,
+            .minSize = 30,
+            .threshold = 24,
+
+            .dkgInterval = 30 * 12, // one DKG every 12 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 28,
+            .dkgBadVotesThreshold = 30,
+
+            .signingActiveQuorumCount = 4, // two days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 5,
+    };
+
+    static constexpr LLMQParams
+    llmq40_85 = {
+            .type = LLMQ_400_85,
+            .name = "llmq_40_85",
+            .size = 40,
+            .minSize = 35,
+            .threshold = 34,
+
+            .dkgInterval = 30 * 24, // one DKG every 24 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 48, // give it a larger mining window to make sure it is mined
+            .dkgBadVotesThreshold = 30,
+
+            .signingActiveQuorumCount = 4, // four days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 5,
+    };
+
+    static constexpr LLMQParams
+    llmq50_60 = {
+            .type = LLMQ_50_60,
+            .name = "llmq_50_60",
+            .size = 50,
+            .minSize = 40,
+            .threshold = 30,
+
+            .dkgInterval = 30, // one DKG per hour
+            .dkgPhaseBlocks = 2,
+            .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 18,
+            .dkgBadVotesThreshold = 40,
+
+            .signingActiveQuorumCount = 24, // a full day worth of LLMQs
+
+            .keepOldConnections = 25,
+            .recoveryMembers = 25,
+    };
+
+    static constexpr LLMQParams
+    llmq400_60 = {
+            .type = LLMQ_400_60,
+            .name = "llmq_400_60",
+            .size = 400,
+            .minSize = 300,
+            .threshold = 240,
+
+            .dkgInterval = 30 * 12, // one DKG every 12 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 28,
+            .dkgBadVotesThreshold = 300,
+
+            .signingActiveQuorumCount = 4, // two days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 100,
+    };
+
+// Used for deployment and min-proto-version signalling, so it needs a higher threshold
+    static constexpr LLMQParams
+    llmq400_85 = {
+            .type = LLMQ_400_85,
+            .name = "llmq_400_85",
+            .size = 400,
+            .minSize = 350,
+            .threshold = 340,
+
+            .dkgInterval = 30 * 24, // one DKG every 24 hours
+            .dkgPhaseBlocks = 4,
+            .dkgMiningWindowStart = 20, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 48, // give it a larger mining window to make sure it is mined
+            .dkgBadVotesThreshold = 300,
+
+            .signingActiveQuorumCount = 4, // four days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 100,
+    };
+
+    static constexpr LLMQParams
+    llmq200_60 = {
+            .type = LLMQ_400_60,
+            .name = "llmq_200_60",
+            .size = 200,
+            .minSize = 150,
+            .threshold = 120,
+
+            .dkgInterval = 30 * 12, // one DKG every 12 hours
+            .dkgPhaseBlocks = 8,
+            .dkgMiningWindowStart = 40, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 56,
+            .dkgBadVotesThreshold = 150,
+
+            .signingActiveQuorumCount = 4, // two days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 50,
+    };
+
+
+// Used for deployment and min-proto-version signalling, so it needs a higher threshold
+    static constexpr LLMQParams
+    llmq200_85 = {
+            .type = LLMQ_400_85,
+            .name = "llmq_200_85",
+            .size = 200,
+            .minSize = 175,
+            .threshold = 170,
+
+            .dkgInterval = 30 * 24, // one DKG every 24 hours
+            .dkgPhaseBlocks = 8,
+            .dkgMiningWindowStart = 40, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 56, // give it a larger mining window to make sure it is mined
+            .dkgBadVotesThreshold = 150,
+
+            .signingActiveQuorumCount = 4, // four days worth of LLMQs
+
+            .keepOldConnections = 5,
+            .recoveryMembers = 50,
+    };
+
+// this one is for testing only
+    static constexpr LLMQParams
+    llmq_test_v17 = {
+            .type = LLMQ_TEST_V17,
+            .name = "llmq_test_v17",
+            .size = 3,
+            .minSize = 2,
+            .threshold = 2,
+
+            .dkgInterval = 30, // one DKG per hour
+            .dkgPhaseBlocks = 2,
+            .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 18,
+            .dkgBadVotesThreshold = 2,
+
+            .signingActiveQuorumCount = 2, // just a few ones to allow easier testing
+
+            .keepOldConnections = 3,
+            .recoveryMembers = 3,
+    };
+
+// Used for Platform
+    static Consensus::LLMQParams llmq100_67_mainnet = {
+            .type = Consensus::LLMQ_100_67,
+            .name = "llmq_100_67",
+            .size = 100,
+            .minSize = 80,
+            .threshold = 67,
+
+            .dkgInterval = 30, // one DKG per hour
+            .dkgPhaseBlocks = 2,
+            .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 18,
+            .dkgBadVotesThreshold = 80,
+
+            .signingActiveQuorumCount = 24, // a full day worth of LLMQs
+
+            .keepOldConnections = 25,
+            .recoveryMembers = 50,
+    };
+
+
+// Used for Platform
+    static Consensus::LLMQParams llmq100_67_testnet = {
+            .type = Consensus::LLMQ_100_67,
+            .name = "llmq_100_67",
+            .size = 100,
+            .minSize = 80,
+            .threshold = 67,
+
+            .dkgInterval = 24, // one DKG per hour
+            .dkgPhaseBlocks = 2,
+            .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+            .dkgMiningWindowEnd = 18,
+            .dkgBadVotesThreshold = 80,
+
+            .signingActiveQuorumCount = 24, // a full day worth of LLMQs
+
+            .keepOldConnections = 25,
+            .recoveryMembers = 50,
+    };
+
+// Used for recording quorum voting
+    class CQuorumUpdateVote
+    {
+    public :
+        uint8_t  bit;   // Bit number (0-28)
+        uint16_t votes; // Number of "yes" votes
+
+        SERIALIZE_METHODS(CQuorumUpdateVote, obj) {
+            READWRITE(obj.bit, obj.votes);
         }
-        
+        bool operator<(const CQuorumUpdateVote &rhs) const { return bit < rhs.bit; }
+    };
+
+    class CQuorumUpdateVoteVec : public std::vector<Consensus::CQuorumUpdateVote>
+    {
+    public :
         template<typename Stream>
-        void Unserialize(Stream& s) {
-            // Stub implementation - do nothing
+        void Serialize(Stream &s) const {
+            for (int i = 0; i < size(); ++i) {
+               s << at(i);
+            }
+            // "null" termination
+            s << CQuorumUpdateVote { 0, 0 };
+        }
+
+        template<typename Stream>
+        void Unserialize(Stream &s) {
+            CQuorumUpdateVote vote;
+            do {
+               s >> vote;
+               if (vote.votes != 0) {
+                  emplace_back(vote);
+               }
+            } while (vote.votes != 0);
+        }
+
+        void AddVote(uint8_t bit)
+        {
+            for (int i = 0; i < size(); ++i)
+            {
+               if (at(i).bit == bit)
+               {
+                  ++at(i).votes;
+                  return;
+               }
+            }
+            // Add a new update vote and sort the results (for serialization)
+            push_back(CQuorumUpdateVote { bit, 1});
+            std::sort(begin(), end());
+        }
+
+        void AddVotes(uint32_t version)
+        {
+            static constexpr uint32_t updateBits = (1 << 29) - 1;
+
+            uint32_t bits = version & updateBits;
+            uint8_t bit = 0;
+            while (bits != 0)
+            {
+               if (bits & 1)
+               {
+                  AddVote(bit);
+               }
+               bits >>= 1;
+               ++bit;
+            }
+        }
+
+        bool operator ==(const CQuorumUpdateVoteVec& rhs) const {
+            if (size() != rhs.size())
+                return false;
+
+            for (int i = 0; i < size(); ++i)
+            {
+                if (at(i).bit != rhs[i].bit)
+                    return false;
+                if (at(i).votes != rhs[i].votes)
+                    return false;
+            }
+            return true;
+        }
+        bool operator!=(const CQuorumUpdateVoteVec& rhs) const {
+            return !(*this == rhs);
         }
     };
-    
-    // Stub for CQuorumUpdateVoteVec
-    typedef std::vector<CQuorumUpdateVote> CQuorumUpdateVoteVec;
-    
-    // LLMQ parameter definitions that chainparams.cpp expects
-    static const LLMQParams llmq3_60 = {};
-    static const LLMQParams llmq5_60 = {};
-    static const LLMQParams llmq5_85 = {};
-    static const LLMQParams llmq10_60 = {};
-    static const LLMQParams llmq20_60 = {};
-    static const LLMQParams llmq20_85 = {};
-    static const LLMQParams llmq40_60 = {};
-    static const LLMQParams llmq40_85 = {};
-    static const LLMQParams llmq50_60 = {};
-    static const LLMQParams llmq100_67_mainnet = {};
-    static const LLMQParams llmq100_67_testnet = {};
-    static const LLMQParams llmq200_60 = {};
-    static const LLMQParams llmq200_85 = {};
-    static const LLMQParams llmq200_2 = {};
-    static const LLMQParams llmq400_60 = {};
-    static const LLMQParams llmq400_85 = {};
-}
 
-#endif // BITCOIN_LLMQ_QUORUMS_PARAMETERS_H
+} // namespace Consensus
+
+#endif // BITCOIN_LLMQ_PARAMS_H
