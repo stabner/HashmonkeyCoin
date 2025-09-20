@@ -597,7 +597,7 @@ void protx_register_submit_help(const JSONRPCRequest& request)
 }
 
 bool isValidCollateral(CAmount collateralAmount) {
-    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    SmartnodeCollaterals collaterals; // HashmonkeyCoin: Smartnode functionality disabled
     if (!collaterals.isValidCollateral(collateralAmount)) {
         throw JSONRPCError(RPC_INVALID_COLLATERAL_AMOUNT, strprintf("invalid collateral amount: amount=%d\n", collateralAmount/COIN));
     }

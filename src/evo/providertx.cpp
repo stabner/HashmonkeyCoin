@@ -445,7 +445,7 @@ bool CheckProRegTx(const CTransaction &tx, const CBlockIndex *pindexPrev, CValid
     const CKeyID *keyForPayloadSig = nullptr;
     COutPoint collateralOutpoint;
     Coin coin;
-    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    SmartnodeCollaterals collaterals; // HashmonkeyCoin: Smartnode functionality disabled
     if (!ptx.collateralOutpoint.hash.IsNull()) {
         if (!view.GetCoin(ptx.collateralOutpoint, coin) || coin.IsSpent() ||
             !collaterals.isValidCollateral(coin.out.nValue)) {

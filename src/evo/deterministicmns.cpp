@@ -98,7 +98,7 @@ void CDeterministicMN::ToJson(UniValue &obj) const {
     if (GetUTXOCoin(collateralOutpoint, coin)) {
         CTxDestination dest;
         if (ExtractDestination(coin.out.scriptPubKey, dest)) {
-            SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+            SmartnodeCollaterals collaterals; // HashmonkeyCoin: Smartnode functionality disabled
             int nHeight = ::ChainActive().Tip() == nullptr ? 0 : ::ChainActive().Tip()->nHeight;
             obj.pushKV("collateralAddress", EncodeDestination(dest));
             obj.pushKV("collateralAmount", coin.out.nValue / COIN);
@@ -127,7 +127,7 @@ bool CDeterministicMNList::IsMNPoSeBanned(const uint256 &proTxHash) const {
 }
 
 bool CDeterministicMNList::IsMNValid(const CDeterministicMNCPtr &dmn, int height) {
-    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    SmartnodeCollaterals collaterals; // HashmonkeyCoin: Smartnode functionality disabled
     return !IsMNPoSeBanned(dmn) && collaterals.isPayableCollateral(height, dmn->pdmnState->nCollateralAmount);
 }
 
@@ -749,7 +749,7 @@ bool CDeterministicMNManager::BuildNewListFromBlock(const CBlock &block, const C
             }
 
             Coin coin;
-            SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+            SmartnodeCollaterals collaterals; // HashmonkeyCoin: Smartnode functionality disabled
             if (!proTx.collateralOutpoint.hash.IsNull() &&
                 (!view.GetCoin(dmn->collateralOutpoint, coin) || !collaterals.isValidCollateral(coin.out.nValue))) {
                 // should actually never get to this point as CheckProRegTx should have handled this case.
@@ -1067,7 +1067,7 @@ bool CDeterministicMNManager::IsProTxWithCollateral(const CTransactionRef &tx, u
     if (proTx.collateralOutpoint.n >= tx->vout.size() || proTx.collateralOutpoint.n != n) {
         return false;
     }
-    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    SmartnodeCollaterals collaterals; // HashmonkeyCoin: Smartnode functionality disabled
 
     if (!collaterals.isValidCollateral(tx->vout[n].nValue)) {
         return false;
