@@ -442,6 +442,7 @@ libhashmonkeycoin_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   ui_interface.cpp \
+  update/update.cpp \
   validation.cpp \
   validationinterface.cpp \
   $(BITCOIN_CORE_H)
