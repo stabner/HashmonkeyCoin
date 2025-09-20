@@ -3,7 +3,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://opensource.org/licenses/mit-license.php
 
-#include <qt/raptoreum.h>
+#include <qt/hashmonkeycoin.h>
 
 #include <QCoreApplication>
 
