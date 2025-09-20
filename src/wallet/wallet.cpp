@@ -18,6 +18,7 @@
 #include <key_io.h>
 #include <keystore.h>
 #include <net.h>
+#include <smartnode/smartnode-collaterals.h>
 #include <policy/fees.h>
 #include <policy/policy.h>
 #include <policy/settings.h>

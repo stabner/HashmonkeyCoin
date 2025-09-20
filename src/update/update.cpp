@@ -47,43 +47,6 @@ std::ostream &operator<<(std::ostream &out, EUpdateState state) {
     return out;
 }
 
-
-StateInfo UpdateManager::State(enum EUpdate eUpdate, const CBlockIndex *blockIndex) {
-    LOCK(updateMutex);
-    StateInfo stateInfo;
-    stateInfo.State = EUpdateState::Unknown;
-    stateInfo.FinalHeight = -1;
-    
-    auto it = updates.find(eUpdate);
-    if (it == updates.end()) {
-        return stateInfo;
-    }
-    
-    const Update& update = it->second;
-    
-    // For now, return a simple implementation
-    // In a full implementation, this would check voting results
-    if (blockIndex && blockIndex->nHeight >= update.StartHeight()) {
-        stateInfo.State = EUpdateState::Active;
-        stateInfo.FinalHeight = blockIndex->nHeight;
-    }
-    
-    return stateInfo;
-}
-
-uint32_t UpdateManager::ComputeBlockVersion(const CBlockIndex *blockIndex) {
-    uint32_t version = VERSIONBITS_LAST_OLD_BLOCK_VERSION;
-    
-    for (auto& pair : updates) {
-        const Update& update = pair.second;
-        if (IsActive(update.UpdateId(), blockIndex)) {
-            version |= update.BitMask();
-        }
-    }
-    
-    return version;
-}
-
 std::ostream &operator<<(std::ostream &out, const Update &u) {
     return u.Print(out);
 }
