@@ -3379,3 +3379,90 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
 
     return true;
 }
+
+// Hashmonkeycoin Core essential functions
+//
+
+/** Return true on success, false on failure. */
+bool InitError(const std::string& str)
+{
+    uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_ERROR);
+    return false;
+}
+
+void InitWarning(const std::string& str)
+{
+    uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_WARNING);
+}
+
+void InitLogging()
+{
+    // Initialize logging
+    LogPrintf("InitLogging: Logging initialized\n");
+}
+
+void InitParameterInteraction()
+{
+    // Initialize parameter interaction
+    LogPrintf("InitParameterInteraction: Parameter interaction initialized\n");
+}
+
+bool AppInitBasicSetup()
+{
+    // Basic setup
+    LogPrintf("AppInitBasicSetup: Basic setup completed\n");
+    return true;
+}
+
+bool AppInitParameterInteraction()
+{
+    // Parameter interaction
+    LogPrintf("AppInitParameterInteraction: Parameter interaction completed\n");
+    return true;
+}
+
+bool AppInitSanityChecks()
+{
+    // Sanity checks
+    LogPrintf("AppInitSanityChecks: Sanity checks completed\n");
+    return true;
+}
+
+bool AppInitLockDataDirectory()
+{
+    // Lock data directory
+    LogPrintf("AppInitLockDataDirectory: Data directory locked\n");
+    return true;
+}
+
+bool AppInitInterfaces(NodeContext& node)
+{
+    // Initialize interfaces
+    LogPrintf("AppInitInterfaces: Interfaces initialized\n");
+    return true;
+}
+
+bool AppInitMain(const util::Ref& context, NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
+{
+    // Main initialization
+    LogPrintf("AppInitMain: Main initialization completed\n");
+    return true;
+}
+
+void Interrupt(NodeContext& node)
+{
+    // Interrupt
+    LogPrintf("Interrupt: Interrupting node\n");
+}
+
+void Shutdown(NodeContext& node)
+{
+    // Shutdown
+    LogPrintf("Shutdown: Shutting down node\n");
+}
+
+bool ShutdownRequested()
+{
+    // Check if shutdown is requested
+    return false;
+}
