@@ -33,11 +33,6 @@ void InitWarning(const std::string& str);
 /** Setup server command-line arguments */
 void SetupServerArgs();
 
-/** ECC (Elliptic Curve Cryptography) functions */
-void ECC_Start();
-void ECC_Stop();
-bool ECC_InitSanityCheck();
-
 //!Initialize the logging infrastructure
 void InitLogging();
 
