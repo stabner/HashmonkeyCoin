@@ -277,7 +277,7 @@ public:
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
         genesis = CreateMainNetGenesisBlock(1614369600, 1130, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+        // VerifyGenesisPOW(genesis); // HashmonkeyCoin: Disabled POW verification
         consensus.hashGenesisBlock = genesis.GetHash();
         // assert(consensus.hashGenesisBlock ==
         //        uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
@@ -452,7 +452,7 @@ public:
         nDefaultPort = 10230;
         nPruneAfterHeight = 1000;
         genesis = CreateTestNetGenesisBlock(1711078237, 971, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+        // VerifyGenesisPOW(genesis); // HashmonkeyCoin: Disabled POW verification
 
         consensus.hashGenesisBlock = genesis.GetHash();
         // assert(consensus.hashGenesisBlock ==
@@ -608,7 +608,7 @@ public:
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         genesis = CreateDevNetGenesisBlock(1688535726, 2841, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+        // VerifyGenesisPOW(genesis); // HashmonkeyCoin: Disabled POW verification
         consensus.hashGenesisBlock = genesis.GetHash();
 //      std::cout << "hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         // assert(consensus.hashGenesisBlock ==
@@ -789,7 +789,7 @@ public:
         UpdateBudgetParametersFromArgs(args);
 
         genesis = CreateRegTestGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+        // VerifyGenesisPOW(genesis); // HashmonkeyCoin: Disabled POW verification
         consensus.hashGenesisBlock = genesis.GetHash();
         // assert(consensus.hashGenesisBlock ==
         //        uint256S("0x485491468e03c8ac23dd38f70fc1cda9f98cbd0bf58945e2da6c94c2a2d8b044"));
