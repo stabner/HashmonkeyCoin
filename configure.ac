@@ -1786,6 +1786,12 @@ unset LIBS
 LIBS="$LIBS_TEMP"
 
 ac_configure_args="${ac_configure_args} --disable-shared --with-pic --enable-benchmark=no --enable-module-recovery --enable-module-schnorrsig"
+if test "$use_tests" = "no"; then
+  ac_configure_args="${ac_configure_args} --disable-tests"
+fi
+if test "$use_bench" = "no"; then
+  ac_configure_args="${ac_configure_args} --disable-bench"
+fi
 AC_CONFIG_SUBDIRS([src/dashbls src/secp256k1])
 
 AC_OUTPUT
