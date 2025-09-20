@@ -163,13 +163,13 @@ BITCOIN_CORE_H = \
   cuckoocache.h \
   ctpl_stl.h \
   cxxtimer.hpp \
-  # evo/cbtx.h \
-  # evo/deterministicmns.h \
-  # evo/evodb.h \
-  # evo/mnauth.h \
-  # evo/providertx.h \
-  # evo/simplifiedmns.h \
-  # evo/specialtx.h \
+  evo/cbtx.h \
+  evo/deterministicmns.h \
+  evo/evodb.h \
+  evo/mnauth.h \
+  evo/providertx.h \
+  evo/simplifiedmns.h \
+  evo/specialtx.h \
   dsnotificationinterface.h \
   # governance/governance.h \
   # governance/governance-classes.h \
@@ -364,13 +364,13 @@ libhashmonkeycoin_server_a_SOURCES = \
   consensus/tx_verify.cpp \
   dbwrapper.cpp \
   dsnotificationinterface.cpp \
-  # evo/cbtx.cpp \
-  # evo/deterministicmns.cpp \
-  # evo/evodb.cpp \
-  # evo/mnauth.cpp \
-  # evo/providertx.cpp \
-  # evo/simplifiedmns.cpp \
-  # evo/specialtx.cpp \
+  evo/cbtx.cpp \
+  evo/deterministicmns.cpp \
+  evo/evodb.cpp \
+  evo/mnauth.cpp \
+  evo/providertx.cpp \
+  evo/simplifiedmns.cpp \
+  evo/specialtx.cpp \
   flatfile.cpp \
   httprpc.cpp \
   httpserver.cpp \
