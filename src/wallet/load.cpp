@@ -13,6 +13,7 @@
 #include <util/system.h>
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
+#include <wallet/walletutil.h>
 
 bool VerifyWallets(interfaces::Chain &chain, const std::vector <std::string> &wallet_files) {
     if (gArgs.IsArgSet("-walletdir")) {
