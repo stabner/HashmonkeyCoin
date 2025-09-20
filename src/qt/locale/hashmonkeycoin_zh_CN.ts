@@ -753,7 +753,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../raptoreum.cpp" line="+376"/>
+        <location filename="../hashmonkeycoin.cpp" line="+376"/>
         <source>A fatal error occurred. Raptoreum Core can no longer continue safely and will quit.</source>
         <translation>发生严重错误。Raptoreum Core钱包不再能安全地运行下去，程序将会关闭。</translation>
     </message>
@@ -3294,7 +3294,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../raptoreum.cpp" line="+15"/>
+        <location filename="../hashmonkeycoin.cpp" line="+15"/>
         <source>Choose data directory on startup (default: %u)</source>
         <translation>选择启动时的数据路径 (默认: %u)</translation>
     </message>

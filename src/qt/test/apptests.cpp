@@ -6,7 +6,7 @@
 
 #include <chainparams.h>
 #include <init.h>
-#include <qt/raptoreum.h>
+#include <qt/hashmonkeycoin.h>
 #include <qt/bitcoingui.h>
 #include <qt/networkstyle.h>
 #include <qt/rpcconsole.h>

@@ -10,7 +10,7 @@
 
 #include <chainparams.h>
 #include <interfaces/node.h>
-#include <qt/raptoreum.h>
+#include <qt/hashmonkeycoin.h>
 #include <qt/test/apptests.h>
 #include <qt/test/rpcnestedtests.h>
 #include <util/system.h>

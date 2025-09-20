@@ -377,7 +377,7 @@
   <tabstop>payAmount</tabstop>
  </tabstops>
  <resources>
-  <include location="../raptoreum.qrc"/>
+  <include location="../hashmonkeycoin.qrc"/>
  </resources>
  <connections/>
 </ui>
