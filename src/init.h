@@ -26,6 +26,13 @@ void Interrupt(NodeContext &node);
 
 void Shutdown(NodeContext &node);
 
+/** Initialize error and warning functions */
+bool InitError(const std::string& str);
+void InitWarning(const std::string& str);
+
+/** Setup server command-line arguments */
+void SetupServerArgs();
+
 //!Initialize the logging infrastructure
 void InitLogging();
 
