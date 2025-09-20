@@ -345,7 +345,9 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"RWGvGpd3yJdnfh9ziyHNDEoHMJBvnZ23zK"};
+        // HashmonkeyCoin: Spork configuration for mainnet
+        // TODO: Generate new spork keys using: ./hashmonkeycoin-cli createnewsporkkey
+        vSporkAddresses = {"HMNYSporkAddressToBeGenerated"}; // Placeholder - will be replaced with actual spork address
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -518,8 +520,9 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"rsqc2caFRG6myRdzKipP4PpVW9LnFaG7CH"};
-        nMinSporkKeys = 1;
+        // HashmonkeyCoin: Sporks disabled for testnet
+        vSporkAddresses = {}; // Empty - no sporks for testnet
+        nMinSporkKeys = 0; // No spork keys required for testnet
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
@@ -670,9 +673,9 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {"yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun"};
-        nMinSporkKeys = 1;
+        // HashmonkeyCoin: Sporks disabled for devnet
+        vSporkAddresses = {}; // Empty - no sporks for devnet
+        nMinSporkKeys = 0; // No spork keys required for devnet
         // devnets are started with no blocks and no MN, so we can't check for upgraded MN (as there are none)
         fBIP9CheckSmartnodesUpgraded = false;
 
@@ -815,9 +818,9 @@ public:
         nPoolMaxParticipants = 5;
         nPoolNewMaxParticipants = 20;
 
-        // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {"yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc"};
-        nMinSporkKeys = 1;
+        // HashmonkeyCoin: Sporks disabled for regtest
+        vSporkAddresses = {}; // Empty - no sporks for regtest
+        nMinSporkKeys = 0; // No spork keys required for regtest
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
         // HashmonkeyCoin: Smartnode functionality disabled
