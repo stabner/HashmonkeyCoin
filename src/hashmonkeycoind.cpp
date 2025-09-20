@@ -48,7 +48,7 @@ static bool AppInit(int argc, char *argv[]) {
     //
     // Parameters
     //
-    // If Qt is used, parameters/raptoreum.conf are parsed in qt/raptoreum.cpp's main()
+    // If Qt is used, parameters/hashmonkeycoin.conf are parsed in qt/hashmonkeycoin.cpp's main()
     SetupServerArgs();
     std::string error;
     if (!gArgs.ParseParameters(argc, argv, error)) {

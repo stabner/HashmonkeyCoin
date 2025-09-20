@@ -56,7 +56,7 @@ QT_MOC_CPP = \
   qt/moc_assetcontroldialog.cpp \
   qt/moc_assetcontroltreewidget.cpp \
   qt/moc_csvmodelwriter.cpp \
-  qt/moc_raptoreum.cpp \
+  qt/moc_hashmonkeycoin.cpp \
   qt/moc_editaddressdialog.cpp \
   qt/moc_guiutil.cpp \
   qt/moc_intro.cpp \
@@ -75,7 +75,7 @@ QT_MOC_CPP = \
   qt/moc_qrdialog.cpp \
   qt/moc_qvalidatedlineedit.cpp \
   qt/moc_qvaluecombobox.cpp \
-  qt/moc_raptoreum.cpp \
+  qt/moc_hashmonkeycoin.cpp \
   qt/moc_receivecoinsdialog.cpp \
   qt/moc_receiverequestdialog.cpp \
   qt/moc_recentrequeststablemodel.cpp \
@@ -112,10 +112,10 @@ QT_MOC = \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_raptoreum.cpp
-QT_QRC = qt/raptoreum.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_raptoreum_locale.cpp
-QT_QRC_LOCALE = qt/raptoreum_locale.qrc
+QT_QRC_CPP = qt/qrc_hashmonkeycoin.cpp
+QT_QRC = qt/hashmonkeycoin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_hashmonkeycoin_locale.cpp
+QT_QRC_LOCALE = qt/hashmonkeycoin_locale.qrc
 
 BITCOIN_QT_H = \
   qt/addressbookpage.h \
@@ -154,7 +154,7 @@ BITCOIN_QT_H = \
   qt/qrdialog.h \
   qt/qvalidatedlineedit.h \
   qt/qvaluecombobox.h \
-  qt/raptoreum.h \
+  qt/hashmonkeycoin.h \
   qt/receivecoinsdialog.h \
   qt/receiverequestdialog.h \
   qt/recentrequeststablemodel.h \
@@ -240,7 +240,7 @@ QT_RES_ICONS = \
 BITCOIN_QT_BASE_CPP = \
   qt/appearancewidget.cpp \
   qt/bantablemodel.cpp \
-  qt/raptoreum.cpp \
+  qt/hashmonkeycoin.cpp \
   qt/bitcoinaddressvalidator.cpp \
   qt/bitcoinamountfield.cpp \
   qt/bitcoingui.cpp \
@@ -258,7 +258,7 @@ BITCOIN_QT_BASE_CPP = \
   qt/peertablemodel.cpp \
   qt/qvalidatedlineedit.cpp \
   qt/qvaluecombobox.cpp \
-  qt/raptoreum.cpp \
+  qt/hashmonkeycoin.cpp \
   qt/rpcconsole.cpp \
   qt/splashscreen.cpp \
   qt/trafficgraphdata.cpp \
@@ -471,25 +471,25 @@ QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/raptoreumstrings.cpp: FORCE
+$(srcdir)/qt/hashmonkeycoinstrings.cpp: FORCE
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" $(PYTHON) ../share/qt/extract_strings_qt.py $(libhashmonkeycoin_server_a_SOURCES) $(libhashmonkeycoin_wallet_a_SOURCES) $(libhashmonkeycoin_common_a_SOURCES) $(libhashmonkeycoin_zmq_a_SOURCES) $(libhashmonkeycoin_consensus_a_SOURCES) $(libhashmonkeycoin_util_a_SOURCES)
 
-translate: $(srcdir)/qt/raptoreumstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/raptoreum.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: $(srcdir)/qt/hashmonkeycoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/hashmonkeycoin.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -I$(srcdir) -locations relative -no-obsolete -ts $(srcdir)/qt/locale/raptoreum_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -I$(srcdir) -locations relative -no-obsolete -ts $(srcdir)/qt/locale/hashmonkeycoin_en.ts
 	@test -n $(LCONVERT) || echo "lconvert is required for updating translations"
-	$(AM_V_GEV) QT_SELECT=$(QT_SELECT) $(LCONVERT) -o $(srcdir)/qt/locale/raptoreum_en.xlf -i $(srcdir)/qt/locale/raptoreum_en.ts
+	$(AM_V_GEV) QT_SELECT=$(QT_SELECT) $(LCONVERT) -o $(srcdir)/qt/locale/hashmonkeycoin_en.xlf -i $(srcdir)/qt/locale/hashmonkeycoin_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name raptoreum_locale --format-version 1 $(@D)/temp_$(<F) > $@
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name hashmonkeycoin_locale --format-version 1 $(@D)/temp_$(<F) > $@
 	@rm $(@D)/temp_$(<F)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(QT_RES_ICONS) $(QT_RES_IMAGES) $(QT_RES_CSS) $(QT_RES_FONTS) $(QT_RES_MOVIES)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name raptoreum --format-version 1 $< > $@
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name hashmonkeycoin --format-version 1 $< > $@
 
 CLEAN_QT = $(nodist_qt_libhashmonkeycoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_hashmonkeycoin_locale.qrc qt/res/css/colors/*
 
