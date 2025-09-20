@@ -16,11 +16,4 @@ void ECC_Start();
 void ECC_Stop();
 bool ECC_InitSanityCheck();
 
-/** RAII wrapper for ECC operations */
-class ECCVerifyHandle {
-public:
-    ECCVerifyHandle();
-    ~ECCVerifyHandle();
-};
-
 #endif // BITCOIN_CRYPTO_ECC_H

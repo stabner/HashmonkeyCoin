@@ -27,12 +27,3 @@ bool ECC_InitSanityCheck() {
     // In a full implementation, this would verify secp256k1 is working
     return true;
 }
-
-// ECCVerifyHandle class
-ECCVerifyHandle::ECCVerifyHandle() {
-    ECC_Start();
-}
-
-ECCVerifyHandle::~ECCVerifyHandle() {
-    ECC_Stop();
-}
