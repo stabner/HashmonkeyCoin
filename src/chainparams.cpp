@@ -317,6 +317,7 @@ public:
         //         {{5761,    0},
         //          {INT_MAX, 20}}
         // );
+    
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
