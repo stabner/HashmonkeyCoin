@@ -270,6 +270,7 @@ namespace Consensus {
     struct LLMQParams {
         LLMQType type = LLMQ_INVALID;  // Add missing type member
         int size = 0;
+        int minSize = 0;  // Add missing minSize member
         int threshold = 0;
         int dkgInterval = 0;
         int dkgPhaseBlocks = 0;
