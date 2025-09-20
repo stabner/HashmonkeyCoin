@@ -378,6 +378,362 @@ void SetupServerArgs()
     gArgs.AddHiddenArgs(hidden_args);
 }
 
+//////////////////////////////////////////////////////////////////////////////
+//
+// Additional missing initialization functions
+//
+
+void InitLogging() {
+    LogInstance().m_print_to_file = !gArgs.IsArgNegated("-debuglogfile");
+    LogInstance().m_file_path = AbsPathForConfigVal(gArgs.GetArg("-debuglogfile", DEFAULT_DEBUGLOGFILE));
+    LogInstance().m_print_to_console = gArgs.GetBoolArg("-printtoconsole", !gArgs.GetBoolArg("-daemon", false));
+    LogInstance().m_log_timestamps = gArgs.GetBoolArg("-logtimestamps", DEFAULT_LOGTIMESTAMPS);
+    LogInstance().m_log_time_micros = gArgs.GetBoolArg("-logtimemicros", DEFAULT_LOGTIMEMICROS);
+#ifdef HAVE_THREAD_LOCAL
+    LogInstance().m_log_threadnames = gArgs.GetBoolArg("-logthreadnames", DEFAULT_LOGTHREADNAMES);
+#endif
+    LogInstance().m_log_sourcelocations = gArgs.GetBoolArg("-logsourcelocations", DEFAULT_LOGSOURCELOCATIONS);
+
+    fLogIPs = gArgs.GetBoolArg("-logips", DEFAULT_LOGIPS);
+
+    std::string version_string = FormatFullVersion();
+#ifdef DEBUG_CORE
+    version_string += " (debug build)";
+#else
+    version_string += " (release build)";
+#endif
+    LogPrintf(PACKAGE_NAME " version %s\n", version_string);
+}
+
+void InitParameterInteraction() {
+    // when specifying an explicit binding address, you want to listen on it
+    // even when -connect or -proxy is specified
+    if (gArgs.IsArgSet("-bind")) {
+        if (gArgs.SoftSetBoolArg("-listen", true))
+            LogPrintf("%s: parameter interaction: -bind set -> setting -listen=1\n", __func__);
+    }
+    if (gArgs.IsArgSet("-whitebind")) {
+        if (gArgs.SoftSetBoolArg("-listen", true))
+            LogPrintf("%s: parameter interaction: -whitebind set -> setting -listen=1\n", __func__);
+    }
+
+    if (gArgs.IsArgSet("-connect")) {
+        // when only connecting to trusted nodes, do not seed via DNS, or listen by default
+        if (gArgs.SoftSetBoolArg("-dnsseed", false))
+            LogPrintf("%s: parameter interaction: -connect set -> setting -dnsseed=0\n", __func__);
+        if (gArgs.SoftSetBoolArg("-listen", false))
+            LogPrintf("%s: parameter interaction: -connect set -> setting -listen=0\n", __func__);
+    }
+
+    if (gArgs.IsArgSet("-proxy")) {
+        // to protect privacy, do not listen by default if a default proxy server is specified
+        if (gArgs.SoftSetBoolArg("-listen", false))
+            LogPrintf("%s: parameter interaction: -proxy set -> setting -listen=0\n", __func__);
+        // to protect privacy, do not map ports when a proxy is set. The user may still specify -listen=1
+        // to listen locally, so don't rely on this happening through -listen below.
+        if (gArgs.SoftSetBoolArg("-upnp", false))
+            LogPrintf("%s: parameter interaction: -proxy set -> setting -upnp=0\n", __func__);
+        if (gArgs.SoftSetBoolArg("-natpmp", false))
+            LogPrintf("%s: parameter interaction: -proxy set -> setting -natpmp=0\n", __func__);
+        // to protect privacy, do not discover addresses by default
+        if (gArgs.SoftSetBoolArg("-discover", false))
+            LogPrintf("%s: parameter interaction: -proxy set -> setting -discover=0\n", __func__);
+    }
+
+    if (!gArgs.GetBoolArg("-listen", DEFAULT_LISTEN)) {
+        // do not map ports or try to retrieve public IP when not listening (pointless)
+        if (gArgs.SoftSetBoolArg("-upnp", false))
+            LogPrintf("%s: parameter interaction: -listen=0 -> setting -upnp=0\n", __func__);
+        if (gArgs.SoftSetBoolArg("-natpmp", false))
+            LogPrintf("%s: parameter interaction: -listen=0 -> setting -natpmp=0\n", __func__);
+        if (gArgs.SoftSetBoolArg("-discover", false))
+            LogPrintf("%s: parameter interaction: -listen=0 -> setting -discover=0\n", __func__);
+        if (gArgs.SoftSetBoolArg("-listenonion", false))
+            LogPrintf("%s: parameter interaction: -listen=0 -> setting -listenonion=0\n", __func__);
+    }
+
+    if (gArgs.IsArgSet("-externalip")) {
+        // if an explicit public IP is specified, do not try to find others
+        if (gArgs.SoftSetBoolArg("-discover", false))
+            LogPrintf("%s: parameter interaction: -externalip set -> setting -discover=0\n", __func__);
+    }
+
+    // disable whitelistrelay in blocksonly mode
+    if (gArgs.GetBoolArg("-blocksonly", DEFAULT_BLOCKSONLY)) {
+        if (gArgs.SoftSetBoolArg("-whitelistrelay", false))
+            LogPrintf("%s: parameter interaction: -blocksonly=1 -> setting -whitelistrelay=0\n", __func__);
+    }
+
+    // Forcing relay from whitelisted hosts implies we will accept relays from them in the first place.
+    if (gArgs.GetBoolArg("-whitelistforcerelay", DEFAULT_WHITELISTFORCERELAY)) {
+        if (gArgs.SoftSetBoolArg("-whitelistrelay", true))
+            LogPrintf("%s: parameter interaction: -whitelistforcerelay=1 -> setting -whitelistrelay=1\n", __func__);
+    }
+
+    // Warn if network-specific options (-addnode, -connect, etc)
+    // are specified at default section in config file, but them are
+    // not overridden at the command line or in this network's
+    // section at the config file.
+    std::string network = gArgs.GetChainName();
+    for (const auto &arg: gArgs.GetUnsuitableSectionOnlyArgs()) {
+        InitWarning(
+                strprintf(_("Config settings for %s only applied on %s network when in [%s] section."), arg, network,
+                          network));
+    }
+
+    // Warn if unrecognized section name are present in the config file.
+    for (const auto &section: gArgs.GetUnrecognizedSections()) {
+        InitWarning(strprintf("%s:%i " + _("Section [%s] is not recognized."), section.m_file, section.m_line,
+                              section.m_name));
+    }
+}
+
+bool AppInitBasicSetup() {
+    // ********************************************************* Step 1: setup
+#ifdef _MSC_VER
+    // Turn off Microsoft heap dump noise
+    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_WARN, CreateFileA("NUL", GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, 0));
+    // Disable confusing "helpful" text message on abort, Ctrl-C
+    _set_abort_behavior(0, _WRITE_ABORT_MSG | _CALL_REPORTFAULT);
+#endif
+#ifdef WIN32
+    // Enable heap terminate-on-corruption
+    HeapSetInformation(nullptr, HeapEnableTerminationOnCorruption, nullptr, 0);
+#endif
+    if (!InitShutdownState()) {
+        return InitError("Initializing wait-for-shutdown state failed.");
+    }
+
+    if (!SetupNetworking()) {
+        return InitError("Initializing networking failed");
+    }
+
+#ifndef WIN32
+    if (!gArgs.GetBoolArg("-sysperms", false)) {
+        umask(077);
+    }
+#endif
+
+    return true;
+}
+
+bool AppInitParameterInteraction() {
+    const CChainParams &chainparams = Params();
+    // ********************************************************* Step 2: parameter interactions
+
+    // also see: InitParameterInteraction()
+
+    if (!fs::is_directory(GetBlocksDir())) {
+        return InitError(
+                strprintf(_("Specified blocks directory \"%s\" does not exist."), gArgs.GetArg("-blocksdir", "")));
+    }
+
+    // if using block pruning, then disallow txindex and require disabling governance validation
+    if (gArgs.GetArg("-prune", 0)) {
+        if (gArgs.GetBoolArg("-txindex", DEFAULT_TXINDEX))
+            return InitError(_("Prune mode is incompatible with -txindex."));
+        if (!gArgs.GetBoolArg("-disablegovernance", false)) {
+            return InitError(_("Prune mode is incompatible with -disablegovernance=false."));
+        }
+    }
+
+    if (gArgs.IsArgSet("-devnet")) {
+        // Require setting of ports when running devnet
+        if (gArgs.GetArg("-listen", DEFAULT_LISTEN) && !gArgs.IsArgSet("-port")) {
+            return InitError(_("-port must be specified when -devnet and -listen are specified"));
+        }
+        if (gArgs.GetArg("-server", false) && !gArgs.IsArgSet("-rpcport")) {
+            return InitError(_("-rpcport must be specified when -devnet and -server are specified"));
+        }
+        if (gArgs.GetArgs("-devnet").size() > 1) {
+            return InitError(_("-devnet can only be specified once"));
+        }
+    }
+
+    return true;
+}
+
+bool AppInitSanityChecks() {
+    // ********************************************************* Step 4: sanity checks
+
+    // Initialize elliptic curve code
+    std::string sha256_algo = SHA256AutoDetect();
+    LogPrintf("Using the '%s' SHA256 implementation\n", sha256_algo);
+    RandomInit();
+    ECC_Start();
+    globalVerifyHandle.reset(new ECCVerifyHandle());
+
+    // Sanity check
+    if (!InitSanityCheck())
+        return InitError(strprintf(_("Initialization sanity check failed. %s is shutting down."), PACKAGE_NAME));
+
+    // Probe the data directory lock to give an early error message, if possible
+    // We cannot hold the data directory lock here, as the forking for daemon() hasn't yet happened,
+    // and a fork will cause weird behavior to it.
+    return LockDataDirectory(true);
+}
+
+bool AppInitLockDataDirectory() {
+    // After daemonization get the data directory lock again and hold on to it until exit
+    // This creates a slight window for a race condition to happen, however this condition is harmless: it
+    // will at most make us exit without printing a message to console.
+    if (!LockDataDirectory(false)) {
+        // Detailed error printed inside LockDataDirectory
+        return false;
+    }
+    return true;
+}
+
+bool AppInitInterfaces(NodeContext& node) {
+    LogPrintf("* Using %.1fMiB for in-memory UTXO set (plus up to %.1fMiB of unused mempool space)\n", nCoinCacheUsage * (1.0 / 1024 / 1024), nMempoolUsage * (1.0 / 1024 / 1024));
+
+    for (const auto& client : node.chain_clients) {
+        client->start(node.scheduler.get());
+    }
+
+    return true;
+}
+
+bool AppInitMain(const util::Ref& context, NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info) {
+    // ********************************************************* Step 6: network initialization
+    // Note that we absolutely cannot open any actual connections
+    // until the very end ("start node") as the UTXO/block state
+    // is not yet setup and may end up being set up twice if we
+    // need to reindex later.
+
+    fListen = gArgs.GetBoolArg("-listen", DEFAULT_LISTEN);
+    fDiscover = gArgs.GetBoolArg("-discover", true);
+    g_relay_txes = !gArgs.GetBoolArg("-blocksonly", DEFAULT_BLOCKSONLY);
+
+    {
+        LOCK(cs_main);
+        LogPrintf("* Using %.1fMiB for chain state database\n", nCoinDBCache * (1.0 / 1024 / 1024));
+        LogPrintf("* Using %.1fMiB for in-memory UTXO set (plus up to %.1fMiB of unused mempool space)\n", nCoinCacheUsage * (1.0 / 1024 / 1024), nMempoolUsage * (1.0 / 1024 / 1024));
+
+        bool fLoaded = false;
+        while (!fLoaded && !ShutdownRequested()) {
+            const bool fReset = fReindex;
+            auto is_coinsview_empty = [&](CChainState* chainstate) EXCLUSIVE_LOCKS_REQUIRED(cs_main) {
+                return fReset || chainstate->CoinsTip().GetBestBlock().IsNull();
+            };
+            
+            bilingual_str strLoadError;
+            uiInterface.InitMessage(_("Loading block index..."));
+            
+            const int64_t load_block_index_start_time = GetTimeMillis();
+            auto chainman_result = ChainstateManager().Initialize();
+            if (!chainman_result) {
+                return InitError(util::ErrorString(chainman_result));
+            }
+            const int64_t load_block_index_time = GetTimeMillis() - load_block_index_start_time;
+            LogPrintf("block index %15dms\n", load_block_index_time);
+
+            fLoaded = true;
+        }
+    }
+
+    return !ShutdownRequested();
+}
+
+bool ShutdownRequested() {
+    return fRequestShutdown;
+}
+
+void Interrupt(NodeContext& node) {
+    InterruptHTTPServer();
+    InterruptHTTPRPC();
+    InterruptRPC();
+    InterruptREST();
+    InterruptTorControl();
+    InterruptMapPort();
+    if (node.connman)
+        node.connman->Interrupt();
+    if (g_txindex) {
+        g_txindex->Interrupt();
+    }
+}
+
+void Shutdown(NodeContext& node) {
+    LogPrintf("%s: In progress...\n", __func__);
+    static CCriticalSection cs_Shutdown;
+    TRY_LOCK(cs_Shutdown, lockShutdown);
+    if (!lockShutdown)
+        return;
+
+    /// Note: Shutdown() must be able to handle cases in which initialization failed part of the way,
+    /// for example if the data directory was found to be locked.
+    /// Be sure that anything that writes files or flushes caches only does this if the respective
+    /// module was initialized.
+    util::ThreadRename("shutoff");
+    mempool.AddTransactionsUpdated(1);
+
+    StopHTTPRPC();
+    StopREST();
+    StopRPC();
+    StopHTTPServer();
+    for (const auto& client : node.chain_clients) {
+        client->flush();
+    }
+    StopMapPort();
+
+    // Because these depend on each-other, we make sure that neither can be
+    // using the other before destroying them.
+    if (node.peerman) UnregisterValidationInterface(node.peerman.get());
+    if (node.connman) node.connman->Stop();
+
+    StopTorControl();
+
+    if (node.connman) {
+        node.connman.reset();
+    }
+    if (node.peerman) {
+        node.peerman.reset();
+    }
+
+    if (g_txindex) {
+        g_txindex->Stop();
+        g_txindex.reset();
+    }
+
+    for (const auto& client : node.chain_clients) {
+        client->stop();
+    }
+
+    if (::ChainstateActive().CanFlushToDisk()) {
+        uiInterface.InitMessage(_("Flushing block file..."));
+        FlushStateToDisk();
+    }
+
+    {
+        LOCK(cs_main);
+        if (::ChainstateActive().CanFlushToDisk()) {
+            uiInterface.InitMessage(_("Flushing chainstate..."));
+            ::ChainstateActive().ForceFlushStateToDisk();
+        }
+    }
+
+    // After there are no more peers/RPC left to give us new data which may generate
+    // CValidationInterface callbacks, flush them...
+    GetMainSignals().FlushBackgroundCallbacks();
+
+    // Any future callbacks will be dropped. This should absolutely be safe - if
+    // missing a callback results in an unrecoverable situation, unclean shutdown
+    // would too. The only reason to do the above flushes is to let the wallet catch
+    // up with our current chain to avoid any strange pruning edge cases and make
+    // next startup faster by avoiding rescan.
+
+    {
+        LOCK(cs_main);
+        if (::ChainstateActive().CanFlushToDisk()) {
+            uiInterface.InitMessage(_("Writing UTXO snapshot..."));
+            ::ChainstateActive().ForceFlushStateToDisk();
+        }
+    }
+
+    LogPrintf("%s: done\n", __func__);
+}
+
 /**
  * The PID file facilities.
  */

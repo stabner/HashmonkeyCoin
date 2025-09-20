@@ -1331,4 +1331,17 @@ namespace util {
         return std::make_pair(argc, argv);
     }
 #endif
+
+std::string LicenseInfo() {
+    return "Copyright (c) 2009-2010 Satoshi Nakamoto\n"
+           "Copyright (c) 2009-2015 The Bitcoin Core developers\n"
+           "Copyright (c) 2014-2021 The Dash Core developers\n"
+           "Copyright (c) 2020-2023 The Raptoreum developers\n"
+           "Copyright (c) 2024 The HashmonkeyCoin developers\n"
+           "\n"
+           "This is free software: you can redistribute it and/or modify\n"
+           "it under the terms of the MIT license. There is NO WARRANTY, to the\n"
+           "extent permitted by law.";
+}
+
 } // namespace util

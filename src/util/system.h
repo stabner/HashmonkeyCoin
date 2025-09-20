@@ -464,6 +464,8 @@ namespace util {
     };
 #endif
 
+std::string LicenseInfo();
+
 } // namespace util
 
 #endif // BITCOIN_UTIL_SYSTEM_H
