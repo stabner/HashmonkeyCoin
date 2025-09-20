@@ -345,10 +345,11 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
-        // HashmonkeyCoin: Spork configuration for mainnet
+        // HashmonkeyCoin: Sporks temporarily disabled for mainnet until keys are generated
         // TODO: Generate new spork keys using: ./hashmonkeycoin-cli createnewsporkkey
-        vSporkAddresses = {"HMNYSporkAddressToBeGenerated"}; // Placeholder - will be replaced with actual spork address
-        nMinSporkKeys = 1;
+        // Then replace empty addresses with generated spork address
+        vSporkAddresses = {}; // Empty - will be populated after generating spork keys
+        nMinSporkKeys = 0; // Temporarily 0 until spork keys are generated
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
