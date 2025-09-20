@@ -357,7 +357,7 @@ namespace GUIUtil {
                 fShouldReturnFalse = false;
             } else if (i->first == "amount") {
                 if (!i->second.isEmpty()) {
-                    if (!BitcoinUnits::parse(BitcoinUnits::RTM, i->second, &rv.amount)) {
+                    if (!BitcoinUnits::parse(BitcoinUnits::HMNY, i->second, &rv.amount)) {
                         return false;
                     }
                 }
@@ -389,7 +389,7 @@ namespace GUIUtil {
 
         if (info.amount) {
             ret += QString("?amount=%1").arg(
-                    BitcoinUnits::format(BitcoinUnits::RTM, info.amount, false, BitcoinUnits::separatorNever));
+                    BitcoinUnits::format(BitcoinUnits::HMNY, info.amount, false, BitcoinUnits::separatorNever));
             paramCount++;
         }
 

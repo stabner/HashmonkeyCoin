@@ -176,7 +176,7 @@ public
     void requestedSyncWarningInfo();
 
 
-    /** Update selected RTM amount from transactionview */
+    /** Update selected HMNY amount from transactionview */
     void trxAmount(QString amount);
 
     Q_SIGNALS:

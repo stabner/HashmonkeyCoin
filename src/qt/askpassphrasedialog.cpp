@@ -124,7 +124,7 @@ void AskPassphraseDialog::accept() {
                 break;
             }
             QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm wallet encryption"),
-                                                                       tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR RTM</b>!") +
+                                                                       tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR HMNY</b>!") +
                                                                        "<br><br>" +
                                                                        tr("Are you sure you wish to encrypt your wallet?"),
                                                                        QMessageBox::Yes | QMessageBox::Cancel,
