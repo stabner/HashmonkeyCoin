@@ -12,6 +12,7 @@
 #include <coins.h>
 #include <qt/guiutil.h>
 #include <netbase.h>
+#include <smartnode/smartnode-collaterals.h>
 #include <qt/walletmodel.h>
 #include <validation.h>
 

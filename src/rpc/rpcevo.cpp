@@ -17,6 +17,7 @@
 #include <netbase.h>
 #include <rpc/server.h>
 #include <rpc/util.h>
+#include <smartnode/smartnode-collaterals.h>
 #include <smartnode/smartnode-meta.h>
 #include <txmempool.h>
 #include <util/moneystr.h>

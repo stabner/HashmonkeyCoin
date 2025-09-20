@@ -13,6 +13,7 @@
 #include <hash.h>
 #include <messagesigner.h>
 #include <script/standard.h>
+#include <smartnode/smartnode-collaterals.h>
 #include <validation.h>
 #include <spork.h>
 #include <assets/assets.h>

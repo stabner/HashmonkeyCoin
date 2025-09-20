@@ -14,6 +14,7 @@
 #include <consensus/validation.h>
 #include <core_io.h>
 #include <script/standard.h>
+#include <smartnode/smartnode-collaterals.h>
 #include <ui_interface.h>
 #include <validation.h>
 #include <validationinterface.h>
