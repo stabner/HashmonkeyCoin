@@ -3081,7 +3081,7 @@ void CWallet::AvailableAssets(std::map <std::string, std::vector<COutput>> &mapA
 }
 
 void CWallet::AvailableCoins(std::vector <COutput> &vCoins, std::map <std::string, std::vector<COutput>> &mapAssetCoins,
-                             bool fGetHMNY, bool fOnlyAssets, bool fOnlySafe, const CCoinControl *coinControl,
+                             bool fGetRTM, bool fOnlyAssets, bool fOnlySafe, const CCoinControl *coinControl,
                              const CAmount &nMinimumAmount, const CAmount &nMaximumAmount,
                              const CAmount &nMinimumSumAmount, const uint64_t nMaximumCount, const int nMinDepth,
                              const int nMaxDepth) const {
@@ -3091,11 +3091,10 @@ void CWallet::AvailableCoins(std::vector <COutput> &vCoins, std::map <std::strin
     vCoins.clear();
     mapAssetCoins.clear();
     CoinType nCoinType = coinControl ? coinControl->nCoinType : CoinType::ALL_COINS;
-    // HashmonkeyCoin: Smartnode functionality disabled
-    // SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
 
     CAmount nTotal = 0;
-    bool fHMNYLimitHit = false;
+    bool fRTMLimitHit = false;
 
     std::map <std::string, CAmount> mapAssetTotals;
     std::map <uint256, COutPoint> mapOutPoints;
@@ -3223,10 +3222,10 @@ void CWallet::AvailableCoins(std::vector <COutput> &vCoins, std::map <std::strin
                 }
             }
 
-            if (fGetHMNY) {
-                if (fHMNYLimitHit) // We hit our limit
+            if (fGetRTM) {
+                if (fRTMLimitHit) // We hit our limit
                     continue;
-                // We only want HMNY OutPoints. Don't include Asset OutPoints
+                // We only want RTM OutPoints. Don't include Asset OutPoints
                 if (isAssetScript)
                     continue;
 
@@ -3237,13 +3236,13 @@ void CWallet::AvailableCoins(std::vector <COutput> &vCoins, std::map <std::strin
                     nTotal += pcoin->tx->vout[i].nValue;
 
                     if (nTotal >= nMinimumSumAmount) {
-                        fHMNYLimitHit = true;
+                        fRTMLimitHit = true;
                     }
                 }
 
                 // Checks the maximum number of UTXO's.
                 if (nMaximumCount > 0 && vCoins.size() >= nMaximumCount) {
-                    fHMNYLimitHit = true;
+                    fRTMLimitHit = true;
                 }
             }
         }
@@ -4028,8 +4027,7 @@ CWallet::SelectCoinsGroupedByAddresses(bool fSkipDenominated, bool fAnonymizable
     }
 
     CAmount nSmallestDenom = CCoinJoin::GetSmallestDenomination();
-    // HashmonkeyCoin: Smartnode functionality disabled
-    // SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
+    SmartnodeCollaterals collaterals = Params().GetConsensus().nCollaterals;
 
     // Tally
     std::map <CTxDestination, CompactTallyItem> mapTally;
