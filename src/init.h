@@ -30,9 +30,6 @@ void Shutdown(NodeContext &node);
 bool InitError(const std::string& str);
 void InitWarning(const std::string& str);
 
-/** Setup server command-line arguments */
-void SetupServerArgs();
-
 //!Initialize the logging infrastructure
 void InitLogging();
 
@@ -79,6 +76,9 @@ bool AppInitInterfaces(NodeContext &node);
 bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockAndHeaderTipInfo *tip_info = nullptr);
 
 void PrepareShutdown(NodeContext &node);
+
+/** Check if shutdown is requested */
+bool ShutdownRequested();
 
 /**
  * Setup the arguments for gArgs

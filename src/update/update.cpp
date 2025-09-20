@@ -47,36 +47,6 @@ std::ostream &operator<<(std::ostream &out, EUpdateState state) {
     return out;
 }
 
-// UpdateManager implementation
-UpdateManager::UpdateManager() : minerUpdateVoting(&minerRoundVoting), nodeUpdateVoting(&nodeRoundVoting) {
-}
-
-UpdateManager::~UpdateManager() {
-}
-
-bool UpdateManager::Add(Update update) {
-    LOCK(updateMutex);
-    updates[update.UpdateId()] = update;
-    return true;
-}
-
-const Update *UpdateManager::GetUpdate(enum EUpdate eUpdate) const {
-    LOCK(updateMutex);
-    auto it = updates.find(eUpdate);
-    if (it != updates.end()) {
-        return &it->second;
-    }
-    return nullptr;
-}
-
-bool UpdateManager::IsActive(enum EUpdate eUpdate, const CBlockIndex *blockIndex) {
-    StateInfo stateInfo = State(eUpdate, blockIndex);
-    return stateInfo.State == EUpdateState::Active;
-}
-
-bool UpdateManager::IsAssetsActive(const CBlockIndex *blockIndex) {
-    return IsActive(EUpdate::DEPLOYMENT_V17, blockIndex);
-}
 
 StateInfo UpdateManager::State(enum EUpdate eUpdate, const CBlockIndex *blockIndex) {
     LOCK(updateMutex);
