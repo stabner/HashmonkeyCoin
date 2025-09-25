@@ -38,7 +38,7 @@ BITCOIN_INCLUDES+=-I$(srcdir)/dashbls/include -I$(srcdir)/dashbls/depends/relic/
 LIBBITCOIN_SERVER=libraptoreum_server.a
 LIBBITCOIN_COMMON=libraptoreum_common.a
 LIBBITCOIN_CONSENSUS=libraptoreum_consensus.a
-LIBBITCOIN_CLI=libraptoreum_cli.a
+LIBBITCOIN_CLI=libhashmonkeycoin_cli.a
 LIBBITCOIN_UTIL=libraptoreum_util.a
 LIBBITCOIN_CRYPTO=crypto/libraptoreum_crypto.a
 LIBBITCOINQT=qt/libraptoreumqt.a
@@ -782,36 +782,36 @@ hashmonkeycoind_LDADD = \
 hashmonkeycoind_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
 
 # hashmonkeycoin-cli binary #
-raptoreum_cli_SOURCES = hashmonkeycoin-cli.cpp
-raptoreum_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-raptoreum_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-raptoreum_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+hashmonkeycoin_cli_SOURCES = hashmonkeycoin-cli.cpp
+hashmonkeycoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+hashmonkeycoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hashmonkeycoin_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-raptoreum_cli_SOURCES += hashmonkeycoin-cli-res.rc
+hashmonkeycoin_cli_SOURCES += hashmonkeycoin-cli-res.rc
 endif
 
-raptoreum_cli_LDADD = \
+hashmonkeycoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-raptoreum_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(EVENT_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
+hashmonkeycoin_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(EVENT_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
 
 # hashmonkeycoin-wallet binary #
-raptoreum_wallet_SOURCES = hashmonkeycoin-wallet.cpp
-raptoreum_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-raptoreum_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-raptoreum_wallet_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+hashmonkeycoin_wallet_SOURCES = hashmonkeycoin-wallet.cpp
+hashmonkeycoin_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+hashmonkeycoin_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hashmonkeycoin_wallet_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-raptoreum_wallet_SOURCES += hashmonkeycoin-wallet-res.rc
+hashmonkeycoin_wallet_SOURCES += hashmonkeycoin-wallet-res.rc
 endif
 
 # Libraries below may be listed more than once to resolve circular dependencies (see
 # https://eli.thegreenplace.net/2013/07/09/library-order-in-static-linking#circular-dependency)
-raptoreum_wallet_LDADD = \
+hashmonkeycoin_wallet_LDADD = \
   $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
@@ -827,7 +827,7 @@ raptoreum_wallet_LDADD = \
   $(LIBSECP256K1) \
   $(LIBUNIVALUE)
 
-raptoreum_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
+hashmonkeycoin_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
 #
 
 # raptoreumconsensus library #
