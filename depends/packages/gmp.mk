@@ -8,10 +8,15 @@ define $(package)_set_vars
 $(package)_config_opts+=--enable-cxx --enable-fat --with-pic --disable-shared
 $(package)_cflags_armv7l_linux+=-march=armv7-a
 $(package)_cflags_aarch64_darwin+=-march=armv8-a
+$(package)_config_opts_mingw32+=--disable-assembly
 endef
 
 define $(package)_config_cmds
   $($(package)_autoconf)
+endef
+
+define $(package)_config_cmds_mingw32
+  $($(package)_autoconf) --disable-assembly
 endef
 
 define $(package)_build_cmds
