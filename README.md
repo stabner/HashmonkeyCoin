@@ -35,23 +35,23 @@ docker run -it hashmonkeycoin
 
 ## 🏗️ Development Workflow
 
-### Branch Strategy
+### Simple Branch Strategy
 
-- **`main`**: Production-ready code (protected)
-- **`develop`**: Integration branch for features
-- **`feature/*`**: Feature branches (e.g., `feature/branding`, `feature/consensus-emission`)
+- **`main`**: Single development branch - all work happens here
+- **Direct development**: Make changes directly to main branch
+- **No complex branching**: Keep it simple and straightforward
 
 ### Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Make your changes and commit: `git commit -m "Add your feature"`
-4. Push to your fork: `git push origin feature/your-feature-name`
-5. Create a Pull Request
+2. Make your changes directly on `main`
+3. Test your changes thoroughly
+4. Commit with conventional messages: `git commit -m "feat: add your feature"`
+5. Push directly to main: `git push origin main`
 
-### Pull Request Process
+### Pull Request Process (Optional)
 
-- All PRs must target the `develop` branch
+- If collaborating, create PRs targeting `main` branch
 - Include tests for new functionality
 - Ensure all CI checks pass
 - Link related issues in PR description

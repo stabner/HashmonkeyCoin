@@ -10,18 +10,18 @@ Thank you for contributing to HashmonkeyCoin! This document provides guidelines 
 2. Install dependencies (see README.md)
 3. Build and test the project
 
-### Branch Strategy
+### Simple Branch Strategy
 
-- **`main`**: Production-ready code (protected)
-- **`develop`**: Integration branch for features
-- **`feature/*`**: Feature development branches
+- **`main`**: Single development branch - all work happens here
+- **Direct commits**: Make changes directly to main branch
+- **No complex branching**: Keep it simple and straightforward
 
 ### Development Workflow
 
-1. Create a feature branch from `develop`
-2. Make your changes with tests
+1. Make your changes directly on `main`
+2. Test your changes thoroughly
 3. Commit with conventional commit messages
-4. Push and create a Pull Request
+4. Push directly to main (or create PR if collaborating)
 
 ## Code Style
 
@@ -36,9 +36,9 @@ Thank you for contributing to HashmonkeyCoin! This document provides guidelines 
 - Complex features need integration tests
 - Run `make check` before submitting
 
-## Pull Request Process
+## Pull Request Process (Optional)
 
-- Target the `develop` branch
+- If collaborating, create PRs targeting `main` branch
 - Include tests for new functionality
 - Ensure all CI checks pass
 - Link related issues in PR description

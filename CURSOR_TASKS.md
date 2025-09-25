@@ -295,10 +295,9 @@ assert(genesis.hashMerkleRoot == uint256S("0x[MINED_MERKLE]"));
 For each task:
 
 ```bash
-# 1. Create feature branch
-git checkout develop
-git pull upstream develop
-git checkout -b feature/[task-name]
+# 1. Make sure you're on main branch
+git checkout main
+git pull origin main
 
 # 2. Make changes
 # [Execute the specific task actions]
@@ -307,25 +306,25 @@ git checkout -b feature/[task-name]
 make -j$(nproc)
 make check
 
-# 4. Commit and push
+# 4. Commit and push directly to main
 git add .
 git commit -m "feat: [task description]"
-git push origin feature/[task-name]
+git push origin main
 
-# 5. Create PR targeting develop branch
+# 5. Optional: Create PR if collaborating
 # Link to issue: "Closes #[issue-number]"
 ```
 
 ### Validation Checklist
 
-Before submitting each PR:
+Before committing each change:
 
 - [ ] Code compiles without errors
 - [ ] Unit tests pass
 - [ ] No regressions in existing functionality
 - [ ] Changes are atomic and focused
 - [ ] Documentation updated if needed
-- [ ] PR description includes acceptance criteria
+- [ ] Commit message follows conventional format
 
 ### Priority Order
 
