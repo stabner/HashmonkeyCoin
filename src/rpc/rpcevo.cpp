@@ -1099,7 +1099,7 @@ void protx_quick_setup_help(const JSONRPCRequest& request)
                       {RPCResult::Type::STR, "collateralAmount", "The collateral Amount was used for this protx."},
                       {RPCResult::Type::STR_HEX, "operationPubkey", "The public key from bls generate."},
                       {RPCResult::Type::STR_HEX, "operationSecret", "The secret key from bls generate."},
-                      {RPCResult::Type::STR, "raptoreum.conf", "The content of raptoreum.conf to be used in vps node."},
+                      {RPCResult::Type::STR, "hashmonkeycoin.conf", "The content of hashmonkeycoin.conf to be used in vps node."},
             }
         },
         RPCExamples{
@@ -1153,7 +1153,7 @@ UniValue signMessage(CWallet * const pwallet, std::string strAddress, std::strin
 
 UniValue createConfigFile(std::string blsPrivateKey, std::string ip, std::string address) {
 
-    std::string fileName = get_current_dir() + "/" + address + "_raptoreum.conf";
+    std::string fileName = get_current_dir() + "/" + address + "_hashmonkeycoin.conf";
     std::ofstream configFile(fileName);
     std::string username = generateRandomString(10, false);
     std::string password = generateRandomString(20, true);
@@ -1224,7 +1224,7 @@ UniValue protx_quick_setup(const JSONRPCRequest& request)
     result.pushKV("operatorPublic", blsKeys["public"].get_str());
     result.pushKV("operatorSecret", blsKeys["secret"].get_str());
     UniValue config = createConfigFile(blsKeys["secret"].get_str(), request.params[2].get_str(), prepareResult["collateralAddress"].get_str());
-    result.pushKV("raptoreum.conf",config.get_str());
+    result.pushKV("hashmonkeycoin.conf",config.get_str());
 
     return result;
 }

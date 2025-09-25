@@ -87,7 +87,7 @@
       <item>
        <widget class="QValidatedLineEdit" name="payTo">
         <property name="toolTip">
-         <string>The Raptoreum address to send the payment to</string>
+         <string>The HashmonkeyCoin address to send the payment to</string>
         </property>
        </widget>
       </item>
@@ -377,7 +377,7 @@
   <tabstop>payAmount</tabstop>
  </tabstops>
  <resources>
-  <include location="../raptoreum.qrc"/>
+  <include location="../HashmonkeyCoin.qrc"/>
  </resources>
  <connections/>
 </ui>

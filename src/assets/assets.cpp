@@ -15,15 +15,15 @@
 
 static const std::regex name_root_characters("^[A-Z0-9._]{3,}$");
 static const std::regex name_sub_characters("^[a-zA-Z0-9 ]{3,}$");
-static const std::regex rtm_names("^RTM$|^RAPTOREUM$|^wRTM$|^WRTM$|^RTMcoin$|^RTMCOIN$");
+static const std::regex HMNY_names("^RTM$|^RAPTOREUM$|^wRTM$|^WRTM$|^RTMcoin$|^RTMCOIN$");
 
 
 bool IsAssetNameValid(std::string name, bool isRoot) {
     if (name.length() < 3 || name.length() > 128) return false;
     if (isRoot)
-        return std::regex_match(name, name_root_characters) && !std::regex_match(name, rtm_names);
+        return std::regex_match(name, name_root_characters) && !std::regex_match(name, HMNY_names);
     else
-        return std::regex_match(name, name_sub_characters) && !std::regex_match(name, rtm_names); 
+        return std::regex_match(name, name_sub_characters) && !std::regex_match(name, HMNY_names); 
 }
 
 CAmount getAssetsFeesCoin() {

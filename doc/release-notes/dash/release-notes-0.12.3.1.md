@@ -1,4 +1,4 @@
-Raptoreum Core version 0.12.3.1
+HashmonkeyCoin Core version 0.12.3.1
 ==========================
 
 Release is now available from:
@@ -21,8 +21,8 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over /Applications/Raptoreum-Qt (on Mac) or
-raptoreumd/raptoreum-qt (on Linux).
+installer (on Windows) or just copy over /Applications/hashmonkeycoin-qt (on Mac) or
+hashmonkeycoind/hashmonkeycoin-qt (on Linux).
 
 Downgrade warning
 -----------------
@@ -148,11 +148,11 @@ Command-line options
 --------------------
 
 New cmd-line options:
-- introduced in Raptoreum Core 0.12.3.1: `allowprivatenet`, `bip9params`, `sporkaddr`, `devnet`;
+- introduced in HashmonkeyCoin Core 0.12.3.1: `allowprivatenet`, `bip9params`, `sporkaddr`, `devnet`;
 - backported from Bitcoin Core 0.13/0.14: `blockreconstructionextratxn`, `maxtimeadjustment`, `maxtipage`,
 `incrementalrelayfee`, `dustrelayfee`, `blockmintxfee`.
 
-See `Help -> Command-line options` in Qt wallet or `raptoreumd --help` for more info.
+See `Help -> Command-line options` in Qt wallet or `hashmonkeycoind --help` for more info.
 
 New Smartnode Information Dialog
 ---------------------------------
@@ -175,7 +175,7 @@ case of future ASIC uses on testnet.
 Using smartnode lists for initial peers discovery
 --------------------------------------------------
 
-We now use a recent smartnode list to feed the hardcoded seed nodes list in Raptoreum Core. This list was previously
+We now use a recent smartnode list to feed the hardcoded seed nodes list in HashmonkeyCoin Core. This list was previously
 unmaintained as we fully relied on DNS based discovery on startup. DNS discovery is still used as the main discovery
 method, but the hardcoded seed list should now be able to serve as a proper backup in case DNS fails for some reason.
 
@@ -428,7 +428,7 @@ See detailed [change log](https://github.com/raptor3um/raptoreum/compare/v0.12.2
 - [`83957f2d3`](https://github.com/raptor3um/raptoreum/commit/83957f2d3) Fix alertTests.raw.h (again) (#1869)
 - [`c13afaad8`](https://github.com/raptor3um/raptoreum/commit/c13afaad8) Fix alertTests.raw.h generation (#1868)
 - [`a46bf120b`](https://github.com/raptor3um/raptoreum/commit/a46bf120b) Don't directly call "wine test_raptoreum.exe" and let "make check" handle it (#1841)
-- [`e805f790e`](https://github.com/raptor3um/raptoreum/commit/e805f790e) Automatically build and push docker image to docker.io/raptoreum/raptoreumd-develop (#1809)
+- [`e805f790e`](https://github.com/raptor3um/raptoreum/commit/e805f790e) Automatically build and push docker image to docker.io/raptoreum/hashmonkeycoind-develop (#1809)
 - [`d9058aa04`](https://github.com/raptor3um/raptoreum/commit/d9058aa04) Increase travis timeout for "wine src/test/test_raptoreum.exe" call (#1820)
 - [`10786fe8e`](https://github.com/raptor3um/raptoreum/commit/10786fe8e) Use travis_wait for "wine test_raptoreum.exe" call to fix timeouts (#1812)
 - [`4bce3bf8b`](https://github.com/raptor3um/raptoreum/commit/4bce3bf8b) Fix crash on exit when -createwalletbackups=0 (#1810)
@@ -478,12 +478,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Raptoreum Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+HashmonkeyCoin Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Raptoreum.
 
-Raptoreum Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+HashmonkeyCoin Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Raptoreum Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+HashmonkeyCoin Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

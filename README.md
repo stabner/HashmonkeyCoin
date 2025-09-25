@@ -102,24 +102,24 @@ We maintain high test coverage. New features must include:
 
 ```bash
 # Mainnet
-./raptoreumd -daemon
+./hashmonkeycoind -daemon
 
 # Testnet
-./raptoreumd -testnet -daemon
+./hashmonkeycoind -testnet -daemon
 
 # Regtest (for development)
-./raptoreumd -regtest -daemon
+./hashmonkeycoind -regtest -daemon
 ```
 
 ### RPC Configuration
 
 ```bash
 # Enable RPC
-./raptoreumd -server -rpcuser=user -rpcpassword=pass
+./hashmonkeycoind -server -rpcuser=user -rpcpassword=pass
 
 # RPC examples
-raptoreum-cli getblockchaininfo
-raptoreum-cli getnetworkinfo
+hashmonkeycoin-cli getblockchaininfo
+hashmonkeycoin-cli getnetworkinfo
 ```
 
 ## 📚 Documentation

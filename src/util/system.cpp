@@ -79,7 +79,7 @@ const std::string gCoinJoinName = "CoinJoin";
 */
 int nWalletBackups = 10;
 
-const char *const BITCOIN_CONF_FILENAME = "raptoreum.conf";
+const char *const BITCOIN_CONF_FILENAME = "hashmonkeycoin.conf";
 
 ArgsManager gArgs;
 
@@ -229,7 +229,7 @@ public:
         std::pair<bool, std::string> found_result(false, std::string());
 
         // We pass "true" to GetArgHelper in order to return the last
-        // argument value seen from the command line (so "raptoreumd -foo=bar
+        // argument value seen from the command line (so "hashmonkeycoind -foo=bar
         // -foo=baz" gives GetArg(am,"foo")=={true,"baz"}
         found_result = GetArgHelper(am.m_override_args, arg, true);
         if (found_result.first) {
@@ -960,7 +960,7 @@ bool ArgsManager::ReadConfigFiles(std::string &error, bool ignore_invalid_keys) 
             }
         }
     } else {
-        // Create an empty raptoreum.conf if it does not exist
+        // Create an empty hashmonkeycoin.conf if it does not exist
         FILE *configFile = fopen(GetConfigFile(confPath).string().c_str(), "a");
         if (configFile != nullptr)
             fclose(configFile);
@@ -1255,7 +1255,7 @@ std::string CopyrightHolders(const std::string &strPrefix, unsigned int nStartYe
     const auto copyright_info = strprintf(_(COPYRIGHT_HOLDERS), COPYRIGHT_HOLDERS_SUBSTITUTION);
     std::string strCopyrightHolders = strPrefix + strprintf(" %u-%u ", 2021, nEndYear) + copyright_info;
 
-    // Check for untranslated substitution to make sure Raptoreum Core copyright is not removed by accident
+    // Check for untranslated substitution to make sure HashmonkeyCoin Core copyright is not removed by accident
     if (copyright_info.find("Raptoreum") == std::string::npos) {
         strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2020, nEndYear) + "The Raptoreum developers";
     }

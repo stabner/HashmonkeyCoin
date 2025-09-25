@@ -234,7 +234,7 @@
 - [`cb480af01`](https://github.com/raptor3um/raptoreum/commit/cb480af01) Raptoreumify
 - [`806da3c6e`](https://github.com/raptor3um/raptoreum/commit/806da3c6e) adjust number of parameters in sendmany
 - [`c4094c8de`](https://github.com/raptor3um/raptoreum/commit/c4094c8de) Few more tiny trivial fixes
-- [`8c2c2a1ad`](https://github.com/raptor3um/raptoreum/commit/8c2c2a1ad) s/bitcoind/raptoreumd/ in some places
+- [`8c2c2a1ad`](https://github.com/raptor3um/raptoreum/commit/8c2c2a1ad) s/bitcoind/hashmonkeycoind/ in some places
 - [`76822dd50`](https://github.com/raptor3um/raptoreum/commit/76822dd50) fix imports
 - [`4bfef1daa`](https://github.com/raptor3um/raptoreum/commit/4bfef1daa) Add missing raptoreum-specific parts
 - [`9828b624a`](https://github.com/raptor3um/raptoreum/commit/9828b624a) `_wait_for_bitcoind_start` should be a part of BitcoinTestFramework
@@ -304,7 +304,7 @@
 - [`d6633b5fb`](https://github.com/raptor3um/raptoreum/commit/d6633b5fb) apply rpcconsole.cpp patch
 - [`4a22fb78f`](https://github.com/raptor3um/raptoreum/commit/4a22fb78f) s/raptoreum-util-test.py/bitcoin-util-test.py
 - [`e0424c1a0`](https://github.com/raptor3um/raptoreum/commit/e0424c1a0) s/libbitcoin/libraptoreum
-- [`316fa1859`](https://github.com/raptor3um/raptoreum/commit/316fa1859) s/bitcoind/raptoreumd
+- [`316fa1859`](https://github.com/raptor3um/raptoreum/commit/316fa1859) s/bitcoind/hashmonkeycoind
 - [`f38ed3c71`](https://github.com/raptor3um/raptoreum/commit/f38ed3c71) #10821 continued
 - [`64c195a03`](https://github.com/raptor3um/raptoreum/commit/64c195a03) remove witness/segwit based text
 - [`c84636a47`](https://github.com/raptor3um/raptoreum/commit/c84636a47) update commented time estimates for fees
@@ -474,7 +474,7 @@
 - [`9adb72e11`](https://github.com/raptor3um/raptoreum/commit/9adb72e11) remove initialize to 0 in chainparams.h
 - [`6ce3e55cb`](https://github.com/raptor3um/raptoreum/commit/6ce3e55cb) add extra params to AvailableCoins calls
 - [`6ad8fe0e9`](https://github.com/raptor3um/raptoreum/commit/6ad8fe0e9) adjust CoinType logic
-- [`d5d27ad19`](https://github.com/raptor3um/raptoreum/commit/d5d27ad19) s/bitcoind/raptoreumd
+- [`d5d27ad19`](https://github.com/raptor3um/raptoreum/commit/d5d27ad19) s/bitcoind/hashmonkeycoind
 - [`39cfd61c0`](https://github.com/raptor3um/raptoreum/commit/39cfd61c0) Merge #9279: Consensus: Move CFeeRate out of libconsensus
 - [`535d7d6a8`](https://github.com/raptor3um/raptoreum/commit/535d7d6a8) Merge #10347: Use range-based for loops (C++11) when looping over vector elements
 - [`30ad4b8e8`](https://github.com/raptor3um/raptoreum/commit/30ad4b8e8) Merge #8952: Add query options to listunspent RPC call
@@ -591,7 +591,7 @@
 - [`22c4cd7b0`](https://github.com/raptor3um/raptoreum/commit/22c4cd7b0) Merge #10159: [tests] color test results and sort alphabetically
 - [`9c863edd9`](https://github.com/raptor3um/raptoreum/commit/9c863edd9) Merge #9780: Suppress noisy output from qa tests in Travis
 - [`98f3e295c`](https://github.com/raptor3um/raptoreum/commit/98f3e295c) add `&& llmq::IsOldInstantSendEnabled()` to instantsend max value check
-- [`a651f0d0f`](https://github.com/raptor3um/raptoreum/commit/a651f0d0f) adjust test_runner.py check if raptoreumd is running
+- [`a651f0d0f`](https://github.com/raptor3um/raptoreum/commit/a651f0d0f) adjust test_runner.py check if hashmonkeycoind is running
 - [`74830ee2a`](https://github.com/raptor3um/raptoreum/commit/74830ee2a) adjust spork5 code in wallet.cpp
 - [`4c7b47e28`](https://github.com/raptor3um/raptoreum/commit/4c7b47e28) Resolve comment, add check for fUseInstantSend and set value equal to the max value
 - [`5152e751c`](https://github.com/raptor3um/raptoreum/commit/5152e751c) Notify UI/external scripts about wallet txes locks
@@ -659,7 +659,7 @@
 - [`9b8a750c9`](https://github.com/raptor3um/raptoreum/commit/9b8a750c9) More `boost::filesystem`->`fs` and some related cleanup
 - [`250195185`](https://github.com/raptor3um/raptoreum/commit/250195185) Adjust CDSNotificationInterface to align with CValidationInterface changes
 - [`d180061b8`](https://github.com/raptor3um/raptoreum/commit/d180061b8) Pass block index via BlockDisconnected
-- [`282d1554d`](https://github.com/raptor3um/raptoreum/commit/282d1554d) adjust examples/raptoreum.conf
+- [`282d1554d`](https://github.com/raptor3um/raptoreum/commit/282d1554d) adjust examples/hashmonkeycoin.conf
 - [`e451325d6`](https://github.com/raptor3um/raptoreum/commit/e451325d6) Merge #10186: Remove SYNC_TRANSACTION_NOT_IN_BLOCK magic number
 - [`60438257a`](https://github.com/raptor3um/raptoreum/commit/60438257a) Merge #9725: CValidationInterface Cleanups
 - [`f893ac66c`](https://github.com/raptor3um/raptoreum/commit/f893ac66c) Merge #10124: [test] Suppress test logging spam
@@ -703,7 +703,7 @@
 - [`f2e976a05`](https://github.com/raptor3um/raptoreum/commit/f2e976a05) Merge #10045: [trivial] Fix typos in comments
 - [`2c833eff3`](https://github.com/raptor3um/raptoreum/commit/2c833eff3) Merge #10039: Fix compile errors with Qt 5.3.2 and Boost 1.55.0
 - [`a6eee07f2`](https://github.com/raptor3um/raptoreum/commit/a6eee07f2) Merge bitcoin#9963: util: Properly handle errors during log message formatting (#2917)
-- [`67c735b15`](https://github.com/raptor3um/raptoreum/commit/67c735b15) s/bitcoin-config.h/raptoreum-config.h/
+- [`67c735b15`](https://github.com/raptor3um/raptoreum/commit/67c735b15) s/bitcoin-config.h/hashmonkeycoin-config.h/
 - [`2f63322cd`](https://github.com/raptor3um/raptoreum/commit/2f63322cd) raptoreumify "Finding reviewers" section to be more relevant
 - [`e7a21faa2`](https://github.com/raptor3um/raptoreum/commit/e7a21faa2) Merge Bitcoin#9960: Trivial: Add const modifier to GetHDChain and IsHDEnabled
 - [`eecc72436`](https://github.com/raptor3um/raptoreum/commit/eecc72436) Merge #10564: Return early in IsBanned.

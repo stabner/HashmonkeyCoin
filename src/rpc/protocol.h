@@ -18,7 +18,7 @@ enum HTTPStatusCode {
     HTTP_SERVICE_UNAVAILABLE = 503,
 };
 
-//! Raptoreum Core RPC error codes
+//! HashmonkeyCoin Core RPC error codes
 enum RPCErrorCode {
     //! Standard JSON-RPC 2.0 errors
     // RPC_INVALID_REQUEST is internally mapped to HTTP_BAD_REQUEST (400).
@@ -28,7 +28,7 @@ enum RPCErrorCode {
     // It should not be used for application-layer errors.
     RPC_METHOD_NOT_FOUND = -32601,
     RPC_INVALID_PARAMS = -32602,
-    // RPC_INTERNAL_ERROR should only be used for genuine errors in raptoreumd
+    // RPC_INTERNAL_ERROR should only be used for genuine errors in hashmonkeycoind
     // (for example datadir corruption).
     RPC_INTERNAL_ERROR = -32603,
     RPC_PARSE_ERROR = -32700,

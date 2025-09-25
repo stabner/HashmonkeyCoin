@@ -76,12 +76,12 @@
       <translation>受取アドレス</translation>
     </message>
     <message>
-      <source>These are your Raptoreum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-      <translation>これらは送金するためのあなたの Raptoreum アドレスです。送金する前に常に金額と受取アドレスを確認してください。</translation>
+      <source>These are your HashmonkeyCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+      <translation>これらは送金するためのあなたの HashmonkeyCoin アドレスです。送金する前に常に金額と受取アドレスを確認してください。</translation>
     </message>
     <message>
-      <source>These are your Raptoreum addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-      <translation>これらは送金を受取用のあなたのRaptoreumアドレスです。トランザクションごとに新しい受け取り用アドレスの作成を推奨します。</translation>
+      <source>These are your HashmonkeyCoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+      <translation>これらは送金を受取用のあなたのHashmonkeyCoinアドレスです。トランザクションごとに新しい受け取り用アドレスの作成を推奨します。</translation>
     </message>
     <message>
       <source>&amp;Copy Address</source>
@@ -238,7 +238,7 @@
     </message>
     <message>
       <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR RTM&lt;/b&gt;!</source>
-      <translation>警告: ウォレットを暗号化しパスフレーズを紛失した場合、あなたは &lt;b&gt;すべてのRaptoreum&lt;/b&gt;を失います!</translation>
+      <translation>警告: ウォレットを暗号化しパスフレーズを紛失した場合、あなたは &lt;b&gt;すべてのHashmonkeyCoin&lt;/b&gt;を失います!</translation>
     </message>
     <message>
       <source>Are you sure you wish to encrypt your wallet?</source>
@@ -314,12 +314,12 @@
   <context>
     <name>BitcoinGUI</name>
     <message>
-      <source>A fatal error occurred. Raptoreum Core can no longer continue safely and will quit.</source>
-      <translation>重大なエラーが発生しました。 Raptoreum Coreは安全に続行できなくなり終了します。</translation>
+      <source>A fatal error occurred. HashmonkeyCoin Core can no longer continue safely and will quit.</source>
+      <translation>重大なエラーが発生しました。 HashmonkeyCoin Coreは安全に続行できなくなり終了します。</translation>
     </message>
     <message>
-      <source>Raptoreum Core</source>
-      <translation>Raptoreum Core</translation>
+      <source>HashmonkeyCoin Core</source>
+      <translation>HashmonkeyCoin Core</translation>
     </message>
     <message>
       <source>Wallet</source>
@@ -342,16 +342,16 @@
       <translation>送金 (&amp;S)</translation>
     </message>
     <message>
-      <source>Send coins to a Raptoreum address</source>
-      <translation>Raptoreum アドレスに送金</translation>
+      <source>Send coins to a HashmonkeyCoin address</source>
+      <translation>HashmonkeyCoin アドレスに送金</translation>
     </message>
     <message>
       <source>&amp;Receive</source>
       <translation>受取 (&amp;R)</translation>
     </message>
     <message>
-      <source>Request payments (generates QR codes and raptoreum: URIs)</source>
-      <translation>送金を要求 (QRコードとraptoreum:URIを生成)</translation>
+      <source>Request payments (generates QR codes and HashmonkeyCoin: URIs)</source>
+      <translation>送金を要求 (QRコードとHashmonkeyCoin:URIを生成)</translation>
     </message>
     <message>
       <source>&amp;Transactions</source>
@@ -378,8 +378,8 @@
       <translation>アプリケーションを終了</translation>
     </message>
     <message>
-      <source>Show information about Raptoreum Core</source>
-      <translation>Raptoreum Coreについての情報を表示</translation>
+      <source>Show information about HashmonkeyCoin Core</source>
+      <translation>HashmonkeyCoin Coreについての情報を表示</translation>
     </message>
     <message>
       <source>About &amp;Qt</source>
@@ -398,7 +398,7 @@
       <translation>%1 について (&amp;A)</translation>
     </message>
     <message>
-      <source>Send %1 funds to a Raptoreum address</source>
+      <source>Send %1 funds to a HashmonkeyCoin address</source>
       <translation type="unfinished"></translation>
     </message>
     <message>
@@ -454,16 +454,16 @@
       <translation>メッセージの署名… (&amp;M)</translation>
     </message>
     <message>
-      <source>Sign messages with your Raptoreum addresses to prove you own them</source>
-      <translation>あなたがRaptoreum アドレスを所有していることを証明するために、あなたのRaptoreumアドレスでメッセージに署名してください。</translation>
+      <source>Sign messages with your HashmonkeyCoin addresses to prove you own them</source>
+      <translation>あなたがHashmonkeyCoin アドレスを所有していることを証明するために、あなたのHashmonkeyCoinアドレスでメッセージに署名してください。</translation>
     </message>
     <message>
       <source>&amp;Verify message...</source>
       <translation>メッセージの検証… (&amp;V)</translation>
     </message>
     <message>
-      <source>Verify messages to ensure they were signed with specified Raptoreum addresses</source>
-      <translation>指定されたRaptoreumアドレスで署名されたことを確認するためにメッセージを検証してください。</translation>
+      <source>Verify messages to ensure they were signed with specified HashmonkeyCoin addresses</source>
+      <translation>指定されたHashmonkeyCoinアドレスで署名されたことを確認するためにメッセージを検証してください。</translation>
     </message>
     <message>
       <source>&amp;Information</source>
@@ -542,16 +542,16 @@
       <translation>URIを開く… (&amp;U)</translation>
     </message>
     <message>
-      <source>Open a raptoreum: URI or payment request</source>
-      <translation>raptoreum: URIまたは送金リクエストを開く</translation>
+      <source>Open a HashmonkeyCoin: URI or payment request</source>
+      <translation>HashmonkeyCoin: URIまたは送金リクエストを開く</translation>
     </message>
     <message>
       <source>&amp;Command-line options</source>
       <translation>コマンドラインオプション (&amp;C)</translation>
     </message>
     <message>
-      <source>Show the %1 help message to get a list with possible Raptoreum command-line options</source>
-      <translation>有効なRaptoreumのコマンドラインオプションのリストを見るために %1 のヘルプメッセージを表示</translation>
+      <source>Show the %1 help message to get a list with possible HashmonkeyCoin command-line options</source>
+      <translation>有効なHashmonkeyCoinのコマンドラインオプションのリストを見るために %1 のヘルプメッセージを表示</translation>
     </message>
     <message>
       <source>default wallet</source>
@@ -599,7 +599,7 @@
       <translation>タブツールバー</translation>
     </message>
     <message numerus="yes">
-      <source>%n active connection(s) to Raptoreum network</source>
+      <source>%n active connection(s) to HashmonkeyCoin network</source>
       <translation>
         <numerusform>%n アクティブコネクション</numerusform>
       </translation>
@@ -981,8 +981,8 @@
       <translation>送金アドレスを編集</translation>
     </message>
     <message>
-      <source>The entered address "%1" is not a valid Raptoreum address.</source>
-      <translation>入力されたアドレス "%1" は有効なRaptoreumアドレスではありません。</translation>
+      <source>The entered address "%1" is not a valid HashmonkeyCoin address.</source>
+      <translation>入力されたアドレス "%1" は有効なHashmonkeyCoinアドレスではありません。</translation>
     </message>
     <message>
       <source>The entered address "%1" is already in the address book.</source>
@@ -1043,7 +1043,7 @@
       <translation type="unfinished"></translation>
     </message>
     <message>
-      <source>&lt;h3&gt;%1 Basics&lt;/h3&gt; %1 gives you true financial privacy by obscuring the origins of your funds. All the Raptoreum in your wallet is comprised of different "inputs" which you can think of as separate, discrete coins.&lt;br&gt; %1 uses an innovative process to mix your inputs with the inputs of two or more other people, without having your coins ever leave your wallet. You retain control of your money at all times.&lt;hr&gt; &lt;b&gt;The %1 process works like this:&lt;/b&gt;&lt;ol type="1"&gt; &lt;li&gt;%1 begins by breaking your transaction inputs down into standard denominations. These denominations are 0.001 RTM, 0.01 RTM, 0.1 RTM, 1 RTM and 10 RTM -- sort of like the paper money you use every day.&lt;/li&gt; &lt;li&gt;Your wallet then sends requests to specially configured software nodes on the network, called "smartnodes." These smartnodes are informed then that you are interested in mixing a certain denomination. No identifiable information is sent to the smartnodes, so they never know "who" you are.&lt;/li&gt; &lt;li&gt;When two or more other people send similar messages, indicating that they wish to mix the same denomination, a mixing session begins. The smartnode mixes up the inputs and instructs all three users' wallets to pay the now-transformed input back to themselves. Your wallet pays that denomination directly to itself, but in a different address (called a change address).&lt;/li&gt; &lt;li&gt;In order to fully obscure your funds, your wallet must repeat this process a number of times with each denomination. Each time the process is completed, it's called a "round." Each round of %1 makes it exponentially more difficult to determine where your funds originated.&lt;/li&gt; &lt;li&gt;This mixing process happens in the background without any intervention on your part. When you wish to make a transaction, your funds will already be mixed. No additional waiting is required.&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt;&lt;b&gt;IMPORTANT:&lt;/b&gt; Your wallet only contains 1000 of these "change addresses." Every time a mixing event happens, up to 9 of your addresses are used up. This means those 1000 addresses last for about 100 mixing events. When 900 of them are used, your wallet must create more addresses. It can only do this, however, if you have automatic backups enabled.&lt;br&gt; Consequently, users who have backups disabled will also have %1 disabled. &lt;hr&gt;For more information, see the &lt;a style="%2" href="%3"&gt;%1 documentation&lt;/a&gt;.</source>
+      <source>&lt;h3&gt;%1 Basics&lt;/h3&gt; %1 gives you true financial privacy by obscuring the origins of your funds. All the HashmonkeyCoin in your wallet is comprised of different "inputs" which you can think of as separate, discrete coins.&lt;br&gt; %1 uses an innovative process to mix your inputs with the inputs of two or more other people, without having your coins ever leave your wallet. You retain control of your money at all times.&lt;hr&gt; &lt;b&gt;The %1 process works like this:&lt;/b&gt;&lt;ol type="1"&gt; &lt;li&gt;%1 begins by breaking your transaction inputs down into standard denominations. These denominations are 0.001 RTM, 0.01 RTM, 0.1 RTM, 1 RTM and 10 RTM -- sort of like the paper money you use every day.&lt;/li&gt; &lt;li&gt;Your wallet then sends requests to specially configured software nodes on the network, called "smartnodes." These smartnodes are informed then that you are interested in mixing a certain denomination. No identifiable information is sent to the smartnodes, so they never know "who" you are.&lt;/li&gt; &lt;li&gt;When two or more other people send similar messages, indicating that they wish to mix the same denomination, a mixing session begins. The smartnode mixes up the inputs and instructs all three users' wallets to pay the now-transformed input back to themselves. Your wallet pays that denomination directly to itself, but in a different address (called a change address).&lt;/li&gt; &lt;li&gt;In order to fully obscure your funds, your wallet must repeat this process a number of times with each denomination. Each time the process is completed, it's called a "round." Each round of %1 makes it exponentially more difficult to determine where your funds originated.&lt;/li&gt; &lt;li&gt;This mixing process happens in the background without any intervention on your part. When you wish to make a transaction, your funds will already be mixed. No additional waiting is required.&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt;&lt;b&gt;IMPORTANT:&lt;/b&gt; Your wallet only contains 1000 of these "change addresses." Every time a mixing event happens, up to 9 of your addresses are used up. This means those 1000 addresses last for about 100 mixing events. When 900 of them are used, your wallet must create more addresses. It can only do this, however, if you have automatic backups enabled.&lt;br&gt; Consequently, users who have backups disabled will also have %1 disabled. &lt;hr&gt;For more information, see the &lt;a style="%2" href="%3"&gt;%1 documentation&lt;/a&gt;.</source>
       <translation type="unfinished"></translation>
     </message>
   </context>
@@ -1091,8 +1091,8 @@
       <translation>おおむね%1GBのデータがこのディレクトリに保存されます。</translation>
     </message>
     <message>
-      <source>%1 will download and store a copy of the Raptoreum block chain.</source>
-      <translation>%1はRaptoreumのブロックチェーンの複製をダウンロードし保存します。</translation>
+      <source>%1 will download and store a copy of the HashmonkeyCoin block chain.</source>
+      <translation>%1はHashmonkeyCoinのブロックチェーンの複製をダウンロードし保存します。</translation>
     </message>
     <message>
       <source>The wallet will also be stored in this directory.</source>
@@ -1122,12 +1122,12 @@
       <translation>フォーム</translation>
     </message>
     <message>
-      <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Raptoreum network, as detailed below.</source>
-      <translation>確認できない最新のトランザクションがあるかもしれません。これによりウォレットの残高は不正確なものである可能性があります。この情報はウォレットが一度Raptoreumのネットワークへの同期が完了すると正確なものとなります。詳細は下記を参照してください。</translation>
+      <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HashmonkeyCoin network, as detailed below.</source>
+      <translation>確認できない最新のトランザクションがあるかもしれません。これによりウォレットの残高は不正確なものである可能性があります。この情報はウォレットが一度HashmonkeyCoinのネットワークへの同期が完了すると正確なものとなります。詳細は下記を参照してください。</translation>
     </message>
     <message>
-      <source>Attempting to spend Raptoreum that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-      <translation>表示されてないトランザクションに影響を受けたRaptoreumを使用しようとするとネットワークに承認されません。</translation>
+      <source>Attempting to spend HashmonkeyCoin that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+      <translation>表示されてないトランザクションに影響を受けたHashmonkeyCoinを使用しようとするとネットワークに承認されません。</translation>
     </message>
     <message>
       <source>Number of blocks left</source>
@@ -1284,8 +1284,8 @@
       <translation type="unfinished"></translation>
     </message>
     <message>
-      <source>Automatically open the Raptoreum Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-      <translation>自動的にルーターのRaptoreum Core クライアントポートを開放します。これはルーターがUPnP機能をサポートしておりUPnP機能が有効な場合にのみ機能します。</translation>
+      <source>Automatically open the HashmonkeyCoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+      <translation>自動的にルーターのHashmonkeyCoin Core クライアントポートを開放します。これはルーターがUPnP機能をサポートしておりUPnP機能が有効な場合にのみ機能します。</translation>
     </message>
     <message>
       <source>Accept connections from outside.</source>
@@ -1296,8 +1296,8 @@
       <translation type="unfinished"></translation>
     </message>
     <message>
-      <source>Connect to the Raptoreum network through a SOCKS5 proxy.</source>
-      <translation>SOCKS5プロキシ経由でRaptoreumネットワークに接続</translation>
+      <source>Connect to the HashmonkeyCoin network through a SOCKS5 proxy.</source>
+      <translation>SOCKS5プロキシ経由でHashmonkeyCoinネットワークに接続</translation>
     </message>
     <message>
       <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1396,8 +1396,8 @@
       <translation>Tor</translation>
     </message>
     <message>
-      <source>Connect to the Raptoreum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-      <translation>Tor秘匿サービスを利用するため独立なSOCKS5プロキシ経由でRaptoreumネットワークに接続</translation>
+      <source>Connect to the HashmonkeyCoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+      <translation>Tor秘匿サービスを利用するため独立なSOCKS5プロキシ経由でHashmonkeyCoinネットワークに接続</translation>
     </message>
     <message>
       <source>Show only a tray icon after minimizing the window.</source>
@@ -1425,9 +1425,9 @@
     </message>
     <message>
       <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/projects/p/raptoreum/</source>
+https://www.transifex.com/projects/p/HashmonkeyCoin/</source>
       <translation>希望の言語がない場合または翻訳に問題がある場合はこちらで翻訳にご協力ください。:
-https://www.transifex.com/projects/p/raptoreum/</translation>
+https://www.transifex.com/projects/p/HashmonkeyCoin/</translation>
     </message>
     <message>
       <source>&amp;Unit to show amounts in:</source>
@@ -1497,8 +1497,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>フォーム</translation>
     </message>
     <message>
-      <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Raptoreum network after a connection is established, but this process has not completed yet.</source>
-      <translation>表示された情報は古いかもしれません。接続が確立されればあなたのウォレットは Raptoreumネットワークと自動的に同期しますが、このプロセスはまだ完了していません。</translation>
+      <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HashmonkeyCoin network after a connection is established, but this process has not completed yet.</source>
+      <translation>表示された情報は古いかもしれません。接続が確立されればあなたのウォレットは HashmonkeyCoinネットワークと自動的に同期しますが、このプロセスはまだ完了していません。</translation>
     </message>
     <message>
       <source>Available:</source>
@@ -1720,15 +1720,15 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>支払いリクエストのエラー</translation>
     </message>
     <message>
-      <source>Cannot start raptoreum: click-to-pay handler</source>
-      <translation>Raptoreum を起動できません: click-to-pay ハンドラー</translation>
+      <source>Cannot start HashmonkeyCoin: click-to-pay handler</source>
+      <translation>HashmonkeyCoin を起動できません: click-to-pay ハンドラー</translation>
     </message>
     <message>
       <source>URI handling</source>
       <translation>URI のハンドリング</translation>
     </message>
     <message>
-      <source>'raptoreum://' is not a valid URI. Use 'raptoreum:' instead.</source>
+      <source>'HashmonkeyCoin://' is not a valid URI. Use 'HashmonkeyCoin:' instead.</source>
       <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1740,8 +1740,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>支払いのアドレス　%1　は無効です</translation>
     </message>
     <message>
-      <source>URI cannot be parsed! This can be caused by an invalid Raptoreum address or malformed URI parameters.</source>
-      <translation>URI を解析できません! これは無効な Raptoreum アドレスあるいは不正な形式の URI パラメーターによって引き起こされた可能性があります。</translation>
+      <source>URI cannot be parsed! This can be caused by an invalid HashmonkeyCoin address or malformed URI parameters.</source>
+      <translation>URI を解析できません! これは無効な HashmonkeyCoin アドレスあるいは不正な形式の URI パラメーターによって引き起こされた可能性があります。</translation>
     </message>
     <message>
       <source>Payment request file handling</source>
@@ -1886,8 +1886,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>総額</translation>
     </message>
     <message>
-      <source>Enter a Raptoreum address (e.g. %1)</source>
-      <translation>Raptoreumアドレスを入力してください (例 %1)</translation>
+      <source>Enter a HashmonkeyCoin address (e.g. %1)</source>
+      <translation>HashmonkeyCoinアドレスを入力してください (例 %1)</translation>
     </message>
     <message>
       <source>Appearance Setup</source>
@@ -2508,8 +2508,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
   <context>
     <name>ReceiveCoinsDialog</name>
     <message>
-      <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Raptoreum network.</source>
-      <translation>支払いリクエストが開始された時に表示される、支払いリクエストに添付される任意のメッセージです。注意：このメッセージはRaptoreumネットワークを通じて支払いと共に送信されるわけではありません。</translation>
+      <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the HashmonkeyCoin network.</source>
+      <translation>支払いリクエストが開始された時に表示される、支払いリクエストに添付される任意のメッセージです。注意：このメッセージはHashmonkeyCoinネットワークを通じて支払いと共に送信されるわけではありません。</translation>
     </message>
     <message>
       <source>&amp;Message:</source>
@@ -2520,8 +2520,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>新しい受け取り用アドレスに紐づく任意のラベル。</translation>
     </message>
     <message>
-      <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Raptoreum network.</source>
-      <translation>支払いリクエストが開始された時に表示される、支払いリクエストに添付される任意のメッセージです。注意：このメッセージはRaptoreumネットワークを通じて支払いと共に送信されるわけではありません。</translation>
+      <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the HashmonkeyCoin network.</source>
+      <translation>支払いリクエストが開始された時に表示される、支払いリクエストに添付される任意のメッセージです。注意：このメッセージはHashmonkeyCoinネットワークを通じて支払いと共に送信されるわけではありません。</translation>
     </message>
     <message>
       <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -2769,7 +2769,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>カスタマイズされた手数料が1000ruffsに設定され、トランザクションが250 bytesしかなかった場合、キロバイトあたりでは250 ruffsしか手数料を支払いませんが&lt;br /&gt;最低でも1000 ruffs支払います。1キロバイト以上のトランザクションに対しては、1キロバイトあたり1000ruffs支払います。</translation>
     </message>
     <message>
-      <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for raptoreum transactions than the network can process.</source>
+      <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for HashmonkeyCoin transactions than the network can process.</source>
       <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2991,8 +2991,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       </translation>
     </message>
     <message>
-      <source>Warning: Invalid Raptoreum address</source>
-      <translation>警告：Raptoreumアドレスが無効です</translation>
+      <source>Warning: Invalid HashmonkeyCoin address</source>
+      <translation>警告：HashmonkeyCoinアドレスが無効です</translation>
     </message>
     <message>
       <source>Warning: Unknown change address</source>
@@ -3022,8 +3022,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>送り先: (&amp;T)</translation>
     </message>
     <message>
-      <source>The Raptoreum address to send the payment to</source>
-      <translation>送金先Raptoreumアドレス</translation>
+      <source>The HashmonkeyCoin address to send the payment to</source>
+      <translation>送金先HashmonkeyCoinアドレス</translation>
     </message>
     <message>
       <source>Choose previously used address</source>
@@ -3062,8 +3062,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>金額： (&amp;M)</translation>
     </message>
     <message>
-      <source>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of Raptoreum than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-      <translation>手数料は総額から差し引かれます。受取人は入力した金額より少ないRaptoreumを受け取ります。複数の受取人を選択した場合、手数料は等しく分割されます。</translation>
+      <source>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of HashmonkeyCoin than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+      <translation>手数料は総額から差し引かれます。受取人は入力した金額より少ないHashmonkeyCoinを受け取ります。複数の受取人を選択した場合、手数料は等しく分割されます。</translation>
     </message>
     <message>
       <source>S&amp;ubtract fee from amount</source>
@@ -3078,8 +3078,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>メッセージ：</translation>
     </message>
     <message>
-      <source>A message that was attached to the raptoreum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Raptoreum network.</source>
-      <translation>Raptoreum: URIに添付されていたメッセージです。これは参照用としてトランザクションとともに保存されます。注意：このメッセージはRaptoreumネットワークを経由して送信されるわけではありません。</translation>
+      <source>A message that was attached to the HashmonkeyCoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HashmonkeyCoin network.</source>
+      <translation>HashmonkeyCoin: URIに添付されていたメッセージです。これは参照用としてトランザクションとともに保存されます。注意：このメッセージはHashmonkeyCoinネットワークを経由して送信されるわけではありません。</translation>
     </message>
     <message>
       <source>Future</source>
@@ -3155,12 +3155,12 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>メッセージの署名 (&amp;S)</translation>
     </message>
     <message>
-      <source>You can sign messages/agreements with your addresses to prove you can receive Raptoreum sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-      <translation>あなたのアドレスを使用してあなたがRaptoreumを受け取ることができるようにメッセージやアグリーメントに署名できます。充分に詳細が判明していてあなたが確認しているものだけに署名してください。フィッシングによってあなたの署名を読み取られないように注意してください。</translation>
+      <source>You can sign messages/agreements with your addresses to prove you can receive HashmonkeyCoin sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+      <translation>あなたのアドレスを使用してあなたがHashmonkeyCoinを受け取ることができるようにメッセージやアグリーメントに署名できます。充分に詳細が判明していてあなたが確認しているものだけに署名してください。フィッシングによってあなたの署名を読み取られないように注意してください。</translation>
     </message>
     <message>
-      <source>The Raptoreum address to sign the message with</source>
-      <translation>メッセージを署名する際に使用するRaptoreumアドレス</translation>
+      <source>The HashmonkeyCoin address to sign the message with</source>
+      <translation>メッセージを署名する際に使用するHashmonkeyCoinアドレス</translation>
     </message>
     <message>
       <source>Choose previously used address</source>
@@ -3191,8 +3191,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>現在の署名をシステムのクリップボードにコピー</translation>
     </message>
     <message>
-      <source>Sign the message to prove you own this Raptoreum address</source>
-      <translation>この Raptoreum アドレスを所有していることを証明するためにメッセージに署名</translation>
+      <source>Sign the message to prove you own this HashmonkeyCoin address</source>
+      <translation>この HashmonkeyCoin アドレスを所有していることを証明するためにメッセージに署名</translation>
     </message>
     <message>
       <source>Sign &amp;Message</source>
@@ -3215,12 +3215,12 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
       <translation>受取人のアドレスとメッセージ（改行やスペース、タブなども完全に一致するよう注意してください）および署名を以下に入力し、メッセージを検証してください。中間者攻撃により騙されるのを防ぐため、署名対象のメッセージに書かれていること以上の意味を署名から読み取ろうとしないよう注意してください。これは署名作成者がこのアドレスで受け取ることを証明するだけであり、トランザクションの送信者を証明するものではないことに注意してください！</translation>
     </message>
     <message>
-      <source>The Raptoreum address the message was signed with</source>
-      <translation>メッセージの署名に使用されたRaptoreumアドレス</translation>
+      <source>The HashmonkeyCoin address the message was signed with</source>
+      <translation>メッセージの署名に使用されたHashmonkeyCoinアドレス</translation>
     </message>
     <message>
-      <source>Verify the message to ensure it was signed with the specified Raptoreum address</source>
-      <translation>指定されたRaptoreumアドレスで署名されたことを確認するためメッセージを検証</translation>
+      <source>Verify the message to ensure it was signed with the specified HashmonkeyCoin address</source>
+      <translation>指定されたHashmonkeyCoinアドレスで署名されたことを確認するためメッセージを検証</translation>
     </message>
     <message>
       <source>Verify &amp;Message</source>
@@ -4099,10 +4099,10 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
   </context>
   <context>
-    <name>raptoreum-core</name>
+    <name>HashmonkeyCoin-core</name>
     <message>
-      <source>Raptoreum Core</source>
-      <translation>Raptoreumコア</translation>
+      <source>HashmonkeyCoin Core</source>
+      <translation>HashmonkeyCoinコア</translation>
     </message>
     <message>
       <source>The %s developers</source>

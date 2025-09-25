@@ -2,7 +2,7 @@
 # Copyright (c) 2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test raptoreum-wallet."""
+"""Test hashmonkeycoin-wallet."""
 import subprocess
 import textwrap
 
@@ -18,7 +18,7 @@ class ToolWalletTest(BitcoinTestFramework):
         self.skip_if_no_wallet()
 
     def raptoreum_wallet_process(self, *args):
-        binary = self.config["environment"]["BUILDDIR"] + '/src/raptoreum-wallet' + self.config["environment"]["EXEEXT"]
+        binary = self.config["environment"]["BUILDDIR"] + '/src/hashmonkeycoin-wallet' + self.config["environment"]["EXEEXT"]
         args = ['-datadir={}'.format(self.nodes[0].datadir), '-regtest'] + list(args)
         return subprocess.Popen([binary] + args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
@@ -39,7 +39,7 @@ class ToolWalletTest(BitcoinTestFramework):
     def run_test(self):
 
         self.assert_raises_tool_error('Invalid command: foo', 'foo')
-        # `raptoreum-wallet help` is an error. Use `raptoreum-wallet -help`
+        # `hashmonkeycoin-wallet help` is an error. Use `hashmonkeycoin-wallet -help`
         self.assert_raises_tool_error('Invalid command: help', 'help')
         self.assert_raises_tool_error('Error: two methods provided (info and create). Only one method should be provided.', 'info', 'create')
         self.assert_raises_tool_error('Error parsing command line arguments: Invalid parameter -foo', '-foo')

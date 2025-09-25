@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <fs.h>
@@ -228,8 +228,8 @@ bool Intro::pickDataDirectory(interfaces::Node &node) {
         settings.setValue("strDataDirDefault", dataDirDefaultCurrent);
     }
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the raptoreum.conf file in the default data directory
-     * (to be consistent with raptoreumd behavior)
+     * override -datadir in the hashmonkeycoin.conf file in the default data directory
+     * (to be consistent with hashmonkeycoind behavior)
      */
     if (dataDir != GUIUtil::getDefaultDataDirectory()) {
         node.softSetArg("-datadir", GUIUtil::qstringToBoostPath(dataDir).string()); // use OS locale for path setting

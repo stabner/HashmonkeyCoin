@@ -28,7 +28,7 @@ QList <BitcoinUnits::Unit> BitcoinUnits::availableUnits() {
 
 bool BitcoinUnits::valid(int unit) {
     switch (unit) {
-        case RTM:
+        case HMNY:
         case mRTM:
         case uRTM:
         case ruffs:
@@ -41,7 +41,7 @@ bool BitcoinUnits::valid(int unit) {
 QString BitcoinUnits::name(int unit) {
     if (Params().NetworkIDString() == CBaseChainParams::MAIN) {
         switch (unit) {
-            case RTM:
+            case HMNY:
                 return QString("RTM");
             case mRTM:
                 return QString("mRTM");
@@ -54,7 +54,7 @@ QString BitcoinUnits::name(int unit) {
         }
     } else {
         switch (unit) {
-            case RTM:
+            case HMNY:
                 return QString("tRTM");
             case mRTM:
                 return QString("mtRTM");
@@ -71,7 +71,7 @@ QString BitcoinUnits::name(int unit) {
 QString BitcoinUnits::description(int unit) {
     if (Params().NetworkIDString() == CBaseChainParams::MAIN) {
         switch (unit) {
-            case RTM:
+            case HMNY:
                 return QString("Raptoreum");
             case mRTM:
                 return QString("Milli-Raptoreum (1 / 1"
@@ -94,7 +94,7 @@ QString BitcoinUnits::description(int unit) {
         }
     } else {
         switch (unit) {
-            case RTM:
+            case HMNY:
                 return QString("TestRaptoreums");
             case mRTM:
                 return QString("Milli-TestRaptoreum (1 / 1"
@@ -120,7 +120,7 @@ QString BitcoinUnits::description(int unit) {
 
 qint64 BitcoinUnits::factor(int unit) {
     switch (unit) {
-        case RTM:
+        case HMNY:
             return 100000000;
         case mRTM:
             return 100000;
@@ -135,7 +135,7 @@ qint64 BitcoinUnits::factor(int unit) {
 
 int BitcoinUnits::decimals(int unit) {
     switch (unit) {
-        case RTM:
+        case HMNY:
             return 8;
         case mRTM:
             return 5;

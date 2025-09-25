@@ -16,7 +16,7 @@ This file contains specific, actionable tasks that CursorAI can execute to imple
 Raptoreum → HashmonkeyCoin
 raptoreum → hashmonkeycoin
 RTM → HMNY
-Raptoreum.conf → HashmonkeyCoin.conf
+hashmonkeycoin.conf → HashmonkeyCoin.conf
 ```
 
 **Files to focus on**:

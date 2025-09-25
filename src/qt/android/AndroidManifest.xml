@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.raptoreum.qt">
+    package="com.HashmonkeyCoin.qt">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -10,11 +10,11 @@
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
-    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="Raptoreum">
+    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="HashmonkeyCoin">
         <activity android:configChanges="orientation|keyboardHidden"
-                  android:name="com.raptoreum.qt.RaptoreumQtActivity"
-                  android:label="Raptoreum"
-                  android:icon="@drawable/raptoreum"
+                  android:name="com.HashmonkeyCoin.qt.HashmonkeyCoinQtActivity"
+                  android:label="HashmonkeyCoin"
+                  android:icon="@drawable/HashmonkeyCoin"
                   android:screenOrientation="unspecified"
                   android:launchMode="singleTask">
             <intent-filter>
@@ -23,7 +23,7 @@
             </intent-filter>
 
             <meta-data android:name="android.app.arguments" android:value=""/>
-            <meta-data android:name="android.app.lib_name" android:value="raptoreum-qt"/>
+            <meta-data android:name="android.app.lib_name" android:value="HashmonkeyCoin-qt"/>
             <meta-data android:name="android.app.repository" android:value="default"/>
             <meta-data android:name="android.app.bundle_local_qt_libs" android:value="1"/>
             <meta-data android:name="android.app.use_local_qt_libs" android:value="1"/>

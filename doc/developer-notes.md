@@ -21,7 +21,7 @@ Developer Notes
     - [Threads](#threads)
     - [Ignoring IDE/editor files](#ignoring-ideeditor-files)
 - [Development guidelines](#development-guidelines)
-    - [General Raptoreum Core](#general-raptoreum-core)
+    - [General HashmonkeyCoin Core](#general-raptoreum-core)
     - [Wallet](#wallet)
     - [General C++](#general-c)
     - [C++ data structures](#c-data-structures)
@@ -226,7 +226,7 @@ that run in `-regtest` mode.
 
 ### DEBUG_LOCKORDER
 
-Raptoreum Core is a multi-threaded application, and deadlocks or other
+HashmonkeyCoin Core is a multi-threaded application, and deadlocks or other
 multi-threading bugs can be very difficult to track down. The `--enable-debug`
 configure option adds `-DDEBUG_LOCKORDER` to the compiler flags. This inserts
 run-time checks to keep track of which locks are held, and adds warnings to the
@@ -244,7 +244,7 @@ in-tree. Example use:
 $ valgrind --suppressions=contrib/valgrind.supp src/test/test_raptoreum
 $ valgrind --suppressions=contrib/valgrind.supp --leak-check=full \
       --show-leak-kinds=all src/test/test_raptoreu --log_level=test_suite
-$ valgrind -v --leak-check=full src/raptoreumd -printtoconsole
+$ valgrind -v --leak-check=full src/hashmonkeycoind -printtoconsole
 ```
 
 ### Compiling for test coverage
@@ -265,7 +265,7 @@ make cov
 
 **Sanitizers**
 
-Raptoreum Core can be compiled with various "sanitizers" enabled, which add
+HashmonkeyCoin Core can be compiled with various "sanitizers" enabled, which add
 instrumentation for issues regarding things like memory safety, thread race
 conditions, or undefined behavior. This is controlled with the
 `--with-sanitizers` configure flag, which should be a comma separated list of
@@ -295,7 +295,7 @@ in-tree. Example use:
 $ valgrind --suppressions=contrib/valgrind.supp src/test/test_raptoreum
 $ valgrind --suppressions=contrib/valgrind.supp --leak-check=full \
       --show-leak-kinds=all src/test/test_raptoreum --log_level=test_suite
-$ valgrind -v --leak-check=full src/raptoreumd -printtoconsole
+$ valgrind -v --leak-check=full src/hashmonkeycoind -printtoconsole
 ```
 
 **compiling for test coverage**
@@ -377,7 +377,7 @@ Ignoring IDE/editor files
 In closed-source environments in which everyone uses the same IDE it is common
 to add temporary files it produces to the project-wide `.gitignore` file.
 
-However, in open source software such as Raptoreum Core, where everyone uses
+However, in open source software such as HashmonkeyCoin Core, where everyone uses
 their own editors/IDE/tools, it is less common. Only you know what files your
 editor produces and this may change from version to version. The canonical way
 to do this is thus to create your local gitignore. Add this to `~/.gitconfig`:
@@ -407,9 +407,9 @@ Development guidelines
 ============================
 
 A few non-style-related recommendations for developers, as well as points to
-pay attention to for reviewers of Raptoreum Core code.
+pay attention to for reviewers of HashmonkeyCoin Core code.
 
-General Raptoreum Core
+General HashmonkeyCoin Core
 ----------------------
 
 - New features should be exposed on RPC first, then can be made available in the GUI
@@ -579,7 +579,7 @@ Strings and formatting
 
 - For `strprintf`, `LogPrint`, `LogPrintf` formatting characters don't need size specifiers
 
-  - *Rationale*: Raptoreum Core uses tinyformat, which is type safe. Leave them out to avoid confusion
+  - *Rationale*: HashmonkeyCoin Core uses tinyformat, which is type safe. Leave them out to avoid confusion
 
 Variable names
 --------------
@@ -725,7 +725,7 @@ directly upstream without being PRed directly against the project.  They will be
 subtree merge.
 
 Others are external projects without a tight relationship with our project.  Changes to these should also
-be sent upstream but bugfixes may also be prudent to PR against Raptoreum Core so that they can be integrated
+be sent upstream but bugfixes may also be prudent to PR against HashmonkeyCoin Core so that they can be integrated
 quickly.  Cosmetic changes should be purely taken upstream.
 
 There is a tool in `test/lint/git-subtree-check.sh` to check a subtree directory for consistency with
@@ -773,7 +773,7 @@ In addition to reviewing the upstream changes in `env_posix.cc`, you can use `ls
 check this. For example, on Linux this command will show open `.ldb` file counts:
 
 ```bash
-$ lsof -p $(pidof raptoreumd) |\
+$ lsof -p $(pidof hashmonkeycoind) |\
     awk 'BEGIN { fd=0; mem=0; } /ldb$/ { if ($4 == "mem") mem++; else fd++ } END { printf "mem = %s, fd = %s\n", mem, fd}'
 mem = 119, fd = 0
 ```
@@ -907,7 +907,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 - Try not to overload methods on argument type. E.g. don't make `getblock(true)` and `getblock("hash")`
   do different things.
 
-  - *Rationale*: This is impossible to use with `raptoreum-cli`, and can be surprising to users.
+  - *Rationale*: This is impossible to use with `hashmonkeycoin-cli`, and can be surprising to users.
 
   - *Exception*: Some RPC calls can take both an `int` and `bool`, most notably when a bool was switched
     to a multi-value, or due to other historical reasons. **Always** have false map to 0 and
@@ -926,7 +926,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 
 - Add every non-string RPC argument `(method, idx, name)` to the table `vRPCConvertParams` in `rpc/client.cpp`.
 
-  - *Rationale*: `raptoreum-cli` and the GUI debug console use this table to determine how to
+  - *Rationale*: `hashmonkeycoin-cli` and the GUI debug console use this table to determine how to
     convert a plaintext command line to JSON. If the types don't match, the method can be unusable
     from there.
 
@@ -948,7 +948,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
   RPCs whose behavior does *not* depend on the current chainstate may omit this
   call.
 
-  - *Rationale*: In previous versions of Raptoreum Core, the wallet was always
+  - *Rationale*: In previous versions of HashmonkeyCoin Core, the wallet was always
     in-sync with the chainstate (by virtue of them all being updated in the
     same cs_main lock). In order to maintain the behavior that wallet RPCs
     return results as of at least the highest best-known block an RPC

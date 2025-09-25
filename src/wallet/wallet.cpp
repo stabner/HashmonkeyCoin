@@ -3225,7 +3225,7 @@ void CWallet::AvailableCoins(std::vector <COutput> &vCoins, std::map <std::strin
             if (fGetRTM) {
                 if (fRTMLimitHit) // We hit our limit
                     continue;
-                // We only want RTM OutPoints. Don't include Asset OutPoints
+                // We only want HMNY OutPoints. Don't include Asset OutPoints
                 if (isAssetScript)
                     continue;
 

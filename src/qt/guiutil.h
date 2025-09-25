@@ -214,7 +214,7 @@ namespace GUIUtil {
     // Open debug.log
     void openDebugLogfile();
 
-    // Open raptoreum.conf
+    // Open hashmonkeycoin.conf
     void openConfigfile();
 
     // Browse backup folder

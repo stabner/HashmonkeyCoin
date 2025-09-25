@@ -1,4 +1,4 @@
-Raptoreum Core version 0.12.2
+HashmonkeyCoin Core version 0.12.2
 ========================
 
 Release is now available from:
@@ -19,8 +19,8 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over /Applications/Raptoreum-Qt (on Mac) or
-raptoreumd/raptoreum-qt (on Linux).
+installer (on Windows) or just copy over /Applications/hashmonkeycoin-qt (on Mac) or
+hashmonkeycoind/hashmonkeycoin-qt (on Linux).
 
 Downgrade warning
 -----------------
@@ -78,7 +78,7 @@ New: `assumevalid`, `blocksonly`, `reindex-chainstate`
 
 Experimental: `usehd`, `mnemonic`, `mnemonicpassphrase`, `hdseed`
 
-See `Help -> Command-line options` in Qt wallet or `raptoreumd --help` for more info.
+See `Help -> Command-line options` in Qt wallet or `hashmonkeycoind --help` for more info.
 
 PrivateSend improvements
 ------------------------
@@ -106,7 +106,7 @@ Detailed [change log](https://github.com/raptor3um/raptoreum/compare/v0.12.1.x..
 
 ### Backports:
 - [`ff30aed68`](https://github.com/raptor3um/raptoreum/commit/ff30aed68) Align with btc 0.12 (#1409)
-- [`9901cf433`](https://github.com/raptor3um/raptoreum/commit/9901cf433) Fix for raptoreum-qt issue with startup and multiple monitors. (#1461)
+- [`9901cf433`](https://github.com/raptor3um/raptoreum/commit/9901cf433) Fix for hashmonkeycoin-qt issue with startup and multiple monitors. (#1461)
 - [`39750439b`](https://github.com/raptor3um/raptoreum/commit/39750439b) Force to use C++11 mode for compilation (#1463)
 - [`e30faab6f`](https://github.com/raptor3um/raptoreum/commit/e30faab6f) Make strWalletFile const (#1459)
 - [`c4fe22900`](https://github.com/raptor3um/raptoreum/commit/c4fe22900) Access WorkQueue::running only within the cs lock. (#1460)
@@ -391,12 +391,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Raptoreum Core tree 0.11.x was a fork of Bitcoin Core tree 0.9, Darkcoin was rebranded
+HashmonkeyCoin Core tree 0.11.x was a fork of Bitcoin Core tree 0.9, Darkcoin was rebranded
 to Raptoreum.
 
-Raptoreum Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+HashmonkeyCoin Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Raptoreum Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+HashmonkeyCoin Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old changelogs can be found here:
 

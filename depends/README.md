@@ -85,7 +85,7 @@ The following can be set when running make: `make FOO=bar`
    release of Clang from llvm.org. Clang 8 or later is required.
 
 If some packages are not built, for example `make NO_WALLET=1`, the appropriate
-options will be passed to Raptoreum Core's configure. In this case, `--disable-wallet`.
+options will be passed to HashmonkeyCoin Core's configure. In this case, `--disable-wallet`.
 
 Additional targets:
 

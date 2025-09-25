@@ -292,7 +292,7 @@ bool BerkeleyDatabase::Verify(std::string &errorStr) {
         int result = db.verify(strFile.c_str(), nullptr, nullptr, 0);
         if (result != 0) {
             errorStr = strprintf(
-                    _("%s corrupt. Try using the wallet tool raptoreum-wallet to salvage or restoring a backup."),
+                    _("%s corrupt. Try using the wallet tool hashmonkeycoin-wallet to salvage or restoring a backup."),
                     file_path);
             return false;
         }

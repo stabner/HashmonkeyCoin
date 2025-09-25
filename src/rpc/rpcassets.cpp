@@ -619,7 +619,7 @@ UniValue sendasset(const JSONRPCRequest &request) {
                 "1. \"asset_id\"                (string, required) asset hash id or asset name\n"
                 "2. \"qty\"                     (numeric, required) number of assets you want to send to the address\n"
                 "3. \"to_address\"              (string, required) address to send the asset to\n"
-                "4. \"change_address\"          (string, optional, default = \"\") the transactions RTM change will be sent to this address\n"
+                "4. \"change_address\"          (string, optional, default = \"\") the transactions HMNY change will be sent to this address\n"
                 "5. \"asset_change_address\"    (string, optional, default = \"\") the transactions Asset change will be sent to this address\n"
 
                 "\nResult:\n"
@@ -644,7 +644,7 @@ UniValue sendasset(const JSONRPCRequest &request) {
     CAmount curBalance = pwallet->GetBalance().m_mine_trusted;
     if (curBalance == 0) {
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS,
-                           "Error: This wallet doesn't contain any RTM, transfering an asset requires a network fee");
+                           "Error: This wallet doesn't contain any HMNY, transfering an asset requires a network fee");
     }
 
     // get asset metadadta
@@ -884,7 +884,7 @@ UniValue listunspentassets(const JSONRPCRequest& request)
             "    \"vout\" : n,               (numeric) the vout value\n"
             "    \"address\" : \"address\",    (string) the raptoreum address\n"
             "    \"label\" : \"label\",        (string) The associated label, or \"\" for the default label\n"
-            "    \"account\" : \"account\",    (string) DEPRECATED. This field will be removed in V0.18. To see this deprecated field, start raptoreumd with -deprecatedrpc=accounts. The associated account, or \"\" for the default account\n"
+            "    \"account\" : \"account\",    (string) DEPRECATED. This field will be removed in V0.18. To see this deprecated field, start hashmonkeycoind with -deprecatedrpc=accounts. The associated account, or \"\" for the default account\n"
             "    \"scriptPubKey\" : \"key\",   (string) the script key\n"
             "    \"amount\" : x.xxx,         (numeric) the transaction output amount in " + CURRENCY_UNIT + "\n"
             "    \"confirmations\" : n,      (numeric) The number of confirmations\n"

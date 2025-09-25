@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <qt/sendcoinsentry.h>
@@ -131,7 +131,7 @@ void SendCoinsEntry::futureToggleChanged() {
     bool isFuture = ui->futureCb->isChecked();
     if (isFuture) {
         char feeDisplay[18];
-        sprintf(feeDisplay, "%d RTM", getFutureFees());
+        sprintf(feeDisplay, "%d HMNY", getFutureFees());
         ui->feeDisplay->setText(feeDisplay);
     }
     ui->maturityLb->setVisible(isFuture);

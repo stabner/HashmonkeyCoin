@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <qt/utilitydialog.h>
@@ -62,7 +62,7 @@ HelpMessageDialog::HelpMessageDialog(interfaces::Node &node, QWidget *parent, He
         ui->helpMessage->setVisible(false);
     } else if (helpMode == cmdline) {
         setWindowTitle(tr("Command-line options"));
-        QString header = "Usage: raptoreum-qt [command-line options]                     \n";
+        QString header = "Usage: hashmonkeycoin-qt [command-line options]                     \n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();
@@ -120,7 +120,7 @@ You retain control of your money at all times.<hr> \
 <b>The %1 process works like this:</b>\
 <ol type=\"1\"> \
 <li>%1 begins by breaking your transaction inputs down into standard denominations. \
-These denominations are 0.001 RTM, 0.01 RTM, 0.1 RTM, 1 RTM and 10 RTM -- sort of like the paper money you use every day.</li> \
+These denominations are 0.001 HMNY, 0.01 HMNY, 0.1 HMNY, 1 HMNY and 10 HMNY -- sort of like the paper money you use every day.</li> \
 <li>Your wallet then sends requests to specially configured software nodes on the network, called \"smartnodes.\" \
 These smartnodes are informed then that you are interested in mixing a certain denomination. \
 No identifiable information is sent to the smartnodes, so they never know \"who\" you are.</li> \

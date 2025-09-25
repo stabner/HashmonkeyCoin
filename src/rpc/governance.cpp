@@ -420,7 +420,7 @@ static UniValue gobject_submit(const JSONRPCRequest &request) {
 
 void gobject_vote_conf_help(const JSONRPCRequest &request) {
     RPCHelpMan{"gobject vote-conf",
-               "Vote on a governance object by smartnode configured in raptoreum.conf\n",
+               "Vote on a governance object by smartnode configured in hashmonkeycoin.conf\n",
                {
                        {"governance-hash", RPCArg::Type::STR_HEX, RPCArg::Optional::NO,
                         "hash of the governance object"},
@@ -481,7 +481,7 @@ static UniValue gobject_vote_conf(const JSONRPCRequest &request) {
         nFailed++;
         statusObj.pushKV("result", "failed");
         statusObj.pushKV("errorMessage", "Can't find smartnode by collateral output");
-        resultsObj.pushKV("raptoreum.conf", statusObj);
+        resultsObj.pushKV("hashmonkeycoin.conf", statusObj);
         returnObj.pushKV("overall",
                          strprintf("Voted successfully %d time(s) and failed %d time(s).", nSuccessful, nFailed));
         returnObj.pushKV("detail", resultsObj);
@@ -506,7 +506,7 @@ static UniValue gobject_vote_conf(const JSONRPCRequest &request) {
         nFailed++;
         statusObj.pushKV("result", "failed");
         statusObj.pushKV("errorMessage", "Failure to sign.");
-        resultsObj.pushKV("raptoreum.conf", statusObj);
+        resultsObj.pushKV("hashmonkeycoin.conf", statusObj);
         returnObj.pushKV("overall",
                          strprintf("Voted successfully %d time(s) and failed %d time(s).", nSuccessful, nFailed));
         returnObj.pushKV("detail", resultsObj);
@@ -524,7 +524,7 @@ static UniValue gobject_vote_conf(const JSONRPCRequest &request) {
         statusObj.pushKV("errorMessage", exception.GetMessage());
     }
 
-    resultsObj.pushKV("raptoreum.conf", statusObj);
+    resultsObj.pushKV("hashmonkeycoin.conf", statusObj);
 
     returnObj.pushKV("overall",
                      strprintf("Voted successfully %d time(s) and failed %d time(s).", nSuccessful, nFailed));
@@ -999,7 +999,7 @@ static UniValue gobject_getcurrentvotes(const JSONRPCRequest &request) {
                #ifdef ENABLE_WALLET
                "  vote-alias         - Vote on a governance object by smartnode proTxHash\n"
                #endif // ENABLE_WALLET
-               "  vote-conf          - Vote on a governance object by smartnode configured in raptoreum.conf\n"
+               "  vote-conf          - Vote on a governance object by smartnode configured in hashmonkeycoin.conf\n"
 #ifdef ENABLE_WALLET
             "  vote-many          - Vote on a governance object by all smartnodes for which the voting key is in the wallet\n"
 #endif // ENABLE_WALLET

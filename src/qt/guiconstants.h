@@ -49,9 +49,9 @@ static const int MAX_URI_LENGTH = 255;
 
 #define QAPP_ORG_NAME "Raptoreum"
 #define QAPP_ORG_DOMAIN "raptoreum.com"
-#define QAPP_APP_NAME_DEFAULT "Raptoreum-Qt"
-#define QAPP_APP_NAME_TESTNET "Raptoreum-Qt-testnet"
-#define QAPP_APP_NAME_DEVNET "Raptoreum-Qt-%s"
-#define QAPP_APP_NAME_REGTEST "Raptoreum-Qt-regtest"
+#define QAPP_APP_NAME_DEFAULT "hashmonkeycoin-qt"
+#define QAPP_APP_NAME_TESTNET "hashmonkeycoin-qt-testnet"
+#define QAPP_APP_NAME_DEVNET "hashmonkeycoin-qt-%s"
+#define QAPP_APP_NAME_REGTEST "hashmonkeycoin-qt-regtest"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

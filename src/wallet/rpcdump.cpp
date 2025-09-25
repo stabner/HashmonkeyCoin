@@ -924,7 +924,7 @@ UniValue dumpwallet(const JSONRPCRequest &request) {
                "only backing up the seed itself, and must be backed up too (e.g. ensure you back up the whole dumpfile).\n",
                {
                        {"filename", RPCArg::Type::STR, RPCArg::Optional::NO,
-                        "The filename with path (either absolute or relative to raptoreumd)"},
+                        "The filename with path (either absolute or relative to hashmonkeycoind)"},
                },
                RPCResult{
                        RPCResult::Type::OBJ, "", "",
@@ -985,7 +985,7 @@ UniValue dumpwallet(const JSONRPCRequest &request) {
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
 
     // produce output
-    file << strprintf("# Wallet dump created by Raptoreum Core %s\n", CLIENT_BUILD);
+    file << strprintf("# Wallet dump created by HashmonkeyCoin Core %s\n", CLIENT_BUILD);
     file << strprintf("# * Created on %s\n", FormatISO8601DateTime(GetTime()));
     const Optional<int> tip_height = pwallet->chain().getHeight();
     file << strprintf("# * Best block at time of backup was %i (%s),\n", tip_height.value_or(-1),
@@ -1706,7 +1706,7 @@ UniValue importmulti(const JSONRPCRequest &mainRequest) {
                                             "block from time %d, which is after or within %d seconds of key creation, and "
                                             "could contain transactions pertaining to the key. As a result, transactions "
                                             "and coins using this key may not appear in the wallet. This error could be "
-                                            "caused by pruning or data corruption (see raptoreumd log for details) and could "
+                                            "caused by pruning or data corruption (see hashmonkeycoind log for details) and could "
                                             "be dealt with by downloading and rescanning the relevant blocks (see -reindex "
                                             "and -rescan options).",
                                             GetImportTimestamp(request, now), scannedTime - TIMESTAMP_WINDOW - 1,

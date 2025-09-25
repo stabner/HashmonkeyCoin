@@ -46,7 +46,7 @@ ModalOverlay::ModalOverlay(bool enable_wallet, QWidget *parent) :
     if (!enable_wallet) {
         ui->infoText->setVisible(false);
         ui->infoTextStrong->setText(
-                tr("Raptoreum Core is currently syncing. It will download headers at first and then blocks from peers and validate them until reaching latest block mined at chain."));
+                tr("HashmonkeyCoin Core is currently syncing. It will download headers at first and then blocks from peers and validate them until reaching latest block mined at chain."));
     }
 }
 

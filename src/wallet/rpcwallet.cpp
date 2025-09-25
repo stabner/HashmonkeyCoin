@@ -346,7 +346,7 @@ UniValue sendtoaddress(const JSONRPCRequest &request) {
                         "                             transaction, just kept in your wallet."},
                        {"subtractfeefromamount", RPCArg::Type::BOOL, /* default */ "false",
                         "The fee will be deducted from the amount being sent.\n"
-                        "                             The recipient will receive less amount of RTM than you enter in the amount field."},
+                        "                             The recipient will receive less amount of HMNY than you enter in the amount field."},
                        {"use_is", RPCArg::Type::BOOL, /* default */ "false", "Deprecated and ignored"},
                        {"use_cj", RPCArg::Type::BOOL, /* default */ "false", "Use CoinJoin funds only"},
                        {"conf_target", RPCArg::Type::NUM, /* default */ "fallback to wallet's default",
@@ -858,7 +858,7 @@ UniValue sendmany(const JSONRPCRequest &request) {
                        {"subtractfeefrom", RPCArg::Type::ARR, RPCArg::Optional::OMITTED_NAMED_ARG,
                         "A json array with addresses.\n"
                         "                           The fee will be equally deducted from the amount of each selected address.\n"
-                        "                           Those recipients will receive less RTMs than you enter in their corresponding amount field.\n"
+                        "                           Those recipients will receive less HMNYs than you enter in their corresponding amount field.\n"
                         "                           If no addresses are specified here, the sender pays the fee.",
                         {
                                 {"address", RPCArg::Type::STR, RPCArg::Optional::OMITTED,
@@ -2972,7 +2972,7 @@ UniValue upgradetohd(const JSONRPCRequest &request) {
 static UniValue loadwallet(const JSONRPCRequest &request) {
     RPCHelpMan{"loadwallet",
                "\nLoads a wallet from a wallet file or directory."
-               "\nNote that all wallet command-line options used when starting raptoreumd will be"
+               "\nNote that all wallet command-line options used when starting hashmonkeycoind will be"
                "\napplied to the new wallet (eg -upgradewallet, rescan, etc).\n",
                {
                        {"filename", RPCArg::Type::STR, RPCArg::Optional::NO, "The wallet directory or .dat file."},
@@ -3486,7 +3486,7 @@ static UniValue fundrawtransaction(const JSONRPCRequest &request) {
                                 {"subtractFeeFromOutputs", RPCArg::Type::ARR, /* default */ "empty array",
                                  "A json array of integers.\n"
                                  "                              The fee will be equally deducted from the amount of each specified output.\n"
-                                 "                              Those recipients will receive less RTM than you enter in their corresponding amount field.\n"
+                                 "                              Those recipients will receive less HMNY than you enter in their corresponding amount field.\n"
                                  "                              If no outputs are specified here, the sender pays the fee.",
                                  {
                                          {"vout_index", RPCArg::Type::NUM, RPCArg::Optional::OMITTED,

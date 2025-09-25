@@ -276,14 +276,14 @@ bool CScript::IsAssetScript(int &nIndex) const {
     if (this->size() > 31) {
         if ((*this)[25] == OP_ASSET_ID) { // OP_RTM_ASSET is always in the 25 index of the script if it exists
             nIndex = -1;
-            if ((*this)[27] == RTM_R) { // Check to see if RTM starts at 27 ( this->size() < 105)
-                if ((*this)[28] == RTM_T)
-                    if ((*this)[29] == RTM_M)
+            if ((*this)[27] == HMNY_R) { // Check to see if HMNY starts at 27 ( this->size() < 105)
+                if ((*this)[28] == HMNY_T)
+                    if ((*this)[29] == HMNY_M)
                         nIndex = 30;
             } else {
-                if ((*this)[28] == RTM_R) // Check to see if RTM starts at 28 ( this->size() >= 105)
-                    if ((*this)[29] == RTM_T)
-                        if ((*this)[30] == RTM_M)
+                if ((*this)[28] == HMNY_R) // Check to see if HMNY starts at 28 ( this->size() >= 105)
+                    if ((*this)[29] == HMNY_T)
+                        if ((*this)[30] == HMNY_M)
                             nIndex = 31;
             }
             if (nIndex > 0) {

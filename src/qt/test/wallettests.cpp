@@ -105,9 +105,9 @@ namespace {
 //
 // This also requires overriding the default minimal Qt platform:
 //
-//     QT_QPA_PLATFORM=xcb     src/qt/test/test_raptoreum-qt  # Linux
-//     QT_QPA_PLATFORM=windows src/qt/test/test_raptoreum-qt  # Windows
-//     QT_QPA_PLATFORM=cocoa   src/qt/test/test_raptoreum-qt  # macOS
+//     QT_QPA_PLATFORM=xcb     src/qt/test/test_hashmonkeycoin-qt  # Linux
+//     QT_QPA_PLATFORM=windows src/qt/test/test_hashmonkeycoin-qt  # Windows
+//     QT_QPA_PLATFORM=cocoa   src/qt/test/test_hashmonkeycoin-qt  # macOS
     void TestGUI(interfaces::Node &node) {
         // Set up wallet and chain with 105 blocks (5 mature blocks for spending).
         TestChain100Setup test;
@@ -228,7 +228,7 @@ namespace {
 void WalletTests::walletTests() {
 #ifdef Q_OS_MAC
     if (QApplication::platformName() == "minimal") {
-      QWARN("Skipping WalletTests on mac build with 'minimal' platform set due to Qt bugs. To run AppTests, invoke with 'test_raptoreum-qt -platform cocoa' on mac or use a linux or windows build.");
+      QWARN("Skipping WalletTests on mac build with 'minimal' platform set due to Qt bugs. To run AppTests, invoke with 'test_hashmonkeycoin-qt -platform cocoa' on mac or use a linux or windows build.");
       return;
     }
 #endif

@@ -565,7 +565,7 @@ namespace GUIUtil {
     void openConfigfile() {
         fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME));
 
-        /* Open raptoreum.conf with the associated application */
+        /* Open hashmonkeycoin.conf with the associated application */
         if (fs::exists(pathConfig))
             QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
     }
@@ -731,15 +731,15 @@ namespace GUIUtil {
     {
         std::string chain = gArgs.GetChainName();
         if (chain == CBaseChainParams::MAIN)
-            return GetSpecialFolderPath(CSIDL_STARTUP) / "Raptoreum Core.lnk";
+            return GetSpecialFolderPath(CSIDL_STARTUP) / "HashmonkeyCoin Core.lnk";
         if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-            return GetSpecialFolderPath(CSIDL_STARTUP) / "Raptoreum Core (testnet).lnk";
-        return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Raptoreum Core (%s).lnk", chain);
+            return GetSpecialFolderPath(CSIDL_STARTUP) / "HashmonkeyCoin Core (testnet).lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("HashmonkeyCoin Core (%s).lnk", chain);
     }
 
     bool GetStartOnSystemStartup()
     {
-        // check for "Raptoreum Core*.lnk"
+        // check for "HashmonkeyCoin Core*.lnk"
         return fs::exists(StartupShortcutPath());
     }
 
@@ -859,9 +859,9 @@ namespace GUIUtil {
             optionFile << "[Desktop Entry]\n";
             optionFile << "Type=Application\n";
             if (chain == CBaseChainParams::MAIN)
-                optionFile << "Name=Raptoreum Core\n";
+                optionFile << "Name=HashmonkeyCoin Core\n";
             else
-                optionFile << strprintf("Name=Raptoreum Core (%s)\n", chain);
+                optionFile << strprintf("Name=HashmonkeyCoin Core (%s)\n", chain);
             optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
             optionFile << "Terminal=false\n";
             optionFile << "Hidden=false\n";

@@ -729,10 +729,10 @@ UniValue getaddressutxos(const JSONRPCRequest &request) {
                             {"address", RPCArg::Type::STR, /* default */ "", "The base58check encoded address"},
                     },
                 },
-                {"asset", RPCArg::Type::STR, /* default */ "RTM", "Get UTXOs for a particular asset instead of RTM ('*' for all assets).",}
+                {"asset", RPCArg::Type::STR, /* default */ "RTM", "Get UTXOs for a particular asset instead of HMNY ('*' for all assets).",}
             },
             {
-                RPCResult{"For RTM",
+                RPCResult{"For HMNY",
                     RPCResult::Type::ARR, "", "",
                     {
                         {RPCResult::Type::OBJ, "", "",
@@ -914,7 +914,7 @@ UniValue getaddressdeltas(const JSONRPCRequest &request) {
                                 {"address", RPCArg::Type::STR, /* default */ "", "The base58check encoded address"},
                         },
                     },
-                    {"asset", RPCArg::Type::STR, /* default */ "RTM", "Get all changes for a particular asset instead of RTM.",}
+                    {"asset", RPCArg::Type::STR, /* default */ "RTM", "Get all changes for a particular asset instead of HMNY.",}
 
                },
                RPCResult{
@@ -1028,10 +1028,10 @@ static UniValue getaddressbalance(const JSONRPCRequest &request) {
                     {"address", RPCArg::Type::STR, /* default */ "", "The base58check encoded address"},
                 },
             },
-            {"asset", RPCArg::Type::STR, /* default */ "RTM", "Get balance for a particular asset instead of RTM. (\"*\" for all assets)"},
+            {"asset", RPCArg::Type::STR, /* default */ "RTM", "Get balance for a particular asset instead of HMNY. (\"*\" for all assets)"},
         },
         {
-            RPCResult{"For RTM",
+            RPCResult{"For HMNY",
                 RPCResult::Type::OBJ, "", "",
                 {
                     {RPCResult::Type::NUM, "balance", "The current total balance in duffs"},
@@ -1517,7 +1517,7 @@ UniValue echo(const JSONRPCRequest &request) {
                "\nSimply echo back the input arguments. This command is for testing.\n"
                "\nIt will return an internal bug report when exactly 100 arguments are passed.\n"
                "\nThe difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in "
-               "raptoreum-cli and the GUI. There is no server-side difference.",
+               "hashmonkeycoin-cli and the GUI. There is no server-side difference.",
                {},
                RPCResult{RPCResult::Type::NONE, "", "Returns whatever was passed in"},
                RPCExamples{""},

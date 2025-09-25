@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <chainparamsbase.h>
@@ -134,12 +134,12 @@ static int AppInitRPC(int argc, char *argv[]) {
         std::string strUsage = strprintf("%s RPC client version", PACKAGE_NAME) + " " + FormatFullVersion() + "\n";
         if (!gArgs.IsArgSet("-version")) {
             strUsage += "\nUsage:\n"
-                        "  raptoreum-cli [options] <command> [params]  " +
+                        "  hashmonkeycoin-cli [options] <command> [params]  " +
                         strprintf("Send command to %s", PACKAGE_NAME) + "\n" +
-                        "  raptoreum-cli [options] -named <command> [name=value] ... " +
+                        "  hashmonkeycoin-cli [options] -named <command> [name=value] ... " +
                         strprintf("Send command to %s (with named arguments)", PACKAGE_NAME) + "\n" +
-                        "  raptoreum-cli [options] help                List commands\n" +
-                        "  raptoreum-cli [options] help <command>      Get help for a command\n";
+                        "  hashmonkeycoin-cli [options] help                List commands\n" +
+                        "  hashmonkeycoin-cli [options] help <command>      Get help for a command\n";
 
             strUsage += "\n" + gArgs.GetHelpMessage();
         }
@@ -392,7 +392,7 @@ static UniValue CallRPC(BaseRequestHandler *rh, const std::string &strMethod, co
                                              http_errorstring(response.error));
         }
         throw CConnectionFailed(strprintf(
-                "Could not connect to the server %s:%d%s\n\nMake sure the raptoreumd server is running and that you are connecting to the correct RPC port.",
+                "Could not connect to the server %s:%d%s\n\nMake sure the hashmonkeycoind server is running and that you are connecting to the correct RPC port.",
                 host, port, responseErrorMessage));
     } else if (response.status == HTTP_UNAUTHORIZED) {
         if (failedToGetAuthCookie) {
@@ -512,7 +512,7 @@ static int CommandLineRPC(int argc, char *argv[]) {
                             strPrint += "error message:\n" + errMsg.get_str();
 
                         if (errCode.isNum() && errCode.get_int() == RPC_WALLET_NOT_SPECIFIED) {
-                            strPrint += "\nTry adding \"-rpcwallet=<filename>\" option to raptoreum-cli command line.";
+                            strPrint += "\nTry adding \"-rpcwallet=<filename>\" option to hashmonkeycoin-cli command line.";
                         }
                     }
                 } else {

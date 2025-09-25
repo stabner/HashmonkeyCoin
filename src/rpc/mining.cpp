@@ -62,7 +62,7 @@ extern std::string alsoHashString;
 // the wallet component. Calling `generatetoaddress` with an address returned by
 // `getnewaddress` gives the same functionality as the old `generate` method.
 
-// To continue using `generate` in v0.17, restart raptoreumd with the
+// To continue using `generate` in v0.17, restart hashmonkeycoind with the
 // `-deprecatedrpc=generate` configuration.
 
 
@@ -270,7 +270,7 @@ static UniValue generatetoaddress(const JSONRPCRequest& request)
         "\nMine blocks immediately to a specified address (before the RPC call returns)\n",
         {
             {"nblocks", RPCArg::Type::NUM, RPCArg::Optional::NO, "How many blocks are generated immediately."},
-            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The address to send the newly generated RTM to."},
+            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The address to send the newly generated HMNY to."},
             {"maxtries", RPCArg::Type::NUM, /* default */ "1000000", "How many iterations to try."},
         },
         RPCResult{
@@ -281,7 +281,7 @@ static UniValue generatetoaddress(const JSONRPCRequest& request)
         RPCExamples{
             "\nGenerate 11 blocks to myaddress\n"
             + HelpExampleCli("generatetoaddress", "11 \"myaddress\"")
-            + "If you are running the Raptoreum Core wallet, you can get a new address to send the newly generated coins to with:\n"
+            + "If you are running the HashmonkeyCoin Core wallet, you can get a new address to send the newly generated coins to with:\n"
             + HelpExampleCli("getnewaddress", "")},
     }.Check(request);
 
@@ -627,13 +627,13 @@ static UniValue getblocktemplate(const JSONRPCRequest &request) {
     " is not connected!");
 
     if (::ChainstateActive().IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Raptoreum Core is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "HashmonkeyCoin Core is downloading blocks...");
 
     // next bock is a superblock and we need governance info to correctly construct it
     if (AreSuperblocksEnabled()
         && !smartnodeSync.IsSynced()
         && CSuperblock::IsValidBlockHeight(::ChainActive().Height() + 1))
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Raptoreum Core is syncing with network...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "HashmonkeyCoin Core is syncing with network...");
 
     static unsigned int nTransactionsUpdatedLast;
     const CTxMemPool &mempool = EnsureMemPool(request.context);

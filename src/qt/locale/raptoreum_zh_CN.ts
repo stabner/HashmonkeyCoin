@@ -93,13 +93,13 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>These are your Raptoreum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这些是您要付款过去的Raptoreum地址。在付款之前，务必要检查金额和收款地址是否正确。</translation>
+        <source>These are your HashmonkeyCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>这些是您要付款过去的HashmonkeyCoin地址。在付款之前，务必要检查金额和收款地址是否正确。</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>These are your Raptoreum addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这些是您用来收款的Raptoreum地址。建议在每次交易时，都使用一个新的收款地址。</translation>
+        <source>These are your HashmonkeyCoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>这些是您用来收款的HashmonkeyCoin地址。建议在每次交易时，都使用一个新的收款地址。</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -139,7 +139,7 @@
     <message>
         <location line="+14"/>
         <source>Exporting Failed</source>
-        <extracomment>%1 is a name of the file (e.g.: &quot;addressbook.csv&quot;) that the Raptoreum addresses were exported to.</extracomment>
+        <extracomment>%1 is a name of the file (e.g.: &quot;addressbook.csv&quot;) that the HashmonkeyCoin addresses were exported to.</extracomment>
         <translation>导出失败</translation>
     </message>
     <message>
@@ -298,7 +298,7 @@
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR RTM&lt;/b&gt;!</source>
-        <translation>警告:如果把钱包加​​密后又忘记密码，您就会从此&lt;b&gt;失去所有的Raptoreum&lt;/b&gt;！</translation>
+        <translation>警告:如果把钱包加​​密后又忘记密码，您就会从此&lt;b&gt;失去所有的HashmonkeyCoin&lt;/b&gt;！</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -753,9 +753,9 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../raptoreum.cpp" line="+376"/>
-        <source>A fatal error occurred. Raptoreum Core can no longer continue safely and will quit.</source>
-        <translation>发生严重错误。Raptoreum Core钱包不再能安全地运行下去，程序将会关闭。</translation>
+        <location filename="../HashmonkeyCoin.cpp" line="+376"/>
+        <source>A fatal error occurred. HashmonkeyCoin Core can no longer continue safely and will quit.</source>
+        <translation>发生严重错误。HashmonkeyCoin Core钱包不再能安全地运行下去，程序将会关闭。</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="+720"/>
@@ -774,8 +774,8 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Send coins to a Raptoreum address</source>
-        <translation>发送币至Raptoreum地址</translation>
+        <source>Send coins to a HashmonkeyCoin address</source>
+        <translation>发送币至HashmonkeyCoin地址</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -784,8 +784,8 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Request payments (generates QR codes and raptoreum: URIs)</source>
-        <translation>请求付款(生成二维码和Raptoreum付款协议的URI)</translation>
+        <source>Request payments (generates QR codes and HashmonkeyCoin: URIs)</source>
+        <translation>请求付款(生成二维码和HashmonkeyCoin付款协议的URI)</translation>
     </message>
     <message>
         <location line="+87"/>
@@ -799,7 +799,7 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Open a raptoreum: URI</source>
+        <source>Open a HashmonkeyCoin: URI</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -909,8 +909,8 @@
     </message>
     <message>
         <location line="-36"/>
-        <source>Send %1 funds to a Raptoreum address</source>
-        <translation>发送%1资金至一个Raptoreum地址</translation>
+        <source>Send %1 funds to a HashmonkeyCoin address</source>
+        <translation>发送%1资金至一个HashmonkeyCoin地址</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -919,7 +919,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Send assets to a Raptoreum address</source>
+        <source>Send assets to a HashmonkeyCoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1014,7 +1014,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Sign messages with your Raptoreum addresses to prove you own them</source>
+        <source>Sign messages with your HashmonkeyCoin addresses to prove you own them</source>
         <translation>使用您的达市币地址进行消息签名以证明对此地址的所有权</translation>
     </message>
     <message>
@@ -1024,8 +1024,8 @@
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified Raptoreum addresses</source>
-        <translation>验证消息是用来确定此消息是用指定的Raptoreum地址签发的</translation>
+        <source>Verify messages to ensure they were signed with specified HashmonkeyCoin addresses</source>
+        <translation>验证消息是用来确定此消息是用指定的HashmonkeyCoin地址签发的</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1124,7 +1124,7 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Show the %1 help message to get a list with possible Raptoreum command-line options</source>
+        <source>Show the %1 help message to get a list with possible HashmonkeyCoin command-line options</source>
         <translation>显示 %1 帮助信息，获取可用命令行选项列表</translation>
     </message>
     <message>
@@ -1181,8 +1181,8 @@
     </message>
     <message numerus="yes">
         <location line="+619"/>
-        <source>%n active connection(s) to Raptoreum network</source>
-        <translation><numerusform>%n个有效的Raptoreum网络连接</numerusform></translation>
+        <source>%n active connection(s) to HashmonkeyCoin network</source>
+        <translation><numerusform>%n个有效的HashmonkeyCoin网络连接</numerusform></translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1917,7 +1917,7 @@
     <message>
         <location line="+27"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for raptoreum transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for HashmonkeyCoin transactions than the network can process.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2108,7 +2108,7 @@
     </message>
     <message>
         <location line="+92"/>
-        <source>Warning: Invalid Raptoreum address</source>
+        <source>Warning: Invalid HashmonkeyCoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2242,8 +2242,8 @@
     </message>
     <message>
         <location line="+65"/>
-        <source>The entered address &quot;%1&quot; is not a valid Raptoreum address.</source>
-        <translation>输入的地址“%1”不是有效的Raptoreum地址。</translation>
+        <source>The entered address &quot;%1&quot; is not a valid HashmonkeyCoin address.</source>
+        <translation>输入的地址“%1”不是有效的HashmonkeyCoin地址。</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2313,8 +2313,8 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>&lt;h3&gt;%1 Basics&lt;/h3&gt; %1 gives you true financial privacy by obscuring the origins of your funds. All the Raptoreum in your wallet is comprised of different &quot;inputs&quot; which you can think of as separate, discrete coins.&lt;br&gt; %1 uses an innovative process to mix your inputs with the inputs of two or more other people, without having your coins ever leave your wallet. You retain control of your money at all times.&lt;hr&gt; &lt;b&gt;The %1 process works like this:&lt;/b&gt;&lt;ol type=&quot;1&quot;&gt; &lt;li&gt;%1 begins by breaking your transaction inputs down into standard denominations. These denominations are 0.001 RTM, 0.01 RTM, 0.1 RTM, 1 RTM and 10 RTM -- sort of like the paper money you use every day.&lt;/li&gt; &lt;li&gt;Your wallet then sends requests to specially configured software nodes on the network, called &quot;smartnodes.&quot; These smartnodes are informed then that you are interested in mixing a certain denomination. No identifiable information is sent to the smartnodes, so they never know &quot;who&quot; you are.&lt;/li&gt; &lt;li&gt;When two or more other people send similar messages, indicating that they wish to mix the same denomination, a mixing session begins. The smartnode mixes up the inputs and instructs all three users&apos; wallets to pay the now-transformed input back to themselves. Your wallet pays that denomination directly to itself, but in a different address (called a change address).&lt;/li&gt; &lt;li&gt;In order to fully obscure your funds, your wallet must repeat this process a number of times with each denomination. Each time the process is completed, it&apos;s called a &quot;round.&quot; Each round of %1 makes it exponentially more difficult to determine where your funds originated.&lt;/li&gt; &lt;li&gt;This mixing process happens in the background without any intervention on your part. When you wish to make a transaction, your funds will already be mixed. No additional waiting is required.&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt;&lt;b&gt;IMPORTANT:&lt;/b&gt; Your wallet only contains 1000 of these &quot;change addresses.&quot; Every time a mixing event happens, up to 9 of your addresses are used up. This means those 1000 addresses last for about 100 mixing events. When 900 of them are used, your wallet must create more addresses. It can only do this, however, if you have automatic backups enabled.&lt;br&gt; Consequently, users who have backups disabled will also have %1 disabled. &lt;hr&gt;For more information, see the &lt;a style=&quot;%2&quot; href=&quot;%3&quot;&gt;%1 documentation&lt;/a&gt;.</source>
-        <translation>&lt;h3&gt;%1基础知识&lt;/h3&gt;%1通过隐藏您的资金来源为您提供真正的财务隐私。您的钱包中所有的Raptoreum都由不同的“输入”组成，您可以将其视为分开的离散硬币。&lt;br&gt;%1使用创新的方法将您的输入与其他两个人的输入相结合，而过程中不会让您的Raptoreum离开您的钱包。每时每刻，您仍然控制着您的钱。&lt;hr&gt;&lt;b&gt;%1的运作原理如下：&lt;/b&gt;&lt;ol type=&quot;1&quot;&gt;&lt;li&gt;%1首先将您的交易分柝成多个标准面额的交易。这些标准面额分别为0.001 RTM，0.01 RTM，0.1 RTM，1 RTM和10 RTM --有点像您每天使用的纸币。&lt;/li&gt;&lt;li&gt;您的钱包然后发送请求到网络上有专门配置的软件节点，称为“主节点”。这些主节点会收到您希望混合一些资金的通知。没有可识别的信息发送到主节点，所以他们永远不会知道您是“谁”。&lt;li&gt;当另外两个人发送类似的消息时，表示希望混合相同的面额的话，混合会话就会开始。相关的主节点会混合这些输入，并指示所有三个用户的钱包将已经转换了输入的交易支付给自己。您的钱包直接支付给自己，但是付给不同的位址（称之为找零地址）。&lt;/li&gt;&lt;li&gt;为了完全掩盖您的资金来源，您的钱包必须以每个面额来重复此过程数次。每次这个过程完成后，都称之为一个“循环”。每个循环的%1都会令确定您的资金来源的工作倍加困难。&lt;/li&gt;&lt;li&gt;这种混合过程发生在后台，而不需要您进行任何操作。当您想进行交易时，您的资金将已被混币处理。不需再花额外的时间等待。&lt;/li&gt;&lt;/ol&gt;&lt;hr&gt;重要：&lt;b&gt;您的钱包只能拥有1000个“找零地址”。每次混合事件发生时，最多会使用9个找零地址。这意味着这1000个地址可以容许100次的混合事件。当其的中900个已经被使用后，您的钱包必须创建更多的地址。如果您启用了自动备份，则只能够这样做。&lt;br&gt;因此，禁用备份的用户也将禁用%1。&lt;hr&gt;如欲了解更多信息请参阅&lt;a style=&quot;%2&quot; href=&quot;%3&quot;&gt;%1文档&lt;/a&gt;。</translation>
+        <source>&lt;h3&gt;%1 Basics&lt;/h3&gt; %1 gives you true financial privacy by obscuring the origins of your funds. All the HashmonkeyCoin in your wallet is comprised of different &quot;inputs&quot; which you can think of as separate, discrete coins.&lt;br&gt; %1 uses an innovative process to mix your inputs with the inputs of two or more other people, without having your coins ever leave your wallet. You retain control of your money at all times.&lt;hr&gt; &lt;b&gt;The %1 process works like this:&lt;/b&gt;&lt;ol type=&quot;1&quot;&gt; &lt;li&gt;%1 begins by breaking your transaction inputs down into standard denominations. These denominations are 0.001 RTM, 0.01 RTM, 0.1 RTM, 1 RTM and 10 RTM -- sort of like the paper money you use every day.&lt;/li&gt; &lt;li&gt;Your wallet then sends requests to specially configured software nodes on the network, called &quot;smartnodes.&quot; These smartnodes are informed then that you are interested in mixing a certain denomination. No identifiable information is sent to the smartnodes, so they never know &quot;who&quot; you are.&lt;/li&gt; &lt;li&gt;When two or more other people send similar messages, indicating that they wish to mix the same denomination, a mixing session begins. The smartnode mixes up the inputs and instructs all three users&apos; wallets to pay the now-transformed input back to themselves. Your wallet pays that denomination directly to itself, but in a different address (called a change address).&lt;/li&gt; &lt;li&gt;In order to fully obscure your funds, your wallet must repeat this process a number of times with each denomination. Each time the process is completed, it&apos;s called a &quot;round.&quot; Each round of %1 makes it exponentially more difficult to determine where your funds originated.&lt;/li&gt; &lt;li&gt;This mixing process happens in the background without any intervention on your part. When you wish to make a transaction, your funds will already be mixed. No additional waiting is required.&lt;/li&gt; &lt;/ol&gt; &lt;hr&gt;&lt;b&gt;IMPORTANT:&lt;/b&gt; Your wallet only contains 1000 of these &quot;change addresses.&quot; Every time a mixing event happens, up to 9 of your addresses are used up. This means those 1000 addresses last for about 100 mixing events. When 900 of them are used, your wallet must create more addresses. It can only do this, however, if you have automatic backups enabled.&lt;br&gt; Consequently, users who have backups disabled will also have %1 disabled. &lt;hr&gt;For more information, see the &lt;a style=&quot;%2&quot; href=&quot;%3&quot;&gt;%1 documentation&lt;/a&gt;.</source>
+        <translation>&lt;h3&gt;%1基础知识&lt;/h3&gt;%1通过隐藏您的资金来源为您提供真正的财务隐私。您的钱包中所有的HashmonkeyCoin都由不同的“输入”组成，您可以将其视为分开的离散硬币。&lt;br&gt;%1使用创新的方法将您的输入与其他两个人的输入相结合，而过程中不会让您的HashmonkeyCoin离开您的钱包。每时每刻，您仍然控制着您的钱。&lt;hr&gt;&lt;b&gt;%1的运作原理如下：&lt;/b&gt;&lt;ol type=&quot;1&quot;&gt;&lt;li&gt;%1首先将您的交易分柝成多个标准面额的交易。这些标准面额分别为0.001 RTM，0.01 RTM，0.1 RTM，1 RTM和10 RTM --有点像您每天使用的纸币。&lt;/li&gt;&lt;li&gt;您的钱包然后发送请求到网络上有专门配置的软件节点，称为“主节点”。这些主节点会收到您希望混合一些资金的通知。没有可识别的信息发送到主节点，所以他们永远不会知道您是“谁”。&lt;li&gt;当另外两个人发送类似的消息时，表示希望混合相同的面额的话，混合会话就会开始。相关的主节点会混合这些输入，并指示所有三个用户的钱包将已经转换了输入的交易支付给自己。您的钱包直接支付给自己，但是付给不同的位址（称之为找零地址）。&lt;/li&gt;&lt;li&gt;为了完全掩盖您的资金来源，您的钱包必须以每个面额来重复此过程数次。每次这个过程完成后，都称之为一个“循环”。每个循环的%1都会令确定您的资金来源的工作倍加困难。&lt;/li&gt;&lt;li&gt;这种混合过程发生在后台，而不需要您进行任何操作。当您想进行交易时，您的资金将已被混币处理。不需再花额外的时间等待。&lt;/li&gt;&lt;/ol&gt;&lt;hr&gt;重要：&lt;b&gt;您的钱包只能拥有1000个“找零地址”。每次混合事件发生时，最多会使用9个找零地址。这意味着这1000个地址可以容许100次的混合事件。当其的中900个已经被使用后，您的钱包必须创建更多的地址。如果您启用了自动备份，则只能够这样做。&lt;br&gt;因此，禁用备份的用户也将禁用%1。&lt;hr&gt;如欲了解更多信息请参阅&lt;a style=&quot;%2&quot; href=&quot;%3&quot;&gt;%1文档&lt;/a&gt;。</translation>
     </message>
 </context>
 <context>
@@ -2371,7 +2371,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>%1 will download and store a copy of the Raptoreum block chain.</source>
+        <source>%1 will download and store a copy of the HashmonkeyCoin block chain.</source>
         <translation>%1 将会下载并存储比特币区块链。</translation>
     </message>
     <message>
@@ -2418,13 +2418,13 @@
     </message>
     <message>
         <location line="+100"/>
-        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Raptoreum network, as detailed below.</source>
-        <translation>最近的交易可能尚未显示，因此您的钱包的余额可能不正确。一旦您的钱包完成与Raptoreum网络的同步，这个信息将会修正，如下所述。</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HashmonkeyCoin network, as detailed below.</source>
+        <translation>最近的交易可能尚未显示，因此您的钱包的余额可能不正确。一旦您的钱包完成与HashmonkeyCoin网络的同步，这个信息将会修正，如下所述。</translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>Attempting to spend Raptoreum that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>假如您正在尝试花费尚未显示出来的Raptoreum，这个交易将不会被网络所接受。</translation>
+        <source>Attempting to spend HashmonkeyCoin that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>假如您正在尝试花费尚未显示出来的HashmonkeyCoin，这个交易将不会被网络所接受。</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -2471,7 +2471,7 @@
     </message>
     <message>
         <location filename="../modaloverlay.cpp" line="-105"/>
-        <source>Raptoreum Core is currently syncing. It will download headers at first and then blocks from peers and validate them until reaching latest block mined at chain.</source>
+        <source>HashmonkeyCoin Core is currently syncing. It will download headers at first and then blocks from peers and validate them until reaching latest block mined at chain.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2645,12 +2645,12 @@
     </message>
     <message>
         <location line="+42"/>
-        <source>Automatically open the Raptoreum Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动在路由器打开Raptoreum Core客户端端口。此项只在路由器支持UPnP且开启时有效。</translation>
+        <source>Automatically open the HashmonkeyCoin Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动在路由器打开HashmonkeyCoin Core客户端端口。此项只在路由器支持UPnP且开启时有效。</translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>Automatically open the Raptoreum Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <source>Automatically open the HashmonkeyCoin Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2670,8 +2670,8 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Raptoreum network through a SOCKS5 proxy.</source>
-        <translation>通过SOCKS5代理连接Raptoreum网络。</translation>
+        <source>Connect to the HashmonkeyCoin network through a SOCKS5 proxy.</source>
+        <translation>通过SOCKS5代理连接HashmonkeyCoin网络。</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2807,8 +2807,8 @@
     </message>
     <message>
         <location line="+22"/>
-        <source>Connect to the Raptoreum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>通过另一个SOCKS5代理服务器作为Tor隐藏服务来连接到Raptoreum网络。</translation>
+        <source>Connect to the HashmonkeyCoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>通过另一个SOCKS5代理服务器作为Tor隐藏服务来连接到HashmonkeyCoin网络。</translation>
     </message>
     <message>
         <location line="-504"/>
@@ -2843,9 +2843,9 @@
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/projects/p/raptoreum/</source>
+https://www.transifex.com/projects/p/HashmonkeyCoin/</source>
         <translation>缺少相关语言或翻译不完整？请到这里协助翻译：
-https://www.transifex.com/projects/p/raptoreum/</translation>
+https://www.transifex.com/projects/p/HashmonkeyCoin/</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -2930,8 +2930,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
         <location line="+60"/>
         <location line="+298"/>
         <location line="+237"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Raptoreum network after a connection is established, but this process has not completed yet.</source>
-        <translation>显示的信息也许已过期。当与Raptoreum网络连接后钱包程序会自动同步，但现在还未完成。</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HashmonkeyCoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>显示的信息也许已过期。当与HashmonkeyCoin网络连接后钱包程序会自动同步，但现在还未完成。</translation>
     </message>
     <message>
         <location line="-325"/>
@@ -3051,7 +3051,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     <message>
         <location line="-41"/>
         <source>The denominations you submitted to the Smartnode.&lt;br&gt;To mix, other users must submit the exact same denominations.</source>
-        <translation>您向主节点所提交的用以面额化混合的Raptoreum。&lt;br&gt;为了混合，其他用户必须提交完全一样的面额。</translation>
+        <translation>您向主节点所提交的用以面额化混合的HashmonkeyCoin。&lt;br&gt;为了混合，其他用户必须提交完全一样的面额。</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+148"/>
@@ -3214,8 +3214,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot start raptoreum: click-to-pay handler</source>
-        <translation>无法启动Raptoreum程序：click-to-pay handler</translation>
+        <source>Cannot start HashmonkeyCoin: click-to-pay handler</source>
+        <translation>无法启动HashmonkeyCoin程序：click-to-pay handler</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -3227,8 +3227,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="-22"/>
-        <source>&apos;raptoreum://&apos; is not a valid URI. Use &apos;raptoreum:&apos; instead.</source>
-        <translation>&apos;raptoreum://&apos; 不是一个有效链接. 请使用&apos;raptoreum:&apos;</translation>
+        <source>&apos;HashmonkeyCoin://&apos; is not a valid URI. Use &apos;HashmonkeyCoin:&apos; instead.</source>
+        <translation>&apos;HashmonkeyCoin://&apos; 不是一个有效链接. 请使用&apos;HashmonkeyCoin:&apos;</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -3249,8 +3249,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>URI cannot be parsed! This can be caused by an invalid Raptoreum address or malformed URI parameters.</source>
-        <translation>URI不能被解析! 原因可能是无效的Raptoreum地址或URI参数格式错误。</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid HashmonkeyCoin address or malformed URI parameters.</source>
+        <translation>URI不能被解析! 原因可能是无效的HashmonkeyCoin地址或URI参数格式错误。</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -3294,7 +3294,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../raptoreum.cpp" line="+15"/>
+        <location filename="../HashmonkeyCoin.cpp" line="+15"/>
         <source>Choose data directory on startup (default: %u)</source>
         <translation>选择启动时的数据路径 (默认: %u)</translation>
     </message>
@@ -3405,8 +3405,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+247"/>
-        <source>Enter a Raptoreum address (e.g. %1)</source>
-        <translation>输入一个Raptoreum地址(例如 %1)</translation>
+        <source>Enter a HashmonkeyCoin address (e.g. %1)</source>
+        <translation>输入一个HashmonkeyCoin地址(例如 %1)</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -4136,8 +4136,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     <name>ReceiveCoinsDialog</name>
     <message>
         <location filename="../forms/receivecoinsdialog.ui" line="+34"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Raptoreum network.</source>
-        <translation>附加在付款要求中的讯息，可以不填，打开要求内容时会显示。注意：这个讯息不会随着付款送到Raptoreum网路上。</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the HashmonkeyCoin network.</source>
+        <translation>附加在付款要求中的讯息，可以不填，打开要求内容时会显示。注意：这个讯息不会随着付款送到HashmonkeyCoin网路上。</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4152,8 +4152,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="-17"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Raptoreum network.</source>
-        <translation>附加在付款要求中的讯息，可以不填，打开要求内容时会显示。&lt;br&gt;注意：这个讯息不会随着付款送到Raptoreum网路上。</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the HashmonkeyCoin network.</source>
+        <translation>附加在付款要求中的讯息，可以不填，打开要求内容时会显示。&lt;br&gt;注意：这个讯息不会随着付款送到HashmonkeyCoin网路上。</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -4490,7 +4490,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     <message>
         <location line="+27"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for raptoreum transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for HashmonkeyCoin transactions than the network can process.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4728,7 +4728,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+92"/>
-        <source>Warning: Invalid Raptoreum address</source>
+        <source>Warning: Invalid HashmonkeyCoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4781,7 +4781,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The Raptoreum address to send the payment to</source>
+        <source>The HashmonkeyCoin address to send the payment to</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4976,7 +4976,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     <message>
         <location line="+30"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for raptoreum transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for HashmonkeyCoin transactions than the network can process.</source>
         <translation>当交易量少于区块可容纳的空间时，只需支付最低手续费。&lt;br /&gt;但当交易量的需求增长到超过总体网络可处理的量时，可能会造成一笔一直不被确认的交易。</translation>
     </message>
     <message>
@@ -5245,8 +5245,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+91"/>
-        <source>Warning: Invalid Raptoreum address</source>
-        <translation>警告：无效的Raptoreum地址</translation>
+        <source>Warning: Invalid HashmonkeyCoin address</source>
+        <translation>警告：无效的HashmonkeyCoin地址</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -5283,7 +5283,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="-63"/>
-        <source>The Raptoreum address to send the payment to</source>
+        <source>The HashmonkeyCoin address to send the payment to</source>
         <translation>选择发款地址</translation>
     </message>
     <message>
@@ -5342,8 +5342,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="-271"/>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of Raptoreum than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>手续费将从发送金额中扣除。接收者将收到的Raptoreum金额将会比您在金额字段中输入的金额为少。如果选择了多个收款人，该费用将会被平均摊分。</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of HashmonkeyCoin than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>手续费将从发送金额中扣除。接收者将收到的HashmonkeyCoin金额将会比您在金额字段中输入的金额为少。如果选择了多个收款人，该费用将会被平均摊分。</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -5362,8 +5362,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+17"/>
-        <source>A message that was attached to the raptoreum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Raptoreum network.</source>
-        <translation>附加在Raptoreum付款协议URI中的信息，会和交易内容一并存储，可供您参考。提示：此信息不会发送到Raptoreum网络上。</translation>
+        <source>A message that was attached to the HashmonkeyCoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HashmonkeyCoin network.</source>
+        <translation>附加在HashmonkeyCoin付款协议URI中的信息，会和交易内容一并存储，可供您参考。提示：此信息不会发送到HashmonkeyCoin网络上。</translation>
     </message>
     <message>
         <location line="+145"/>
@@ -5454,12 +5454,12 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+35"/>
-        <source>You can sign messages/agreements with your addresses to prove you can receive Raptoreum sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive HashmonkeyCoin sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>您可以用自己的地址签署信息/协议，来证明您对地址的所有权。但是请小心，不要签署语意含糊不清的内容，因为钓鱼式诈骗可能会用骗您签署的手法来冒充是您。只有在语句中的细节您都同意时才签署。</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The Raptoreum address to sign the message with</source>
+        <source>The HashmonkeyCoin address to sign the message with</source>
         <translation>对此地址进行签名</translation>
     </message>
     <message>
@@ -5501,8 +5501,8 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+14"/>
-        <source>Sign the message to prove you own this Raptoreum address</source>
-        <translation>签署信息证明您拥有此Raptoreum地址</translation>
+        <source>Sign the message to prove you own this HashmonkeyCoin address</source>
+        <translation>签署信息证明您拥有此HashmonkeyCoin地址</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -5532,13 +5532,13 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>The Raptoreum address the message was signed with</source>
+        <source>The HashmonkeyCoin address the message was signed with</source>
         <translation>已签名的地址</translation>
     </message>
     <message>
         <location line="+30"/>
-        <source>Verify the message to ensure it was signed with the specified Raptoreum address</source>
-        <translation>验证信息用来确保此被签署信息对应相对的Raptoreum地址</translation>
+        <source>Verify the message to ensure it was signed with the specified HashmonkeyCoin address</source>
+        <translation>验证信息用来确保此被签署信息对应相对的HashmonkeyCoin地址</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -6097,7 +6097,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     <message>
         <location line="+11"/>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>生成的Raptoreum在可以使用前必须有 %1 个成熟的区块。当您生成了此区块后，它将被广播到网络中以加入区块链。如果它未成功进入区块链，其状态将变更为“不接受”并且不可使用。这可能偶尔会发生，如果另一个节点比您早几秒钟成功生成一个区块。</translation>
+        <translation>生成的HashmonkeyCoin在可以使用前必须有 %1 个成熟的区块。当您生成了此区块后，它将被广播到网络中以加入区块链。如果它未成功进入区块链，其状态将变更为“不接受”并且不可使用。这可能偶尔会发生，如果另一个节点比您早几秒钟成功生成一个区块。</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -6767,7 +6767,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     <message>
         <location line="+27"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for raptoreum transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for HashmonkeyCoin transactions than the network can process.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -6939,7 +6939,7 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
         <location filename="../walletmodel.cpp" line="+246"/>
         <location line="+159"/>
         <source>Send Coins</source>
-        <translation>发送Raptoreum</translation>
+        <translation>发送HashmonkeyCoin</translation>
     </message>
     <message>
         <location line="+311"/>
@@ -7001,15 +7001,15 @@ https://www.transifex.com/projects/p/raptoreum/</translation>
     </message>
 </context>
 <context>
-    <name>raptoreum-core</name>
+    <name>HashmonkeyCoin-core</name>
     <message>
-        <location filename="../raptoreumstrings.cpp" line="+12"/>
+        <location filename="../HashmonkeyCoinstrings.cpp" line="+12"/>
         <source>The %s developers</source>
         <translation>%s 开发人员</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>%s corrupt. Try using the wallet tool raptoreum-wallet to salvage or restoring a backup.</source>
+        <source>%s corrupt. Try using the wallet tool HashmonkeyCoin-wallet to salvage or restoring a backup.</source>
         <translation type="unfinished"/>
     </message>
     <message>

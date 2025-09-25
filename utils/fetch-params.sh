@@ -27,7 +27,7 @@ WGETCMD="$(command -v wget || echo '')"
 IPFSCMD="$(command -v ipfs || echo '')"
 CURLCMD="$(command -v curl || echo '')"
 
-# fetch methods can be disabled with RTM_DISABLE_SOMETHING=1
+# fetch methods can be disabled with HMNY_DISABLE_SOMETHING=1
 RTM_DISABLE_WGET="${RTM_DISABLE_WGET:-}"
 #RTM_DISABLE_IPFS="${RTM_DISABLE_IPFS:-}"
 RTM_DISABLE_CURL="${RTM_DISABLE_CURL:-}"

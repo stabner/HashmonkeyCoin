@@ -1,7 +1,7 @@
 Translation Strings Policy
 ===========================
 
-This document provides guidelines for internationalization of the Raptoreum Core software.
+This document provides guidelines for internationalization of the HashmonkeyCoin Core software.
 
 How to translate?
 ------------------

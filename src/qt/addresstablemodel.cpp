@@ -283,7 +283,7 @@ QModelIndex AddressTableModel::index(int row, int column, const QModelIndex &par
 
 void AddressTableModel::updateEntry(const QString &address,
                                     const QString &label, bool isMine, const QString &purpose, int status) {
-    // Update address book model from Raptoreum core
+    // Update address book model from HashmonkeyCoin Core
     priv->updateEntry(address, label, isMine, purpose, status);
 }
 

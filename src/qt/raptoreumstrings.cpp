@@ -11,7 +11,7 @@
 static const char UNUSED *raptoreum_strings[] = {
 QT_TRANSLATE_NOOP("raptoreum-core", "The %s developers"),
 QT_TRANSLATE_NOOP("raptoreum-core", ""
-"%s corrupt. Try using the wallet tool raptoreum-wallet to salvage or "
+"%s corrupt. Try using the wallet tool hashmonkeycoin-wallet to salvage or "
 "restoring a backup."),
 QT_TRANSLATE_NOOP("raptoreum-core", ""
 "%s file contains all private keys from this wallet. Do not share it with "

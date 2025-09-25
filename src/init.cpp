@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <init.h>
@@ -147,7 +147,7 @@ static const char *DEFAULT_ASMAP_FILENAME = "ip_asn.map";
  * The PID file facilities.
  */
 #ifndef WIN32
-static const char *RAPTOREUM_PID_FILENAME = "raptoreumd.pid";
+static const char *RAPTOREUM_PID_FILENAME = "hashmonkeycoind.pid";
 
 static fs::path GetPidFile() {
     return AbsPathForConfigVal(fs::path(gArgs.GetArg("-pid", RAPTOREUM_PID_FILENAME)));
@@ -1243,7 +1243,7 @@ void PeriodicStats() {
 }
 
 /** Sanity checks
- *  Ensure that Raptoreum Core is running in a usable environment with all
+ *  Ensure that HashmonkeyCoin Core is running in a usable environment with all
  *  necessary library support.
  */
 static bool InitSanityCheck() {
@@ -1749,7 +1749,7 @@ bool AppInitParameterInteraction() {
 }
 
 static bool LockDataDirectory(bool probeOnly) {
-    // Make sure only a single Raptoreum Core process is using the data directory.
+    // Make sure only a single HashmonkeyCoin Core process is using the data directory.
     fs::path datadir = GetDataDir();
     if (!DirIsWritable(datadir)) {
         return InitError(strprintf(_("Cannot write to data directory '%s'; check permissions."), datadir.string()));
@@ -1842,9 +1842,9 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     if (gArgs.IsArgSet("-datadir") && !fs::path(gArgs.GetArg("-datadir", "")).is_absolute()) {
         LogPrintf(
                 "Warning: relative datadir option '%s' specified, which will be interpreted relative to the " /* Continued */
-                "current working directory '%s'. This is fragile, because if Raptoreum Core is started in the future "
+                "current working directory '%s'. This is fragile, because if HashmonkeyCoin Core is started in the future "
                 "from a different location, it will be unable to locate the current data files. There could "
-                "also be data loss if Raptoreum Core is started while in a temporary directory.\n",
+                "also be data loss if HashmonkeyCoin Core is started while in a temporary directory.\n",
                 gArgs.GetArg("-datadir", ""), fs::current_path().string());
     }
 

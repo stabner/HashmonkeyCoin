@@ -118,7 +118,7 @@ Raptoreum → HashmonkeyCoin
 raptoreum → hashmonkeycoin
 RTM → HMNY
 rtm → hmny (be careful with code variable names)
-Raptoreum.conf → HashmonkeyCoin.conf
+hashmonkeycoin.conf → HashmonkeyCoin.conf
 ```
 
 ### 3.2 Chain Parameters (`src/chainparams.cpp`)

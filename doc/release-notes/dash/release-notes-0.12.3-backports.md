@@ -338,7 +338,7 @@
 - [`f831710f4`](https://github.com/raptor3um/raptoreum/commit/f831710f4) Merge #9139: Change sync_blocks to pick smarter maxheight (on top of #9196)
 - [`b6ea01e07`](https://github.com/raptor3um/raptoreum/commit/b6ea01e07) Remove namespace alert_tests when including alert test data
 - [`7939a23e3`](https://github.com/raptor3um/raptoreum/commit/7939a23e3) Use std::move when calling MakeTransactionRef
-- [`d0a39fbcf`](https://github.com/raptor3um/raptoreum/commit/d0a39fbcf) Use "Raptoreum Core" instead of "raptoreum-core" in some places and Raptoreumify
+- [`d0a39fbcf`](https://github.com/raptor3um/raptoreum/commit/d0a39fbcf) Use "HashmonkeyCoin Core" instead of "raptoreum-core" in some places and Raptoreumify
 - [`9170c0e9c`](https://github.com/raptor3um/raptoreum/commit/9170c0e9c) Fix rpc tests
 - [`76d7730a5`](https://github.com/raptor3um/raptoreum/commit/76d7730a5) Raptoreumify ISSUE_TEMPLATE.md
 - [`07cd44c0e`](https://github.com/raptor3um/raptoreum/commit/07cd44c0e) Use MakeTransactionRef in CreateDevNetGenesisBlock
@@ -775,7 +775,7 @@
 - [`249167ab8`](https://github.com/raptor3um/raptoreum/commit/249167ab8) Python 3 in .travis.yml
 - [`a1111cdf6`](https://github.com/raptor3um/raptoreum/commit/a1111cdf6) Raptoreumify addresses/keys in signmessages.py RPC test
 - [`21aaf9289`](https://github.com/raptor3um/raptoreum/commit/21aaf9289) Introduce redirect_stderr argument to start_node
-- [`fbe36d3db`](https://github.com/raptor3um/raptoreum/commit/fbe36d3db) Pass -createwalletbackups=0 to raptoreumd when running rpc tests
+- [`fbe36d3db`](https://github.com/raptor3um/raptoreum/commit/fbe36d3db) Pass -createwalletbackups=0 to hashmonkeycoind when running rpc tests
 - [`69dd8f4a6`](https://github.com/raptor3um/raptoreum/commit/69dd8f4a6) Python 3 fixes/porting in rpc tests
 - [`2924b3440`](https://github.com/raptor3um/raptoreum/commit/2924b3440) Cast command to str when calling show_debug_msg
 - [`6dc4a1385`](https://github.com/raptor3um/raptoreum/commit/6dc4a1385) Merge #8110: [Doc] Add benchmarking notes

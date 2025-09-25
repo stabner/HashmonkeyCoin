@@ -1,4 +1,4 @@
-Raptoreum Core version 0.13.3.0
+HashmonkeyCoin Core version 0.13.3.0
 ==========================
 
 Release is now available from:
@@ -20,8 +20,8 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over /Applications/Raptoreum-Qt (on Mac) or
-raptoreumd/raptoreum-qt (on Linux). If you upgrade after DIP0003 activation you will
+installer (on Windows) or just copy over /Applications/hashmonkeycoin-qt (on Mac) or
+hashmonkeycoind/hashmonkeycoin-qt (on Linux). If you upgrade after DIP0003 activation you will
 have to reindex (start with -reindex-chainstate or -reindex) to make sure
 your wallet has all the new data synced (only if you were using version < 0.13).
 
@@ -47,7 +47,7 @@ Notable changes
 Number of false-positives from anti virus software should be reduced
 --------------------------------------------------------------------
 We have removed all mining code from Windows and Mac binaries, which should avoid most of the false-positive alerts
-from anti virus software. Linux builds are not affected. The mining code found in `raptoreum-qt` and `raptoreumd` are only meant
+from anti virus software. Linux builds are not affected. The mining code found in `hashmonkeycoin-qt` and `hashmonkeycoind` are only meant
 for regression/integration tests and devnets, so there is no harm in removing this code from non-linux builds.
 
 Fixed an issue with invalid merkle blocks causing SPV nodes to ban other nodes
@@ -111,12 +111,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Raptoreum Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+HashmonkeyCoin Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Raptoreum.
 
-Raptoreum Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+HashmonkeyCoin Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Raptoreum Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+HashmonkeyCoin Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

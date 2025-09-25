@@ -6,10 +6,10 @@ define(_CLIENT_VERSION_BUILD, 01)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2024)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Raptoreum Core]])
-AC_INIT([Raptoreum Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/Raptor3um/raptoreum/issues],[raptoreumcore],[https://raptoreum.com/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[HashmonkeyCoin Core]])
+AC_INIT([HashmonkeyCoin Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/stabner/HashmonkeyCoin/issues],[hashmonkeycoin],[https://hashmonkeycoin.com/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
-AC_CONFIG_HEADERS([src/config/raptoreum-config.h])
+AC_CONFIG_HEADERS([src/config/hashmonkeycoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
@@ -19,10 +19,10 @@ if test "$PKG_CONFIG" = ""; then
   AC_MSG_ERROR([pkg-config not found])
 fi
 
-BITCOIN_DAEMON_NAME=raptoreumd
-BITCOIN_GUI_NAME=raptoreum-qt
-BITCOIN_CLI_NAME=raptoreum-cli
-BITCOIN_WALLET_TOOL_NAME=raptoreum-wallet
+BITCOIN_DAEMON_NAME=hashmonkeycoind
+BITCOIN_GUI_NAME=hashmonkeycoin-qt
+BITCOIN_CLI_NAME=hashmonkeycoin-cli
+BITCOIN_WALLET_TOOL_NAME=hashmonkeycoin-wallet
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR([ARFLAGS], [Flags for the archiver, defaults to <cr> if not set])
@@ -32,9 +32,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef RAPTOREUM_CONFIG_H])
-AH_TOP([#define RAPTOREUM_CONFIG_H])
-AH_BOTTOM([#endif //RAPTOREUM_CONFIG_H])
+AH_TOP([#ifndef hashmonkeycoin.confIG_H])
+AH_TOP([#define hashmonkeycoin.confIG_H])
+AH_BOTTOM([#endif //hashmonkeycoin.confIG_H])
 
 dnl Automake init set-up and checks
 AM_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])
@@ -177,7 +177,7 @@ AC_ARG_ENABLE([ccache],
 
 dnl Suppress warnings from external headers like Boost, Qt.
 dnl May be useful if warnings from external headers clutter the build output
-dnl too much, so that it becomes difficult to spot Raptoreum Core warnings
+dnl too much, so that it becomes difficult to spot HashmonkeyCoin Core warnings
 dnl or if they cause a build failure with --enable-werror.
 AC_ARG_ENABLE([suppress-external-warnings],
   [AS_HELP_STRING([--enable-suppress-external-warnings], [Suppress warnings from external headers (default is no)])],
@@ -589,19 +589,19 @@ CORE_CPPFLAGS="$CORE_CPPFLAGS -DHAVE_BUILD_INFO"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build raptoreum-cli raptoreum-wallet (default=yes)])],
+  [build hashmonkeycoin-cli hashmonkeycoin-wallet (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
 AC_ARG_ENABLE([util-cli],
   [AS_HELP_STRING([--enable-util-cli],
-  [build raptoreum-cli])],
+  [build hashmonkeycoin-cli])],
   [build_bitcoin_cli=$enableval],
   [build_bitcoin_cli=$build_bitcoin_utils])
 
 AC_ARG_ENABLE([util-wallet],
   [AS_HELP_STRING([--enable-util-wallet],
-  [build raptoreum-wallet])],
+  [build hashmonkeycoin-wallet])],
   [build_bitcoin_wallet=$enableval],
   [build_bitcoin_wallet=$build_bitcoin_utils])
 
@@ -613,7 +613,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build raptoreumd daemon (default=yes)])],
+  [build hashmonkeycoind daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -822,7 +822,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-dnl The following macro will add the necessary defines to raptoreum-config.h, but
+dnl The following macro will add the necessary defines to hashmonkeycoin-config.h, but
 dnl they also need to be passed down to any subprojects. Pull the results out of
 dnl the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -1480,15 +1480,15 @@ AC_CHECK_LIB([gmp], [__gmpz_init], [GMP_LIBS=-lgmp], [AC_MSG_ERROR([libgmp missi
 dnl check for immer header
 AC_CHECK_HEADER([immer/map.hpp],, [AC_MSG_ERROR([immer map header not found])])
 
-AC_MSG_CHECKING([whether to build raptoreumd])
+AC_MSG_CHECKING([whether to build hashmonkeycoind])
 AM_CONDITIONAL([BUILD_BITCOIND], [test $build_bitcoind = "yes"])
 AC_MSG_RESULT([$build_bitcoind])
 
-AC_MSG_CHECKING([whether to build raptoreum-cli])
+AC_MSG_CHECKING([whether to build hashmonkeycoin-cli])
 AM_CONDITIONAL([BUILD_BITCOIN_CLI], [test $build_bitcoin_cli = "yes"])
 AC_MSG_RESULT([$build_bitcoin_cli])
 
-AC_MSG_CHECKING([whether to build raptoreum-wallet])
+AC_MSG_CHECKING([whether to build hashmonkeycoin-wallet])
 AM_CONDITIONAL([BUILD_BITCOIN_WALLET], [test $build_bitcoin_wallet = "yes"])
 AC_MSG_RESULT($build_bitcoin_wallet)
 
@@ -1618,7 +1618,7 @@ if test "$bitcoin_enable_qt" != "no"; then
     AC_MSG_WARN([xgettext is required to update qt translations])
   fi
 
-  AC_MSG_CHECKING([whether to build test_raptoreum-qt])
+  AC_MSG_CHECKING([whether to build test_hashmonkeycoin-qt])
   if test "$use_gui_tests$bitcoin_enable_qt_test" = "yesyes"; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"

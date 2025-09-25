@@ -1,4 +1,4 @@
-Raptoreum Core version 1.13.17.00
+HashmonkeyCoin Core version 1.13.17.00
 ==========================
 
 Release is now available from:
