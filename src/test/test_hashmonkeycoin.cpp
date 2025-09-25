@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 
 #include <banman.h>
 #include <chainparams.h>
@@ -67,7 +67,7 @@ extern void noui_connect();
 
 BasicTestingSetup::BasicTestingSetup(const std::string &chainName)
         : m_path_root{fs::temp_directory_path() /
-                      "test_raptoreum" PACKAGE_NAME / std::to_string(g_insecure_rand_ctx_temp_path.rand32())} {
+                      "test_hashmonkeycoin" PACKAGE_NAME / std::to_string(g_insecure_rand_ctx_temp_path.rand32())} {
     SelectParams(chainName);
     SeedInsecureRand();
     SHA256AutoDetect();

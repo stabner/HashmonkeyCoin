@@ -4,7 +4,7 @@
 
 #include <amount.h>
 #include <policy/feerate.h>
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 
 #include <boost/test/unit_test.hpp>
 

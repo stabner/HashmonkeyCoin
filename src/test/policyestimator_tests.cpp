@@ -6,7 +6,7 @@
 #include <txmempool.h>
 #include <uint256.h>
 
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 
 #include <boost/test/unit_test.hpp>
 

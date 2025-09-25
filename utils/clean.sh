@@ -72,8 +72,8 @@ clean_exe src/bench/bench_raptoreum
 clean_exe src/hashmonkeycoin-cli
 clean_exe src/hashmonkeycoind
 clean_exe src/raptoreum-gtest
-clean_exe src/test/test_raptoreum
-clean_exe src/test/test_raptoreum_fuzzy
+clean_exe src/test/test_hashmonkeycoin
+clean_exe src/test/test_hashmonkeycoin_fuzzy
 clean_exe src/qt/hashmonkeycoin-qt
 clean_exe src/qt/test/test_hashmonkeycoin-qt
 

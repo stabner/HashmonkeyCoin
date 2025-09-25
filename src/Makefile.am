@@ -49,7 +49,7 @@ if ENABLE_ZMQ
 LIBBITCOIN_ZMQ=libraptoreum_zmq.a
 endif
 if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libraptoreumconsensus.la
+LIBBITCOINCONSENSUS=libhashmonkeycoinconsensus.la
 endif
 if ENABLE_WALLET
 LIBBITCOIN_WALLET=libraptoreum_wallet.a
@@ -832,14 +832,14 @@ raptoreum_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTH
 
 # raptoreumconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/raptoreumconsensus.h
-libraptoreumconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libraptoreum_crypto_a_SOURCES) $(libraptoreum_consensus_a_SOURCES)
+include_HEADERS = script/hashmonkeycoinconsensus.h
+libhashmonkeycoinconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libraptoreum_crypto_a_SOURCES) $(libraptoreum_consensus_a_SOURCES)
 
-libraptoreumconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
-libraptoreumconsensus_la_LIBADD = $(LIBSECP256K1) $(LIBDASHBLS) $(GMP_LIBS)
-libraptoreumconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libraptoreumconsensus_la_CPPFLAGS += -I$(srcdir)/dashbls/include -I$(srcdir)/dashbls/depends/relic/include -I$(srcdir)/dashbls/depends/minialloc/include
-libraptoreumconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+libhashmonkeycoinconsensus_la_LIBADD = $(LIBSECP256K1) $(LIBDASHBLS) $(GMP_LIBS)
+libhashmonkeycoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libhashmonkeycoinconsensus_la_CPPFLAGS += -I$(srcdir)/dashbls/include -I$(srcdir)/dashbls/depends/relic/include -I$(srcdir)/dashbls/depends/minialloc/include
+libhashmonkeycoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
