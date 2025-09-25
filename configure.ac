@@ -1,4 +1,30 @@
 AC_PREREQ([2.69])
+
+dnl Include standard autoconf macros
+AC_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_LIBTOOL
+
+dnl Include additional autoconf macros
+m4_include([build-aux/m4/ax_check_compile_flag.m4])
+m4_include([build-aux/m4/ax_check_link_flag.m4])
+m4_include([build-aux/m4/ax_check_preproc_flag.m4])
+m4_include([build-aux/m4/ax_gcc_func_attribute.m4])
+m4_include([build-aux/m4/ax_pthread.m4])
+m4_include([build-aux/m4/bitcoin_find_bdb48.m4])
+m4_include([build-aux/m4/bitcoin_qt.m4])
+m4_include([build-aux/m4/bitcoin_subdir_to_include.m4])
+m4_include([build-aux/m4/l_atomic.m4])
+m4_include([build-aux/m4/l_socket.m4])
+m4_include([build-aux/m4/libevent.m4])
+m4_include([build-aux/m4/libtool.m4])
+m4_include([build-aux/m4/ltoptions.m4])
+m4_include([build-aux/m4/ltsugar.m4])
+m4_include([build-aux/m4/ltversion.m4])
+m4_include([build-aux/m4/lt~obsolete.m4])
+m4_include([build-aux/m4/pkg.m4])
+
 define(_CLIENT_VERSION_MAJOR, 2)
 define(_CLIENT_VERSION_MINOR, 0)
 define(_CLIENT_VERSION_REVISION, 03)
