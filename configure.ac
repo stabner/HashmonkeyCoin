@@ -1,13 +1,5 @@
 AC_PREREQ([2.69])
 
-dnl Include standard autoconf macros
-AC_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])
-AC_PROG_CC
-AC_PROG_CXX
-AC_PROG_LIBTOOL
-
-dnl Additional autoconf macros will be included by aclocal
-
 define(_CLIENT_VERSION_MAJOR, 2)
 define(_CLIENT_VERSION_MINOR, 0)
 define(_CLIENT_VERSION_REVISION, 03)
@@ -21,6 +13,9 @@ AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/hashmonkeycoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
+
+dnl Automake init set-up and checks
+AM_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])
 
 m4_ifndef([PKG_PROG_PKG_CONFIG], [m4_fatal([PKG_PROG_PKG_CONFIG macro not found. Please install pkg-config and re-run autogen.sh])])
 PKG_PROG_PKG_CONFIG
@@ -44,9 +39,6 @@ AC_CANONICAL_HOST
 AH_TOP([#ifndef HASHMONKEYCOIN_CONFIG_H])
 AH_TOP([#define HASHMONKEYCOIN_CONFIG_H])
 AH_BOTTOM([#endif //HASHMONKEYCOIN_CONFIG_H])
-
-dnl Automake init set-up and checks
-AM_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])
 
 AM_MAINTAINER_MODE([enable])
 
@@ -72,7 +64,7 @@ dnl Require C++17 compiler (no GNU extensions)
 AX_CXX_COMPILE_STDCXX([17], [noext], [mandatory])
 
 dnl Check if -latomic is required for <std::atomic>
-CHECK_ATOMIC
+AC_SEARCH_LIBS([__atomic_load_8], [atomic], [AC_DEFINE([HAVE_LIBATOMIC], [1], [Define this symbol if libatomic is needed])])
 
 dnl Unless the user specified OBJCXX, force it to be the same as CXX. This ensures
 dnl that we get the same -std flags for both.
