@@ -37,21 +37,21 @@ docker run -it hashmonkeycoin
 
 ### Simple Branch Strategy
 
-- **`main`**: Single development branch - all work happens here
-- **Direct development**: Make changes directly to main branch
+- **`master`**: Single development branch - all work happens here
+- **Direct development**: Make changes directly to master branch
 - **No complex branching**: Keep it simple and straightforward
 
 ### Contributing
 
 1. Fork the repository
-2. Make your changes directly on `main`
+2. Make your changes directly on `master`
 3. Test your changes thoroughly
 4. Commit with conventional messages: `git commit -m "feat: add your feature"`
-5. Push directly to main: `git push origin main`
+5. Push directly to master: `git push origin master`
 
 ### Pull Request Process (Optional)
 
-- If collaborating, create PRs targeting `main` branch
+- If collaborating, create PRs targeting `master` branch
 - Include tests for new functionality
 - Ensure all CI checks pass
 - Link related issues in PR description

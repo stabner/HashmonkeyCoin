@@ -295,9 +295,9 @@ assert(genesis.hashMerkleRoot == uint256S("0x[MINED_MERKLE]"));
 For each task:
 
 ```bash
-# 1. Make sure you're on main branch
-git checkout main
-git pull origin main
+# 1. Make sure you're on master branch
+git checkout master
+git pull origin master
 
 # 2. Make changes
 # [Execute the specific task actions]
@@ -306,10 +306,10 @@ git pull origin main
 make -j$(nproc)
 make check
 
-# 4. Commit and push directly to main
+# 4. Commit and push directly to master
 git add .
 git commit -m "feat: [task description]"
-git push origin main
+git push origin master
 
 # 5. Optional: Create PR if collaborating
 # Link to issue: "Closes #[issue-number]"

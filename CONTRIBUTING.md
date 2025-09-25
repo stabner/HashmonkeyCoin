@@ -12,16 +12,16 @@ Thank you for contributing to HashmonkeyCoin! This document provides guidelines 
 
 ### Simple Branch Strategy
 
-- **`main`**: Single development branch - all work happens here
-- **Direct commits**: Make changes directly to main branch
+- **`master`**: Single development branch - all work happens here
+- **Direct commits**: Make changes directly to master branch
 - **No complex branching**: Keep it simple and straightforward
 
 ### Development Workflow
 
-1. Make your changes directly on `main`
+1. Make your changes directly on `master`
 2. Test your changes thoroughly
 3. Commit with conventional commit messages
-4. Push directly to main (or create PR if collaborating)
+4. Push directly to master (or create PR if collaborating)
 
 ## Code Style
 
@@ -38,7 +38,7 @@ Thank you for contributing to HashmonkeyCoin! This document provides guidelines 
 
 ## Pull Request Process (Optional)
 
-- If collaborating, create PRs targeting `main` branch
+- If collaborating, create PRs targeting `master` branch
 - Include tests for new functionality
 - Ensure all CI checks pass
 - Link related issues in PR description
