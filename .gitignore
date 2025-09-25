@@ -1,163 +1,186 @@
-*.sublime-project
-*.sublime-workspace
-todo.txt
-reset-files.bash
+# Build directories
+build/
+dist/
+out/
 
-*.tar.gz
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-*.exe
-*.pdb
-src/raptoreum
-src/raptoreumd
-src/raptoreum-cli
-src/raptoreum-wallet
-src/test/fuzz
-!src/test/fuzz/*.*
-src/test/test_raptoreum
-src/test/test_raptoreum_fuzzy
-src/qt/test/test_raptoreum-qt
-src/qt/res/css/colors/*
-src/bench/bench_raptoreum
-
-# autoreconf
-Makefile.in
-aclocal.m4
-autom4te.cache/
-build-aux/config.guess
-build-aux/config.sub
-build-aux/depcomp
-build-aux/install-sh
-build-aux/ltmain.sh
-build-aux/m4/libtool.m4
-build-aux/m4/lt~obsolete.m4
-build-aux/m4/ltoptions.m4
-build-aux/m4/ltsugar.m4
-build-aux/m4/ltversion.m4
-build-aux/missing
-build-aux/compile
-build-aux/test-driver
-config.log
-config.status
-config.status.old
-configure
-libtool
-src/config/raptoreum-config.h
-src/config/raptoreum-config.h.in
-src/config/stamp-h1
-share/setup.nsi
-share/qt/Info.plist
-
-src/univalue/gen
-
-src/qt/*.moc
-src/qt/moc_*.cpp
-src/qt/forms/ui_*.h
-
-src/qt/test/moc*.cpp
-libconftest.dylib*
-
-.deps
-.dirstamp
-.libs
-.*.swp
-*.*~*
-*.bak
-*.rej
-*.orig
-*.pyc
-*.o
-*.o-*
-*.a
-*.pb.cc
-*.pb.h
-
-*.log
-*.trs
-*.dmg
-
-*.json.h
-*.raw.h
-
-# Only ignore unexpected patches
-*.patch
-!depends/patches/**/*.patch
-
-#libtool object files
-*.lo
-*.la
-
-# Compilation and Qt preprocessor part
-*.qm
-Makefile
-src/qt/raptoreum-qt
-Raptoreum-Qt.app
-!/depends/Makefile
-
-# Unit-tests
-Makefile.test
-raptoreum-qt_test
-
-# Resources cpp
-qrc_*.cpp
-
-# Mac specific
+# OS files
 .DS_Store
-build
-*.dSYM
-._*
-#lcov
+Thumbs.db
+
+# Dependencies
+node_modules/
+vendor/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test coverage
+coverage/
+*.gcov
 *.gcno
 *.gcda
-/*.info
-test_raptoreum.coverage/
-total.coverage/
-coverage_percent.txt
-/cov_tool_wraper.sh
 
-#build tests
-linux-coverage-build
-linux-build
-win32-build
-test/config.ini
-test/cache/*
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
 
-!src/leveldb*/Makefile
+# C++ build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.dylib
+*.so
+*.dll
+*.exe
 
-.cproject
-.project
-.autotools
-/doc/doxygen/
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
 
-libraptoreumconsensus.pc
-contrib/devtools/split-debug.sh
-src/qt/raptoreum-qt.bash
-qa/pull-tester/tests-config.sh
+# Autotools
+.deps/
+.dirstamp
+*.la
+*.lo
+*.Plo
+*.Po
+*.Trs
+*.Tpo
+*.log
+*.status
+config.log
+config.status
+config.h
+config.h.in
+stamp-h1
+libtool
+config.guess
+config.sub
+depcomp
+install-sh
+missing
+compile
+ltmain.sh
+aclocal.m4
+autom4te.cache/
+configure
+Makefile.in
+*.in
 
-#development symlinks
-raptoreum-cli
-raptoreumd
-raptoreum-qt
-raptoreum-wallet
-make
+# Bitcoin Core specific
+src/qt/moc_*.cpp
+src/qt/moc_*.h
+src/qt/qrc_*.cpp
+src/qt/ui_*.h
+src/qt/*.moc
+src/qt/*.qm
+src/qt/*.qrc
+src/qt/*.pro.user
+src/qt/*.pro.user.*
+src/qt/*.qbs
+src/qt/*.qbs.user
+src/qt/*.qbs.user.*
+src/qt/*.moc
+src/qt/moc_*.cpp
+src/qt/moc_*.h
+src/qt/qrc_*.cpp
+src/qt/ui_*.h
+src/qt/*.moc
+src/qt/*.qm
+src/qt/*.qrc
+src/qt/*.pro.user
+src/qt/*.pro.user.*
+src/qt/*.qbs
+src/qt/*.qbs.user
+src/qt/*.qbs.user.*
 
-/docker/bin
+# Test data
+test/data/
+test/functional/test_framework/test_framework.pyc
+test/functional/test_framework/__pycache__/
 
-# CLion
-.idea
-.vscode
-cmake-build-debug
+# Wallet files
+*.wallet
+*.dat
+*.db
+*.log
 
-depends/built
-depends/x86_64-pc-linux-gnu
-depends/sdk-sources/
-dist/
-*.conf
-.settings/language.settings.xml
+# Backup files
+*.bak
+*.backup
+*.old
 
-/raptoreum.iml
-/testnet3_binary/
-/testnet4/
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-osx_volname
-dist/
-src/test/runtest.sh
+# IDE specific
+*.sublime-project
+*.sublime-workspace
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
