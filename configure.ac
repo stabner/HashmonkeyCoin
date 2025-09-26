@@ -431,6 +431,7 @@ if test "$CXXFLAGS_overridden" = "no"; then
   AX_CHECK_COMPILE_FLAG([-Wself-assign],             [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-self-assign"],             [], [$CXXFLAG_WERROR])
   if test "$supress_external_warnings" != "yes" ; then
     AX_CHECK_COMPILE_FLAG([-Wdeprecated-copy], [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-deprecated-copy"],  [], [$CXXFLAG_WERROR])
+    AX_CHECK_COMPILE_FLAG([-Wdeprecated-declarations], [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-deprecated-declarations"], [], [$CXXFLAG_WERROR])
   fi
 fi
 
