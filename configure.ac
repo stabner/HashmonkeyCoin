@@ -429,9 +429,12 @@ if test "$CXXFLAGS_overridden" = "no"; then
   dnl set the -Wno-foo case if it works.
   AX_CHECK_COMPILE_FLAG([-Wunused-parameter],        [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-unused-parameter"],        [], [$CXXFLAG_WERROR])
   AX_CHECK_COMPILE_FLAG([-Wself-assign],             [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-self-assign"],             [], [$CXXFLAG_WERROR])
+  # Always suppress deprecated declarations warnings from external libraries
+  AX_CHECK_COMPILE_FLAG([-Wdeprecated-declarations], [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-deprecated-declarations"], [], [$CXXFLAG_WERROR])
+  # Suppress specific deprecated features warnings
+  AX_CHECK_COMPILE_FLAG([-Wno-deprecated], [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-deprecated"], [], [$CXXFLAG_WERROR])
   if test "$supress_external_warnings" != "yes" ; then
     AX_CHECK_COMPILE_FLAG([-Wdeprecated-copy], [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-deprecated-copy"],  [], [$CXXFLAG_WERROR])
-    AX_CHECK_COMPILE_FLAG([-Wdeprecated-declarations], [NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-deprecated-declarations"], [], [$CXXFLAG_WERROR])
   fi
 fi
 
