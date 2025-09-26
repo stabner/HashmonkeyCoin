@@ -41,7 +41,7 @@ LIBBITCOIN_CONSENSUS=libhashmonkeycoin_consensus.a
 LIBBITCOIN_CLI=libhashmonkeycoin_cli.a
 LIBBITCOIN_UTIL=libhashmonkeycoin_util.a
 LIBBITCOIN_CRYPTO=crypto/libhashmonkeycoin_crypto.a
-LIBBITCOINQT=qt/libraptoreumqt.a
+LIBBITCOINQT=qt/libhashmonkeycoinqt.a
 LIBDASHBLS=dashbls/libdashbls.la
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
