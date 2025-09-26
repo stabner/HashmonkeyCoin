@@ -381,7 +381,7 @@ if test "$use_sanitizers" != ""; then
     ]],[[]])])
 fi
 
-ERROR_CXXFLAGS=
+  ERROR_CXXFLAGS=
 if test "$enable_werror" = "yes"; then
   if test "$CXXFLAG_WERROR" = ""; then
     AC_MSG_ERROR([enable-werror set but -Werror is not usable])
@@ -393,6 +393,8 @@ if test "$enable_werror" = "yes"; then
   AX_CHECK_COMPILE_FLAG([-Werror=return-type], [], [ERROR_CXXFLAGS="$ERROR_CXXFLAGS -Wno-error=return-type"], [$CXXFLAG_WERROR],
                         [AC_LANG_SOURCE([[#include <cassert>
                                           int f(){ assert(false); }]])])
+  dnl Disable -Werror for deprecated declarations to allow external libraries
+  AX_CHECK_COMPILE_FLAG([-Werror=deprecated-declarations], [], [ERROR_CXXFLAGS="$ERROR_CXXFLAGS -Wno-error=deprecated-declarations"], [$CXXFLAG_WERROR])
 fi
 
 if test "$CXXFLAGS_overridden" = "no"; then
