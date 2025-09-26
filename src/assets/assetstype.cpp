@@ -29,9 +29,9 @@ void CAssetTransfer::BuildAssetTransaction(CScript &script) const {
     CDataStream AssetTransfer(SER_NETWORK, PROTOCOL_VERSION);
     AssetTransfer << *this;
     std::vector<unsigned char> vchMessage;
-    vchMessage.push_back(RTM_R); // r
-    vchMessage.push_back(RTM_T); // t
-    vchMessage.push_back(RTM_M); // m
+    vchMessage.push_back(HMNY_R); // r
+    vchMessage.push_back(HMNY_T); // t
+    vchMessage.push_back(HMNY_M); // m
     vchMessage.insert(vchMessage.end(), AssetTransfer.begin(), AssetTransfer.end());
     script << OP_ASSET_ID << ToByteVector(vchMessage) << OP_DROP;
 }
