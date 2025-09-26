@@ -76,6 +76,8 @@ namespace BCLog {
 
         HMNY = CHAINLOCKS | GOBJECT | INSTANTSEND | LLMQ | LLMQ_DKG | LLMQ_SIGS
               | MNPAYMENTS | MNSYNC | COINJOIN | SPORK | NETCONN | QUORUMS | UPDATES,
+        RTM = CHAINLOCKS | GOBJECT | INSTANTSEND | LLMQ | LLMQ_DKG | LLMQ_SIGS
+              | MNPAYMENTS | MNSYNC | COINJOIN | SPORK | NETCONN | QUORUMS | UPDATES,
 
         NET_NETCONN = NET | NETCONN, // use this to have something logged in NET and NETCONN as well
         //End Raptoreum
