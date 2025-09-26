@@ -794,6 +794,7 @@ UniValue getassetdetailsbyid(const JSONRPCRequest &request) {
     return result;
 }
 
+#ifdef ENABLE_WALLET
 UniValue listassetsbalance(const JSONRPCRequest &request) {
     if (request.fHelp || !Updates().IsAssetsActive(::ChainActive().Tip()) || request.params.size() > 0)
         throw std::runtime_error(
@@ -1043,6 +1044,7 @@ UniValue listunspentassets(const JSONRPCRequest& request)
 
     return results;
 }
+#endif //ENABLE_WALLET
 
 UniValue listassets(const JSONRPCRequest &request) {
     RPCHelpMan{"listassets",
