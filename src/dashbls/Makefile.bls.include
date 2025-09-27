@@ -49,7 +49,7 @@ libdashbls_la_LIBADD = \
 	$(GMP_LIBS)
 
 libdashbls_la_CPPFLAGS = $(AM_CPPFLAGS) $(RELIC_INCLUDES) $(MIMALLOC_INCLUDES) $(DASHBLS_INCLUDES) $(DASHBLS_CPPFLAGS)
-libdashbls_la_CXXFLAGS = $(AM_CXXFLAGS)
+libdashbls_la_CXXFLAGS = $(AM_CXXFLAGS) -std=c++17
 libdashbls_la_LDFLAGS  = $(AM_LDFLAGS)
 
 include Makefile.mimalloc.include
