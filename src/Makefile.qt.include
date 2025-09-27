@@ -113,9 +113,9 @@ QT_MOC = \
   qt/rpcconsole.moc
 
 QT_QRC_CPP = qt/qrc_hashmonkeycoin.cpp
-QT_QRC = qt/hashmonkeycoin.qrc
+QT_QRC = src/qt/hashmonkeycoin.qrc
 QT_QRC_LOCALE_CPP = qt/qrc_hashmonkeycoin_locale.cpp
-QT_QRC_LOCALE = qt/hashmonkeycoin_locale.qrc
+QT_QRC_LOCALE = src/qt/hashmonkeycoin_locale.qrc
 
 BITCOIN_QT_H = \
   qt/addressbookpage.h \
