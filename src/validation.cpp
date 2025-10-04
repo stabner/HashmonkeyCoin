@@ -1089,12 +1089,12 @@ GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consens
     //     std::cout << "This is Testnet only build" << endl;
     //     exit(1);
     // }
-    double nSubsidy = 5000;      // (declaring the reward variable and its original/default amount)
+    double nSubsidy = 500;       // (declaring the reward variable and its original/default amount)
     const short owlings = 21262; // amount of blocks between 2 owlings
     int multiplier;              // integer number of owlings
     int tempHeight;              // number of blocks since last anchor
     if (nPrevHeight < 720) {
-        nSubsidy = Params().NetworkIDString() == CBaseChainParams::TESTNET ? 20000 : 4;
+        nSubsidy = Params().NetworkIDString() == CBaseChainParams::TESTNET ? 2000 : 4;
     } else if ((nPrevHeight > 553531) && (nPrevHeight < 2105657)) {
         tempHeight = nPrevHeight - 553532;
         multiplier = tempHeight / owlings;
