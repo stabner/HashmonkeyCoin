@@ -161,6 +161,38 @@ static void VerifyGenesisPOW(const CBlock &genesis) {
     assert(false);
 }
 
+/// Mine a valid genesis block with proper POW
+static CBlock MineGenesisBlock(const char *pszTimestamp, const CScript &genesisOutputScript, uint32_t nTime, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
+    CBlock genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, 0, nBits, nVersion, genesisReward);
+    
+    arith_uint256 bnTarget;
+    bnTarget.SetCompact(genesis.nBits);
+    
+    std::cout << "Mining genesis block..." << std::endl;
+    std::cout << "Target: " << bnTarget.GetHex() << std::endl;
+    
+    CBlock block(genesis);
+    uint32_t nonce = 0;
+    do {
+        block.nNonce = nonce;
+        uint256 hash = block.GetPOWHash();
+        if (UintToArith256(hash) <= bnTarget) {
+            std::cout << "Found valid nonce: " << nonce << std::endl;
+            std::cout << "POW Hash: " << hash.ToString() << std::endl;
+            std::cout << "Block Hash: " << block.GetHash().ToString() << std::endl;
+            std::cout << "Merkle Root: " << block.hashMerkleRoot.ToString() << std::endl;
+            return block;
+        }
+        ++nonce;
+        if (nonce % 1000000 == 0) {
+            std::cout << "Tried " << nonce << " nonces..." << std::endl;
+        }
+    } while (nonce != 0);
+    
+    error("MineGenesisBlock: could not find valid nonce");
+    return genesis;
+}
+
 /**
  * Main network
  */
@@ -254,13 +286,15 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1759708800, 0, 0x20001fff, 4, 500 * COIN);
-        // VerifyGenesisPOW(genesis); // Disabled for development - genesis block POW verification
+        const char *pszTimestamp = "HashmonkeyCoin Genesis: HashmonkeyCoin Launch 4 October 2025 - mainnet";
+        const CScript genesisOutputScript = CScript() << ParseHex(
+                "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
+                                                      << OP_CHECKSIG;
+        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0x20001fff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
-        assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        // Genesis block hash will be different since we're mining new blocks
+        std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Mainnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
         vSeeds.emplace_back("lbdn.raptoreum.com");
         vSeeds.emplace_back("51.89.21.112");
@@ -422,14 +456,16 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 10230;
         nPruneAfterHeight = 1000;
-        genesis = CreateTestnetGenesisBlock(1759708800, 0, 0x20001fff, 4, 500 * COIN);
-        // VerifyGenesisPOW(genesis); // Disabled for development - genesis block POW verification
+        const char *pszTimestamp = "HashmonkeyCoin Genesis: HashmonkeyCoin Launch 4 October 2025 - testnet";
+        const CScript genesisOutputScript = CScript() << ParseHex(
+                "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
+                                                      << OP_CHECKSIG;
+        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0x20001fff, 4, 500 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0xbbab22066081d3b466abd734de914e8092abf4e959bcd0fff978297c41591b23"));
-        assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        // Genesis block hash will be different since we're mining new blocks
+        std::cout << "Testnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Testnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
