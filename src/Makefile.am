@@ -646,7 +646,7 @@ libhashmonkeycoin_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/raptoreumconsensus.cpp \
+  script/hashmonkeycoinconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
