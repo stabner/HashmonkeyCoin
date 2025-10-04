@@ -287,7 +287,7 @@ public:
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 1000000 * COIN}
                 },
-                {{INT_MAX, 5}}
+                {{INT_MAX, 7}}
         );
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
@@ -466,7 +466,7 @@ public:
 
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 100000 * COIN}},
-                {{INT_MAX, 5}});
+                {{INT_MAX, 7}});
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
@@ -592,7 +592,7 @@ public:
         consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 100000 * COIN}},
-                {{INT_MAX, 5}});
+                {{INT_MAX, 7}});
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -742,7 +742,7 @@ public:
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 10000 * COIN}},
                 {{240,     0},
-                 {INT_MAX, 5}});
+                 {INT_MAX, 7}});
 
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0xc1;
