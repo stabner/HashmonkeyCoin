@@ -19,19 +19,19 @@ BitcoinUnits::BitcoinUnits(QObject *parent) :
 
 QList <BitcoinUnits::Unit> BitcoinUnits::availableUnits() {
     QList <BitcoinUnits::Unit> unitlist;
-    unitlist.append(RTM);
-    unitlist.append(mRTM);
-    unitlist.append(uRTM);
-    unitlist.append(ruffs);
+    unitlist.append(HMNY);
+    unitlist.append(mHMNY);
+    unitlist.append(uHMNY);
+    unitlist.append(hashmonkeys);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit) {
     switch (unit) {
-        case RTM:
-        case mRTM:
-        case uRTM:
-        case ruffs:
+        case HMNY:
+        case mHMNY:
+        case uHMNY:
+        case hashmonkeys:
             return true;
         default:
             return false;
@@ -41,27 +41,27 @@ bool BitcoinUnits::valid(int unit) {
 QString BitcoinUnits::name(int unit) {
     if (Params().NetworkIDString() == CBaseChainParams::MAIN) {
         switch (unit) {
-            case RTM:
-                return QString("RTM");
-            case mRTM:
-                return QString("mRTM");
-            case uRTM:
-                return QString::fromUtf8("μRTM");
-            case ruffs:
-                return QString("ruffs");
+            case HMNY:
+                return QString("HMNY");
+            case mHMNY:
+                return QString("mHMNY");
+            case uHMNY:
+                return QString::fromUtf8("μHMNY");
+            case hashmonkeys:
+                return QString("hashmonkeys");
             default:
                 return QString("???");
         }
     } else {
         switch (unit) {
-            case RTM:
-                return QString("tRTM");
-            case mRTM:
-                return QString("mtRTM");
-            case uRTM:
-                return QString::fromUtf8("μtRTM");
-            case ruffs:
-                return QString("truffs");
+            case HMNY:
+                return QString("tHMNY");
+            case mHMNY:
+                return QString("mtHMNY");
+            case uHMNY:
+                return QString::fromUtf8("μtHMNY");
+            case hashmonkeys:
+                return QString("thashmonkeys");
             default:
                 return QString("???");
         }
@@ -71,20 +71,20 @@ QString BitcoinUnits::name(int unit) {
 QString BitcoinUnits::description(int unit) {
     if (Params().NetworkIDString() == CBaseChainParams::MAIN) {
         switch (unit) {
-            case RTM:
-                return QString("Raptoreum");
-            case mRTM:
-                return QString("Milli-Raptoreum (1 / 1"
+            case HMNY:
+                return QString("HashmonkeyCoin");
+            case mHMNY:
+                return QString("Milli-HashmonkeyCoin (1 / 1"
                 THIN_SP_UTF8
                 "000)");
-            case uRTM:
-                return QString("Micro-Raptoreum (1 / 1"
+            case uHMNY:
+                return QString("Micro-HashmonkeyCoin (1 / 1"
                 THIN_SP_UTF8
                 "000"
                 THIN_SP_UTF8
                 "000)");
-            case ruffs:
-                return QString("Ten Nano-Raptoreum (1 / 100"
+            case hashmonkeys:
+                return QString("Ten Nano-HashmonkeyCoin (1 / 100"
                 THIN_SP_UTF8
                 "000"
                 THIN_SP_UTF8
@@ -94,20 +94,20 @@ QString BitcoinUnits::description(int unit) {
         }
     } else {
         switch (unit) {
-            case RTM:
-                return QString("TestRaptoreums");
-            case mRTM:
-                return QString("Milli-TestRaptoreum (1 / 1"
+            case HMNY:
+                return QString("TestHashmonkeyCoins");
+            case mHMNY:
+                return QString("Milli-TestHashmonkeyCoin (1 / 1"
                 THIN_SP_UTF8
                 "000)");
-            case uRTM:
-                return QString("Micro-TestRaptoreum (1 / 1"
+            case uHMNY:
+                return QString("Micro-TestHashmonkeyCoin (1 / 1"
                 THIN_SP_UTF8
                 "000"
                 THIN_SP_UTF8
                 "000)");
-            case ruffs:
-                return QString("Ten Nano-TestRaptoreum (1 / 100"
+            case hashmonkeys:
+                return QString("Ten Nano-TestHashmonkeyCoin (1 / 100"
                 THIN_SP_UTF8
                 "000"
                 THIN_SP_UTF8
@@ -120,13 +120,13 @@ QString BitcoinUnits::description(int unit) {
 
 qint64 BitcoinUnits::factor(int unit) {
     switch (unit) {
-        case RTM:
+        case HMNY:
             return 100000000;
-        case mRTM:
+        case mHMNY:
             return 100000;
-        case uRTM:
+        case uHMNY:
             return 100;
-        case ruffs:
+        case hashmonkeys:
             return 1;
         default:
             return 100000000;
@@ -135,13 +135,13 @@ qint64 BitcoinUnits::factor(int unit) {
 
 int BitcoinUnits::decimals(int unit) {
     switch (unit) {
-        case RTM:
+        case HMNY:
             return 8;
-        case mRTM:
+        case mHMNY:
             return 5;
-        case uRTM:
+        case uHMNY:
             return 2;
-        case ruffs:
+        case hashmonkeys:
             return 0;
         default:
             return 0;
@@ -222,7 +222,7 @@ QString BitcoinUnits::formatWithUnit(int unit, const CAmount &amount, bool pluss
 
 QString BitcoinUnits::formatWithCustomName(QString customName, const CAmount &amount, int unit, bool plussign,
                                            SeparatorStyle separators) {
-    return format(RTM, amount / factorAsset(MAX_ASSET_UNITS - unit), plussign, separators, unit) + QString(" ") +
+    return format(HMNY, amount / factorAsset(MAX_ASSET_UNITS - unit), plussign, separators, unit) + QString(" ") +
            customName.left(20);
 }
 
