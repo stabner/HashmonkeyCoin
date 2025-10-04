@@ -456,11 +456,11 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 10230;
         nPruneAfterHeight = 1000;
-        const char *pszTimestamp = "HashmonkeyCoin Genesis: HashmonkeyCoin Launch 4 October 2025 - testnet";
+        const char *pszTimestamp = "HashmonkeyCoin Testnet Genesis: HashmonkeyCoin Testnet Launch 4 October 2025";
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0x20001fff, 4, 500 * COIN);
+        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0x20001fff, 4, 500 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         // Genesis block hash will be different since we're mining new blocks
@@ -613,14 +613,14 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1759708800, 0, 0x20001fff, 4, 500 * COIN);
-        // VerifyGenesisPOW(genesis); // Disabled for development - genesis block POW verification
+        const char *pszTimestamp = "HashmonkeyCoin Devnet Genesis: HashmonkeyCoin Devnet Launch 4 October 2025";
+        const CScript genesisOutputScript = CScript() << ParseHex(
+                "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
+                                                      << OP_CHECKSIG;
+        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708802, 0x20001fff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-//      std::cout << "hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x6d195b5563f3fea862d1ad151f3de7e568bb139ea3d8ee68b398580e493a504c"));
-        assert(genesis.hashMerkleRoot ==
-               uint256S("0xe87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        std::cout << "Devnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Devnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
@@ -792,13 +792,14 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1759708800, 0, 0x207fffff, 4, 500 * COIN);
-        // VerifyGenesisPOW(genesis); // Disabled for development - genesis block POW verification
+        const char *pszTimestamp = "HashmonkeyCoin Regtest Genesis: HashmonkeyCoin Regtest Launch 4 October 2025";
+        const CScript genesisOutputScript = CScript() << ParseHex(
+                "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
+                                                      << OP_CHECKSIG;
+        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0x207fffff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x485491468e03c8ac23dd38f70fc1cda9f98cbd0bf58945e2da6c94c2a2d8b044"));
-        assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        std::cout << "Regtest Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Regtest Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
