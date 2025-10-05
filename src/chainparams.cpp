@@ -272,8 +272,8 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"RWGvGpd3yJdnfh9ziyHNDEoHMJBvnZ23zK"};
-        nMinSporkKeys = 1;
+        vSporkAddresses = {};
+        nMinSporkKeys = 0;
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
@@ -445,8 +445,8 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"rsqc2caFRG6myRdzKipP4PpVW9LnFaG7CH"};
-        nMinSporkKeys = 1;
+        vSporkAddresses = {};
+        nMinSporkKeys = 0;
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
@@ -572,8 +572,8 @@ public:
         nPoolNewMaxParticipants = 20;
 
         // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {"yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc"};
-        nMinSporkKeys = 1;
+        vSporkAddresses = {};
+        nMinSporkKeys = 0;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever

@@ -1882,9 +1882,12 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
         }
     }
 
-    int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
-    if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
-        return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
+    // Only set min spork keys if we have spork addresses
+    if (!vSporkAddresses.empty()) {
+        int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
+        if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
+            return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
+        }
     }
 
 
