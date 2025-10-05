@@ -114,37 +114,7 @@ static void VerifyGenesisPOW(const CBlock &genesis) {
     assert(false);
 }
 
-/// Mine a valid genesis block with proper POW
-static CBlock MineGenesisBlock(const char *pszTimestamp, const CScript &genesisOutputScript, uint32_t nTime, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
-    CBlock genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, 0, nBits, nVersion, genesisReward);
-    
-    arith_uint256 bnTarget;
-    bnTarget.SetCompact(genesis.nBits);
-    
-    std::cout << "Mining genesis block..." << std::endl;
-    std::cout << "Target: " << bnTarget.GetHex() << std::endl;
-    
-    CBlock block(genesis);
-    uint32_t nonce = 0;
-    do {
-        block.nNonce = nonce;
-        uint256 hash = block.GetPOWHash();
-        if (UintToArith256(hash) <= bnTarget) {
-            std::cout << "Found valid nonce: " << nonce << std::endl;
-            std::cout << "POW Hash: " << hash.ToString() << std::endl;
-            std::cout << "Block Hash: " << block.GetHash().ToString() << std::endl;
-            std::cout << "Merkle Root: " << block.hashMerkleRoot.ToString() << std::endl;
-            return block;
-        }
-        ++nonce;
-        if (nonce % 1000000 == 0) {
-            std::cout << "Tried " << nonce << " nonces..." << std::endl;
-        }
-    } while (nonce != 0);
-    
-    error("MineGenesisBlock: could not find valid nonce");
-    return genesis;
-}
+// Genesis blocks are now pre-mined and don't require mining on launch
 
 /**
  * Main network
@@ -243,17 +213,17 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0x1d00ffff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Genesis block hash will be different since we're mining new blocks
+        // Pre-mined genesis block for HashmonkeyCoin mainnet
         std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Mainnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
-        // Raptoreum addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 60);
-        // Raptoreum script addresses start with '7'
+        // HashmonkeyCoin addresses start with 'H'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
+        // HashmonkeyCoin script addresses start with '7'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
         // Raptoreum private keys start with '7' or 'X'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 128);
@@ -302,7 +272,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60 * 60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"RWGvGpd3yJdnfh9ziyHNDEoHMJBvnZ23zK"};
+        vSporkAddresses = {"HMNYSporkMainnet1HashmonkeyCoin2025"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -412,10 +382,10 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0x1d00ffff, 4, 500 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Genesis block hash will be different since we're mining new blocks
+        // Pre-mined genesis block for HashmonkeyCoin testnet
         std::cout << "Testnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Testnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
 
@@ -426,9 +396,9 @@ public:
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
-        // Testnet Raptoreum addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 123);
-        // Testnet Raptoreum script addresses start with '8' or '9'
+        // Testnet HashmonkeyCoin addresses start with 'h'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 100);
+        // Testnet HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
@@ -577,7 +547,7 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0x207fffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0x207fffff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         std::cout << "Regtest Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Regtest Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
@@ -621,9 +591,9 @@ public:
                 0
         };
 
-        // Regtest Raptoreum addresses start with 'y'
+        // Regtest HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
-        // Regtest Raptoreum script addresses start with '8' or '9'
+        // Regtest HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
