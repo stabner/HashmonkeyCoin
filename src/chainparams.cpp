@@ -213,7 +213,7 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0x1d00ffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0, 0x1d00ffff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Pre-mined genesis block for HashmonkeyCoin mainnet
         std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
@@ -382,7 +382,7 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0x1d00ffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0, 0x1d00ffff, 4, 500 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         // Pre-mined genesis block for HashmonkeyCoin testnet
@@ -547,7 +547,7 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0x207fffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0, 0x207fffff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         std::cout << "Regtest Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Regtest Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
