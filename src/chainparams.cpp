@@ -56,30 +56,6 @@ CreateGenesisBlock(const char *pszTimestamp, const CScript &genesisOutputScript,
     return genesis;
 }
 
-static CBlock
-CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::string &devNetName, uint32_t nTime, uint32_t nNonce,
-                         uint32_t nBits, const CAmount &genesisReward) {
-    assert(!devNetName.empty());
-
-    CMutableTransaction txNew;
-    txNew.nVersion = 1;
-    txNew.vin.resize(1);
-    txNew.vout.resize(1);
-    // put height (BIP34) and devnet name into coinbase
-    txNew.vin[0].scriptSig = CScript() << 1 << std::vector<unsigned char>(devNetName.begin(), devNetName.end());
-    txNew.vout[0].nValue = genesisReward;
-    txNew.vout[0].scriptPubKey = CScript() << OP_RETURN;
-
-    CBlock genesis;
-    genesis.nTime = nTime;
-    genesis.nBits = nBits;
-    genesis.nNonce = nNonce;
-    genesis.nVersion = 4;
-    genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
-    genesis.hashPrevBlock = prevBlockHash;
-    genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
-    return genesis;
-}
 
 /**
  * Build the genesis block. Note that the output of its generation
@@ -110,29 +86,6 @@ CreateTestnetGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
-static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount &reward) {
-    std::string devNetName = gArgs.GetDevNetName();
-    assert(!devNetName.empty());
-
-    CBlock block = CreateDevNetGenesisBlock(prevBlock.GetHash(), devNetName.c_str(), prevBlock.nTime + 1, 0,
-                                            prevBlock.nBits, reward);
-
-    arith_uint256 bnTarget;
-    bnTarget.SetCompact(block.nBits);
-
-    for (uint32_t nNonce = 0; nNonce < UINT32_MAX; nNonce++) {
-        block.nNonce = nNonce;
-
-        uint256 hash = block.GetHash();
-        if (UintToArith256(hash) <= bnTarget)
-            return block;
-    }
-
-    // This is very unlikely to happen as we start the devnet with a very low difficulty. In many cases even the first
-    // iteration of the above loop will give a result already
-    error("FindDevNetGenesisBlock: could not find devnet genesis block for %s", devNetName);
-    assert(false);
-}
 
 /// Verify the POW hash is valid for the genesis block
 /// If starting Nonce is not valid, search for one
@@ -543,176 +496,6 @@ public:
     }
 };
 
-/**
- * Devnet
- */
-class CDevNetParams : public CChainParams {
-public:
-    explicit CDevNetParams(const ArgsManager &args) {
-        strNetworkID = CBaseChainParams::DEVNET;
-        consensus.nSubsidyHalvingInterval = 210240;
-        consensus.nSmartnodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nSmartnodePaymentsIncreaseBlock
-        consensus.nSmartnodePaymentsIncreaseBlock = 4030;
-        consensus.nSmartnodePaymentsIncreasePeriod = 10;
-        consensus.nInstantSendConfirmationsRequired = 2;
-        consensus.nInstantSendKeepLock = 6;
-        consensus.nBudgetPaymentsStartBlock = 4100;
-        consensus.nBudgetPaymentsCycleBlocks = 50;
-        consensus.nBudgetPaymentsWindowBlocks = 10;
-        consensus.nSuperblockStartBlock = 4200; // NOTE: Should satisfy nSuperblockStartBlock > nBudgetPeymentsStartBlock
-        consensus.nSuperblockStartHash = uint256(); // do not check this on devnet
-        consensus.nSuperblockCycle = 24; // Superblocks can be issued hourly on devnet
-        consensus.nGovernanceMinQuorum = 1;
-        consensus.nGovernanceFilterElements = 500;
-        consensus.nSmartnodeMinimumConfirmations = 1;
-        consensus.BIP147Enabled = true;
-        consensus.BIPCSVEnabled = true;
-        consensus.BIP34Enabled = true; // BIP34 activated immediately on devnet
-        consensus.BIP65Enabled = true; // BIP65 activated immediately on devnet
-        consensus.BIP66Enabled = true; // BIP66 activated immediately on devnet
-        consensus.DIP0001Enabled = true; // DIP0001 activated immediately on devnet
-        consensus.DIP0003Enabled = true; // DIP0003 activated immediately on devnet
-        consensus.DIP0008Enabled = true;// DIP0008 activated immediately on devnet
-        // consensus.DIP0003EnforcementHeight = 2; // DIP0003 activated immediately on devnet
-        consensus.powLimit = uint256S(
-                "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Raptoreum: 2 minutes
-        consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.fPowNoRetargeting = false;
-        consensus.nPowDGWHeight = 60;
-        consensus.DGWBlocksAvg = 60;
-        consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
-        consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
-        consensus.nFutureForkBlock = 1;
-
-        updateManager.Add
-                (
-                        Update(EUpdate::DEPLOYMENT_V17, std::string("v17"), 0, 10, 0, 10, 100, 10, false,
-                               VoteThreshold(95, 95, 5), VoteThreshold(0, 0, 1))
-                );
-        updateManager.Add
-                (
-                        Update(EUpdate::ROUND_VOTING, std::string("Round Voting"), 1, 10, 100, 5, 10, 5, false,
-                               VoteThreshold(85, 85, 1), VoteThreshold(0, 0, 1))
-                );
-
-        // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000000000000000");
-
-        // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x000000000000000000000000000000000000000000000000000000000000000");
-
-        pchMessageStart[0] = 0xe2;
-        pchMessageStart[1] = 0xca;
-        pchMessageStart[2] = 0xff;
-        pchMessageStart[3] = 0xce;
-        nDefaultPort = 19799;
-        nPruneAfterHeight = 1000;
-        m_assumed_blockchain_size = 0;
-        m_assumed_chain_state_size = 0;
-
-        UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        const char *pszTimestamp = "HashmonkeyCoin Devnet Genesis: HashmonkeyCoin Devnet Launch 4 October 2025";
-        const CScript genesisOutputScript = CScript() << ParseHex(
-                "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
-                                                      << OP_CHECKSIG;
-        genesis = MineGenesisBlock(pszTimestamp, genesisOutputScript, 1759708802, 0x20001fff, 4, 500 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        std::cout << "Devnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "Devnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
-
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
-
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
-        consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 100000 * COIN}},
-                {{INT_MAX, 7}});
-
-        vFixedSeeds.clear();
-        vSeeds.clear();
-        vSeeds.emplace_back("47.151.26.43");
-        //vSeeds.push_back(CDNSSeedData("raptoreumevo.org",  "devnet-seed.raptoreumevo.org"));
-
-        // Testnet Raptoreum addresses start with 'y'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
-        // Testnet Raptoreum script addresses start with '8' or '9'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
-        // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Testnet Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
-
-        // Testnet Raptoreum BIP44 coin type is '1' (All coin's testnet default)
-        nExtCoinType = 1;
-
-        // long living quorum params
-        consensus.llmqs[Consensus::LLMQ_50_60] = Consensus::llmq50_60;
-        consensus.llmqs[Consensus::LLMQ_400_60] = Consensus::llmq400_60;
-        consensus.llmqs[Consensus::LLMQ_400_85] = Consensus::llmq400_85;
-        consensus.llmqs[Consensus::LLMQ_100_67] = Consensus::llmq100_67_testnet;
-        consensus.llmqTypeChainLocks = Consensus::LLMQ_50_60;
-        consensus.llmqTypeInstantSend = Consensus::LLMQ_50_60;
-        consensus.llmqTypePlatform = Consensus::LLMQ_100_67;
-
-        UpdateDevnetLLMQChainLocksFromArgs(args);
-        UpdateDevnetLLMQInstantSendFromArgs(args);
-
-        fDefaultConsistencyChecks = false;
-        fRequireStandard = false;
-        fRequireRoutableExternalIP = true;
-        fMineBlocksOnDemand = false;
-        fAllowMultipleAddressesFromGroup = true;
-        fAllowMultiplePorts = true;
-        miningRequiresPeers = false;
-        nLLMQConnectionRetryTimeout = 60;
-        m_is_mockable_chain = false;
-
-        nPoolMinParticipants = 2;
-        nPoolMaxParticipants = 20;
-        nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
-
-        // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {"yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun"};
-        nMinSporkKeys = 1;
-        // devnets are started with no blocks and no MN, so we can't check for upgraded MN (as there are none)
-        fBIP9CheckSmartnodesUpgraded = false;
-
-        checkpointData = (CCheckpointData) {
-                {
-                        {0, uint256S("0x6d195b5563f3fea862d1ad151f3de7e568bb139ea3d8ee68b398580e493a504c")},
-                }
-        };
-
-        chainTxData = ChainTxData{
-
-        };
-    }
-
-    void
-    UpdateDevnetSubsidyAndDiffParameters(int nMinimumDifficultyBlocks, int nHighSubsidyBlocks, int nHighSubsidyFactor) {
-        consensus.nMinimumDifficultyBlocks = nMinimumDifficultyBlocks;
-        consensus.nHighSubsidyBlocks = nHighSubsidyBlocks;
-        consensus.nHighSubsidyFactor = nHighSubsidyFactor;
-    }
-
-    void UpdateDevnetSubsidyAndDiffParametersFromArgs(const ArgsManager &args);
-
-    void UpdateDevnetLLMQChainLocks(Consensus::LLMQType llmqType) {
-        consensus.llmqTypeChainLocks = llmqType;
-    }
-
-    void UpdateDevnetLLMQChainLocksFromArgs(const ArgsManager &args);
-
-    void UpdateDevnetLLMQInstantSend(Consensus::LLMQType llmqType) {
-        consensus.llmqTypeInstantSend = llmqType;
-    }
-
-    void UpdateDevnetLLMQInstantSendFromArgs(const ArgsManager &args);
-};
 
 /**
  * Regression test
@@ -973,56 +756,6 @@ void CRegTestParams::UpdateBudgetParametersFromArgs(const ArgsManager &args) {
     UpdateBudgetParameters(nSmartnodePaymentsStartBlock, nBudgetPaymentsStartBlock, nSuperblockStartBlock);
 }
 
-void CDevNetParams::UpdateDevnetSubsidyAndDiffParametersFromArgs(const ArgsManager &args) {
-    if (!args.IsArgSet("-minimumdifficultyblocks") && !args.IsArgSet("-highsubsidyblocks") &&
-        !args.IsArgSet("-highsubsidyfactor"))
-        return;
-
-    int nMinimumDifficultyBlocks = gArgs.GetArg("-minimumdifficultyblocks", consensus.nMinimumDifficultyBlocks);
-    int nHighSubsidyBlocks = gArgs.GetArg("-highsubsidyblocks", consensus.nHighSubsidyBlocks);
-    int nHighSubsidyFactor = gArgs.GetArg("-highsubsidyfactor", consensus.nHighSubsidyFactor);
-    LogPrintf("Setting minimumdifficultyblocks=%ld, highsubsidyblocks=%ld, highsubsidyfactor=%ld\n",
-              nMinimumDifficultyBlocks, nHighSubsidyBlocks, nHighSubsidyFactor);
-    UpdateDevnetSubsidyAndDiffParameters(nMinimumDifficultyBlocks, nHighSubsidyBlocks, nHighSubsidyFactor);
-}
-
-void CDevNetParams::UpdateDevnetLLMQChainLocksFromArgs(const ArgsManager &args)
-// void UpdateBudgetParameters(int nSmartnodePaymentsStartBlock, int nBudgetPaymentsStartBlock, int nSuperblockStartBlock)
-{
-    if (!args.IsArgSet("-llmqchainlocks")) return;
-
-    std::string strLLMQType = gArgs.GetArg("-llmqchainlocks",
-                                           std::string(consensus.llmqs.at(consensus.llmqTypeChainLocks).name));
-    Consensus::LLMQType llmqType = Consensus::LLMQ_NONE;
-    for (const auto &p: consensus.llmqs) {
-        if (p.second.name == strLLMQType) {
-            llmqType = p.first;
-        }
-    }
-    if (llmqType == Consensus::LLMQ_NONE) {
-        throw std::runtime_error("Invalid LLMQ type specified for -llmqchainlocks.");
-    }
-    LogPrintf("Setting llmqchainlocks to size=%ld\n", llmqType);
-    UpdateDevnetLLMQChainLocks(llmqType);
-}
-
-void CDevNetParams::UpdateDevnetLLMQInstantSendFromArgs(const ArgsManager &args) {
-    if (!args.IsArgSet("-llmqinstantsend")) return;
-
-    std::string strLLMQType = gArgs.GetArg("-llmqinstantsend",
-                                           std::string(consensus.llmqs.at(consensus.llmqTypeInstantSend).name));
-    Consensus::LLMQType llmqType = Consensus::LLMQ_NONE;
-    for (const auto &p: consensus.llmqs) {
-        if (p.second.name == strLLMQType) {
-            llmqType = p.first;
-        }
-    }
-    if (llmqType == Consensus::LLMQ_NONE) {
-        throw std::runtime_error("Invalid LLMQ type specified for -llmqinstantsend.");
-    }
-    LogPrintf("Setting llmqinstantsend to size=%ld\n", llmqType);
-    UpdateDevnetLLMQInstantSend(llmqType);
-}
 
 const CChainParams &Params() {
     assert(globalChainParams);
@@ -1040,9 +773,7 @@ std::unique_ptr <CChainParams> CreateChainParams(const std::string &chain) {
         return std::make_unique<CMainParams>();
     else if (chain == CBaseChainParams::TESTNET)
         return std::make_unique<CTestNetParams>();
-    else if (chain == CBaseChainParams::DEVNET) {
-        return std::make_unique<CDevNetParams>(gArgs);
-    } else if (chain == CBaseChainParams::REGTEST)
+    else if (chain == CBaseChainParams::REGTEST)
         return std::make_unique<CRegTestParams>(gArgs);
 
     throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
