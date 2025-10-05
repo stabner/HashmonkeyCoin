@@ -711,13 +711,13 @@ void PrintExceptionContinue(const std::exception_ptr pex, const char *pszExcepti
 }
 
 fs::path GetDefaultDataDir() {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\RaptoreumCore
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\RaptoreumCore
-    // Mac: ~/Library/Application Support/RaptoreumCore
-    // Unix: ~/.raptoreumcore
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\HashmonkeyCoinCore
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\HashmonkeyCoinCore
+    // Mac: ~/Library/Application Support/HashmonkeyCoinCore
+    // Unix: ~/.hashmonkeycoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "RaptoreumCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "HashmonkeyCoinCore";
 #else
     fs::path pathRet;
     char *pszHome = getenv("HOME");
@@ -727,10 +727,10 @@ fs::path GetDefaultDataDir() {
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/RaptoreumCore";
+    return pathRet / "Library/Application Support/HashmonkeyCoinCore";
 #else
     // Unix
-    return pathRet / ".raptoreumcore";
+    return pathRet / ".hashmonkeycoin";
 #endif
 #endif
 }

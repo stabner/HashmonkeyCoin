@@ -814,8 +814,8 @@ namespace GUIUtil {
     {
         std::string chain = gArgs.GetChainName();
         if (chain == CBaseChainParams::MAIN)
-            return GetAutostartDir() / "raptoreumcore.desktop";
-        return GetAutostartDir() / strprintf("raptoreumcore-%s.desktop", chain);
+            return GetAutostartDir() / "hashmonkeycoin.desktop";
+        return GetAutostartDir() / strprintf("hashmonkeycoin-%s.desktop", chain);
     }
 
     bool GetStartOnSystemStartup()
@@ -855,7 +855,7 @@ namespace GUIUtil {
             if (!optionFile.good())
                 return false;
             std::string chain = gArgs.GetChainName();
-            // Write a raptoreumcore.desktop file to the autostart directory:
+            // Write a hashmonkeycoin.desktop file to the autostart directory:
             optionFile << "[Desktop Entry]\n";
             optionFile << "Type=Application\n";
             if (chain == CBaseChainParams::MAIN)
