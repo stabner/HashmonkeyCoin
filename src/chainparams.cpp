@@ -234,7 +234,7 @@ public:
         pchMessageStart[1] = 0x74;//t
         pchMessageStart[2] = 0x6d;//m
         pchMessageStart[3] = 0x2e;//.
-        nDefaultPort = 10226;
+        nDefaultPort = 17777;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
@@ -406,7 +406,7 @@ public:
         pchMessageStart[1] = 0x72; //r
         pchMessageStart[2] = 0x74; //t
         pchMessageStart[3] = 0x6d; //m
-        nDefaultPort = 10230;
+        nDefaultPort = 17778;
         nPruneAfterHeight = 1000;
         const char *pszTimestamp = "HashmonkeyCoin Testnet Genesis: HashmonkeyCoin Testnet Launch 4 October 2025";
         const CScript genesisOutputScript = CScript() << ParseHex(
@@ -565,7 +565,7 @@ public:
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
         pchMessageStart[3] = 0xdc;
-        nDefaultPort = 19899;
+        nDefaultPort = 17779;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
