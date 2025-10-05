@@ -64,7 +64,12 @@ void CSporkManager::Clear() {
 void CSporkManager::CheckAndRemove() {
     LOCK(cs);
     bool fSporkAddressIsSet = !setSporkPubKeyIDs.empty();
-    assert(fSporkAddressIsSet);
+    
+    // If no spork addresses are configured, skip spork validation
+    if (!fSporkAddressIsSet) {
+        LogPrintf("CSporkManager::CheckAndRemove -- No spork addresses configured, skipping spork validation\n");
+        return;
+    }
 
     auto itActive = mapSporksActive.begin();
     while (itActive != mapSporksActive.end()) {
@@ -209,6 +214,17 @@ bool CSporkManager::UpdateSpork(SporkId nSporkID, int64_t nValue, CConnman &conn
 
 bool CSporkManager::IsSporkActive(SporkId nSporkID) const {
     LOCK(cs);
+    
+    // If no spork addresses are configured, return default values
+    if (setSporkPubKeyIDs.empty()) {
+        if (auto optSpork = ranges::find_if_opt(sporkDefs, [&nSporkID](const auto &sporkDef) {
+            return sporkDef.sporkId == nSporkID;
+        })) {
+            return optSpork->defaultValue < GetAdjustedTime();
+        }
+        return false;
+    }
+    
     // If nSporkID is cached, and the cached value is true, then return early true
     auto it = mapSporksCachedActive.find(nSporkID);
     if (it != mapSporksCachedActive.end() && it->second) {
@@ -227,6 +243,18 @@ bool CSporkManager::IsSporkActive(SporkId nSporkID) const {
 
 int64_t CSporkManager::GetSporkValue(SporkId nSporkID) const {
     LOCK(cs);
+
+    // If no spork addresses are configured, return default values
+    if (setSporkPubKeyIDs.empty()) {
+        if (auto optSpork = ranges::find_if_opt(sporkDefs, [&nSporkID](const auto &sporkDef) {
+            return sporkDef.sporkId == nSporkID;
+        })) {
+            return optSpork->defaultValue;
+        } else {
+            LogPrint(BCLog::SPORK, "CSporkManger::GetSporkValue -- Unknown Spork ID %d\n", nSporkID);
+            return -1;
+        }
+    }
 
     int64_t nSporkValue = -1;
     if (SporkValueIsActive(nSporkID, nSporkValue)) {
