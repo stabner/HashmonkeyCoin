@@ -407,10 +407,10 @@ public:
         // Create testnet genesis block with completely unique parameters
         // nTime: Fresh timestamp (1759755699)
         // nNonce: Will be mined to find valid proof of work
-        // nBits: Testnet difficulty (0x1d00ffff)
+        // nBits: Testnet difficulty (0x207fffff - much easier for faster mining)
         // nVersion: 1 (testnet version)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x1d00ffff, 1, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x207fffff, 1, 500 * COIN);
         
         // Mine for valid nonce using the same logic as VerifyGenesisPOW
         arith_uint256 bnTarget;
