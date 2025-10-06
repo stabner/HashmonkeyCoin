@@ -17,7 +17,7 @@ int main() {
     txNew.vout.resize(1);
     txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4)
         << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-    txNew.vout[0].nValue = 5000 * COIN; // HashmonkeyCoin genesis reward
+    txNew.vout[0].nValue = 500 * COIN; // HashmonkeyCoin genesis reward
     txNew.vout[0].scriptPubKey = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
 
     // Create the genesis block
@@ -40,7 +40,7 @@ int main() {
     std::cout << "nTime: " << genesis.nTime << std::endl;
     std::cout << "nBits: 0x" << std::hex << genesis.nBits << std::endl;
     std::cout << "nVersion: " << std::dec << genesis.nVersion << std::endl;
-    std::cout << "Genesis Reward: " << 5000 * COIN << " satoshis" << std::endl;
+    std::cout << "Genesis Reward: " << 500 * COIN << " satoshis" << std::endl;
     std::cout << std::endl;
     std::cout << "Searching for genesis block..." << std::endl;
 
@@ -61,7 +61,7 @@ int main() {
             std::cout << "hashMerkleRoot: " << genesis.hashMerkleRoot.GetHex() << std::endl;
             std::cout << std::endl;
             std::cout << "Copy these values to chainparams.cpp:" << std::endl;
-            std::cout << "genesis = CreateGenesisBlock(" << genesis.nTime << ", " << genesis.nNonce << ", 0x" << std::hex << genesis.nBits << ", " << std::dec << genesis.nVersion << ", 5000 * COIN);" << std::endl;
+            std::cout << "genesis = CreateGenesisBlock(" << genesis.nTime << ", " << genesis.nNonce << ", 0x" << std::hex << genesis.nBits << ", " << std::dec << genesis.nVersion << ", 500 * COIN);" << std::endl;
             std::cout << "assert(consensus.hashGenesisBlock == uint256S(\"" << hash.GetHex() << "\"));" << std::endl;
             std::cout << "assert(genesis.hashMerkleRoot == uint256S(\"" << genesis.hashMerkleRoot.GetHex() << "\"));" << std::endl;
             break;
