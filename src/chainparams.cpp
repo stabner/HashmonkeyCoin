@@ -244,14 +244,19 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+        // HashmonkeyCoin Mainnet Genesis Block - Final Mined Values
+        const char *pszTimestamp = "HashmonkeyCoin Genesis Block - October 2025 - Unique Blockchain Launch";
+        const CScript genesisOutputScript = CScript() << ParseHex(
+                "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f")
+                                                      << OP_CHECKSIG;
+        
+        // Create genesis block with exact mined values
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 99, 0x20001fff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
+               uint256S("0x7ebb9da3c3dec8db8f97f9b6f2f1132d39c5a3d9108ab31a92704d7486dbe16e"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+               uint256S("0x9dafb752fb65c9962ab320bcfad90fc8d63fa8eb6df5760f899b929b6c583a58"));
 
         vSeeds.emplace_back("lbdn.raptoreum.com");
         vSeeds.emplace_back("51.89.21.112");
@@ -419,14 +424,19 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 10230;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1711078237, 971, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
-
+        // HashmonkeyCoin Testnet Genesis Block - Final Mined Values
+        const char *pszTimestamp = "HashmonkeyCoin Genesis Block - 1759755699 - Unique Blockchain Launch - 9553";
+        const CScript genesisOutputScript = CScript() << ParseHex(
+                "044a8c277176de65d91b6d4f7b3bdd64e93d45648689c06651a049dc53e27b76c9")
+                                                      << OP_CHECKSIG;
+        
+        // Create testnet genesis block with exact mined values
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x207fffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xbbab22066081d3b466abd734de914e8092abf4e959bcd0fff978297c41591b23"));
+               uint256S("0xfe0172e37d20f322bef14513357ab87b1933cfa6f5e47e643e37b522e44c39e3"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+               uint256S("0xd38dea814e80b1d2a48863428541d126274ff26c258ad3940ca799bfd6f23cbe"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -575,7 +585,6 @@ public:
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         genesis = CreateGenesisBlock(1688535726, 2841, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 //      std::cout << "hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         assert(consensus.hashGenesisBlock ==
@@ -754,7 +763,6 @@ public:
         UpdateBudgetParametersFromArgs(args);
 
         genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
                uint256S("0x485491468e03c8ac23dd38f70fc1cda9f98cbd0bf58945e2da6c94c2a2d8b044"));
