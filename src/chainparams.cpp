@@ -250,8 +250,26 @@ public:
                 "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f")
                                                       << OP_CHECKSIG;
         
-        // Create genesis block with exact mined values
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 99, 0x20001fff, 4, 500 * COIN);
+        // Create genesis block and mine for valid nonce
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x20001fff, 4, 500 * COIN);
+        
+        // Mine for valid nonce
+        std::cout << "=== MINING HASHMONKEYCOIN MAINNET GENESIS BLOCK ===" << std::endl;
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(genesis.nBits);
+        
+        for (uint32_t nNonce = 0; nNonce < UINT32_MAX; nNonce++) {
+            genesis.nNonce = nNonce;
+            uint256 hash = genesis.GetPOWHash();
+            if (UintToArith256(hash) <= bnTarget) {
+                std::cout << "Found valid nonce: " << nNonce << std::endl;
+                break;
+            }
+            if (nNonce % 100000 == 0) {
+                std::cout << "Mining... nonce: " << nNonce << std::endl;
+            }
+        }
+        
         consensus.hashGenesisBlock = genesis.GetHash();
         
         // Debug output to see actual calculated values
@@ -438,8 +456,26 @@ public:
                 "044a8c277176de65d91b6d4f7b3bdd64e93d45648689c06651a049dc53e27b76c9")
                                                       << OP_CHECKSIG;
         
-        // Create testnet genesis block with exact mined values
+        // Create testnet genesis block and mine for valid nonce
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x207fffff, 1, 500 * COIN);
+        
+        // Mine for valid nonce
+        std::cout << "=== MINING HASHMONKEYCOIN TESTNET GENESIS BLOCK ===" << std::endl;
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(genesis.nBits);
+        
+        for (uint32_t nNonce = 0; nNonce < UINT32_MAX; nNonce++) {
+            genesis.nNonce = nNonce;
+            uint256 hash = genesis.GetPOWHash();
+            if (UintToArith256(hash) <= bnTarget) {
+                std::cout << "Found valid nonce: " << nNonce << std::endl;
+                break;
+            }
+            if (nNonce % 100000 == 0) {
+                std::cout << "Mining... nonce: " << nNonce << std::endl;
+            }
+        }
+        
         consensus.hashGenesisBlock = genesis.GetHash();
         
         // Debug output to see actual calculated values
