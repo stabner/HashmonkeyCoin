@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <init.h>
@@ -1876,15 +1876,21 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     } else {
         vSporkAddresses = Params().SporkAddresses();
     }
-    for (const auto &address: vSporkAddresses) {
-        if (!sporkManager.SetSporkAddress(address)) {
-            return InitError(_("Invalid spork address specified with -sporkaddr"));
+    
+    // Only initialize spork system if we have spork addresses
+    if (!vSporkAddresses.empty()) {
+        for (const auto &address: vSporkAddresses) {
+            if (!sporkManager.SetSporkAddress(address)) {
+                return InitError(_("Invalid spork address specified with -sporkaddr"));
+            }
         }
-    }
 
-    int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
-    if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
-        return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
+        int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
+        if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
+            return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
+        }
+    } else {
+        LogPrintf("Sporks disabled - no spork addresses configured\n");
     }
 
 

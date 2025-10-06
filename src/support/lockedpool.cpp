@@ -6,7 +6,7 @@
 #include <support/cleanse.h>
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #ifdef WIN32
@@ -24,6 +24,7 @@
 #endif
 
 #include <algorithm>
+#include <stdexcept>
 
 #ifdef ARENA_DEBUG
 #include <iomanip>
