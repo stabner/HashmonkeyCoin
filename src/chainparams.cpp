@@ -213,10 +213,8 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0, 0x1d00ffff, 4, 500 * COIN);
-        consensus.hashGenesisBlock = uint256S("6af8e987d8e32c4f8fed45a0ca56d843b6c9ca90bbd15659bad8a816f6cf1930");
-        genesis.hashPrevBlock = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
-        genesis.hashMerkleRoot = uint256S("1f9eaf8d9222391a66bfc40ad4748ad9a7ebfcdb58cce9fd5edf827a09175ae8");
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0, 0x1d00ffff, 1, 500 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
         // Pre-mined genesis block for HashmonkeyCoin mainnet
         std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Mainnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
@@ -384,7 +382,7 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0, 0x1d00ffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0, 0x1d00ffff, 1, 500 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         // Pre-mined genesis block for HashmonkeyCoin testnet
@@ -549,7 +547,7 @@ public:
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0, 0x207fffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0, 0x207fffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         std::cout << "Regtest Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Regtest Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
