@@ -250,19 +250,23 @@ public:
                 "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f")
                                                       << OP_CHECKSIG;
         
-        // Create genesis block and mine for valid nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x20001fff, 4, 500 * COIN);
-        
-        // Mine for valid nonce
+        // Mine complete genesis block with all parameters
         std::cout << "=== MINING HASHMONKEYCOIN MAINNET GENESIS BLOCK ===" << std::endl;
-        arith_uint256 bnTarget;
-        bnTarget.SetCompact(genesis.nBits);
+        std::cout << "Mining complete genesis block with all parameters..." << std::endl;
         
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(0x20001fff); // Mainnet difficulty target
+        
+        // Try different nonces until we find a valid genesis block
         for (uint32_t nNonce = 0; nNonce < UINT32_MAX; nNonce++) {
-            genesis.nNonce = nNonce;
+            genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, nNonce, 0x20001fff, 4, 500 * COIN);
+            
             uint256 hash = genesis.GetPOWHash();
             if (UintToArith256(hash) <= bnTarget) {
-                std::cout << "Found valid nonce: " << nNonce << std::endl;
+                std::cout << "Found valid genesis block!" << std::endl;
+                std::cout << "Nonce: " << nNonce << std::endl;
+                std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
+                std::cout << "POW Hash: " << hash.ToString() << std::endl;
                 break;
             }
             if (nNonce % 100000 == 0) {
@@ -456,19 +460,23 @@ public:
                 "044a8c277176de65d91b6d4f7b3bdd64e93d45648689c06651a049dc53e27b76c9")
                                                       << OP_CHECKSIG;
         
-        // Create testnet genesis block and mine for valid nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x207fffff, 1, 500 * COIN);
-        
-        // Mine for valid nonce
+        // Mine complete testnet genesis block with all parameters
         std::cout << "=== MINING HASHMONKEYCOIN TESTNET GENESIS BLOCK ===" << std::endl;
-        arith_uint256 bnTarget;
-        bnTarget.SetCompact(genesis.nBits);
+        std::cout << "Mining complete testnet genesis block with all parameters..." << std::endl;
         
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(0x207fffff); // Testnet difficulty target (easier)
+        
+        // Try different nonces until we find a valid genesis block
         for (uint32_t nNonce = 0; nNonce < UINT32_MAX; nNonce++) {
-            genesis.nNonce = nNonce;
+            genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, nNonce, 0x207fffff, 1, 500 * COIN);
+            
             uint256 hash = genesis.GetPOWHash();
             if (UintToArith256(hash) <= bnTarget) {
-                std::cout << "Found valid nonce: " << nNonce << std::endl;
+                std::cout << "Found valid testnet genesis block!" << std::endl;
+                std::cout << "Nonce: " << nNonce << std::endl;
+                std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
+                std::cout << "POW Hash: " << hash.ToString() << std::endl;
                 break;
             }
             if (nNonce % 100000 == 0) {
