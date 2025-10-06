@@ -221,30 +221,9 @@ public:
         // nBits: Same difficulty as Raptoreum (0x20001fff)
         // nVersion: 4 (block version 4 - important!)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        // Mine complete genesis block with all parameters
-        std::cout << "=== MINING HASHMONKEYCOIN MAINNET GENESIS BLOCK ===" << std::endl;
-        std::cout << "Mining complete genesis block with all parameters..." << std::endl;
-        
-        arith_uint256 bnTarget;
-        bnTarget.SetCompact(0x20001fff); // Mainnet difficulty target
-        
-        // Try different nonces until we find a valid genesis block
-        for (uint32_t nNonce = 0; nNonce < UINT32_MAX; nNonce++) {
-            genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, nNonce, 0x20001fff, 4, 500 * COIN);
-            
-            uint256 hash = genesis.GetPOWHash();
-            if (UintToArith256(hash) <= bnTarget) {
-                std::cout << "Found valid genesis block!" << std::endl;
-                std::cout << "Nonce: " << nNonce << std::endl;
-                std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
-                std::cout << "POW Hash: " << hash.ToString() << std::endl;
-                break;
-            }
-            if (nNonce % 100000 == 0) {
-                std::cout << "Mining... nonce: " << nNonce << std::endl;
-            }
-        }
-        
+        // TODO: Replace with actual mined values from genesis block miner
+        // These are placeholder values - will be updated after proper mining
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, 0, 0x20001fff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
@@ -419,30 +398,9 @@ public:
         // nBits: Testnet difficulty (0x207fffff - much easier for faster mining)
         // nVersion: 1 (testnet version)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        // Mine complete testnet genesis block with all parameters
-        std::cout << "=== MINING HASHMONKEYCOIN TESTNET GENESIS BLOCK ===" << std::endl;
-        std::cout << "Mining complete testnet genesis block with all parameters..." << std::endl;
-        
-        arith_uint256 bnTarget;
-        bnTarget.SetCompact(0x207fffff); // Testnet difficulty target (easier)
-        
-        // Try different nonces until we find a valid genesis block
-        for (uint32_t nNonce = 0; nNonce < UINT32_MAX; nNonce++) {
-            genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, nNonce, 0x207fffff, 1, 500 * COIN);
-            
-            uint256 hash = genesis.GetPOWHash();
-            if (UintToArith256(hash) <= bnTarget) {
-                std::cout << "Found valid testnet genesis block!" << std::endl;
-                std::cout << "Nonce: " << nNonce << std::endl;
-                std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
-                std::cout << "POW Hash: " << hash.ToString() << std::endl;
-                break;
-            }
-            if (nNonce % 100000 == 0) {
-                std::cout << "Mining... nonce: " << nNonce << std::endl;
-            }
-        }
-        
+        // TODO: Replace with actual mined values from genesis block miner
+        // These are placeholder values - will be updated after proper mining
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x207fffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         vFixedSeeds.clear();
