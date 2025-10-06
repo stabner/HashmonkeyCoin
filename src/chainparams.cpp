@@ -217,12 +217,19 @@ public:
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759752916, 401815, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
+        
+        // Output the exact values for verification
+        std::cout << "=== HASHMONKEYCOIN MAINNET GENESIS BLOCK ===" << std::endl;
+        std::cout << "Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "POW Hash: " << genesis.GetPOWHash().ToString() << std::endl;
+        std::cout << "Nonce: " << genesis.nNonce << std::endl;
+        std::cout << "===========================================" << std::endl;
+        
         assert(consensus.hashGenesisBlock ==
                uint256S("0xe5ba713d8f13ab056eeb14d9966ceb67f136397ec36696ec324bbd8ed86e9700"));
-        // Note: Merkle root will be calculated automatically from the genesis transaction
-        std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "Mainnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
-        std::cout << "Mainnet Genesis Nonce: " << genesis.nNonce << std::endl;
+        assert(genesis.hashMerkleRoot ==
+               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
