@@ -397,17 +397,73 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 17778;
         nPruneAfterHeight = 1000;
-        const char *pszTimestamp = "HashmonkeyCoin Testnet Genesis: HashmonkeyCoin Testnet Launch 4 October 2025";
+        // HashmonkeyCoin testnet genesis block - COMPLETELY UNIQUE TO HASHMONKEYCOIN
+        const char *pszTimestamp = "HashmonkeyCoin Genesis Block - 1759755699 - Unique Blockchain Launch - 9553";
+        // New unique public key for HashmonkeyCoin testnet (completely different from Raptoreum)
         const CScript genesisOutputScript = CScript() << ParseHex(
-                "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
+                "044a8c277176de65d91b6d4f7b3bdd64e93d45648689c06651a049dc53e27b76c9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0, 0x1d00ffff, 1, 500 * COIN);
-        VerifyGenesisPOW(genesis);
+        
+        // Create testnet genesis block with completely unique parameters
+        // nTime: Fresh timestamp (1759755699)
+        // nNonce: Will be mined to find valid proof of work
+        // nBits: Testnet difficulty (0x1d00ffff)
+        // nVersion: 1 (testnet version)
+        // genesisReward: 500 coins (different from Raptoreum's 5000)
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x1d00ffff, 1, 500 * COIN);
+        
+        // Mine for valid nonce using the same logic as VerifyGenesisPOW
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(genesis.nBits);
+        
+        std::cout << "=== MINING HASHMONKEYCOIN TESTNET GENESIS BLOCK ===" << std::endl;
+        std::cout << "Target: " << bnTarget.ToString() << std::endl;
+        std::cout << "Mining for valid nonce..." << std::endl;
+        
+        uint32_t nonce = 0;
+        uint64_t attempts = 0;
+        do {
+            genesis.nNonce = nonce;
+            uint256 powHash = genesis.GetPOWHash();
+            arith_uint256 powHashArith = UintToArith256(powHash);
+            
+            if (attempts % 100000 == 0) {
+                std::cout << "Attempt " << attempts << ": nonce=" << nonce 
+                          << ", powHash=" << powHash.ToString() << std::endl;
+            }
+            
+            if (powHashArith <= bnTarget) {
+                std::cout << std::endl;
+                std::cout << "FOUND VALID NONCE!" << std::endl;
+                std::cout << "==================" << std::endl;
+                std::cout << "nNonce: " << nonce << std::endl;
+                std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
+                std::cout << "Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+                std::cout << "POW Hash: " << powHash.ToString() << std::endl;
+                std::cout << "Attempts: " << attempts << std::endl;
+                std::cout << "===========================================" << std::endl;
+                break;
+            }
+            
+            nonce++;
+            attempts++;
+            
+            // Prevent infinite loop
+            if (nonce == 0) {
+                std::cout << "Wrapped around to nonce 0, stopping." << std::endl;
+                break;
+            }
+        } while (true);
+        
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Pre-mined genesis block for HashmonkeyCoin testnet
-        std::cout << "Testnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "Testnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
-        std::cout << "Testnet Genesis Nonce: " << genesis.nNonce << std::endl;
+        
+        // These will be the actual values after mining
+        std::cout << "=== HASHMONKEYCOIN TESTNET GENESIS BLOCK ===" << std::endl;
+        std::cout << "Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "POW Hash: " << genesis.GetPOWHash().ToString() << std::endl;
+        std::cout << "Nonce: " << genesis.nNonce << std::endl;
+        std::cout << "===========================================" << std::endl;
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
