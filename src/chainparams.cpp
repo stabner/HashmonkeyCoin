@@ -214,13 +214,13 @@ public:
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
         // HashmonkeyCoin mainnet genesis block with proper nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759752916, 401069, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759752916, 401815, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Note: These values will be updated with real hash and merkle root after full build
-        std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "Mainnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
-        std::cout << "Mainnet Genesis Nonce: " << genesis.nNonce << std::endl;
+        assert(consensus.hashGenesisBlock ==
+               uint256S("0xe5ba713d8f13ab056eeb14d9966ceb67f136397ec36696ec324bbd8ed86e9700"));
+        assert(genesis.hashMerkleRoot ==
+               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
