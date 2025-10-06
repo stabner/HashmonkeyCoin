@@ -208,15 +208,16 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        const char *pszTimestamp = "HashmonkeyCoin Genesis: HashmonkeyCoin Launch 4 October 2025 - mainnet";
+        // HashmonkeyCoin mainnet genesis block - needs proper mining
+        const char *pszTimestamp = "HashmonkeyCoin Genesis Block - October 2025";
         const CScript genesisOutputScript = CScript() << ParseHex(
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0, 0x1d00ffff, 1, 500 * COIN);
+        // TODO: Run genesis_generator.cpp to find proper nonce and update these values
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759752916, 0, 0x20001fff, 4, 5000 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Pre-mined genesis block for HashmonkeyCoin mainnet
+        // Note: These will be updated after running the genesis generator
         std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Mainnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
         std::cout << "Mainnet Genesis Nonce: " << genesis.nNonce << std::endl;
