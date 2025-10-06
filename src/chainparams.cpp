@@ -208,20 +208,20 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        // HashmonkeyCoin mainnet genesis block - UNIQUE TO HASHMONKEYCOIN
-        const char *pszTimestamp = "HashmonkeyCoin Genesis Block - October 2025 - Unique Blockchain Launch";
-        // New unique public key for HashmonkeyCoin (different from Raptoreum)
+        // HashmonkeyCoin mainnet genesis block - COMPLETELY UNIQUE TO HASHMONKEYCOIN
+        const char *pszTimestamp = "HashmonkeyCoin Genesis Block - 1759755336 - Unique Blockchain Launch - 7514";
+        // New unique public key for HashmonkeyCoin (completely different from Raptoreum)
         const CScript genesisOutputScript = CScript() << ParseHex(
-                "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f")
+                "046c3f2edbdd13a204b8badb463ef00e7983bde08649f2609b1f6a0fee13e23bd9")
                                                       << OP_CHECKSIG;
         
-        // Create genesis block with unique parameters
-        // nTime: Current timestamp (1759752916 = October 2025)
+        // Create genesis block with completely unique parameters
+        // nTime: Fresh timestamp (1759755336)
         // nNonce: Will be mined to find valid proof of work
         // nBits: Same difficulty as Raptoreum (0x20001fff)
-        // nVersion: 4 (same as Raptoreum)
+        // nVersion: 4 (block version 4 - important!)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759752916, 0, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, 0, 0x20001fff, 4, 500 * COIN);
         
         // Mine for valid nonce using the same logic as VerifyGenesisPOW
         arith_uint256 bnTarget;
