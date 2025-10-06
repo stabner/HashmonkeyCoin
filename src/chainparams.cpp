@@ -276,17 +276,11 @@ public:
         
         consensus.hashGenesisBlock = genesis.GetHash();
         
-        // Debug output to see actual calculated values
-        std::cout << "=== HASHMONKEYCOIN MAINNET GENESIS BLOCK DEBUG ===" << std::endl;
-        std::cout << "Calculated Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "Calculated Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
-        std::cout << "Expected Block Hash: 0x7ebb9da3c3dec8db8f97f9b6f2f1132d39c5a3d9108ab31a92704d7486dbe16e" << std::endl;
-        std::cout << "Expected Merkle Root: 0x9dafb752fb65c9962ab320bcfad90fc8d63fa8eb6df5760f899b929b6c583a58" << std::endl;
-        std::cout << "===============================================" << std::endl;
+        // Genesis block successfully mined and validated
         
-        // Temporarily comment out assertions to see actual values
-        // assert(consensus.hashGenesisBlock == uint256S("0x7ebb9da3c3dec8db8f97f9b6f2f1132d39c5a3d9108ab31a92704d7486dbe16e"));
-        // assert(genesis.hashMerkleRoot == uint256S("0x9dafb752fb65c9962ab320bcfad90fc8d63fa8eb6df5760f899b929b6c583a58"));
+        // Assertions with correct mined values
+        assert(consensus.hashGenesisBlock == uint256S("0xd364e8038e4e3aca900345f136b139ba1b9eb8d8e719a9db5d76fb518852b9e5"));
+        assert(genesis.hashMerkleRoot == uint256S("0x3ac6572be04d3da4c4b239ab70ac4eaf50fef168d5906f844dff078b42989c30"));
 
         vSeeds.emplace_back("lbdn.raptoreum.com");
         vSeeds.emplace_back("51.89.21.112");
@@ -486,17 +480,11 @@ public:
         
         consensus.hashGenesisBlock = genesis.GetHash();
         
-        // Debug output to see actual calculated values
-        std::cout << "=== HASHMONKEYCOIN TESTNET GENESIS BLOCK DEBUG ===" << std::endl;
-        std::cout << "Calculated Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        std::cout << "Calculated Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
-        std::cout << "Expected Block Hash: 0xfe0172e37d20f322bef14513357ab87b1933cfa6f5e47e643e37b522e44c39e3" << std::endl;
-        std::cout << "Expected Merkle Root: 0xd38dea814e80b1d2a48863428541d126274ff26c258ad3940ca799bfd6f23cbe" << std::endl;
-        std::cout << "===============================================" << std::endl;
+        // Testnet genesis block successfully mined and validated
         
-        // Temporarily comment out assertions to see actual values
-        // assert(consensus.hashGenesisBlock == uint256S("0xfe0172e37d20f322bef14513357ab87b1933cfa6f5e47e643e37b522e44c39e3"));
-        // assert(genesis.hashMerkleRoot == uint256S("0xd38dea814e80b1d2a48863428541d126274ff26c258ad3940ca799bfd6f23cbe"));
+        // Assertions with correct mined values (testnet values were already correct)
+        assert(consensus.hashGenesisBlock == uint256S("0xfe0172e37d20f322bef14513357ab87b1933cfa6f5e47e643e37b522e44c39e3"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd38dea814e80b1d2a48863428541d126274ff26c258ad3940ca799bfd6f23cbe"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
