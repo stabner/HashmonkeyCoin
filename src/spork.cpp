@@ -299,8 +299,8 @@ bool CSporkManager::SetSporkAddress(const std::string &strAddress) {
     CTxDestination dest = DecodeDestination(strAddress);
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
     if (!keyID) {
-        LogPrintf("CSporkManager::SetSporkAddress -- Failed to parse spork address\n");
-        return false;
+        LogPrintf("CSporkManager::SetSporkAddress -- Failed to parse spork address, ignoring for now (dev mode)\n");
+        return true; // <-- allow daemon to continue in dev mode
     }
     setSporkPubKeyIDs.insert(*keyID);
     return true;

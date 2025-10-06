@@ -214,10 +214,12 @@ public:
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708800, 0, 0x1d00ffff, 1, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Pre-mined genesis block for HashmonkeyCoin mainnet
         std::cout << "Mainnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Mainnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "Mainnet Genesis Nonce: " << genesis.nNonce << std::endl;
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -383,11 +385,12 @@ public:
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708801, 0, 0x1d00ffff, 1, 500 * COIN);
-
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Pre-mined genesis block for HashmonkeyCoin testnet
         std::cout << "Testnet Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Testnet Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "Testnet Genesis Nonce: " << genesis.nNonce << std::endl;
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -548,9 +551,11 @@ public:
                 "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                       << OP_CHECKSIG;
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759708803, 0, 0x207fffff, 1, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         std::cout << "Regtest Genesis Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         std::cout << "Regtest Genesis Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "Regtest Genesis Nonce: " << genesis.nNonce << std::endl;
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
