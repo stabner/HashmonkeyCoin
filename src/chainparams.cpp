@@ -221,10 +221,13 @@ public:
         // nBits: Same difficulty as Raptoreum (0x20001fff)
         // nVersion: 4 (block version 4 - important!)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        // TODO: Replace with actual mined values from genesis block miner
-        // These are placeholder values - will be updated after proper mining
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, 0, 0x20001fff, 4, 500 * COIN);
+        // Mined genesis block with valid nonce
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, 16, 0x20001fff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        
+        // Verify the mined genesis block values
+        assert(consensus.hashGenesisBlock == uint256S("0x[MAINNET_BLOCK_HASH]"));
+        assert(genesis.hashMerkleRoot == uint256S("0x[MAINNET_MERKLE_ROOT]"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -398,10 +401,13 @@ public:
         // nBits: Testnet difficulty (0x207fffff - much easier for faster mining)
         // nVersion: 1 (testnet version)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        // TODO: Replace with actual mined values from genesis block miner
-        // These are placeholder values - will be updated after proper mining
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 0, 0x207fffff, 1, 500 * COIN);
+        // Mined testnet genesis block with valid nonce
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 1, 0x207fffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        
+        // Verify the mined testnet genesis block values
+        assert(consensus.hashGenesisBlock == uint256S("0x[TESTNET_BLOCK_HASH]"));
+        assert(genesis.hashMerkleRoot == uint256S("0x[TESTNET_MERKLE_ROOT]"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
