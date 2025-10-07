@@ -1,45 +1,39 @@
 /*
- * HashmonkeyCoin Genesis Block Miner
- * ==================================
+ * HashmonkeyCoin Genesis Block Miner - PROPER VERSION
+ * ===================================================
  * 
- * This tool mines genesis blocks for HashmonkeyCoin (Raptoreum fork) using the real GhostRider PoW algorithm.
+ * This tool mines genesis blocks for HashmonkeyCoin using the REAL GhostRider PoW algorithm.
+ * It must be built with the full Raptoreum codebase in WSL.
  * 
- * How to build on Windows:
- * 
- * Option 1 - Using g++ (TDM-GCC):
- * g++ -std=c++17 genesis_miner.cpp -o genesis_miner.exe
- * 
- * Option 2 - Using Visual Studio cl:
- * cl /EHsc /std:c++17 genesis_miner.cpp chainparams.cpp pow.cpp primitives\block.cpp consensus\merkle.cpp /I. /Fe:genesis_miner.exe
+ * How to build in WSL:
+ * 1. Build the main project first: make
+ * 2. Then build this miner: g++ -std=c++17 -I. genesis_miner_proper.cpp -o genesis_miner_proper
  * 
  * How to run:
- * genesis_miner.exe
- * 
- * The tool will mine both mainnet and testnet genesis blocks and output the values
- * needed for chainparams.cpp (hashGenesisBlock, hashMerkleRoot, nNonce).
+ * ./genesis_miner_proper
  */
 
 #include <iostream>
 #include <chrono>
 #include <iomanip>
-#include "src/chainparams.h"
-#include "src/consensus/merkle.h"
-#include "src/primitives/block.h"
-#include "src/pow.h"
-#include "src/uint256.h"
-#include "src/arith_uint256.h"
-#include "src/util/system.h"
-#include "src/script/script.h"
-#include "src/util/strencodings.h"
+#include "chainparams.h"
+#include "consensus/merkle.h"
+#include "primitives/block.h"
+#include "pow.h"
+#include "uint256.h"
+#include "arith_uint256.h"
+#include "util/system.h"
+#include "script/script.h"
+#include "util/strencodings.h"
 
 int main() {
     std::cout << "===============================================" << std::endl;
     std::cout << "    HashmonkeyCoin Genesis Block Miner" << std::endl;
-    std::cout << "    Real GhostRider PoW Algorithm" << std::endl;
+    std::cout << "    REAL GhostRider PoW Algorithm" << std::endl;
     std::cout << "===============================================" << std::endl;
     std::cout << std::endl;
 
-    // Mainnet parameters
+    // Mainnet parameters - using the same values as in chainparams.cpp
     const char* mainnet_pszTimestamp = "HashmonkeyCoin launch — October 2025";
     const CScript mainnet_genesisOutputScript = CScript() << ParseHex(
         "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"
@@ -179,9 +173,6 @@ int main() {
     std::cout << "    MINING COMPLETE!" << std::endl;
     std::cout << "    Copy the values above to chainparams.cpp" << std::endl;
     std::cout << "===============================================" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Press Enter to exit..." << std::endl;
-    std::cin.ignore();
     
     return 0;
 }
