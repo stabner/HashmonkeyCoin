@@ -221,8 +221,47 @@ public:
         // nBits: Same difficulty as Raptoreum (0x20001fff)
         // nVersion: 4 (block version 4 - important!)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        // Create genesis block with mined nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, 387719976, 0x20001fff, 4, 500 * COIN);
+        // TEMPORARY: Mine genesis block with real POW validation
+        std::cout << "=== MINING HASHMONKEYCOIN MAINNET GENESIS BLOCK ===" << std::endl;
+        std::cout << "Mining with real Raptoreum hashing algorithm..." << std::endl;
+        
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(0x20001fff); // Mainnet difficulty target
+        
+        uint32_t nNonce = 0;
+        uint64_t attempts = 0;
+        auto start_time = std::chrono::high_resolution_clock::now();
+        
+        do {
+            genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, nNonce, 0x20001fff, 4, 500 * COIN);
+            uint256 powHash = genesis.GetPOWHash();
+            
+            if (attempts % 1000000 == 0 && attempts > 0) {
+                auto current_time = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
+                std::cout << "Attempt " << attempts << ": nonce=" << nNonce 
+                          << ", powHash=" << powHash.ToString() 
+                          << ", time=" << duration << "s" << std::endl;
+            }
+            
+            if (UintToArith256(powHash) <= bnTarget) {
+                auto end_time = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
+                
+                std::cout << "FOUND VALID MAINNET GENESIS BLOCK!" << std::endl;
+                std::cout << "Nonce: " << nNonce << std::endl;
+                std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
+                std::cout << "Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+                std::cout << "POW Hash: " << powHash.ToString() << std::endl;
+                std::cout << "Attempts: " << attempts << std::endl;
+                std::cout << "Time: " << duration << " seconds" << std::endl;
+                break;
+            }
+            
+            nNonce++;
+            attempts++;
+        } while (nNonce != 0);
+        
         consensus.hashGenesisBlock = genesis.GetHash();
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
@@ -397,8 +436,47 @@ public:
         // nBits: Testnet difficulty (0x207fffff - much easier for faster mining)
         // nVersion: 1 (testnet version)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
-        // Create testnet genesis block with mined nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 379339200, 0x207fffff, 1, 500 * COIN);
+        // TEMPORARY: Mine testnet genesis block with real POW validation
+        std::cout << "=== MINING HASHMONKEYCOIN TESTNET GENESIS BLOCK ===" << std::endl;
+        std::cout << "Mining with real Raptoreum hashing algorithm..." << std::endl;
+        
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(0x207fffff); // Testnet difficulty target (easier)
+        
+        uint32_t nNonce = 0;
+        uint64_t attempts = 0;
+        auto start_time = std::chrono::high_resolution_clock::now();
+        
+        do {
+            genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, nNonce, 0x207fffff, 1, 500 * COIN);
+            uint256 powHash = genesis.GetPOWHash();
+            
+            if (attempts % 100000 == 0 && attempts > 0) {
+                auto current_time = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
+                std::cout << "Attempt " << attempts << ": nonce=" << nNonce 
+                          << ", powHash=" << powHash.ToString() 
+                          << ", time=" << duration << "s" << std::endl;
+            }
+            
+            if (UintToArith256(powHash) <= bnTarget) {
+                auto end_time = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
+                
+                std::cout << "FOUND VALID TESTNET GENESIS BLOCK!" << std::endl;
+                std::cout << "Nonce: " << nNonce << std::endl;
+                std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
+                std::cout << "Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+                std::cout << "POW Hash: " << powHash.ToString() << std::endl;
+                std::cout << "Attempts: " << attempts << std::endl;
+                std::cout << "Time: " << duration << " seconds" << std::endl;
+                break;
+            }
+            
+            nNonce++;
+            attempts++;
+        } while (nNonce != 0);
+        
         consensus.hashGenesisBlock = genesis.GetHash();
 
         vFixedSeeds.clear();
