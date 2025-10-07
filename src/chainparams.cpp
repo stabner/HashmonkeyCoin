@@ -232,35 +232,35 @@ public:
         uint64_t attempts = 0;
         auto start_time = std::chrono::high_resolution_clock::now();
         
-        do {
+        while (true) {
             genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, nNonce, 0x20001fff, 4, 500 * COIN);
             uint256 powHash = genesis.GetPOWHash();
-            
-            if (attempts % 1000000 == 0 && attempts > 0) {
-                auto current_time = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
-                std::cout << "Attempt " << attempts << ": nonce=" << nNonce 
-                          << ", powHash=" << powHash.ToString() 
-                          << ", time=" << duration << "s" << std::endl;
-            }
             
             if (UintToArith256(powHash) <= bnTarget) {
                 auto end_time = std::chrono::high_resolution_clock::now();
                 auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
                 
                 std::cout << "FOUND VALID MAINNET GENESIS BLOCK!" << std::endl;
+                std::cout << "Time: " << duration << "s" << std::endl;
                 std::cout << "Nonce: " << nNonce << std::endl;
                 std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
                 std::cout << "Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
                 std::cout << "POW Hash: " << powHash.ToString() << std::endl;
                 std::cout << "Attempts: " << attempts << std::endl;
-                std::cout << "Time: " << duration << " seconds" << std::endl;
                 break;
+            }
+            
+            if (nNonce % 1000000 == 0) {
+                auto current_time = std::chrono::high_resolution_clock::now();
+                auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
+                std::cout << "Attempt " << attempts << " | Nonce: " << nNonce 
+                          << " | Hash: " << powHash.ToString() 
+                          << " | Elapsed: " << elapsed << "s" << std::endl;
             }
             
             nNonce++;
             attempts++;
-        } while (nNonce != 0);
+        }
         
         consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -447,35 +447,35 @@ public:
         uint64_t attempts = 0;
         auto start_time = std::chrono::high_resolution_clock::now();
         
-        do {
+        while (true) {
             genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, nNonce, 0x207fffff, 1, 500 * COIN);
             uint256 powHash = genesis.GetPOWHash();
-            
-            if (attempts % 100000 == 0 && attempts > 0) {
-                auto current_time = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
-                std::cout << "Attempt " << attempts << ": nonce=" << nNonce 
-                          << ", powHash=" << powHash.ToString() 
-                          << ", time=" << duration << "s" << std::endl;
-            }
             
             if (UintToArith256(powHash) <= bnTarget) {
                 auto end_time = std::chrono::high_resolution_clock::now();
                 auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count();
                 
                 std::cout << "FOUND VALID TESTNET GENESIS BLOCK!" << std::endl;
+                std::cout << "Time: " << duration << "s" << std::endl;
                 std::cout << "Nonce: " << nNonce << std::endl;
                 std::cout << "Block Hash: " << genesis.GetHash().ToString() << std::endl;
                 std::cout << "Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
                 std::cout << "POW Hash: " << powHash.ToString() << std::endl;
                 std::cout << "Attempts: " << attempts << std::endl;
-                std::cout << "Time: " << duration << " seconds" << std::endl;
                 break;
+            }
+            
+            if (nNonce % 100000 == 0) {
+                auto current_time = std::chrono::high_resolution_clock::now();
+                auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
+                std::cout << "Attempt " << attempts << " | Nonce: " << nNonce 
+                          << " | Hash: " << powHash.ToString() 
+                          << " | Elapsed: " << elapsed << "s" << std::endl;
             }
             
             nNonce++;
             attempts++;
-        } while (nNonce != 0);
+        }
         
         consensus.hashGenesisBlock = genesis.GetHash();
 
