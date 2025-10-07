@@ -4,19 +4,27 @@
  * 
  * This tool mines genesis blocks for HashmonkeyCoin (Raptoreum fork) using the real GhostRider PoW algorithm.
  * 
- * How to build on Windows:
+ * BUILD INSTRUCTIONS:
+ * ==================
  * 
- * Option 1 - Using g++ (TDM-GCC):
- * g++ -std=c++17 genesis_miner.cpp -o genesis_miner.exe
+ * 1. Build the main Raptoreum project first:
+ *    ./autogen.sh
+ *    ./configure
+ *    make
  * 
- * Option 2 - Using Visual Studio cl:
- * cl /EHsc /std:c++17 genesis_miner.cpp chainparams.cpp pow.cpp primitives\block.cpp consensus\merkle.cpp /I. /Fe:genesis_miner.exe
+ * 2. Then compile this miner:
+ *    g++ -std=c++17 -I. -I./src genesis_miner.cpp -o genesis_miner
  * 
- * How to run:
- * genesis_miner.exe
+ * 3. Run the miner:
+ *    ./genesis_miner
  * 
- * The tool will mine both mainnet and testnet genesis blocks and output the values
- * needed for chainparams.cpp (hashGenesisBlock, hashMerkleRoot, nNonce).
+ * The miner will output the exact values needed for chainparams.cpp:
+ * - hashGenesisBlock (for consensus.hashGenesisBlock)
+ * - hashMerkleRoot (for genesis.hashMerkleRoot) 
+ * - nNonce (for CreateGenesisBlock call)
+ * 
+ * Note: This uses the REAL GhostRider hashing algorithm, so mining may take
+ * several hours depending on your hardware and the difficulty targets.
  */
 
 #include <iostream>
@@ -101,6 +109,12 @@ int main() {
             std::cout << "Attempts: " << mainnet_attempts << std::endl;
             std::cout << "Time: " << duration << "s" << std::endl;
             std::cout << "=====================================" << std::endl;
+            std::cout << std::endl;
+            std::cout << "COPY THESE VALUES TO chainparams.cpp:" << std::endl;
+            std::cout << "consensus.hashGenesisBlock = uint256S(\"0x" << genesis.GetHash().ToString() << "\");" << std::endl;
+            std::cout << "genesis.hashMerkleRoot = uint256S(\"0x" << genesis.hashMerkleRoot.ToString() << "\");" << std::endl;
+            std::cout << "nNonce: " << mainnet_nNonce << std::endl;
+            std::cout << std::endl;
             break;
         }
 
@@ -159,6 +173,12 @@ int main() {
             std::cout << "Attempts: " << testnet_attempts << std::endl;
             std::cout << "Time: " << duration << "s" << std::endl;
             std::cout << "======================================" << std::endl;
+            std::cout << std::endl;
+            std::cout << "COPY THESE VALUES TO chainparams.cpp:" << std::endl;
+            std::cout << "consensus.hashGenesisBlock = uint256S(\"0x" << genesis.GetHash().ToString() << "\");" << std::endl;
+            std::cout << "genesis.hashMerkleRoot = uint256S(\"0x" << genesis.hashMerkleRoot.ToString() << "\");" << std::endl;
+            std::cout << "nNonce: " << testnet_nNonce << std::endl;
+            std::cout << std::endl;
             break;
         }
 
@@ -179,9 +199,6 @@ int main() {
     std::cout << "    MINING COMPLETE!" << std::endl;
     std::cout << "    Copy the values above to chainparams.cpp" << std::endl;
     std::cout << "===============================================" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Press Enter to exit..." << std::endl;
-    std::cin.ignore();
     
     return 0;
 }
