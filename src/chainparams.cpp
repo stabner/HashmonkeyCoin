@@ -225,9 +225,13 @@ public:
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755336, 16, 0x20001fff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         
-        // Verify the mined genesis block values
-        assert(consensus.hashGenesisBlock == uint256S("0x[MAINNET_BLOCK_HASH]"));
-        assert(genesis.hashMerkleRoot == uint256S("0x[MAINNET_MERKLE_ROOT]"));
+        // Debug output to see actual calculated values
+        std::cout << "=== HASHMONKEYCOIN MAINNET GENESIS BLOCK DEBUG ===" << std::endl;
+        std::cout << "Calculated Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Calculated Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "POW Hash: " << genesis.GetPOWHash().ToString() << std::endl;
+        std::cout << "Nonce: " << genesis.nNonce << std::endl;
+        std::cout << "===============================================" << std::endl;
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -405,9 +409,13 @@ public:
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759755699, 1, 0x207fffff, 1, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         
-        // Verify the mined testnet genesis block values
-        assert(consensus.hashGenesisBlock == uint256S("0x[TESTNET_BLOCK_HASH]"));
-        assert(genesis.hashMerkleRoot == uint256S("0x[TESTNET_MERKLE_ROOT]"));
+        // Debug output to see actual calculated values
+        std::cout << "=== HASHMONKEYCOIN TESTNET GENESIS BLOCK DEBUG ===" << std::endl;
+        std::cout << "Calculated Block Hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
+        std::cout << "Calculated Merkle Root: " << genesis.hashMerkleRoot.ToString() << std::endl;
+        std::cout << "POW Hash: " << genesis.GetPOWHash().ToString() << std::endl;
+        std::cout << "Nonce: " << genesis.nNonce << std::endl;
+        std::cout << "===============================================" << std::endl;
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
