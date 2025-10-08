@@ -225,6 +225,10 @@ public:
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759743064, 551, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
+        
+        // Verify genesis block hashes
+        assert(consensus.hashGenesisBlock == uint256S("0x31fabc76308608af"));
+        assert(genesis.hashMerkleRoot == uint256S("0x59081cd18a984bb2"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -399,6 +403,10 @@ public:
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759706139, 153, 0x207fffff, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
+        
+        // Verify testnet genesis block hashes
+        assert(consensus.hashGenesisBlock == uint256S("0x4ee9ca9add933368"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4b439333a9177fc7"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
