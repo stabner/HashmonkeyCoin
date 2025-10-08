@@ -222,13 +222,13 @@ public:
         // nVersion: 4 (block version 4 - important!)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
         // Create genesis block with FRESH mined nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759743064, 551, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759743064, 1789, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         
         // Verify genesis block hashes
-        assert(consensus.hashGenesisBlock == uint256S("0x31fabc76308608af"));
-        assert(genesis.hashMerkleRoot == uint256S("0x59081cd18a984bb2"));
+        assert(consensus.hashGenesisBlock == uint256S("0xbceec3ab8638ab1f"));
+        assert(genesis.hashMerkleRoot == uint256S("0xc7fb7d5fc86f61a6"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
