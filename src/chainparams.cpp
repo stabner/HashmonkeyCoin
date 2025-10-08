@@ -284,19 +284,16 @@ public:
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
-                {{5145, uint256S("0x64c9cc82f05f4326e49fd4b21a48494b02b12a707de67a47c7e8e1102b0f1d9b")},
-                 {35000, uint256S("0xb4fb191f3ef4141557aef8aafa700d312e5499cbde4a3079faa78cf58c0c414f")},
-                 {61900, uint256S("0xc146fc6244fe4d71559f4fef16a386f1fceda6e5efa3da3ca1ebe9806cc8f25c")},
-                 {394273, uint256S("0dc274a28864a01a9539e60afdbc38fcdb0f000fbc52553cd31651c97557dc04")}
-
+                {
+                        // No checkpoints for new blockchain - starts from genesis block
                 }
         };
 
         chainTxData = ChainTxData{
-                1662608883,   // * UNIX timestamp of last known number of transactions (Block 0)
-                2091922,   // * total number of transactions between genesis and that timestamp
+                1759743064,   // * UNIX timestamp of genesis block (Block 0)
+                0,            // * total number of transactions at genesis (0)
                 //   (the tx=... number in the SetBestChain debug.log lines)
-                0.06    // * estimated number of transactions per second after that timestamp
+                0.0000000000000000        // * estimated number of transactions per second after that timestamp
         };
     }
 };
@@ -465,14 +462,14 @@ public:
 
         checkpointData = {
                 {
-
+                        // No checkpoints for new testnet blockchain - starts from genesis block
                 }
         };
 
         chainTxData = ChainTxData{
-                1712153599, // * UNIX timestamp of last known number of transactions (Block 17670)
-                22643,    // * total number of transactions between genesis and that timestamp
-                0.02108492915974094        // * estimated number of transactions per second after that timestamp
+                1759706139, // * UNIX timestamp of testnet genesis block (Block 0)
+                0,          // * total number of transactions at genesis (0)
+                0.0000000000000000        // * estimated number of transactions per second after that timestamp
         };
 
     }
