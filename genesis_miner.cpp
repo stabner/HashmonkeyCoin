@@ -48,23 +48,23 @@ int main() {
     std::cout << std::endl;
 
     // Mainnet parameters
-    const char* mainnet_pszTimestamp = "HashmonkeyCoin launch — October 2025";
+    const char* mainnet_pszTimestamp = "HashmonkeyCoin Genesis: HashmonkeyCoin Launch 4 October 2025 - mainnet";
     const CScript mainnet_genesisOutputScript = CScript() << ParseHex(
-        "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"
+        "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9"
     ) << OP_CHECKSIG;
     
     CAmount genesisReward = 500 * COIN;
-    uint32_t mainnet_nTime = 1759755336;
+    uint32_t mainnet_nTime = 1759743064;
     uint32_t mainnet_nBits = 0x20001fff;
     int32_t mainnet_nVersion = 4;
 
     // Testnet parameters
-    const char* testnet_pszTimestamp = "HashmonkeyCoin testnet launch — October 2025";
+    const char* testnet_pszTimestamp = "HashmonkeyCoin Genesis: HashmonkeyCoin Launch 4 October 2025 - testnet";
     const CScript testnet_genesisOutputScript = CScript() << ParseHex(
-        "044a8c277176de65d91b6d4f7b3bdd64e93d45648689c06651a049dc53e27b76c9"
+        "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9"
     ) << OP_CHECKSIG;
     
-    uint32_t testnet_nTime = 1759755699;
+    uint32_t testnet_nTime = 1759706139;
     uint32_t testnet_nBits = 0x207fffff;
     int32_t testnet_nVersion = 1;
 
