@@ -222,7 +222,7 @@ public:
         // nVersion: 4 (block version 4 - important!)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
         // Create genesis block with FRESH mined nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759743064, 1789, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1759743064, 1789, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         
@@ -400,7 +400,7 @@ public:
         // nVersion: 1 (testnet version)
         // genesisReward: 500 coins (different from Raptoreum's 5000)
         // Create testnet genesis block with FRESH mined nonce
-        genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759706139, 153, 0x207fffff, 1, 500 * COIN);
+        genesis = CreateTestnetGenesisBlock(1759706139, 153, 0x207fffff, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         
