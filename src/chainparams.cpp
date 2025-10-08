@@ -223,6 +223,7 @@ public:
         // genesisReward: 500 coins (different from Raptoreum's 5000)
         // Create genesis block with FRESH mined nonce
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759743064, 387732321, 0x20001fff, 4, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
@@ -399,6 +400,7 @@ public:
         // genesisReward: 500 coins (different from Raptoreum's 5000)
         // Create testnet genesis block with FRESH mined nonce
         genesis = CreateGenesisBlock(pszTimestamp, genesisOutputScript, 1759706139, 379388833, 0x207fffff, 1, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         vFixedSeeds.clear();
