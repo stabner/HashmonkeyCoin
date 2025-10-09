@@ -16,7 +16,7 @@
 #include <rpc/util.h>
 
 #if defined(HAVE_CONSENSUS_LIB)
-#include <script/raptoreumconsensus.h>
+#include <script/hashmonkeycoinconsensus.h>
 #endif
 
 #include <fstream>
