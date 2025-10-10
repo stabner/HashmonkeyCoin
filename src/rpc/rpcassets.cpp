@@ -11,9 +11,11 @@
 #include <txmempool.h>
 #include <chainparams.h>
 #include "core_io.h"
+#ifdef ENABLE_WALLET
 #include <wallet/coincontrol.h>
 #include <wallet/wallet.h>
 #include <wallet/rpcwallet.h>
+#endif
 
 #include <evo/specialtx.h>
 #include <evo/providertx.h>
@@ -790,6 +792,7 @@ UniValue getassetdetailsbyid(const JSONRPCRequest &request) {
     return result;
 }
 
+#ifdef ENABLE_WALLET
 UniValue listassetsbalance(const JSONRPCRequest &request) {
     if (request.fHelp || !Updates().IsAssetsActive(::ChainActive().Tip()) || request.params.size() > 0)
         throw std::runtime_error(
@@ -844,7 +847,9 @@ UniValue listassetsbalance(const JSONRPCRequest &request) {
 
     return result;
 }
+#endif
 
+#ifdef ENABLE_WALLET
 UniValue listunspentassets(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 5)
@@ -1039,6 +1044,7 @@ UniValue listunspentassets(const JSONRPCRequest& request)
 
     return results;
 }
+#endif
 
 UniValue listassets(const JSONRPCRequest &request) {
     RPCHelpMan{"listassets",
