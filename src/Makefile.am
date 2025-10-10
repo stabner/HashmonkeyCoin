@@ -428,7 +428,6 @@ libhashmonkeycoin_server_a_SOURCES = \
   rpc/misc.cpp \
   rpc/net.cpp \
   rpc/rawtransaction.cpp \
-  rpc/rpcassets.cpp \
   rpc/rpcevo.cpp \
   rpc/rpcquorums.cpp \
   rpc/server.cpp \
@@ -448,6 +447,7 @@ libhashmonkeycoin_server_a_SOURCES = \
 
 if ENABLE_WALLET
 libhashmonkeycoin_server_a_SOURCES += wallet/init.cpp
+libhashmonkeycoin_server_a_SOURCES += rpc/rpcassets.cpp
 endif
 if !ENABLE_WALLET
 libhashmonkeycoin_server_a_SOURCES += dummywallet.cpp
