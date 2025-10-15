@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined (HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <qt/walletmodel.h>
@@ -195,7 +195,7 @@ WalletModel::prepareTransaction(WalletModelTransaction &transaction, const CCoin
     for (const SendCoinsRecipient &rcp: recipients) {
         if (rcp.fSubtractFeeFromAmount)
             fSubtractFeeFromAmount = true;
-        {   // User-entered raptoreum address / amount:
+        {   // User-entered HashmonkeyCoin address / amount:
             if (!validateAddress(rcp.address)) {
                 return InvalidAddress;
             }
@@ -262,7 +262,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
     {
         std::vector <std::pair<std::string, std::string>> vOrderForm;
         for (const SendCoinsRecipient &rcp: transaction.getRecipients()) {
-            if (!rcp.message.isEmpty()) // Message from normal raptoreum:URI (raptoreum:XyZ...?message=example)
+            if (!rcp.message.isEmpty()) // Message from normal HashmonkeyCoin:URI (HashmonkeyCoin:XyZ...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 
@@ -332,7 +332,7 @@ WalletModel::prepareAssetTransaction(WalletModelTransaction &transaction, const 
         if (rcp.fSubtractFeeFromAmount)
             fSubtractFeeFromAmount = true;
 
-        {   // User-entered raptoreum address / amount:
+        {   // User-entered HashmonkeyCoin address / amount:
             if (!validateAddress(rcp.address)) {
                 return InvalidAddress;
             }
@@ -421,7 +421,7 @@ WalletModel::SendAssetsReturn WalletModel::sendAssets(WalletModelTransaction &tr
     {
         std::vector <std::pair<std::string, std::string>> vOrderForm;
         for (const SendCoinsRecipient &rcp: transaction.getRecipients()) {
-            if (!rcp.message.isEmpty()) // Message from normal raptoreum:URI (raptoreum:XyZ...?message=example)
+            if (!rcp.message.isEmpty()) // Message from normal HashmonkeyCoin:URI (HashmonkeyCoin:XyZ...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 

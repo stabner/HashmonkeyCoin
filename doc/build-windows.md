@@ -1,12 +1,12 @@
 WINDOWS BUILD NOTES
 ====================
 
-Below are some notes on how to build Raptoreum Core for Windows.
+Below are some notes on how to build HashmonkeyCoin Core for Windows.
 
-The options known to work for building Raptoreum Core on Windows are:
+The options known to work for building HashmonkeyCoin Core on Windows are:
 
 * On Linux, using the [Mingw-w64](https://www.mingw-w64.org/) cross compiler tool chain. 
-and is the platform used to build the Raptoreum Core Windows release binaries.
+and is the platform used to build the HashmonkeyCoin Core Windows release binaries.
 * On Windows, using [Windows
 Subsystem for Linux (WSL)](https://docs.microsoft.com/windows/wsl/about) and the Mingw-w64 cross compiler tool chain.
 
@@ -43,8 +43,8 @@ If you want to build the windows installer with `make deploy` you need [NSIS](ht
 
 Acquire the source in the usual way:
 
-	git clone https://github.com/raptor3um/raptoreum.git
-	cd raptoreum
+	git clone https://github.com/hashmonkeycoin/hashmonkeycoin.git
+	cd hashmonkeycoin
 
 ## Building for 64-bit Windows
 

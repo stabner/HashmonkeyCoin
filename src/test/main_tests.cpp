@@ -8,7 +8,7 @@
 
 #include <net.h>
 
-#include <test/test_raptoreum.h>
+#include <test/test_HashmonkeyCoin.h>
 
 #include <boost/signals2/signal.hpp>
 #include <boost/test/included/unit_test.hpp>

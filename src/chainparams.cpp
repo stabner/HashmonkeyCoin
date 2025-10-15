@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -94,7 +94,7 @@ CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::string &devNet
  */
 static CBlock
 CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
-    const char *pszTimestamp = "The Times 22/Jan/2018 Raptoreum is name of the game for new generation of firms";
+    const char *pszTimestamp = "The Times 22/Jan/2024 HashmonkeyCoin is the future of decentralized cryptocurrency";
     const CScript genesisOutputScript = CScript() << ParseHex(
             "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                   << OP_CHECKSIG;
@@ -194,8 +194,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 1047200;
         consensus.powLimit = uint256S(
                 "00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Raptoreum: 2 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // HashmonkeyCoin: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -245,28 +245,28 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
+               uint256S("0xdd6461b85175b6dd000000000000000000000000000000000000000000000000"));
         assert(genesis.hashMerkleRoot ==
                uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
-        vSeeds.emplace_back("lbdn.raptoreum.com");
+        vSeeds.emplace_back("lbdn.HashmonkeyCoin.com");
         vSeeds.emplace_back("51.89.21.112");
 
-        // Raptoreum addresses start with 'r'
+        // HashmonkeyCoin addresses start with 'r'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 60);
-        // Raptoreum script addresses start with '7'
+        // HashmonkeyCoin script addresses start with '7'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
-        // Raptoreum private keys start with '7' or 'X'
+        // HashmonkeyCoin private keys start with '7' or 'X'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 128);
-        // Raptoreum BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // HashmonkeyCoin BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        // Raptoreum BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // HashmonkeyCoin BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
-        // Raptoreum BIP44 coin type is '5'
+        // HashmonkeyCoin BIP44 coin type is '5'
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
         nExtCoinType = strExtCoinType.empty() ? 200 : std::stoi(strExtCoinType);
 //        if(gArgs.GetChainName() == CBaseChainParams::MAIN) {
@@ -276,18 +276,13 @@ public:
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{88720,   600000 * COIN},
-                 {132720,  800000 * COIN},
-                 {176720,  1000000 * COIN},
-                 {220720,  1250000 * COIN},
-                 {264720,  1500000 * COIN},
-                 {INT_MAX, 1800000 * COIN}
+                {{INT_MAX, 100000 * COIN}
                 },
                 {{5761,    0},
-                 {INT_MAX, 20}}
+                 {INT_MAX, 5}}
         );
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -368,8 +363,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 7300;
         consensus.powLimit = uint256S(
                 "00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 60; // Raptoreum: 1 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 60; // HashmonkeyCoin: 1 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -419,12 +414,12 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 10230;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1711078237, 971, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1711078237, 971, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xbbab22066081d3b466abd734de914e8092abf4e959bcd0fff978297c41591b23"));
+               uint256S("0x2f4d9755a2521593000000000000000000000000000000000000000000000000"));
         assert(genesis.hashMerkleRoot ==
                uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
@@ -434,20 +429,20 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("47.151.9.131");
-        vSeeds.emplace_back("lbtn.raptoreum.com");
+        vSeeds.emplace_back("lbtn.HashmonkeyCoin.com");
 
-        // Testnet Raptoreum addresses start with 'r'
+        // Testnet HashmonkeyCoin addresses start with 'r'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 123);
-        // Testnet Raptoreum script addresses start with '8' or '9'
+        // Testnet HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Testnet Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Raptoreum BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet HashmonkeyCoin BIP44 coin type is '1' (All coin's testnet default)
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
         nExtCoinType = strExtCoinType.empty() ? 10227 : std::stoi(strExtCoinType);
 
@@ -462,10 +457,10 @@ public:
         consensus.llmqTypePlatform = Consensus::LLMQ_100_67;
 
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 60000 * COIN}},
-                {{INT_MAX, 20}});
+                {{INT_MAX, 10000 * COIN}},
+                {{INT_MAX, 5}});
 
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
 
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "rghjACzPtVAN2wydgDbn9Jq1agREu6rH1e");
@@ -537,8 +532,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 2; // DIP0003 activated immediately on devnet
         consensus.powLimit = uint256S(
                 "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Raptoreum: 2 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // HashmonkeyCoin: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -574,40 +569,40 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1688535726, 2841, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1688535726, 2841, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 //      std::cout << "hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x6d195b5563f3fea862d1ad151f3de7e568bb139ea3d8ee68b398580e493a504c"));
+               uint256S("0x29db7cef783e9c3f000000000000000000000000000000000000000000000000"));
         assert(genesis.hashMerkleRoot ==
                uint256S("0xe87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
 
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 60000 * COIN}},
-                {{INT_MAX, 20}});
+                {{INT_MAX, 10000 * COIN}},
+                {{INT_MAX, 5}});
 
         vFixedSeeds.clear();
         vSeeds.clear();
         vSeeds.emplace_back("47.151.26.43");
-        //vSeeds.push_back(CDNSSeedData("raptoreumevo.org",  "devnet-seed.raptoreumevo.org"));
+        //vSeeds.push_back(CDNSSeedData("HashmonkeyCoinevo.org",  "devnet-seed.HashmonkeyCoinevo.org"));
 
-        // Testnet Raptoreum addresses start with 'y'
+        // Testnet HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
-        // Testnet Raptoreum script addresses start with '8' or '9'
+        // Testnet HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Testnet Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Raptoreum BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet HashmonkeyCoin BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params
@@ -708,8 +703,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 500;
         consensus.powLimit = uint256S(
                 "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Raptoreum: 2 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // HashmonkeyCoin: 2 minutes
         consensus.nMinimumDifficultyBlocks = 2000;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
@@ -737,9 +732,9 @@ public:
         consensus.defaultAssumeValid = uint256S("0x00");
 
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 10 * COIN}},
+                {{INT_MAX, 1000 * COIN}},
                 {{240,     0},
-                 {INT_MAX, 20}});
+                 {INT_MAX, 5}});
 
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0xc1;
@@ -753,14 +748,14 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x485491468e03c8ac23dd38f70fc1cda9f98cbd0bf58945e2da6c94c2a2d8b044"));
+               uint256S("0xd952f1e875d215fc000000000000000000000000000000000000000000000000"));
         assert(genesis.hashMerkleRoot ==
                uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -800,18 +795,18 @@ public:
                 0
         };
 
-        // Regtest Raptoreum addresses start with 'y'
+        // Regtest HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
-        // Regtest Raptoreum script addresses start with '8' or '9'
+        // Regtest HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Regtest Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Regtest HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Regtest Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Regtest HashmonkeyCoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Regtest Raptoreum BIP44 coin type is '1' (All coin's testnet default)
+        // Regtest HashmonkeyCoin BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params

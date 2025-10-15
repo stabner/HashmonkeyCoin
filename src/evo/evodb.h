@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_EVODB_H
-#define RAPTOREUM_EVODB_H
+#ifndef HashmonkeyCoin_EVODB_H
+#define HashmonkeyCoin_EVODB_H
 
 #include <dbwrapper.h>
 #include <sync.h>
@@ -132,4 +132,4 @@ private:
 
 extern std::unique_ptr <CEvoDB> evoDb;
 
-#endif //RAPTOREUM_EVODB_H
+#endif //HashmonkeyCoin_EVODB_H

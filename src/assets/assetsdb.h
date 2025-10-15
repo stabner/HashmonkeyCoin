@@ -1,10 +1,10 @@
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2021-2023 The Raptoreum developers
+// Copyright (c) 2021-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_ASSETDB_H
-#define RAPTOREUM_ASSETDB_H
+#ifndef HashmonkeyCoin_ASSETDB_H
+#define HashmonkeyCoin_ASSETDB_H
 
 #include "fs.h"
 #include "serialize.h"
@@ -99,4 +99,4 @@ public:
 };
 
 
-#endif //RAPTOREUM_ASSETDB_H
+#endif //HashmonkeyCoin_ASSETDB_H

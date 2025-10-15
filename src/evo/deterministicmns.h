@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_DETERMINISTICMNS_H
-#define RAPTOREUM_DETERMINISTICMNS_H
+#ifndef HashmonkeyCoin_DETERMINISTICMNS_H
+#define HashmonkeyCoin_DETERMINISTICMNS_H
 
 #include <arith_uint256.h>
 #include <consensus/params.h>
@@ -755,4 +755,4 @@ extern std::unique_ptr <CDeterministicMNManager> deterministicMNManager;
 #pragma clang diagnostic pop
 #endif
 
-#endif //RAPTOREUM_DETERMINISTICMNS_H
+#endif //HashmonkeyCoin_DETERMINISTICMNS_H

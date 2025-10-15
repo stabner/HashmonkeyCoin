@@ -1,9 +1,9 @@
-// Copyright (c) 2021-2023 The Raptoreum developers
+// Copyright (c) 2021-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_ASSETS_H
-#define RAPTOREUM_ASSETS_H
+#ifndef HashmonkeyCoin_ASSETS_H
+#define HashmonkeyCoin_ASSETS_H
 
 #include <amount.h>
 #include <coins.h>
@@ -240,4 +240,4 @@ bool GetAssetData(const CScript &script, CAssetOutputEntry &data);
 //common function used by tx_verify and wallet
 std::vector<std::pair<uint64_t, uint64_t>> combineUniqueIdPairs(const std::vector<std::pair<uint64_t, uint64_t>>& UniqueIds);
 
-#endif //RAPTOREUM_ASSETS_H
+#endif //HashmonkeyCoin_ASSETS_H

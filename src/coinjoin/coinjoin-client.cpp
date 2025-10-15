@@ -258,7 +258,7 @@ void CCoinJoinClientSession::ProcessMessage(CNode *pfrom, const std::string &str
     }
 }
 
-bool CCoinJoinClientManager::StartMixing() {
+bool CCoinJoinClientManager::StaHMNYixing() {
     bool expected{false};
     return fMixing.compare_exchange_strong(expected, true);
 }

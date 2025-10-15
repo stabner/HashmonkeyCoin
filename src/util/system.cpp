@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -65,7 +65,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-//Raptoreum only features
+//HashmonkeyCoin only features
 bool fSmartnodeMode = false;
 bool fDisableGovernance = false;
 const std::string gCoinJoinName = "CoinJoin";
@@ -79,7 +79,7 @@ const std::string gCoinJoinName = "CoinJoin";
 */
 int nWalletBackups = 10;
 
-const char *const BITCOIN_CONF_FILENAME = "raptoreum.conf";
+const char *const BITCOIN_CONF_FILENAME = "HashmonkeyCoin.conf";
 
 ArgsManager gArgs;
 
@@ -229,7 +229,7 @@ public:
         std::pair<bool, std::string> found_result(false, std::string());
 
         // We pass "true" to GetArgHelper in order to return the last
-        // argument value seen from the command line (so "raptoreumd -foo=bar
+        // argument value seen from the command line (so "HashmonkeyCoind -foo=bar
         // -foo=baz" gives GetArg(am,"foo")=={true,"baz"}
         found_result = GetArgHelper(am.m_override_args, arg, true);
         if (found_result.first) {
@@ -711,13 +711,13 @@ void PrintExceptionContinue(const std::exception_ptr pex, const char *pszExcepti
 }
 
 fs::path GetDefaultDataDir() {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\RaptoreumCore
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\RaptoreumCore
-    // Mac: ~/Library/Application Support/RaptoreumCore
-    // Unix: ~/.raptoreumcore
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\HashmonkeyCoinCore
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\HashmonkeyCoinCore
+    // Mac: ~/Library/Application Support/HashmonkeyCoinCore
+    // Unix: ~/.HashmonkeyCoincore
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "RaptoreumCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "HashmonkeyCoinCore";
 #else
     fs::path pathRet;
     char *pszHome = getenv("HOME");
@@ -727,10 +727,10 @@ fs::path GetDefaultDataDir() {
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/RaptoreumCore";
+    return pathRet / "Library/Application Support/HashmonkeyCoinCore";
 #else
     // Unix
-    return pathRet / ".raptoreumcore";
+    return pathRet / ".HashmonkeyCoincore";
 #endif
 #endif
 }
@@ -960,7 +960,7 @@ bool ArgsManager::ReadConfigFiles(std::string &error, bool ignore_invalid_keys) 
             }
         }
     } else {
-        // Create an empty raptoreum.conf if it does not exist
+        // Create an empty HashmonkeyCoin.conf if it does not exist
         FILE *configFile = fopen(GetConfigFile(confPath).string().c_str(), "a");
         if (configFile != nullptr)
             fclose(configFile);
@@ -1255,9 +1255,9 @@ std::string CopyrightHolders(const std::string &strPrefix, unsigned int nStartYe
     const auto copyright_info = strprintf(_(COPYRIGHT_HOLDERS), COPYRIGHT_HOLDERS_SUBSTITUTION);
     std::string strCopyrightHolders = strPrefix + strprintf(" %u-%u ", 2021, nEndYear) + copyright_info;
 
-    // Check for untranslated substitution to make sure Raptoreum Core copyright is not removed by accident
-    if (copyright_info.find("Raptoreum") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2020, nEndYear) + "The Raptoreum developers";
+    // Check for untranslated substitution to make sure HashmonkeyCoin Core copyright is not removed by accident
+    if (copyright_info.find("HashmonkeyCoin") == std::string::npos) {
+        strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2020, nEndYear) + "The HashmonkeyCoin developers";
     }
     // Check for untranslated substitution to make sure Bitcoin Core copyright is not removed by accident
     if (copyright_info.find("Dash Core") == std::string::npos) {

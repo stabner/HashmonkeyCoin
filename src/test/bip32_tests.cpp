@@ -8,7 +8,7 @@
 #include <key_io.h>
 #include <uint256.h>
 #include <util/strencodings.h>
-#include <test/test_raptoreum.h>
+#include <test/test_HashmonkeyCoin.h>
 
 #include <string>
 #include <vector>

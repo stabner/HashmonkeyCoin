@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -62,7 +62,7 @@ static UniValue coinjoin(const JSONRPCRequest& request)
                 throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please unlock wallet for mixing with walletpassphrase first.");
         }
 
-        if (!it->second->StartMixing()) {
+        if (!it->second->StaHMNYixing()) {
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Mixing has been started already.");
         }
 
@@ -192,10 +192,10 @@ UniValue getcoinjoininfo(const JSONRPCRequest &request) {
 static const CRPCCommand commands[] =
         { //  category              name                      actor (function)         argNames
                 //  --------------------- ------------------------  ---------------------------------
-                {"raptoreum", "getpoolinfo", &getpoolinfo, {}},
-                {"raptoreum", "getcoinjoininfo", &getcoinjoininfo, {}},
+                {"HashmonkeyCoin", "getpoolinfo", &getpoolinfo, {}},
+                {"HashmonkeyCoin", "getcoinjoininfo", &getcoinjoininfo, {}},
 #ifdef ENABLE_WALLET
-                { "raptoreum",               "coinjoin",               &coinjoin,               {} },
+                { "HashmonkeyCoin",               "coinjoin",               &coinjoin,               {} },
 #endif // ENABLE_WALLET
         };
 

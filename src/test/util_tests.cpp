@@ -9,7 +9,7 @@
 #include <sync.h>
 #include <util/strencodings.h>
 #include <util/moneystr.h>
-#include <test/test_raptoreum.h>
+#include <test/test_HashmonkeyCoin.h>
 #include <util/vector.h>
 #include <util/spanparsing.h>
 

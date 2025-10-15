@@ -15,7 +15,7 @@
 #include <util/system.h>
 #include <validation.h>
 
-#include <test/test_raptoreum.h>
+#include <test/test_HashmonkeyCoin.h>
 
 #include <stdint.h>
 

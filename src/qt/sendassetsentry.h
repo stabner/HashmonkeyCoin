@@ -1,9 +1,9 @@
-// Copyright (c) 2023 The Raptoreum developers
+// Copyright (c) 2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_QT_SENDAASSETSENTRY_H
-#define RAPTOREUM_QT_SENDAASSETSENTRY_H
+#ifndef HashmonkeyCoin_QT_SENDAASSETSENTRY_H
+#define HashmonkeyCoin_QT_SENDAASSETSENTRY_H
 
 #include <qt/walletmodel.h>
 
@@ -117,4 +117,4 @@ private:
     void ClearAssetOptions();
 };
 
-#endif // RAPTOREUM_QT_SENDAASSETSENTRY_H
+#endif // HashmonkeyCoin_QT_SENDAASSETSENTRY_H

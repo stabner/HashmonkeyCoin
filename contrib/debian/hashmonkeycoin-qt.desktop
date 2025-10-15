@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=HashmonkeyCoin Core
+Comment=HashmonkeyCoin P2P Cryptocurrency
+Comment[de]=Verbinde mit dem HashmonkeyCoin peer-to-peer Netzwerk
+Comment[fr]=HashmonkeyCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=HashmonkeyCoin, eşten eşe kriptografik sanal para birimi
+Exec=HashmonkeyCoin-qt %u
+Terminal=false
+Type=Application
+Icon=HashmonkeyCoin128
+MimeType=x-scheme-handler/HashmonkeyCoin;
+Categories=Office;Finance;

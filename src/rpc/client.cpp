@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -130,8 +130,8 @@ static const CRPCConvertParam vRPCConvertParams[] =
                 {"importaddress", 2, "rescan"},
                 {"importaddress", 3, "p2sh"},
                 {"importpubkey", 2, "rescan"},
-                {"importmulti", 0, "requests"},
-                {"importmulti", 1, "options"},
+                {"impoHMNYulti", 0, "requests"},
+                {"impoHMNYulti", 1, "options"},
                 {"verifychain", 0, "checklevel"},
                 {"verifychain", 1, "nblocks"},
                 {"getblockstats", 0, "hash_or_height"},

@@ -41,7 +41,7 @@
 #include <warnings.h>
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <coinjoin/coinjoin.h>
@@ -208,7 +208,7 @@ namespace interfaces {
 
             bool shutdownRequested() override { return ShutdownRequested(); }
 
-            void mapPort(bool use_upnp, bool use_natpmp) override { StartMapPort(use_upnp, use_natpmp); }
+            void mapPort(bool use_upnp, bool use_natpmp) override { StaHMNYapPort(use_upnp, use_natpmp); }
 
             void setupServerArgs() override { return SetupServerArgs(); }
 

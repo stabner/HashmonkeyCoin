@@ -1,9 +1,9 @@
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 
 #include <governance/governance.h>
 
-#include <test/test_raptoreum.h>
+#include <test/test_HashmonkeyCoin.h>
 
 #include <boost/test/unit_test.hpp>
 

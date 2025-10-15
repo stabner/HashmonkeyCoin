@@ -156,8 +156,8 @@ namespace interfaces {
             return m_manager->IsMixing();
         }
 
-        bool startMixing() override {
-            return m_manager->StartMixing();
+        bool staHMNYixing() override {
+            return m_manager->StaHMNYixing();
         }
 
         void stopMixing() override {

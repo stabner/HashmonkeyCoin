@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -72,7 +72,7 @@ static void RescanWallet(CWallet &wallet, const WalletRescanReserver &reserver, 
 UniValue importprivkey(const JSONRPCRequest &request) {
     RPCHelpMan{"importprivkey",
                "\nAdds a private key (as returned by dumpprivkey) to your wallet. Requires a new wallet backup.\n"
-               "Hint: use importmulti to import more than one private key.\n"
+               "Hint: use impoHMNYulti to import more than one private key.\n"
                "\nNote: This call can take over an hour to complete if rescan is true, during that time, other rpc calls\n"
                "may report that the imported key exists but related transactions are still missing, leading to temporarily incorrect/bogus balances and unspent outputs until rescan completes.\n",
                {
@@ -273,7 +273,7 @@ UniValue importaddress(const JSONRPCRequest &request) {
                "as change, and not show up in many RPCs.\n",
                {
                        {"address", RPCArg::Type::STR, RPCArg::Optional::NO,
-                        "The Raptoreum address (or hex-encoded script)"},
+                        "The HashmonkeyCoin address (or hex-encoded script)"},
                        {"label", RPCArg::Type::STR, /* default */ "\"\"", "An optional label"},
                        {"rescan", RPCArg::Type::BOOL, /* default */ "true", "Rescan the wallet for transactions"},
                        {"p2sh", RPCArg::Type::BOOL, /* default */ "false",
@@ -330,7 +330,7 @@ UniValue importaddress(const JSONRPCRequest &request) {
             std::vector<unsigned char> data(ParseHex(request.params[0].get_str()));
             ImportScript(pwallet, CScript(data.begin(), data.end()), strLabel, fP2SH);
         } else {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Raptoreum address or script");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HashmonkeyCoin address or script");
         }
     }
     if (fRescan) {
@@ -833,7 +833,7 @@ UniValue dumpprivkey(const JSONRPCRequest &request) {
                "Then the importprivkey can be used with this output\n",
                {
                        {"address", RPCArg::Type::STR, RPCArg::Optional::NO,
-                        "The Raptoreum address for the private key"},
+                        "The HashmonkeyCoin address for the private key"},
                },
                RPCResult{
                        RPCResult::Type::STR, "key", "The private key"
@@ -856,7 +856,7 @@ UniValue dumpprivkey(const JSONRPCRequest &request) {
     std::string strAddress = request.params[0].get_str();
     CTxDestination dest = DecodeDestination(strAddress);
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Raptoreum address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HashmonkeyCoin address");
     }
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
     if (!keyID) {
@@ -924,7 +924,7 @@ UniValue dumpwallet(const JSONRPCRequest &request) {
                "only backing up the seed itself, and must be backed up too (e.g. ensure you back up the whole dumpfile).\n",
                {
                        {"filename", RPCArg::Type::STR, RPCArg::Optional::NO,
-                        "The filename with path (either absolute or relative to raptoreumd)"},
+                        "The filename with path (either absolute or relative to HashmonkeyCoind)"},
                },
                RPCResult{
                        RPCResult::Type::OBJ, "", "",
@@ -985,7 +985,7 @@ UniValue dumpwallet(const JSONRPCRequest &request) {
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
 
     // produce output
-    file << strprintf("# Wallet dump created by Raptoreum Core %s\n", CLIENT_BUILD);
+    file << strprintf("# Wallet dump created by HashmonkeyCoin Core %s\n", CLIENT_BUILD);
     file << strprintf("# * Created on %s\n", FormatISO8601DateTime(GetTime()));
     const Optional<int> tip_height = pwallet->chain().getHeight();
     file << strprintf("# * Best block at time of backup was %i (%s),\n", tip_height.value_or(-1),
@@ -996,7 +996,7 @@ UniValue dumpwallet(const JSONRPCRequest &request) {
     file << "\n";
 
     UniValue obj(UniValue::VOBJ);
-    obj.pushKV("raptoreumcoreversion", CLIENT_BUILD);
+    obj.pushKV("HashmonkeyCoincoreversion", CLIENT_BUILD);
     obj.pushKV("lastblockheight", tip_height.value_or(-1));
     obj.pushKV("lastblockhash", tip_height ? pwallet->chain().getBlockHash(*tip_height).ToString() : NullUniValue);
     obj.pushKV("lastblocktime",
@@ -1515,8 +1515,8 @@ int64_t GetImportTimestamp(const UniValue &data, int64_t now) {
     throw JSONRPCError(RPC_TYPE_ERROR, "Missing required timestamp field for key");
 }
 
-UniValue importmulti(const JSONRPCRequest &mainRequest) {
-    RPCHelpMan{"importmulti",
+UniValue impoHMNYulti(const JSONRPCRequest &mainRequest) {
+    RPCHelpMan{"impoHMNYulti",
                "\nImport addresses/scripts (with private or public keys, redeem script (P2SH)), rescanning all addresses in one-shot-only (rescan can be disabled via options). Requires a new wallet backup.\n"
                "\nNote: This call can take over an hour to complete if rescan is true, during that time, other rpc calls\n"
                "may report that the imported keys, addresses or scripts exists but related transactions are still missing.\n",
@@ -1539,7 +1539,7 @@ UniValue importmulti(const JSONRPCRequest &mainRequest) {
                                                                                                        "                                                              key will determine how far back blockchain rescans need to begin for missing wallet transactions.\n"
                                                                                                        "                                                              \"now\" can be specified to bypass scanning, for keys which are known to never have been used, and\n"
                                                                                                        "                                                              0 can be specified to scan the entire blockchain. Blocks up to 2 hours before the earliest key\n"
-                                                                                                       "                                                              creation time of all keys being imported by the importmulti call will be scanned.",
+                                                                                                       "                                                              creation time of all keys being imported by the impoHMNYulti call will be scanned.",
                                                  /* oneline_description */ "",
                                           {"timestamp | \"now\"", "integer / string"}
                                          },
@@ -1597,10 +1597,10 @@ UniValue importmulti(const JSONRPCRequest &mainRequest) {
                        }
                },
                RPCExamples{
-                       HelpExampleCli("importmulti",
+                       HelpExampleCli("impoHMNYulti",
                                       "'[{ \"scriptPubKey\": { \"address\": \"<my address>\" }, \"timestamp\":1455191478 }, "
                                       "{ \"scriptPubKey\": { \"address\": \"<my 2nd address>\" }, \"label\": \"example 2\", \"timestamp\": 1455191480 }]'") +
-                       HelpExampleCli("importmulti",
+                       HelpExampleCli("impoHMNYulti",
                                       "'[{ \"scriptPubKey\": { \"address\": \"<my address>\" }, \"timestamp\":1455191478 }]' '{ \"rescan\": false}'")
                },
     }.Check(mainRequest);
@@ -1706,7 +1706,7 @@ UniValue importmulti(const JSONRPCRequest &mainRequest) {
                                             "block from time %d, which is after or within %d seconds of key creation, and "
                                             "could contain transactions pertaining to the key. As a result, transactions "
                                             "and coins using this key may not appear in the wallet. This error could be "
-                                            "caused by pruning or data corruption (see raptoreumd log for details) and could "
+                                            "caused by pruning or data corruption (see HashmonkeyCoind log for details) and could "
                                             "be dealt with by downloading and rescanning the relevant blocks (see -reindex "
                                             "and -rescan options).",
                                             GetImportTimestamp(request, now), scannedTime - TIMESTAMP_WINDOW - 1,

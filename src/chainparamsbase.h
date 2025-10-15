@@ -10,8 +10,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between raptoreum-cli and raptoreumd)
- * of a given instance of the Raptoreum system.
+ * CBaseChainParams defines the base parameters (shared between HashmonkeyCoin-cli and HashmonkeyCoind)
+ * of a given instance of the HashmonkeyCoin system.
  */
 class CBaseChainParams {
 public:

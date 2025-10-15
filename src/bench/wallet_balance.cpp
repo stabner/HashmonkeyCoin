@@ -7,7 +7,7 @@
 #include <key_io.h>
 #include <node/context.h>
 #include <test/util.h>
-#include <test/test_raptoreum.h>
+#include <test/test_HashmonkeyCoin.h>
 #include <validationinterface.h>
 #include <wallet/wallet.h>
 

@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <qt/rpcconsole.h>
@@ -68,7 +68,7 @@ namespace {
 // don't add private key handling cmd's to the history
     const QStringList historyFilter = QStringList()
             << "importprivkey"
-            << "importmulti"
+            << "impoHMNYulti"
             << "signmessagewithprivkey"
             << "signrawtransactionwithkey"
             << "walletpassphrase"
@@ -1275,7 +1275,7 @@ void RPCConsole::setButtonIcons() {
 
 void RPCConsole::reloadThemedWidgets() {
     clear();
-    ui->promptLabel->setHidden(GUIUtil::raptoreumThemeActive());
+    ui->promptLabel->setHidden(GUIUtil::HashmonkeyCoinThemeActive());
     // Adjust button icon colors on theme changes
     setButtonIcons();
 }
