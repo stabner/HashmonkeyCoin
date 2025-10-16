@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_INDEX_H
-#define HashmonkeyCoin_INDEX_H
+#ifndef HASHMONKEYCOIN_INDEX_H
+#define HASHMONKEYCOIN_INDEX_H
 
 #include <amount.h>
 #include <script/script.h>

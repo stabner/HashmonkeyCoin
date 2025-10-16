@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_CRYPTO_BLS_BATCHVERIFIER_H
-#define HashmonkeyCoin_CRYPTO_BLS_BATCHVERIFIER_H
+#ifndef HASHMONKEYCOIN_CRYPTO_BLS_BATCHVERIFIER_H
+#define HASHMONKEYCOIN_CRYPTO_BLS_BATCHVERIFIER_H
 
 #include <bls/bls.h>
 
@@ -229,4 +229,4 @@ private:
     }
 };
 
-#endif //HashmonkeyCoin_CRYPTO_BLS_BATCHVERIFIER_H
+#endif //HASHMONKEYCOIN_CRYPTO_BLS_BATCHVERIFIER_H

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_EVODB_H
-#define HashmonkeyCoin_EVODB_H
+#ifndef HASHMONKEYCOIN_EVODB_H
+#define HASHMONKEYCOIN_EVODB_H
 
 #include <dbwrapper.h>
 #include <sync.h>
@@ -132,4 +132,4 @@ private:
 
 extern std::unique_ptr <CEvoDB> evoDb;
 
-#endif //HashmonkeyCoin_EVODB_H
+#endif //HASHMONKEYCOIN_EVODB_H

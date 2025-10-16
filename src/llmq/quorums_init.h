@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_QUORUMS_INIT_H
-#define HashmonkeyCoin_QUORUMS_INIT_H
+#ifndef HASHMONKEYCOIN_QUORUMS_INIT_H
+#define HASHMONKEYCOIN_QUORUMS_INIT_H
 
 class CConnman;
 
@@ -29,4 +29,4 @@ namespace llmq {
     void InterruptLLMQSystem();
 } // namespace llmq
 
-#endif //HashmonkeyCoin_QUORUMS_INIT_H
+#endif //HASHMONKEYCOIN_QUORUMS_INIT_H

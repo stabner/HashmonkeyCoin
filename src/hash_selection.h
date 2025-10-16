@@ -8,8 +8,8 @@
  *      Author: tri
  */
 
-#ifndef HashmonkeyCoin_SELECTION_H_
-#define HashmonkeyCoin_SELECTION_H_
+#ifndef HASHMONKEYCOIN_SELECTION_H_
+#define HASHMONKEYCOIN_SELECTION_H_
 
 #include <uint256.h>
 #include <string>
@@ -98,4 +98,4 @@ protected:
 
 };
 
-#endif /* HashmonkeyCoin_SELECTION_H_ */
+#endif /* HASHMONKEYCOIN_SELECTION_H_ */

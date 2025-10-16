@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_QT_UPDATEASSETSDIALOG_H
-#define HashmonkeyCoin_QT_UPDATEASSETSDIALOG_H
+#ifndef HASHMONKEYCOIN_QT_UPDATEASSETSDIALOG_H
+#define HASHMONKEYCOIN_QT_UPDATEASSETSDIALOG_H
 
 #include <qt/walletmodel.h>
 
@@ -146,4 +146,4 @@ private:
     int secDelay;
 };
 
-#endif // HashmonkeyCoin_QT_UPDATEASSETSDIALOG_H
+#endif // HASHMONKEYCOIN_QT_UPDATEASSETSDIALOG_H

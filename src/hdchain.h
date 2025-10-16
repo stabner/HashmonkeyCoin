@@ -1,8 +1,8 @@
 // Copyright (c) 2014-2019 The Dash Core developers
 // Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
-#ifndef HashmonkeyCoin_HDCHAIN_H
-#define HashmonkeyCoin_HDCHAIN_H
+#ifndef HASHMONKEYCOIN_HDCHAIN_H
+#define HASHMONKEYCOIN_HDCHAIN_H
 
 #include <key.h>
 #include <sync.h>
@@ -156,4 +156,4 @@ public:
     std::string GetKeyPath() const;
 };
 
-#endif // HashmonkeyCoin_HDCHAIN_H
+#endif // HASHMONKEYCOIN_HDCHAIN_H

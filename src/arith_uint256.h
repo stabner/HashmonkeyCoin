@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_ARITH_UINT256_H
-#define HashmonkeyCoin_ARITH_UINT256_H
+#ifndef HASHMONKEYCOIN_ARITH_UINT256_H
+#define HASHMONKEYCOIN_ARITH_UINT256_H
 
 #include <cstring>
 #include <limits>
@@ -342,4 +342,4 @@ uint512 ArithToUint512(const arith_uint512 &);
 
 arith_uint512 UintToArith512(const uint512 &);
 
-#endif // HashmonkeyCoin_ARITH_UINT256_H
+#endif // HASHMONKEYCOIN_ARITH_UINT256_H

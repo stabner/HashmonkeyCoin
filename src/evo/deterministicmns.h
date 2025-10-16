@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_DETERMINISTICMNS_H
-#define HashmonkeyCoin_DETERMINISTICMNS_H
+#ifndef HASHMONKEYCOIN_DETERMINISTICMNS_H
+#define HASHMONKEYCOIN_DETERMINISTICMNS_H
 
 #include <arith_uint256.h>
 #include <consensus/params.h>
@@ -755,4 +755,4 @@ extern std::unique_ptr <CDeterministicMNManager> deterministicMNManager;
 #pragma clang diagnostic pop
 #endif
 
-#endif //HashmonkeyCoin_DETERMINISTICMNS_H
+#endif //HASHMONKEYCOIN_DETERMINISTICMNS_H

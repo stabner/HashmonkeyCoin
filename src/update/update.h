@@ -1,5 +1,5 @@
-#ifndef HashmonkeyCoin_UPDATE_HPP
-#define HashmonkeyCoin_UPDATE_HPP
+#ifndef HASHMONKEYCOIN_UPDATE_HPP
+#define HASHMONKEYCOIN_UPDATE_HPP
 
 
 #include <assert.h>
@@ -369,4 +369,4 @@ private :
 
 };
 
-#endif // HashmonkeyCoin_UPDATE_HPP
+#endif // HASHMONKEYCOIN_UPDATE_HPP

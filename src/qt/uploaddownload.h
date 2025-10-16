@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_UPLOAD_DOWNLOAD_H
-#define HashmonkeyCoin_UPLOAD_DOWNLOAD_H
+#ifndef HASHMONKEYCOIN_UPLOAD_DOWNLOAD_H
+#define HASHMONKEYCOIN_UPLOAD_DOWNLOAD_H
 
 #include <util/system.h>
 
@@ -21,4 +21,4 @@ void download(const std::string cid, std::string& response_data);
 void upload(const std::string& file_path, std::string& response_data);
 void pickAndUploadFileForIpfs(QWidget *qWidget, std::string& cid);
 
-#endif //HashmonkeyCoin_UPLOAD_DOWNLOAD_H
+#endif //HASHMONKEYCOIN_UPLOAD_DOWNLOAD_H

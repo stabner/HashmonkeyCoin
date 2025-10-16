@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_FUTILS_H
-#define HashmonkeyCoin_FUTILS_H
+#ifndef HASHMONKEYCOIN_FUTILS_H
+#define HASHMONKEYCOIN_FUTILS_H
 
 //#include <vector>
 //#include <stdint.h>
@@ -18,4 +18,4 @@ void maybeSetPayload(Coin &coin, const COutPoint &outpoint, const uint16_t &nTyp
                      const std::vector <uint8_t> &vExtraPayload);
 //const char *validateFutureCoin(const std::vector<uint8_t>& payload, int maturity, uint32_t confirmedTime);
 
-#endif //HashmonkeyCoin_FUTILS_H
+#endif //HASHMONKEYCOIN_FUTILS_H

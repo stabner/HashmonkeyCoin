@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_QT_SENDASSETSDIALOG_H
-#define HashmonkeyCoin_QT_SENDASSETSDIALOG_H
+#ifndef HASHMONKEYCOIN_QT_SENDASSETSDIALOG_H
+#define HASHMONKEYCOIN_QT_SENDASSETSDIALOG_H
 
 #include <qt/walletmodel.h>
 
@@ -179,4 +179,4 @@ private:
     int secDelay;
 };
 
-#endif // HashmonkeyCoin_QT_SENDASSETSDIALOG_H
+#endif // HASHMONKEYCOIN_QT_SENDASSETSDIALOG_H

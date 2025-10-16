@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_CRYPTO_BLS_H
-#define HashmonkeyCoin_CRYPTO_BLS_H
+#ifndef HASHMONKEYCOIN_CRYPTO_BLS_H
+#define HASHMONKEYCOIN_CRYPTO_BLS_H
 
 #include <hash.h>
 #include <serialize.h>
@@ -450,4 +450,4 @@ using BLSVerificationVectorPtr = std::shared_ptr<BLSVerificationVector>;
 
 bool BLSInit();
 
-#endif // HashmonkeyCoin_CRYPTO_BLS_H
+#endif // HASHMONKEYCOIN_CRYPTO_BLS_H

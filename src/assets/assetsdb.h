@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_ASSETDB_H
-#define HashmonkeyCoin_ASSETDB_H
+#ifndef HASHMONKEYCOIN_ASSETDB_H
+#define HASHMONKEYCOIN_ASSETDB_H
 
 #include "fs.h"
 #include "serialize.h"
@@ -99,4 +99,4 @@ public:
 };
 
 
-#endif //HashmonkeyCoin_ASSETDB_H
+#endif //HASHMONKEYCOIN_ASSETDB_H

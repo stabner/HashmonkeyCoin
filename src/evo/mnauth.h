@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HashmonkeyCoin_MNAUTH_H
-#define HashmonkeyCoin_MNAUTH_H
+#ifndef HASHMONKEYCOIN_MNAUTH_H
+#define HASHMONKEYCOIN_MNAUTH_H
 
 #include <bls/bls.h>
 #include <serialize.h>
@@ -61,4 +61,4 @@ public:
 };
 
 
-#endif //HashmonkeyCoin_MNAUTH_H
+#endif //HASHMONKEYCOIN_MNAUTH_H
