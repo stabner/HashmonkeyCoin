@@ -134,12 +134,12 @@ static bool ProcessNatpmp()
     } while (ret && g_mapport_interrupt.sleep_for(PORT_MAPPING_REANNOUNCE_PERIOD));
     g_mapport_interrupt.reset();
 
-    const int r_send = sendnewpoHMNYappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, private_port, g_mapport_external_port, /* remove a port mapping */ 0);
+    const int r_send = sendnewportmappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, private_port, g_mapport_external_port, /* remove a port mapping */ 0);
     g_mapport_external_port = 0;
     if (r_send == 12 /* OK */) {
       LogPrintf("natpmp: Port mapping removed successfully.\n");
     } else {
-      LogPrintf("natpmp: sendnewpoHMNYappingrequest(0) failed with %d error.\n", r_send);
+      LogPrintf("natpmp: sendnewportmappingrequest(0) failed with %d error.\n", r_send);
     }
   }
 
@@ -193,11 +193,11 @@ static bool ProcessUpnp()
     std::string strDesc = PACKAGE_NAME " " + FormatFullVersion();
 
     do {
-      r = UPNP_AddPoHMNYapping(urls.controlURL, data.first.servicetype, port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
+      r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype, port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
 
       if (r != UPNPCOMMAND_SUCCESS) {
         ret = false;
-        LogPrintf("AddPoHMNYapping(%s, %s, %s) failed with code %d (%s)\n", port, port, lanaddr, r, strupnperror(r));
+        LogPrintf("AddPortMapping(%s, %s, %s) failed with code %d (%s)\n", port, port, lanaddr, r, strupnperror(r));
         break;
       } else {
         ret = true;
@@ -206,8 +206,8 @@ static bool ProcessUpnp()
     } while (g_mapport_interrupt.sleep_for(PORT_MAPPING_REANNOUNCE_PERIOD));
     g_mapport_interrupt.reset();
 
-    r = UPNP_DeletePoHMNYapping(urls.controlURL, data.first.servicetype, port.c_str(), "TCP", 0);
-    LogPrintf("UPNP_DeletePoHMNYapping() returned: %d\n", r);
+    r = UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, port.c_str(), "TCP", 0);
+    LogPrintf("UPNP_DeletePortMapping() returned: %d\n", r);
     freeUPNPDevlist(devlist); devlist = nullptr;
     FreeUPNPUrls(&urls);
   } else {
