@@ -2688,7 +2688,7 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     Discover();
 
     // Map ports with UPnP
-    StaHMNYapPort(gArgs.GetBoolArg("-upnp", DEFAULT_UPNP), gArgs.GetBoolArg("-natpmp", DEFAULT_NATPMP));
+    StartMapPort(gArgs.GetBoolArg("-upnp", DEFAULT_UPNP), gArgs.GetBoolArg("-natpmp", DEFAULT_NATPMP));
 
     CConnman::Options connOptions;
     connOptions.nLocalServices = nLocalServices;

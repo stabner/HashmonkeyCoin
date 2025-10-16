@@ -25,7 +25,7 @@ enum MapPortProtoFlag : unsigned int {
     NAT_PMP = 0x02,
 };
 
-void StaHMNYapPort(bool use_upnp, bool use_natpmp);
+void StartMapPort(bool use_upnp, bool use_natpmp);
 
 void InterruptMapPort();
 

@@ -87,7 +87,7 @@ static bool NatpmpDiscover(natpmp_t* natpmp, struct in_addr& external_ipv4_addr)
 static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_addr, uint16_t private_port, bool& external_ip_discovered)
 {
   const uint16_t suggested_external_port = g_mapport_external_port ? g_mapport_external_port : private_port;
-  const int r_send = sendnewpoHMNYappingrequest(natpmp, NATPMP_PROTOCOL_TCP, private_port, suggested_external_port, 3600 /*seconds*/);
+  const int r_send = sendnewportmappingrequest(natpmp, NATPMP_PROTOCOL_TCP, private_port, suggested_external_port, 3600 /*seconds*/);
   if (r_send == 12 /* OK */) {
     int r_read;
     natpmpresp_t response;
@@ -96,7 +96,7 @@ static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_
     } while (r_read == NATPMP_TRYAGAIN);
 
     if (r_read == 0) {
-      auto pm = response.pnu.newpoHMNYapping;
+      auto pm = response.pnu.newportmapping;
       if (private_port == pm.privateport && pm.lifetime > 0) {
         g_mapport_external_port = pm.mappedpublicport;
         const CService external{external_ipv4_addr, pm.mappedpublicport};
@@ -115,7 +115,7 @@ static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_
       LogPrintf("natpmp: readnatpmpresponseorretry() for port mapping failed with %d error.\n", r_read);
     }
   } else {
-    LogPrintf("natpmp: sendnewpoHMNYappingrequest() failed with %d error.\n", r_send);
+    LogPrintf("natpmp: sendnewportmappingrequest() failed with %d error.\n", r_send);
   }
 
   return false;
@@ -301,7 +301,7 @@ static void MapPortProtoSetEnabled(MapPortProtoFlag proto, bool enabled)
   }
 }
 
-void StaHMNYapPort(bool use_upnp, bool use_natpmp)
+void StartMapPort(bool use_upnp, bool use_natpmp)
 {
   MapPortProtoSetEnabled(MapPortProtoFlag::UPNP, use_upnp);
   MapPortProtoSetEnabled(MapPortProtoFlag::NAT_PMP, use_natpmp);
@@ -326,7 +326,7 @@ void StopMapPort()
 
 #else // #if defined(USE_NATPMP) || defined(USE_UPNP)
 
-void StaHMNYapPort(bool use_upnp, bool use_natpmp) {
+void StartMapPort(bool use_upnp, bool use_natpmp) {
     // Intentionally left blank.
 }
 
