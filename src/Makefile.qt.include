@@ -421,7 +421,7 @@ QT_RES_FONTS = \
 
 QT_RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_QT_RC = qt/res/raptoreum-qt-res.rc
+BITCOIN_QT_RC = qt/res/hashmonkeycoin-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -DQT_NO_KEYWORDS
 
