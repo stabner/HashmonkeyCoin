@@ -32,7 +32,7 @@
         <file alias="menu_update_asset">res/icons/menu_update_asset.png</file>
         <file alias="proxy">res/icons/proxy.png</file>
         <file alias="quit">res/icons/quit.png</file>
-        <file alias="HashmonkeyCoin">res/icons/HashmonkeyCoin.png</file>
+        <file alias="HashmonkeyCoin">res/icons/hashmonkeycoin.png</file>
         <file alias="receive">res/icons/receive.png</file>
         <file alias="remove">res/icons/remove.png</file>
         <file alias="send">res/icons/send.png</file>

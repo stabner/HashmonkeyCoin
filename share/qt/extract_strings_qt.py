@@ -12,7 +12,7 @@ import operator
 import os
 import sys
 
-OUT_CPP="qt/raptoreumstrings.cpp"
+OUT_CPP="qt/hashmonkeycoinstrings.cpp"
 EMPTY=['""']
 
 def parse_po(text):
