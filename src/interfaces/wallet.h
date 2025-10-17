@@ -77,7 +77,7 @@ namespace interfaces {
 
             virtual bool isMixing() = 0;
 
-            virtual bool staHMNYixing() = 0;
+            virtual bool starting() = 0;
 
             virtual void stopMixing() = 0;
         };

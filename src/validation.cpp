@@ -4957,7 +4957,7 @@ bool CChainState::RollforwardBlock(const CBlockIndex *pindex, CCoinsViewCache &i
     CValidationState state;
     if (!ProcessSpecialTxsInBlock(block, pindex, state, inputs, assetsCache, false /*fJustCheck*/,
                                   false /*fScriptChecks*/)) {
-        return error("RollforwardBlock(HMNY): ProcessSpecialTxsInBlock for block %s failed with %s",
+        return error("RollforwardBlock(RTM): ProcessSpecialTxsInBlock for block %s failed with %s",
                      pindex->GetBlockHash().ToString(), FormatStateMessage(state));
     }
 

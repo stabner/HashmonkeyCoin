@@ -222,7 +222,7 @@ public:
 
     LOCKS_EXCLUDED(cs_deqsessions);
 
-    bool StaHMNYixing();
+    bool Starting();
 
     void StopMixing();
 

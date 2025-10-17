@@ -72,7 +72,7 @@ static void RescanWallet(CWallet &wallet, const WalletRescanReserver &reserver, 
 UniValue importprivkey(const JSONRPCRequest &request) {
     RPCHelpMan{"importprivkey",
                "\nAdds a private key (as returned by dumpprivkey) to your wallet. Requires a new wallet backup.\n"
-               "Hint: use impoHMNYulti to import more than one private key.\n"
+               "Hint: use importmulti to import more than one private key.\n"
                "\nNote: This call can take over an hour to complete if rescan is true, during that time, other rpc calls\n"
                "may report that the imported key exists but related transactions are still missing, leading to temporarily incorrect/bogus balances and unspent outputs until rescan completes.\n",
                {
@@ -1515,8 +1515,8 @@ int64_t GetImportTimestamp(const UniValue &data, int64_t now) {
     throw JSONRPCError(RPC_TYPE_ERROR, "Missing required timestamp field for key");
 }
 
-UniValue impoHMNYulti(const JSONRPCRequest &mainRequest) {
-    RPCHelpMan{"impoHMNYulti",
+UniValue importmulti(const JSONRPCRequest &mainRequest) {
+    RPCHelpMan{"importmulti",
                "\nImport addresses/scripts (with private or public keys, redeem script (P2SH)), rescanning all addresses in one-shot-only (rescan can be disabled via options). Requires a new wallet backup.\n"
                "\nNote: This call can take over an hour to complete if rescan is true, during that time, other rpc calls\n"
                "may report that the imported keys, addresses or scripts exists but related transactions are still missing.\n",
@@ -1539,7 +1539,7 @@ UniValue impoHMNYulti(const JSONRPCRequest &mainRequest) {
                                                                                                        "                                                              key will determine how far back blockchain rescans need to begin for missing wallet transactions.\n"
                                                                                                        "                                                              \"now\" can be specified to bypass scanning, for keys which are known to never have been used, and\n"
                                                                                                        "                                                              0 can be specified to scan the entire blockchain. Blocks up to 2 hours before the earliest key\n"
-                                                                                                       "                                                              creation time of all keys being imported by the impoHMNYulti call will be scanned.",
+                                                                                                       "                                                              creation time of all keys being imported by the importmulti call will be scanned.",
                                                  /* oneline_description */ "",
                                           {"timestamp | \"now\"", "integer / string"}
                                          },
@@ -1597,10 +1597,10 @@ UniValue impoHMNYulti(const JSONRPCRequest &mainRequest) {
                        }
                },
                RPCExamples{
-                       HelpExampleCli("impoHMNYulti",
+                       HelpExampleCli("importmulti",
                                       "'[{ \"scriptPubKey\": { \"address\": \"<my address>\" }, \"timestamp\":1455191478 }, "
                                       "{ \"scriptPubKey\": { \"address\": \"<my 2nd address>\" }, \"label\": \"example 2\", \"timestamp\": 1455191480 }]'") +
-                       HelpExampleCli("impoHMNYulti",
+                       HelpExampleCli("importmulti",
                                       "'[{ \"scriptPubKey\": { \"address\": \"<my address>\" }, \"timestamp\":1455191478 }]' '{ \"rescan\": false}'")
                },
     }.Check(mainRequest);
