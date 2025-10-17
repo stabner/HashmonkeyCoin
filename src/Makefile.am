@@ -115,7 +115,7 @@ endif
 endif
 
 .PHONY: FORCE check-symbols check-security
-# raptoreum core #
+# hashmonkeycoin core #
 BITCOIN_CORE_H = \
   addrdb.h \
   addressindex.h \
