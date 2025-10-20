@@ -19,6 +19,17 @@
 #include <string>
 #include <vector>
 
+// HashmonkeyCoin asset prefix letters
+#define HMNY_H 0x48  // 'H'
+#define HMNY_M 0x4D  // 'M'
+#define HMNY_N 0x4E  // 'N'
+#define HMNY_Y 0x59  // 'Y'
+
+// Compatibility definitions for old RTM constants
+#define RTM_R HMNY_H
+#define RTM_T HMNY_M
+#define RTM_M HMNY_N
+
 // Maximum number of bytes pushable to the stack
 static const unsigned int MAX_SCRIPT_ELEMENT_SIZE = 520;
 
