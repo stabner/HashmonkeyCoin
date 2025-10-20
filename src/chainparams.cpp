@@ -236,32 +236,31 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x72;//r
-        pchMessageStart[1] = 0x74;//t
-        pchMessageStart[2] = 0x6d;//m
-        pchMessageStart[3] = 0x2e;//.
-        nDefaultPort = 10226;
+        pchMessageStart[0] = 0x4a;//J
+        pchMessageStart[1] = 0x73;//s
+        pchMessageStart[2] = 0x4d;//M
+        pchMessageStart[3] = 0x5a;//Z
+        nDefaultPort = 19990;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1760971567, 1578692, 0x1e0ffff0, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xdd6461b85175b6dd000000000000000000000000000000000000000000000000"));
+               uint256S("0x00000244c20bce60d57c422a1b20aa80587cb6d443dd10177be62b7f3ac98550"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+               uint256S("0x0f396cc592357b03b560c90cdcbd40e6908640f10942b9a6ee8f04b8daa7a7ef"));
 
-        vSeeds.emplace_back("lbdn.HashmonkeyCoin.com");
-        vSeeds.emplace_back("51.89.21.112");
+        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
-        // HashmonkeyCoin addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 60);
-        // HashmonkeyCoin script addresses start with '7'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
-        // HashmonkeyCoin private keys start with '7' or 'X'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 128);
+        // HashmonkeyCoin addresses start with 'H'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
+        // HashmonkeyCoin script addresses start with 'M'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 85);
+        // HashmonkeyCoin private keys start with 'N' or 'Y'
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 200);
         // HashmonkeyCoin BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         // HashmonkeyCoin BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
@@ -273,16 +272,16 @@ public:
 //        	std::cout << "mainnet is disable" << endl;
 //        	exit(0);
 //        }
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 100000 * COIN}
+                {{INT_MAX, 20000 * COIN}
                 },
                 {{5761,    0},
-                 {INT_MAX, 5}}
+                 {INT_MAX, 7}}
         );
-        //FutureRewardShare defaultShare(0.8,0.2,0.0);
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
+        //FutureRewardShare defaultShare(0.9,0.07,0.03);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.90, 0.07, 0.03);
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -408,32 +407,31 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0"); // 0
 
-        pchMessageStart[0] = 0x74; //t
-        pchMessageStart[1] = 0x72; //r
-        pchMessageStart[2] = 0x74; //t
-        pchMessageStart[3] = 0x6d; //m
-        nDefaultPort = 10230;
+        pchMessageStart[0] = 0x4a; //J
+        pchMessageStart[1] = 0x73; //s
+        pchMessageStart[2] = 0x4d; //M
+        pchMessageStart[3] = 0x5b; //[
+        nDefaultPort = 29990;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1711078237, 971, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1760971596, 534557, 0x1e0ffff0, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x2f4d9755a2521593000000000000000000000000000000000000000000000000"));
+               uint256S("0x00000e94f50fd37963fb24dc86f3462a0b535b47519517ce6515f7a857da6e88"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+               uint256S("0x7607b09a8487149b46fdadb163c2267c15bcfeaf828825890a048a686fb23c88"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("47.151.9.131");
-        vSeeds.emplace_back("lbtn.HashmonkeyCoin.com");
+        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
-        // Testnet HashmonkeyCoin addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 123);
-        // Testnet HashmonkeyCoin script addresses start with '8' or '9'
+        // Testnet HashmonkeyCoin addresses start with 'h'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 111);
+        // Testnet HashmonkeyCoin script addresses start with 'm' or 'n'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
@@ -457,12 +455,12 @@ public:
         consensus.llmqTypePlatform = Consensus::LLMQ_100_67;
 
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 10000 * COIN}},
-                {{INT_MAX, 5}});
+                {{INT_MAX, 20000 * COIN}},
+                {{INT_MAX, 7}});
 
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.90, 0.07, 0.03);
 
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "rghjACzPtVAN2wydgDbn9Jq1agREu6rH1e");
 
         fDefaultConsistencyChecks = false;
@@ -559,43 +557,43 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x000000000000000000000000000000000000000000000000000000000000000");
 
-        pchMessageStart[0] = 0xe2;
-        pchMessageStart[1] = 0xca;
-        pchMessageStart[2] = 0xff;
-        pchMessageStart[3] = 0xce;
-        nDefaultPort = 19799;
+        pchMessageStart[0] = 0x4a;
+        pchMessageStart[1] = 0x73;
+        pchMessageStart[2] = 0x4d;
+        pchMessageStart[3] = 0x5c;
+        nDefaultPort = 39990;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1688535726, 2841, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1760971623, 288680, 0x1e0ffff0, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 //      std::cout << "hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x29db7cef783e9c3f000000000000000000000000000000000000000000000000"));
+               uint256S("0x000001250c4a1a43fbf4a169832ad4ac1ef0930c87ac1b27c8f6a06c17c2ed69"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0xe87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+               uint256S("0xd67427236640608d2cc2b2b82ccc9f6b1f5ab160dd04569aa9aeea49c57d38a2"));
 
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.90, 0.07, 0.03);
 
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 10000 * COIN}},
-                {{INT_MAX, 5}});
+                {{INT_MAX, 20000 * COIN}},
+                {{INT_MAX, 7}});
 
         vFixedSeeds.clear();
         vSeeds.clear();
         vSeeds.emplace_back("47.151.26.43");
         //vSeeds.push_back(CDNSSeedData("HashmonkeyCoinevo.org",  "devnet-seed.HashmonkeyCoinevo.org"));
 
-        // Testnet HashmonkeyCoin addresses start with 'y'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
-        // Testnet HashmonkeyCoin script addresses start with '8' or '9'
+        // Devnet HashmonkeyCoin addresses start with 'd'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
+        // Devnet HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
-        // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        // Devnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
         // Testnet HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
@@ -734,13 +732,13 @@ public:
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 1000 * COIN}},
                 {{240,     0},
-                 {INT_MAX, 5}});
+                 {INT_MAX, 7}});
 
-        pchMessageStart[0] = 0xfc;
-        pchMessageStart[1] = 0xc1;
-        pchMessageStart[2] = 0xb7;
-        pchMessageStart[3] = 0xdc;
-        nDefaultPort = 19899;
+        pchMessageStart[0] = 0x4a;
+        pchMessageStart[1] = 0x73;
+        pchMessageStart[2] = 0x4d;
+        pchMessageStart[3] = 0x5d;
+        nDefaultPort = 19991;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
@@ -748,14 +746,14 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1760971654, 0, 0x207fffff, 1, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xd952f1e875d215fc000000000000000000000000000000000000000000000000"));
+               uint256S("0x0a1feaeed6f547dd6da45f62e76aa20c19b7399c4cd0434788d2118a2a8710f0"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.95, 0.05, 0.0);
+               uint256S("0x0e01c78f344a3f9ed0211aa80bf088d9698cf071203854d6aa9d953955d1b0e8"));
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.90, 0.07, 0.03);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -780,7 +778,7 @@ public:
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 500, "yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc");
 
         checkpointData = {
@@ -795,8 +793,8 @@ public:
                 0
         };
 
-        // Regtest HashmonkeyCoin addresses start with 'y'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
+        // Regtest HashmonkeyCoin addresses start with 'r'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 111);
         // Regtest HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
