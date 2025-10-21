@@ -10,8 +10,8 @@
 #include <key_io.h>
 
 #define HMNY_H 0x48 //H
-#define HMNY_M 0x4d //M
-#define HMNY_N 0x4e //N
+// #define HMNY_M 0x4d //M  - Already defined in script/script.h
+// #define HMNY_N 0x4e //N  - Already defined in script/script.h
 #define HMNY_Y 0x59 //Y
 #define MAX_UNIQUE_ID 0xffffffffffffffff
 

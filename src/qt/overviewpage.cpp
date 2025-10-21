@@ -670,7 +670,8 @@ void OverviewPage::toggleCoinJoin() {
         walletModel->coinJoin().stopMixing();
     } else {
         ui->toggleCoinJoin->setText(tr("Stop %1").arg(strCoinJoinName));
-        walletModel->coinJoin().staHMNYixing();
+        // CoinJoin disabled in HashmonkeyCoin
+        // walletModel->coinJoin().startMixing();
     }
 }
 
