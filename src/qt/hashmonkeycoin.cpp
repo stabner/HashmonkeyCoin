@@ -456,8 +456,8 @@ int GuiMain(int argc, char *argv[]) {
     // Do not refer to data directory yet, this can be overridden by Intro::pickDataDirectory
 
     /// 1. Basic Qt initialization (not dependent on parameters or configuration)
-    Q_INIT_RESOURCE(HashmonkeyCoin);
-    Q_INIT_RESOURCE(HashmonkeyCoin_locale);
+    Q_INIT_RESOURCE(hashmonkeycoin);
+    // Q_INIT_RESOURCE(hashmonkeycoin_locale); // Disabled - translations disabled
 
     // Generate high-dpi pixmaps
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
