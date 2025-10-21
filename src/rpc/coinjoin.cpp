@@ -62,7 +62,7 @@ static UniValue coinjoin(const JSONRPCRequest& request)
                 throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please unlock wallet for mixing with walletpassphrase first.");
         }
 
-        if (!it->second->StaHMNYixing()) {
+        if (!it->second->StopMixing()) {
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Mixing has been started already.");
         }
 

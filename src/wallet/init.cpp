@@ -260,7 +260,7 @@ void WalletInit::InitCoinJoinSettings() const {
         if (pwallet->IsLocked()) {
             coinJoinClientManagers.at(pwallet->GetName())->StopMixing();
         } else if (fAutoStart) {
-            coinJoinClientManagers.at(pwallet->GetName())->StaHMNYixing();
+            coinJoinClientManagers.at(pwallet->GetName())->StartMixing();
         }
     }
     LogPrintf("CoinJoin: autostart=%d, multisession=%d," /* Continued */
