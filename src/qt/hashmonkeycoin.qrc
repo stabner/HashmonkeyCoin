@@ -136,8 +136,8 @@
         <file alias="checkbox_partly_checked_light">res/images/checkbox_partly_checked_light.png</file>
         <file alias="checkbox_partly_checked_hover_light">res/images/checkbox_partly_checked_hover_light.png</file>
         <file alias="checkbox_partly_checked_disabled_light">res/images/checkbox_partly_checked_disabled_dark.png</file>
-        <file alias="HashmonkeyCoin_logo_toolbar_dark">res/images/HashmonkeyCoin_logo_toolbar_dark.png</file>
-        <file alias="HashmonkeyCoin_logo_toolbar_light">res/images/HashmonkeyCoin_logo_toolbar_light.png</file>
+        <file alias="HashmonkeyCoin_logo_toolbar_dark">res/images/hashmonkeycoin_logo_toolbar_dark.png</file>
+        <file alias="HashmonkeyCoin_logo_toolbar_light">res/images/hashmonkeycoin_logo_toolbar_light.png</file>
         <file alias="radio_normal_dark">res/images/radio_normal_dark.png</file>
         <file alias="radio_normal_hover_dark">res/images/radio_normal_hover_dark.png</file>
         <file alias="radio_checked_dark">res/images/radio_checked_dark.png</file>
