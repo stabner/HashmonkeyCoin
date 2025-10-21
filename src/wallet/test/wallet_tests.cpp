@@ -25,7 +25,7 @@
 #include <boost/test/unit_test.hpp>
 #include <univalue.h>
 
-extern UniValue impoHMNYulti(const JSONRPCRequest &request);
+extern UniValue importmulti(const JSONRPCRequest &request);
 
 extern UniValue dumpwallet(const JSONRPCRequest &request);
 
@@ -284,7 +284,7 @@ GetBlockPos()
 
 .nFile});
 
-// Verify impoHMNYulti RPC returns failure for a key whose creation time is
+// Verify importmulti RPC returns failure for a key whose creation time is
 // before the missing block, and success for a key whose creation time is
 // after.
 {
@@ -338,7 +338,7 @@ setArray();
 request.params.
 push_back(keys);
 
-UniValue response = impoHMNYulti(request);
+UniValue response = importmulti(request);
 BOOST_CHECK_EQUAL(response
 .
 
