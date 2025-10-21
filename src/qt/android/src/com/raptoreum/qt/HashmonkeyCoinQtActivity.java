@@ -13,7 +13,7 @@ public class HashmonkeyCoinQtActivity extends QtActivity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		final File HashmonkeyCoinDir = new File(getFilesDir().getAbsolutePath() + "/.hashmonkeycoincore");
+		final File HashmonkeyCoinDir = new File(getFilesDir().getAbsolutePath() + "/.HashmonkeyCoinCore");
 		if (!HashmonkeyCoinDir.exists()) {
 			HashmonkeyCoinDir.mkdir();
 		}

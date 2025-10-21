@@ -714,7 +714,7 @@ fs::path GetDefaultDataDir() {
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\HashmonkeyCoinCore
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\HashmonkeyCoinCore
     // Mac: ~/Library/Application Support/HashmonkeyCoinCore
-    // Unix: ~/.HashmonkeyCoincore
+    // Unix: ~/.HashmonkeyCoinCore
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "HashmonkeyCoinCore";
@@ -730,7 +730,7 @@ fs::path GetDefaultDataDir() {
     return pathRet / "Library/Application Support/HashmonkeyCoinCore";
 #else
     // Unix
-    return pathRet / ".HashmonkeyCoincore";
+    return pathRet / ".HashmonkeyCoinCore";
 #endif
 #endif
 }
