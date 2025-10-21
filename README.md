@@ -3,7 +3,7 @@
 [![CI](https://github.com/stabner/HashmonkeyCoin/workflows/CI/badge.svg)](https://github.com/stabner/HashmonkeyCoin/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**HashmonkeyCoin (HMNY)** is a community-driven, decentralized cryptocurrency built on the proven hashmonkeycoin codebase. Designed with fairness and transparency at its core, HashmonkeyCoin eliminates developer fees and simplifies the mining experience while maintaining robust security features.
+**HashmonkeyCoin (HMNY)** is a community-driven, decentralized cryptocurrency built on the proven Raptoreum codebase. Designed with fairness and transparency at its core, HashmonkeyCoin features a balanced reward distribution system with smartnode support while maintaining robust security features.
 
 ## 🚀 Key Features
 
@@ -11,25 +11,38 @@
 - **Block Reward**: 500 HMNY per block
 - **Halving Schedule**: Bitcoin-style halving every 210,240 blocks (~4 years)
 - **Block Time**: 2-minute blocks for fast confirmations
-- **No Developer Fees**: 100% of mining rewards go directly to miners
+- **Reward Distribution**:
+  - **Miner**: 450 HMNY (90%)
+  - **Smartnode**: 35 HMNY (7%)
+  - **Developer**: 15 HMNY (3%)
+- **Smartnode Collateral**: 20,000 HMNY
 - **Fair Distribution**: No pre-mine, no ICO, community-driven launch
 
 ### **Network & Security**
 - **Consensus Algorithm**: GhostRider (RandomX + SHA256)
-- **Smartnodes**: Disabled for simplified, fair mining
+- **Smartnodes**: Enabled with 20,000 HMNY collateral
 - **Network Ports**: 
-  - Mainnet: 10227
-  - Testnet: 10228
-- **Seed Node**: seednode.hashmonkey.cloud
-- **Address Prefix**: 'H' for mainnet addresses
+  - Mainnet: 19990 (P2P), 19991 (RPC)
+  - Testnet: 29990 (P2P), 29991 (RPC)
+  - Devnet: 39990 (P2P), 39991 (RPC)
+  - Regtest: 19991 (P2P), 19992 (RPC)
+- **Seed Node**: seednode.hashmonkeys.cloud
+- **Address Prefixes**: 
+  - Mainnet: 'H' (40), Script: 'M' (85)
+  - Testnet: 'h' (111), Script: 'm' (19)
+  - Devnet: 'd' (30), Script: '8' (19)
 
 ### **Technical Specifications**
-- **Genesis Block**: September 19, 2025
-- **Message Start**: 0x68, 0x6d, 0x6e, 0x79 (hmny)
+- **Genesis Block**: January 2025 Launch
+- **Message Start**: 
+  - Mainnet: 0x4a, 0x73, 0x4d, 0x5a (JSMZ)
+  - Testnet: 0x4a, 0x73, 0x4d, 0x5b (JSM[)
+  - Devnet: 0x4a, 0x73, 0x4d, 0x5c (JSM\)
+  - Regtest: 0x4a, 0x73, 0x4d, 0x5d (JSM])
 - **BIP44 Coin Type**: 200
-- **Base58 Prefixes**: 
-  - Public Key: 40 ('H')
-  - Script: 5 ('3')
+- **Data Directory**: 
+  - Windows: `%APPDATA%\HashmonkeyCoinCore\`
+  - Linux/macOS: `~/.HashmonkeyCoinCore/`
 - **Network Status**: 
   - ✅ Mainnet: Live and operational
   - ✅ Testnet: Ready for launch
@@ -40,9 +53,10 @@
 ### **Current Status**
 HashmonkeyCoin is now ready for launch! All genesis blocks have been properly mined and configured:
 
-- **Mainnet Genesis**: `3509de780d7ce5e828ab75156fdf1f24ea6ce7f7339fa00adbad80bf4f3a3257`
-- **Testnet Genesis**: `8aab7a927021a82dfc5deb7bb2f88dd64263e1287f07014b57e92d75677815cf`
-- **Regtest Genesis**: `0e8dff83ca2945ced59b2eebaa5d004f0b6a5ee80ecea2f616ad2a62af94fd8e`
+- **Mainnet Genesis**: `00000244c20bce60d57c422a1b20aa80587cb6d443dd10177be62b7f3ac98550`
+- **Testnet Genesis**: `00000e94f50fd37963fb24dc86f3462a0b535b47519517ce6515f7a857da6e88`
+- **Devnet Genesis**: `000001250c4a1a43fbf4a169832ad4ac1ef0930c87ac1b27c8f6a06c17c2ed69`
+- **Regtest Genesis**: `0a1feaeed6f547dd6da45f62e76aa20c19b7399c4cd0434788d2118a2a8710f0`
 
 ### **Getting Started**
 1. **Download** the latest release binaries
@@ -201,11 +215,12 @@ test/functional/test_runner.py # Integration tests
 
 ## 🛡️ Security
 
-HashmonkeyCoin inherits the robust security features from the hashmonkeycoin codebase:
+HashmonkeyCoin inherits the robust security features from the Raptoreum codebase:
 - **GhostRider Algorithm**: Combines RandomX and SHA256 for ASIC resistance
 - **InstantSend**: Near-instant transaction confirmations
 - **ChainLocks**: Protection against 51% attacks
 - **LLMQ**: Long Living Masternode Quorums for consensus
+- **Smartnode Network**: Decentralized governance and network security
 
 ## 📄 License
 
@@ -213,7 +228,7 @@ HashmonkeyCoin Core is released under the terms of the MIT license. See [COPYING
 
 ## 🙏 Acknowledgments
 
-- **hashmonkeycoin Team**: For the original codebase and innovative features
+- **Raptoreum Team**: For the original codebase and innovative features
 - **Dash Team**: For the underlying blockchain technology
 - **Bitcoin Core**: For the foundational blockchain concepts
 - **Community Contributors**: For ongoing development and support
