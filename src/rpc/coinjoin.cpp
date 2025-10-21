@@ -23,65 +23,7 @@
 #ifdef ENABLE_WALLET
 static UniValue coinjoin(const JSONRPCRequest& request)
 {
-    RPCHelpMan{"coinjoin",
-        "\nAvailable commands:\n"
-        "  start       - Start mixing\n"
-        "  stop        - Stop mixing\n"
-        "  reset       - Reset mixing",
-        {
-            {"command", RPCArg::Type::STR, RPCArg::Optional::NO, "The command to execute"},
-        },
-        RPCResults{},
-        RPCExamples{""},
-    }.Check(request);
-
-    std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
-    if (!wallet) return NullUniValue;
-    CWallet* const pwallet = wallet.get();
-
-    if (fSmartnodeMode)
-        throw JSONRPCError(RPC_INTERNAL_ERROR, "Client-side mixing is not supported on smartnodes");
-
-    if (!CCoinJoinClientOptions::IsEnabled()) {
-        if (!gArgs.GetBoolArg("-enablecoinjoin", true)) {
-            // otherwise it's on by default, unless cmd line option says otherwise
-            throw JSONRPCError(RPC_INTERNAL_ERROR, "Mixing is disabled via -enablecoinjoin=0 command line option, remove it to enable mixing again");
-        } else {
-            // not enablecoinjoin=false case,
-            // most likely something bad happened and we disabled it while running the wallet
-            throw JSONRPCError(RPC_INTERNAL_ERROR, "Mixing is disabled due to some internal error");
-        }
-    }
-
-    auto it = coinJoinClientManagers.find(pwallet->GetName());
-
-    if (request.params[0].get_str() == "start") {
-        {
-            LOCK(pwallet->cs_wallet);
-            if (pwallet->IsLocked(true))
-                throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please unlock wallet for mixing with walletpassphrase first.");
-        }
-
-        if (!it->second->StopMixing()) {
-            throw JSONRPCError(RPC_INTERNAL_ERROR, "Mixing has been started already.");
-        }
-
-        NodeContext& node = EnsureNodeContext(request.context);
-        bool result = it->second->DoAutomaticDenominating(*node.connman);
-        return "Mixing " + (result ? "started successfully" : ("start failed: " + it->second->GetStatuses() + ", will retry"));
-    }
-
-    if (request.params[0].get_str() == "stop") {
-        it->second->StopMixing();
-        return "Mixing was stopped";
-    }
-
-    if (request.params[0].get_str() == "reset") {
-        it->second->ResetPool();
-        return "Mixing was reset";
-    }
-
-    return "Unknown command, please see \"help coinjoin\"";
+    throw JSONRPCError(RPC_MISC_ERROR, "CoinJoin (PrivateSend) is disabled in HashmonkeyCoin.");
 }
 #endif // ENABLE_WALLET
 

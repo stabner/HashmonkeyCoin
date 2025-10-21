@@ -258,9 +258,11 @@ void WalletInit::InitCoinJoinSettings() const {
     bool fAutoStart = gArgs.GetBoolArg("-coinjoinautostart", DEFAULT_COINJOIN_AUTOSTART);
     for (auto &pwallet: GetWallets()) {
         if (pwallet->IsLocked()) {
-            coinJoinClientManagers.at(pwallet->GetName())->StopMixing();
+            // CoinJoin disabled in HashmonkeyCoin
+            // coinJoinClientManagers.at(pwallet->GetName())->StopMixing();
         } else if (fAutoStart) {
-            coinJoinClientManagers.at(pwallet->GetName())->StartMixing();
+            // CoinJoin disabled in HashmonkeyCoin
+            // coinJoinClientManagers.at(pwallet->GetName())->StartMixing();
         }
     }
     LogPrintf("CoinJoin: autostart=%d, multisession=%d," /* Continued */
