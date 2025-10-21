@@ -1,25 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/translations">
-        <file alias="ar">locale/HashmonkeyCoin_ar.qm</file>
-        <file alias="bg">locale/HashmonkeyCoin_bg.qm</file>
-        <file alias="de">locale/HashmonkeyCoin_de.qm</file>
-        <file alias="en">locale/HashmonkeyCoin_en.qm</file>
-        <file alias="es">locale/HashmonkeyCoin_es.qm</file>
-        <file alias="fi">locale/HashmonkeyCoin_fi.qm</file>
-        <file alias="fr">locale/HashmonkeyCoin_fr.qm</file>
-        <file alias="it">locale/HashmonkeyCoin_it.qm</file>
-        <file alias="ja">locale/HashmonkeyCoin_ja.qm</file>
-        <file alias="ko">locale/HashmonkeyCoin_ko.qm</file>
-        <file alias="nl">locale/HashmonkeyCoin_nl.qm</file>
-        <file alias="pl">locale/HashmonkeyCoin_pl.qm</file>
-        <file alias="pt">locale/HashmonkeyCoin_pt.qm</file>
-        <file alias="ro">locale/HashmonkeyCoin_ro.qm</file>
-        <file alias="ru">locale/HashmonkeyCoin_ru.qm</file>
-        <file alias="sk">locale/HashmonkeyCoin_sk.qm</file>
-        <file alias="th">locale/HashmonkeyCoin_th.qm</file>
-        <file alias="tr">locale/HashmonkeyCoin_tr.qm</file>
-        <file alias="vi">locale/HashmonkeyCoin_vi.qm</file>
-        <file alias="zh_CN">locale/HashmonkeyCoin_zh_CN.qm</file>
-        <file alias="zh_TW">locale/HashmonkeyCoin_zh_TW.qm</file>
+        <!-- Translations disabled for HashmonkeyCoin build -->
+        <!-- TODO: Regenerate .qm files from .ts sources when needed -->
     </qresource>
 </RCC>
