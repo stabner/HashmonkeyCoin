@@ -427,7 +427,7 @@ public:
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
+        // vSeeds.emplace_back("seednode.hashmonkeys.cloud"); // TODO: Add seed node when available
 
         // Testnet HashmonkeyCoin addresses start with 'h'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 111);
