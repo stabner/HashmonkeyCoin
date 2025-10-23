@@ -71,7 +71,7 @@ static void SHA224_256PadMessage(SHA256Context *context,
 static void SHA224_256ProcessMessageBlock(SHA256Context *context);
 static int SHA224_256Reset(SHA256Context *context, uint32_t *H0);
 static int SHA224_256ResultN(SHA256Context *context,
-  uint8_t Message_Digest[], int HashSize);
+  uint8_t Message_Digest[SHA256HashSize], int HashSize);
 
 /* Initial Hash Values: FIPS-180-2 Change Notice 1 */
 static uint32_t SHA224_H0[SHA256HashSize/4] = {
@@ -571,7 +571,7 @@ static int SHA224_256Reset(SHA256Context *context, uint32_t *H0)
  *   sha Error Code.
  */
 static int SHA224_256ResultN(SHA256Context *context,
-    uint8_t Message_Digest[], int HashSize)
+    uint8_t Message_Digest[SHA256HashSize], int HashSize)
 {
   int i;
 
