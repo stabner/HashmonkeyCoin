@@ -9,7 +9,8 @@
 
 ### **Mining & Economics**
 - **Block Reward**: 500 HMNY per block
-- **Halving Schedule**: Bitcoin-style halving every 210,240 blocks (~4 years)
+- **Total Supply**: 210,034,688 HMNY (finite supply)
+- **Halving Schedule**: Every 210,240 blocks (~0.8 years)
 - **Block Time**: 2-minute blocks for fast confirmations
 - **Reward Distribution**:
   - **Miner**: 450 HMNY (90%)
@@ -47,6 +48,28 @@
   - ✅ Mainnet: Live and operational
   - ✅ Testnet: Ready for launch
   - ✅ Regtest: Available for development
+
+## 💰 Supply & Economics
+
+### **Total Supply Breakdown**
+HashmonkeyCoin has a **finite total supply of 210,034,688 HMNY** with a deflationary emission schedule:
+
+- **Era 1 (0-0.8 years)**: 500 HMNY/block → 105,120,000 HMNY
+- **Era 2 (0.8-1.6 years)**: 250 HMNY/block → 52,560,000 HMNY  
+- **Era 3 (1.6-2.4 years)**: 125 HMNY/block → 26,280,000 HMNY
+- **Era 4 (2.4-3.2 years)**: 62 HMNY/block → 13,140,000 HMNY
+- **Era 5 (3.2-4.0 years)**: 31 HMNY/block → 6,570,000 HMNY
+- **Era 6 (4.0-4.8 years)**: 16 HMNY/block → 3,285,000 HMNY
+- **Era 7 (4.8-5.6 years)**: 8 HMNY/block → 1,642,500 HMNY
+- **Era 8 (5.6-6.4 years)**: 4 HMNY/block → 821,250 HMNY
+- **Era 9 (6.4-7.2 years)**: 2 HMNY/block → 410,625 HMNY
+- **Final Era**: 0.98 HMNY/block → 205,312 HMNY
+
+### **Key Economic Features**
+- **Deflationary**: Supply decreases over time through halvings
+- **Predictable**: Fixed emission schedule with known total supply
+- **Fair Launch**: No pre-mine, no ICO, community-driven distribution
+- **Balanced Rewards**: 90% miners, 7% smartnodes, 3% development
 
 ## 🚀 Launch Information
 

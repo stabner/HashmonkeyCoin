@@ -245,10 +245,12 @@ endif
 
 ### **Monetary Policy**
 - **Block Reward**: 500 HMNY
+- **Total Supply**: 210,034,688 HMNY (finite supply)
 - **Dev Fee**: 3% (15 HMNY per block)
 - **Smartnode Reward**: 7% (35 HMNY per block)  
 - **Miner Reward**: 90% (450 HMNY per block)
 - **Smartnode Collateral**: 20,000 HMNY
+- **Halving Schedule**: Every 210,240 blocks (~0.8 years)
 
 ### **Network Configuration**
 - **Magic Bytes**: `0x4a 0x73 0x4d 0x5a` (mainnet)
