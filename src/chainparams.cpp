@@ -253,7 +253,7 @@ public:
         assert(genesis.hashMerkleRoot ==
                uint256S("0x9cde078193bdfe1600d65a480aa0a71b4e734535102280e9d1dc46537d6e837e"));
 
-        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
+        // vSeeds.emplace_back("seednode.hashmonkeys.cloud"); // TODO: Add seed node when available
 
         // HashmonkeyCoin addresses start with 'H'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
@@ -738,7 +738,7 @@ public:
         pchMessageStart[1] = 0x73;
         pchMessageStart[2] = 0x4d;
         pchMessageStart[3] = 0x5d;
-        nDefaultPort = 19991;
+        nDefaultPort = 19995;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
