@@ -61,11 +61,11 @@ std::unique_ptr <CBaseChainParams> CreateBaseChainParams(const std::string &chai
     if (chain == CBaseChainParams::MAIN)
         return MakeUnique<CBaseChainParams>("", 19991);
     else if (chain == CBaseChainParams::TESTNET)
-        return MakeUnique<CBaseChainParams>("testnet", 29991);
+        return MakeUnique<CBaseChainParams>("testnet", 19992);
     else if (chain == CBaseChainParams::DEVNET)
-        return MakeUnique<CBaseChainParams>("devnet", 39991);
+        return MakeUnique<CBaseChainParams>("devnet", 19993);
     else if (chain == CBaseChainParams::REGTEST)
-        return MakeUnique<CBaseChainParams>("regtest", 19992);
+        return MakeUnique<CBaseChainParams>("regtest", 19994);
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }

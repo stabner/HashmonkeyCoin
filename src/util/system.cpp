@@ -714,7 +714,7 @@ fs::path GetDefaultDataDir() {
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\HashmonkeyCoinCore
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\HashmonkeyCoinCore
     // Mac: ~/Library/Application Support/HashmonkeyCoinCore
-    // Unix: ~/.HashmonkeyCoinCore
+    // Unix: ~/.hashmonkeycoin
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "HashmonkeyCoinCore";
@@ -727,10 +727,10 @@ fs::path GetDefaultDataDir() {
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/HashmonkeyCoinCore";
-#else
-    // Unix
-    return pathRet / ".HashmonkeyCoinCore";
+        return pathRet / "Library/Application Support/HashmonkeyCoinCore";
+    #else
+        // Unix
+        return pathRet / ".hashmonkeycoin";
 #endif
 #endif
 }
@@ -1149,17 +1149,7 @@ fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
     }
 
     LogPrintf("SHGetSpecialFolderPathW() failed, could not obtain requested path.\n");
-    
-    // Fallback: try to get APPDATA from environment variable
-    char* appdata = getenv("APPDATA");
-    if (appdata != nullptr) {
-        LogPrintf("Using APPDATA environment variable as fallback: %s\n", appdata);
-        return fs::path(appdata);
-    }
-    
-    // Final fallback: use current directory
-    LogPrintf("Using current directory as final fallback\n");
-    return fs::current_path();
+    return fs::path("");
 }
 #endif
 
