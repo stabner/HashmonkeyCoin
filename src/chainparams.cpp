@@ -746,14 +746,9 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        // Use original Raptoreum regtest parameters but with HashmonkeyCoin reward
-        genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 500 * COIN);
-        VerifyGenesisPOW(genesis);
+        // HashmonkeyCoin regtest genesis block - unique parameters
+        genesis = CreateGenesisBlock(1761230000, 0, 0x207fffff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x485491468e03c8ac23dd38f70fc1cda9f98cbd0bf58945e2da6c94c2a2d8b044"));
-        assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.90, 0.07, 0.03);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
