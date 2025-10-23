@@ -153,7 +153,7 @@ fs::path GetDefaultDataDir() {
 ### **4. configure.ac - Build Configuration (COMPLETED)**
 ```m4
 # CHANGED: Project name and version
-AC_INIT([HashmonkeyCoin Core], 2.0.03.01, [https://github.com/hashmonkeycoin/hashmonkeycoin/issues], [hashmonkeycoin], [https://hashmonkeycoin.com/])
+AC_INIT([HashmonkeyCoin Core], 1.0.0.0, [https://github.com/hashmonkeycoin/hashmonkeycoin/issues], [hashmonkeycoin], [https://hashmonkeycoin.com/])
 
 # CHANGED: Binary names
 BITCOIN_DAEMON_NAME=hashmonkeycoind
