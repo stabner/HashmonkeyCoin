@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 import hashlib
 import struct
-import time
 import binascii
 
-# HashmonkeyCoin Regtest Genesis Parameters
-pszTimestamp = "The Times 23/Oct/2025 HashmonkeyCoin is the future of decentralized cryptocurrency"
-pubkey_hex = "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9"
+# Test our genesis block parameters
+nTime = 1761208594
+nNonce = 7398
 nBits = 0x1e0ffff0
 nVersion = 1
-nTime = int(time.time())
-start_nonce = 0
 
 def sha256d(b):
     return hashlib.sha256(hashlib.sha256(b).digest()).digest()
@@ -20,9 +17,6 @@ def bits_to_target(bits):
     mant = bits & 0x007fffff
     target_hex = '%064x' % (mant * (1 << (8*(exp-3))))
     return int(target_hex, 16)
-
-TARGET = bits_to_target(nBits)
-print("Target:", hex(TARGET))
 
 def create_coinbase(pszTimestamp, pubkey_hex):
     version = struct.pack("<I", 1)
@@ -42,23 +36,19 @@ def create_coinbase(pszTimestamp, pubkey_hex):
     txid = sha256d(tx)[::-1]
     return txid[::-1]
 
+# Test mainnet genesis
+pszTimestamp = "The Times 22/Jan/2024 HashmonkeyCoin is the future of decentralized cryptocurrency"
+pubkey_hex = "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9"
+
 merkle = create_coinbase(pszTimestamp, pubkey_hex)
 print("Merkle root:", merkle.hex())
 
-nonce = start_nonce
-while True:
-    header = struct.pack("<I", nVersion) + b'\x00'*32 + merkle + struct.pack("<I", nTime) + struct.pack("<I", nBits) + struct.pack("<I", nonce)
-    hash_ = sha256d(header)[::-1]
-    if int.from_bytes(hash_, 'big') < TARGET:
-        print("FOUND!")
-        print("nTime:", nTime)
-        print("nNonce:", nonce)
-        print("hash:", hash_.hex())
-        print("merkle:", merkle.hex())
-        break
-    if nonce % 500000 == 0:
-        print("Nonce:", nonce, "time:", nTime)
-    nonce += 1
-    if nonce > 0xffffffff:
-        nTime += 1
-        nonce = 0
+header = struct.pack("<I", nVersion) + b'\x00'*32 + merkle + struct.pack("<I", nTime) + struct.pack("<I", nBits) + struct.pack("<I", nNonce)
+hash_ = sha256d(header)[::-1]
+print("Block hash:", hash_.hex())
+print("Expected:   00000b1c5f4d9200cf1b4d1603e674638acfa20b25f4249b2c8982ce3f41f37c")
+
+TARGET = bits_to_target(nBits)
+print("Target:", hex(TARGET))
+print("Hash value:", int.from_bytes(hash_, 'big'))
+print("Valid:", int.from_bytes(hash_, 'big') < TARGET)
