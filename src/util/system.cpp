@@ -1149,7 +1149,17 @@ fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
     }
 
     LogPrintf("SHGetSpecialFolderPathW() failed, could not obtain requested path.\n");
-    return fs::path("");
+    
+    // Fallback: try to get APPDATA from environment variable
+    char* appdata = getenv("APPDATA");
+    if (appdata != nullptr) {
+        LogPrintf("Using APPDATA environment variable as fallback: %s\n", appdata);
+        return fs::path(appdata);
+    }
+    
+    // Final fallback: use current directory
+    LogPrintf("Using current directory as final fallback\n");
+    return fs::current_path();
 }
 #endif
 
