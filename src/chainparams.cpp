@@ -236,21 +236,23 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x4a;//J
-        pchMessageStart[1] = 0x73;//s
-        pchMessageStart[2] = 0x4d;//M
-        pchMessageStart[3] = 0x5a;//Z
+        pchMessageStart[0] = 0x48;//H
+        pchMessageStart[1] = 0x4d;//M
+        pchMessageStart[2] = 0x4e;//N
+        pchMessageStart[3] = 0x59;//Y
         nDefaultPort = 19990;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1761209204, 0, 0x1e0ffff0, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1761209204, 5000, 0x1e0ffff0, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("HASHMONKEY MAINNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
         printf("HASHMONKEY MAINNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
 
-        // vSeeds.emplace_back("seednode.hashmonkeys.cloud"); // TODO: Add seed node when available
+        vSeeds.emplace_back("seed1.hashmonkeycoin.com");
+        vSeeds.emplace_back("seed2.hashmonkeycoin.com");
+        vSeeds.emplace_back("seed3.hashmonkeycoin.com");
 
         // HashmonkeyCoin addresses start with 'H'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
@@ -744,7 +746,7 @@ public:
         UpdateBudgetParametersFromArgs(args);
 
         // HashmonkeyCoin regtest genesis block - use simple approach like fsociety
-        genesis = CreateGenesisBlock(1761230000, 0, 0x207fffff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1761230000, 1000, 0x207fffff, 4, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("HASHMONKEY REGTEST GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
         printf("HASHMONKEY REGTEST MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
@@ -768,17 +770,17 @@ public:
         nPoolMaxParticipants = 5;
         nPoolNewMaxParticipants = 20;
 
-        // privKey: cVpnZj4dZvRXmBf7Jze1GjpLQb25iKP92GDXUsKdUJTXhXRo2RFA
-        vSporkAddresses = {"yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc"};
+        // privKey: TODO: Generate proper HashmonkeyCoin spork address
+        vSporkAddresses = {"HSporkAddressHashmonkeyCoin123456789"};
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 500, "yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc");
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 500, "HFounderAddressHashmonkeyCoin123456789");
 
         checkpointData = {
                 {
-                        {0, uint256S("b79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0")},
+                        {0, uint256S("0000000000000000000000000000000000000000000000000000000000000000")},
                 }
         };
 
