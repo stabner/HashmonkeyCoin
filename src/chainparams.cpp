@@ -254,12 +254,12 @@ public:
         vSeeds.emplace_back("seed2.hashmonkeycoin.com");
         vSeeds.emplace_back("seed3.hashmonkeycoin.com");
 
-        // HashmonkeyCoin addresses start with 'H'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
-        // HashmonkeyCoin script addresses start with 'M'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 85);
-        // HashmonkeyCoin private keys start with 'N' or 'Y'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 200);
+        // HashmonkeyCoin addresses start with 'H' (16 = 'H' in base58)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 16);
+        // HashmonkeyCoin script addresses start with 'M' (20 = 'M' in base58)
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 20);
+        // HashmonkeyCoin private keys start with 'N' (21 = 'N' in base58)
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 21);
         // HashmonkeyCoin BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         // HashmonkeyCoin BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
@@ -733,10 +733,10 @@ public:
                 {{240,     0},
                  {INT_MAX, 7}});
 
-        pchMessageStart[0] = 0x4a;
-        pchMessageStart[1] = 0x73;
-        pchMessageStart[2] = 0x4d;
-        pchMessageStart[3] = 0x5d;
+        pchMessageStart[0] = 0x48;
+        pchMessageStart[1] = 0x4d;
+        pchMessageStart[2] = 0x4e;
+        pchMessageStart[3] = 0x59;
         nDefaultPort = 19995;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
