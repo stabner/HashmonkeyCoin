@@ -245,13 +245,15 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1761209204, 899788, 0x1e0ffff0, 1, 500 * COIN);
+        genesis = CreateGenesisBlock(1761209204, 9039, 0x1e0ffff0, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
+        printf("HASHMONKEY MAINNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        printf("HASHMONKEY MAINNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x00000e9c7bfee310f3d9c5c23e58e3c0ff7c64c1aca966b023268b1945225b0e"));
+               uint256S("0x0000448c5b771cf4153fe77579e2bc00e855575f443bc1099e49517a510d3e5c"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x9cde078193bdfe1600d65a480aa0a71b4e734535102280e9d1dc46537d6e837e"));
+               uint256S("0x3dd552d3d69b3ee40d4dd1e299e82b6d2d519eaa736645351d2f3aa6b3f84659"));
 
         // vSeeds.emplace_back("seednode.hashmonkeys.cloud"); // TODO: Add seed node when available
 
@@ -746,9 +748,14 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        // HashmonkeyCoin regtest genesis block - unique parameters
-        genesis = CreateGenesisBlock(1761230000, 0, 0x207fffff, 4, 500 * COIN);
+        // HashmonkeyCoin regtest genesis block - unique parameters with valid POW
+        genesis = CreateGenesisBlock(1761230000, 2996, 0x1e0ffff0, 4, 500 * COIN);
+        VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
+        printf("HASHMONKEY REGTEST GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        printf("HASHMONKEY REGTEST MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        assert(consensus.hashGenesisBlock == uint256S("0x0000b5f2fd4a8f840f489ec2e35383103283d4349e6cfd94be206e113e1468a5"));
+        assert(genesis.hashMerkleRoot == uint256S("0x3dd552d3d69b3ee40d4dd1e299e82b6d2d519eaa736645351d2f3aa6b3f84659"));
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.90, 0.07, 0.03);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
