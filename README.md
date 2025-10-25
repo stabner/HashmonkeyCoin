@@ -16,12 +16,12 @@
   - **Miner**: 450 HMNY (90%)
   - **Smartnode**: 35 HMNY (7%)
   - **Developer**: 15 HMNY (3%)
-- **Smartnode Collateral**: 20,000 HMNY
+- **Smartnode Collateral**: 100,000 HMNY
 - **Fair Distribution**: No pre-mine, no ICO, community-driven launch
 
 ### **Network & Security**
 - **Consensus Algorithm**: GhostRider (RandomX + SHA256)
-- **Smartnodes**: Enabled with 20,000 HMNY collateral
+- **Smartnodes**: Enabled with 100,000 HMNY collateral
 - **Network Ports**: 
   - Mainnet: 19990 (P2P), 19991 (RPC)
   - Testnet: 29990 (P2P), 29991 (RPC)
@@ -29,17 +29,17 @@
   - Regtest: 19991 (P2P), 19992 (RPC)
 - **Seed Node**: seednode.hashmonkeys.cloud
 - **Address Prefixes**: 
-  - Mainnet: 'H' (40), Script: 'M' (85)
-  - Testnet: 'h' (111), Script: 'm' (19)
-  - Devnet: 'd' (30), Script: '8' (19)
+  - Mainnet: 'H' (16), Script: 'M' (20), Private: 'N' (21)
+  - Testnet: 'h' (111), Script: 'm' (19), Private: '9' (239)
+  - Devnet: 'd' (30), Script: '8' (19), Private: '9' (239)
 
 ### **Technical Specifications**
 - **Genesis Block**: January 2025 Launch
 - **Message Start**: 
-  - Mainnet: 0x4a, 0x73, 0x4d, 0x5a (JSMZ)
-  - Testnet: 0x4a, 0x73, 0x4d, 0x5b (JSM[)
-  - Devnet: 0x4a, 0x73, 0x4d, 0x5c (JSM\)
-  - Regtest: 0x4a, 0x73, 0x4d, 0x5d (JSM])
+  - Mainnet: 0x48, 0x4d, 0x4e, 0x59 (HMNY)
+  - Testnet: 0x4a, 0x73, 0x4d, 0x5b (JsM[)
+  - Devnet: 0x4a, 0x73, 0x4d, 0x5c (JsM\)
+  - Regtest: 0x48, 0x4d, 0x4e, 0x59 (HMNY)
 - **BIP44 Coin Type**: 200
 - **Data Directory**: 
   - Windows: `%APPDATA%\HashmonkeyCoinCore\`

@@ -274,7 +274,7 @@ public:
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 20000 * COIN}
+                {{INT_MAX, 100000 * COIN}
                 },
                 {{5761,    0},
                  {INT_MAX, 7}}
@@ -454,7 +454,7 @@ public:
         consensus.llmqTypePlatform = Consensus::LLMQ_100_67;
 
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 20000 * COIN}},
+                {{INT_MAX, 100000 * COIN}},
                 {{INT_MAX, 7}});
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.90, 0.07, 0.03);
@@ -580,7 +580,7 @@ public:
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 20000 * COIN}},
+                {{INT_MAX, 100000 * COIN}},
                 {{INT_MAX, 7}});
 
         vFixedSeeds.clear();

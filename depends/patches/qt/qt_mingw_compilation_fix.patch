@@ -1,0 +1,14 @@
+--- a/configure.pri
++++ b/configure.pri
+@@ -100,6 +100,10 @@
+     QMAKE_CXXFLAGS += -std=c++17
+ }
+ 
++# Fix MinGW-w64 compilation issues
++mingw* {
++    QMAKE_CXXFLAGS += -D_WIN32_WINNT=0x0601 -DWIN32_LEAN_AND_MEAN
++}
++
+ # Enable wallet support
+ !no-wallet {
+     DEFINES += ENABLE_WALLET

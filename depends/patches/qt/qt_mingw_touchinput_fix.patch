@@ -1,0 +1,14 @@
+--- a/src/plugins/platforms/windows/qwindowsmousehandler.cpp
++++ b/src/plugins/platforms/windows/qwindowsmousehandler.cpp
+@@ -39,6 +39,10 @@
+ #include <qpa/qwindowsysteminterface.h>
+ #include <QtCore/qdebug.h>
+ 
++// Fix for MinGW-w64 compilation conflicts
++#ifdef __MINGW32__
++#include <windows.h>
++#endif
++
+ #ifndef TOUCHINPUT
+ typedef struct tagTOUCHINPUT {
+     LONG x;

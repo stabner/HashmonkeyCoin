@@ -1,0 +1,13 @@
+--- a/src/plugins/platforms/windows/qwindowsmousehandler.cpp
++++ b/src/plugins/platforms/windows/qwindowsmousehandler.cpp
+@@ -40,6 +40,9 @@
+ #include <qpa/qwindowsysteminterface.h>
+ #include <QtCore/qdebug.h>
+ 
++// Prevent conflicts with Windows headers
++#ifndef WIN32_LEAN_AND_MEAN
++#define WIN32_LEAN_AND_MEAN
++#endif
+ #include <windows.h>
+ 
+ #ifndef TOUCHINPUT
