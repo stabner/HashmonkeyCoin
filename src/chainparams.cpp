@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2024 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -94,7 +95,7 @@ CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::string &devNet
  */
 static CBlock
 CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
-    const char *pszTimestamp = "The Times 22/Jan/2018 Raptoreum is name of the game for new generation of firms";
+    const char *pszTimestamp = "HashmonkeyCoin Genesis Block - October 28, 2024 - The future of decentralized finance";
     const CScript genesisOutputScript = CScript() << ParseHex(
             "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                   << OP_CHECKSIG;
@@ -236,58 +237,53 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x72;//r
-        pchMessageStart[1] = 0x74;//t
-        pchMessageStart[2] = 0x6d;//m
-        pchMessageStart[3] = 0x2e;//.
-        nDefaultPort = 10226;
+        pchMessageStart[0] = 0x48;//H
+        pchMessageStart[1] = 0x4d;//M
+        pchMessageStart[2] = 0x4e;//N
+        pchMessageStart[3] = 0x59;//Y
+        nDefaultPort = 10228;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 5000 * COIN);
+        //FindMainNetGenesisBlock(1730070000, 0x20001fff, "main");
+        genesis = CreateGenesisBlock(1730070000, 0, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
+               uint256S("0x2c6f7620af8d5a1b8c019305e878fb5edcc8a8abf686e1d79569039c7c8ebd00"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+               uint256S("0x5563b13a46d047a6c93ba44d51b324cd9a45be6a0faa51abfede221b4e6d6ae4"));
 
-        vSeeds.emplace_back("lbdn.raptoreum.com");
-        vSeeds.emplace_back("51.89.21.112");
+        vSeeds.emplace_back("seed.hashmonkeycoin.com");
+        vSeeds.emplace_back("seed2.hashmonkeycoin.com");
 
-        // Raptoreum addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 60);
-        // Raptoreum script addresses start with '7'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
-        // Raptoreum private keys start with '7' or 'X'
+        // HashmonkeyCoin addresses start with 'H'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
+        // HashmonkeyCoin script addresses start with 'h'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 8);
+        // HashmonkeyCoin private keys start with 'H' or 'X'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 128);
-        // Raptoreum BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // HashmonkeyCoin BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        // Raptoreum BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // HashmonkeyCoin BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
-        // Raptoreum BIP44 coin type is '5'
+        // HashmonkeyCoin BIP44 coin type is '200'
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
         nExtCoinType = strExtCoinType.empty() ? 200 : std::stoi(strExtCoinType);
 //        if(gArgs.GetChainName() == CBaseChainParams::MAIN) {
 //        	std::cout << "mainnet is disable" << endl;
 //        	exit(0);
 //        }
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 15); // 3% of 500 = 15 HMNY
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{88720,   600000 * COIN},
-                 {132720,  800000 * COIN},
-                 {176720,  1000000 * COIN},
-                 {220720,  1250000 * COIN},
-                 {264720,  1500000 * COIN},
-                 {INT_MAX, 1800000 * COIN}
+                {{INT_MAX, 100000 * COIN}} // 100,000 HMNY collateral
                 },
                 {{5761,    0},
-                 {INT_MAX, 20}}
+                 {INT_MAX, 7}} // 7% smartnode reward
         );
-        //FutureRewardShare defaultShare(0.8,0.2,0.0);
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
+        //FutureRewardShare defaultShare(0.7,0.23,0.07);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.7, 0.23, 0.07);
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -413,43 +409,43 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0"); // 0
 
-        pchMessageStart[0] = 0x74; //t
-        pchMessageStart[1] = 0x72; //r
-        pchMessageStart[2] = 0x74; //t
-        pchMessageStart[3] = 0x6d; //m
-        nDefaultPort = 10230;
+        pchMessageStart[0] = 0x48; //H
+        pchMessageStart[1] = 0x4d; //M
+        pchMessageStart[2] = 0x4e; //N
+        pchMessageStart[3] = 0x59; //Y
+        nDefaultPort = 10232;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1711078237, 971, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1730073600, 0, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xbbab22066081d3b466abd734de914e8092abf4e959bcd0fff978297c41591b23"));
+               uint256S("0x2d2d29f1d74d9331399decd39112611ff41bc49a33c8c9edad8048ab7c9654f1"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+               uint256S("0x5563b13a46d047a6c93ba44d51b324cd9a45be6a0faa51abfede221b4e6d6ae4"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("47.151.9.131");
-        vSeeds.emplace_back("lbtn.raptoreum.com");
+        vSeeds.emplace_back("testnet.hashmonkeycoin.com");
+        vSeeds.emplace_back("testnet2.hashmonkeycoin.com");
 
-        // Testnet Raptoreum addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 123);
-        // Testnet Raptoreum script addresses start with '8' or '9'
+        // Testnet HashmonkeyCoin addresses start with 'h'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 8);
+        // Testnet HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Testnet Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Raptoreum BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet HashmonkeyCoin BIP44 coin type is '1' (All coin's testnet default)
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
-        nExtCoinType = strExtCoinType.empty() ? 10227 : std::stoi(strExtCoinType);
+        nExtCoinType = strExtCoinType.empty() ? 10228 : std::stoi(strExtCoinType);
 
 
         // long living quorum params
@@ -462,13 +458,13 @@ public:
         consensus.llmqTypePlatform = Consensus::LLMQ_100_67;
 
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 60000 * COIN}},
-                {{INT_MAX, 20}});
+                {{INT_MAX, 100000 * COIN}}, // 100,000 HMNY collateral
+                {{INT_MAX, 7}}); // 7% smartnode reward
 
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
+        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.7, 0.23, 0.07);
 
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "rghjACzPtVAN2wydgDbn9Jq1agREu6rH1e");
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 15, "hTestAddress123456789012345678901234567890");
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
@@ -485,7 +481,7 @@ public:
         nPoolMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5 * 60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"rsqc2caFRG6myRdzKipP4PpVW9LnFaG7CH"};
+        vSporkAddresses = {"hTestSporkAddress123456789012345678901234567890"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -496,9 +492,9 @@ public:
         };
 
         chainTxData = ChainTxData{
-                1712153599, // * UNIX timestamp of last known number of transactions (Block 17670)
-                22643,    // * total number of transactions between genesis and that timestamp
-                0.02108492915974094        // * estimated number of transactions per second after that timestamp
+                1730073600, // * UNIX timestamp of last known number of transactions
+                0,    // * total number of transactions between genesis and that timestamp
+                0.0        // * estimated number of transactions per second after that timestamp
         };
 
     }
