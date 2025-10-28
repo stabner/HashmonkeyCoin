@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2019 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_CRYPTO_BLS_H
-#define RAPTOREUM_CRYPTO_BLS_H
+#ifndef HASHMONKEYCOIN_CRYPTO_BLS_H
+#define HASHMONKEYCOIN_CRYPTO_BLS_H
 
 #include <hash.h>
 #include <serialize.h>
@@ -450,4 +450,4 @@ using BLSVerificationVectorPtr = std::shared_ptr<BLSVerificationVector>;
 
 bool BLSInit();
 
-#endif // RAPTOREUM_CRYPTO_BLS_H
+#endif // HASHMONKEYCOIN_CRYPTO_BLS_H

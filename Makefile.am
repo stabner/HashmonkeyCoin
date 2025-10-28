@@ -1,6 +1,6 @@
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2014-2018 The Dash Core developers
-# Copyright (c) 2020-2022 The Raptoreum developers
+# Copyright (c) 2020-2022 The HashmonkeyCoin developers
 # Copyright (c) 2024 The HashmonkeyCoin developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -51,7 +51,7 @@ DIST_SHARE = \
 BIN_CHECKS=$(top_srcdir)/contrib/devtools/symbol-check.py \
            $(top_srcdir)/contrib/devtools/security-check.py
 
-WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/raptoreum.ico \
+WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/hashmonkeycoin.ico \
   $(top_srcdir)/share/pixmaps/nsis-header.bmp \
   $(top_srcdir)/share/pixmaps/nsis-wizard.bmp \
   $(top_srcdir)/doc/README_windows.txt
@@ -60,9 +60,9 @@ OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_INSTALLER_ICONS) \
   $(top_srcdir)/contrib/macdeploy/detached-sig-create.sh
 
 COVERAGE_INFO = $(COV_TOOL_WRAPPER) baseline.info \
-  test_raptoreum_filtered.info total_coverage.info \
+  test_hashmonkeycoin_filtered.info total_coverage.info \
   baseline_filtered.info functional_test.info functional_test_filtered.info \
-  test_raptoreum_coverage.info test_raptoreum.info
+  test_hashmonkeycoin_coverage.info test_hashmonkeycoin.info
 
 dist-hook:
 	-$(GIT) archive --format=tar HEAD -- src/clientversion.cpp | $(AMTAR) -C $(top_distdir) -xf -
@@ -94,11 +94,11 @@ $(OSX_APP)/Contents/Info.plist: $(OSX_PLIST)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/Resources/raptoreum.icns: $(OSX_INSTALLER_ICONS)
+$(OSX_APP)/Contents/Resources/hashmonkeycoin.icns: $(OSX_INSTALLER_ICONS)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/MacOS/Raptoreum-Qt: all-recursive
+$(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt: all-recursive
 	$(MKDIR_P) $(@D)
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM)  $(BITCOIN_QT_BIN) $@
 
@@ -107,8 +107,8 @@ $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings:
 	echo '{	CFBundleDisplayName = "$(PACKAGE_NAME)"; CFBundleName = "$(PACKAGE_NAME)"; }' > $@
 
 OSX_APP_BUILT=$(OSX_APP)/Contents/PkgInfo $(OSX_APP)/Contents/Resources/empty.lproj \
-  $(OSX_APP)/Contents/Resources/raptoreum.icns $(OSX_APP)/Contents/Info.plist \
-  $(OSX_APP)/Contents/MacOS/Raptoreum-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings
+  $(OSX_APP)/Contents/Resources/hashmonkeycoin.icns $(OSX_APP)/Contents/Info.plist \
+  $(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings
 
 osx_volname:
 	echo $(OSX_VOLNAME) >$@
@@ -124,10 +124,10 @@ APP_DIST_DIR=$(top_builddir)/dist
 $(OSX_DMG): deploydir
 	$(XORRISOFS) -D -l -V "$(OSX_VOLUME)" -no-pad -r -dir-mode 0755 -o $@ dist
 
-$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Raptoreum-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
+$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
 	INSTALL_NAME_TOOL=$(INSTALL_NAME_TOOL)  OTOOL=$(OTOOL) STRIP=$(STRIP) $(PYTHON) $(OSX_DEPLOY_SCRIPT) $(OSX_APP) $(OSX_VOLNAME) -translations-dir=$(QT_TRANSLATION_DIR)
 
-deploydir: $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Raptoreum-Qt
+deploydir: $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/HashmonkeyCoin-Qt
 endif !BUILD_DARWIN
 
 deploy: $(OSX_DMG)
@@ -170,16 +170,16 @@ baseline_filtered.info: baseline.info
 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-test_raptoreum.info: baseline_filtered.info
+test_hashmonkeycoin.info: baseline_filtered.info
 	$(MAKE) -C src/ check
-	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_raptoreum -o $@
+	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_hashmonkeycoin -o $@
 	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
 
-test_raptoreum_filtered.info: test_raptoreum.info
+test_hashmonkeycoin_filtered.info: test_hashmonkeycoin.info
 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-functional_test.info: test_raptoreum_filtered.info
+functional_test.info: test_hashmonkeycoin_filtered.info
 	-@TIMEOUT=15 test/functional/test_runner.py $(EXTENDED_FUNCTIONAL_TESTS)
 	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src --t functional-tests -o $@
 	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
@@ -188,13 +188,13 @@ functional_test_filtered.info: functional_test.info
 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-test_raptoreum_coverage.info: baseline_filtered.info test_raptoreum_filtered.info
-	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_raptoreum_filtered.info -o $@
+test_hashmonkeycoin_coverage.info: baseline_filtered.info test_hashmonkeycoin_filtered.info
+	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_hashmonkeycoin_filtered.info -o $@
 
-total_coverage.info: test_raptoreum_filtered.info functional_test_filtered.info
-	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_raptoreum_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
+total_coverage.info: test_hashmonkeycoin_filtered.info functional_test_filtered.info
+	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_hashmonkeycoin_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
 
-test_raptoreum.coverage/.dirstamp:  test_raptoreum_coverage.info
+test_hashmonkeycoin.coverage/.dirstamp:  test_hashmonkeycoin_coverage.info
 	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 	@touch $@
 
@@ -202,7 +202,7 @@ total.coverage/.dirstamp: total_coverage.info
 	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 	@touch $@
 
-cov: test_raptoreum.coverage/.dirstamp total.coverage/.dirstamp
+cov: test_hashmonkeycoin.coverage/.dirstamp total.coverage/.dirstamp
 
 endif
 
@@ -271,6 +271,6 @@ clean-docs:
 	rm -rf doc/doxygen
 
 clean-local: clean-docs
-	rm -rf coverage_percent.txt test_raptoreum.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP) src/qt/moc_*
+	rm -rf coverage_percent.txt test_hashmonkeycoin.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP) src/qt/moc_*
 	rm -rf test/functional/__pycache__ test/functional/test_framework/__pycache__ test/cache
 	rm -rf osx_volname dist/

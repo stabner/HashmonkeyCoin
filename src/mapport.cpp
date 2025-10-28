@@ -1,10 +1,10 @@
 // Copyright (c) 2011-2020 The Bitcoin Core developers
-// Copyright (c)      2022 The Raptoreum developers
+// Copyright (c)      2022 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING ot https://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <mapport.h>
@@ -87,7 +87,7 @@ static bool NatpmpDiscover(natpmp_t* natpmp, struct in_addr& external_ipv4_addr)
 static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_addr, uint16_t private_port, bool& external_ip_discovered)
 {
   const uint16_t suggested_external_port = g_mapport_external_port ? g_mapport_external_port : private_port;
-  const int r_send = sendnewportmappingrequest(natpmp, NATPMP_PROTOCOL_TCP, private_port, suggested_external_port, 3600 /*seconds*/);
+  const int r_send = sendnewpohmnyappingrequest(natpmp, NATPMP_PROTOCOL_TCP, private_port, suggested_external_port, 3600 /*seconds*/);
   if (r_send == 12 /* OK */) {
     int r_read;
     natpmpresp_t response;
@@ -96,7 +96,7 @@ static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_
     } while (r_read == NATPMP_TRYAGAIN);
 
     if (r_read == 0) {
-      auto pm = response.pnu.newportmapping;
+      auto pm = response.pnu.newpohmnyapping;
       if (private_port == pm.privateport && pm.lifetime > 0) {
         g_mapport_external_port = pm.mappedpublicport;
         const CService external{external_ipv4_addr, pm.mappedpublicport};
@@ -115,7 +115,7 @@ static bool NatpmpMapping(natpmp_t* natpmp, const struct in_addr& external_ipv4_
       LogPrintf("natpmp: readnatpmpresponseorretry() for port mapping failed with %d error.\n", r_read);
     }
   } else {
-    LogPrintf("natpmp: sendnewportmappingrequest() failed with %d error.\n", r_send);
+    LogPrintf("natpmp: sendnewpohmnyappingrequest() failed with %d error.\n", r_send);
   }
 
   return false;
@@ -134,12 +134,12 @@ static bool ProcessNatpmp()
     } while (ret && g_mapport_interrupt.sleep_for(PORT_MAPPING_REANNOUNCE_PERIOD));
     g_mapport_interrupt.reset();
 
-    const int r_send = sendnewportmappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, private_port, g_mapport_external_port, /* remove a port mapping */ 0);
+    const int r_send = sendnewpohmnyappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, private_port, g_mapport_external_port, /* remove a port mapping */ 0);
     g_mapport_external_port = 0;
     if (r_send == 12 /* OK */) {
       LogPrintf("natpmp: Port mapping removed successfully.\n");
     } else {
-      LogPrintf("natpmp: sendnewportmappingrequest(0) failed with %d error.\n", r_send);
+      LogPrintf("natpmp: sendnewpohmnyappingrequest(0) failed with %d error.\n", r_send);
     }
   }
 

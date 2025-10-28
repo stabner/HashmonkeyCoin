@@ -4,10 +4,10 @@ HashmonkeyCoin Core Latest v2.0.3
 |CI|master|develop|
 |-|-|-|
 
-HashmonkeyCoin (HMNY) is a revolutionary cryptocurrency that combines the best features of modern blockchain technology with a fun and engaging monkey-themed approach to decentralized finance. Built on the proven Raptoreum codebase, HashmonkeyCoin brings innovation, security, and community-driven development to the crypto space.
+HashmonkeyCoin (HMNY) is a revolutionary cryptocurrency that combines the best features of modern blockchain technology with a fun and engaging monkey-themed approach to decentralized finance. Built on the proven HashmonkeyCoin codebase, HashmonkeyCoin brings innovation, security, and community-driven development to the crypto space.
 
 Introduction
-HashmonkeyCoin is a fork of Raptoreum, which itself is based on Dash, inheriting all the advanced features such as chain locks, oracles, and smart contracts. The project focuses on creating a user-friendly and accessible cryptocurrency that maintains the technical excellence of its predecessors while adding unique characteristics.
+HashmonkeyCoin is a fork of HashmonkeyCoin, which itself is based on Dash, inheriting all the advanced features such as chain locks, oracles, and smart contracts. The project focuses on creating a user-friendly and accessible cryptocurrency that maintains the technical excellence of its predecessors while adding unique characteristics.
 
 Key Features:
 A)	The deployment of a unique asset layer for token creation and management.
@@ -33,8 +33,8 @@ Development Process
 -------------------
 
 The `master` branch is meant to be stable. Development is done in separate branches.
-[Tags](https://github.com/raptor3um/raptoreum/tags) are created to indicate new official,
-stable release versions of Raptoreum Core.
+[Tags](https://github.com/raptor3um/hashmonkeycoin/tags) are created to indicate new official,
+stable release versions of HashmonkeyCoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 

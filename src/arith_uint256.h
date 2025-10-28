@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_ARITH_UINT256_H
-#define RAPTOREUM_ARITH_UINT256_H
+#ifndef HASHMONKEYCOIN_ARITH_UINT256_H
+#define HASHMONKEYCOIN_ARITH_UINT256_H
 
 #include <cstring>
 #include <limits>
@@ -291,7 +291,7 @@ public:
      * Thus 0x1234560000 is compact (0x05123456)
      * and  0xc0de000000 is compact (0x0600c0de)
      *
-     * Raptoreum only uses this "compact" format for encoding difficulty
+     * HashmonkeyCoin only uses this "compact" format for encoding difficulty
      * targets, which are unsigned 256bit quantities.  Thus, all the
      * complexities of the sign bit and using base 256 are probably an
      * implementation accident.
@@ -342,4 +342,4 @@ uint512 ArithToUint512(const arith_uint512 &);
 
 arith_uint512 UintToArith512(const uint512 &);
 
-#endif // RAPTOREUM_ARITH_UINT256_H
+#endif // HASHMONKEYCOIN_ARITH_UINT256_H

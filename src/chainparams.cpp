@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Copyright (c) 2024 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -195,8 +195,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 1047200;
         consensus.powLimit = uint256S(
                 "00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Raptoreum: 2 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // HashmonkeyCoin: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -364,8 +364,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 7300;
         consensus.powLimit = uint256S(
                 "00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 60; // Raptoreum: 1 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 60; // HashmonkeyCoin: 1 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -533,8 +533,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 2; // DIP0003 activated immediately on devnet
         consensus.powLimit = uint256S(
                 "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Raptoreum: 2 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // HashmonkeyCoin: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -590,20 +590,20 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         vSeeds.emplace_back("47.151.26.43");
-        //vSeeds.push_back(CDNSSeedData("raptoreumevo.org",  "devnet-seed.raptoreumevo.org"));
+        //vSeeds.push_back(CDNSSeedData("hashmonkeycoinevo.org",  "devnet-seed.hashmonkeycoinevo.org"));
 
-        // Testnet Raptoreum addresses start with 'y'
+        // Testnet HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
-        // Testnet Raptoreum script addresses start with '8' or '9'
+        // Testnet HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Testnet Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet HashmonkeyCoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Raptoreum BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet HashmonkeyCoin BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params
@@ -704,8 +704,8 @@ public:
         // consensus.DIP0003EnforcementHeight = 500;
         consensus.powLimit = uint256S(
                 "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Raptoreum: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Raptoreum: 2 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // HashmonkeyCoin: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // HashmonkeyCoin: 2 minutes
         consensus.nMinimumDifficultyBlocks = 2000;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
@@ -796,18 +796,18 @@ public:
                 0
         };
 
-        // Regtest Raptoreum addresses start with 'y'
+        // Regtest HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
-        // Regtest Raptoreum script addresses start with '8' or '9'
+        // Regtest HashmonkeyCoin script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Regtest Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Regtest HashmonkeyCoin BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Regtest Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Regtest HashmonkeyCoin BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Regtest Raptoreum BIP44 coin type is '1' (All coin's testnet default)
+        // Regtest HashmonkeyCoin BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params

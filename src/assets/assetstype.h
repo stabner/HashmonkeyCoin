@@ -1,17 +1,17 @@
-// Copyright (c) 2021-2023 The Raptoreum developers
+// Copyright (c) 2021-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_ASSETS_FEES_H
-#define RAPTOREUM_ASSETS_FEES_H
+#ifndef HASHMONKEYCOIN_ASSETS_FEES_H
+#define HASHMONKEYCOIN_ASSETS_FEES_H
 
 #include <amount.h>
 #include <coins.h>
 #include <key_io.h>
 
-#define RTM_R 0x72 //R
-#define RTM_T 0x74 //T
-#define RTM_M 0x6d //M
+#define HMNY_R 0x72 //R
+#define HMNY_T 0x74 //T
+#define HMNY_M 0x6d //M
 #define MAX_UNIQUE_ID 0xffffffffffffffff
 
 class CAssetTransfer {
@@ -51,4 +51,4 @@ public:
 bool GetTransferAsset(const CScript &script, CAssetTransfer &assetTransfer);
 
 
-#endif //RAPTOREUM_ASSETS_FEES_H
+#endif //HASHMONKEYCOIN_ASSETS_FEES_H

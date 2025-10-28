@@ -1,9 +1,9 @@
-// Copyright (c) 2021-2023 The Raptoreum developers
+// Copyright (c) 2021-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_FEE_H
-#define RAPTOREUM_FEE_H
+#ifndef HASHMONKEYCOIN_FEE_H
+#define HASHMONKEYCOIN_FEE_H
 
 #include <amount.h>
 #include <coins.h>
@@ -14,4 +14,4 @@ uint16_t getFutureFees();
 
 //void maybeSetPayload(Coin& coin, const COutPoint& outpoint, const int16_t& nType, const std::vector<uint8_t>& vExtraPayload);
 
-#endif //RAPTOREUM_FEE_H
+#endif //HASHMONKEYCOIN_FEE_H

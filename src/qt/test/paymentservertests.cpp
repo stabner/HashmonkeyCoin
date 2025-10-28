@@ -13,7 +13,7 @@
 #include <random.h>
 #include <script/script.h>
 #include <script/standard.h>
-#include <test/test_raptoreum.h>
+#include <test/test_hashmonkeycoin.h>
 #include <util/strencodings.h>
 
 #include <openssl/x509.h>

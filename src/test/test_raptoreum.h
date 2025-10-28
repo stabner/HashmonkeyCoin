@@ -1,11 +1,11 @@
 // Copyright (c) 2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_TEST_TEST_RAPTOREUM_H
-#define BITCOIN_TEST_TEST_RAPTOREUM_H
+#ifndef BITCOIN_TEST_TEST_HASHMONKEYCOIN_H
+#define BITCOIN_TEST_TEST_HASHMONKEYCOIN_H
 
 #include <chainparamsbase.h>
 #include <fs.h>

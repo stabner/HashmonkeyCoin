@@ -6,7 +6,7 @@ The `macdeployqtplus` script should not be run manually. Instead, after building
 make deploy
 ```
 
-When complete, it will have produced `Raptoreum-Core.dmg`.
+When complete, it will have produced `HashmonkeyCoin-Core.dmg`.
 
 ## SDK Extraction
 

@@ -2,8 +2,8 @@
 // Created by tri on 8/7/24.
 //
 
-#ifndef RAPTOREUM_HTTPCLIENT_H
-#define RAPTOREUM_HTTPCLIENT_H
+#ifndef HASHMONKEYCOIN_HTTPCLIENT_H
+#define HASHMONKEYCOIN_HTTPCLIENT_H
 
 #include <QObject>
 #include <QUrl>
@@ -35,4 +35,4 @@ private:
     QNetworkAccessManager* manager;
 };
 
-#endif //RAPTOREUM_HTTPCLIENT_H
+#endif //HASHMONKEYCOIN_HTTPCLIENT_H

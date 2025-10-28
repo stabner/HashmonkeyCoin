@@ -1,14 +1,14 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
-#include <qt/raptoreum.h>
+#include <qt/hashmonkeycoin.h>
 #include <qt/bitcoingui.h>
 
 #include <chainparams.h>
@@ -116,11 +116,11 @@ static void initTranslations(QTranslator &qtTranslatorBase, QTranslator &qtTrans
     if (qtTranslator.load("qt_" + lang_territory, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
         QApplication::installTranslator(&qtTranslator);
 
-    // Load e.g. bitcoin_de.qm (shortcut "de" needs to be defined in raptoreum.qrc)
+    // Load e.g. bitcoin_de.qm (shortcut "de" needs to be defined in hashmonkeycoin.qrc)
     if (translatorBase.load(lang, ":/translations/"))
         QApplication::installTranslator(&translatorBase);
 
-    // Load e.g. bitcoin_de_DE.qm (shortcut "de_DE" needs to be defined in raptoreum.qrc)
+    // Load e.g. bitcoin_de_DE.qm (shortcut "de_DE" needs to be defined in hashmonkeycoin.qrc)
     if (translator.load(lang_territory, ":/translations/"))
         QApplication::installTranslator(&translator);
 }
@@ -188,7 +188,7 @@ void BitcoinCore::shutdown() {
 }
 
 static int qt_argc = 1;
-static const char *qt_argv = "rtm-qt";
+static const char *qt_argv = "hmny-qt";
 
 BitcoinApplication::BitcoinApplication(interfaces::Node &node)
         : QApplication(qt_argc, const_cast<char **>(&qt_argv)),
@@ -351,7 +351,7 @@ void BitcoinApplication::initializeResult(bool success, interfaces::BlockAndHead
 
 #ifdef ENABLE_WALLET
         // Now that initialization/startup is done, process any command-line
-        // raptoreum: URIs or payment requests:
+        // hashmonkeycoin: URIs or payment requests:
         if (paymentServer) {
             connect(paymentServer, &PaymentServer::receivedPaymentRequest, window, &BitcoinGUI::handlePaymentRequest);
             connect(window, &BitcoinGUI::receivedURI, paymentServer, &PaymentServer::handleURIOrFile);
@@ -374,7 +374,7 @@ void BitcoinApplication::shutdownResult() {
 
 void BitcoinApplication::handleRunawayException(const QString &message) {
     QMessageBox::critical(nullptr, "Runaway exception", BitcoinGUI::tr(
-            "A fatal error occurred. Raptoreum Core can no longer continue safely and will quit.") + QString("\n\n") +
+            "A fatal error occurred. HashmonkeyCoin Core can no longer continue safely and will quit.") + QString("\n\n") +
                                                         message);
     ::exit(EXIT_FAILURE);
 }
@@ -427,7 +427,7 @@ static void SetupUIArgs() {
     gArgs.AddArg("-debug-ui",
                  "Updates the UI's stylesheets in realtime with changes made to the css files in -custom-css-dir and forces some widgets to show up which are usually only visible under certain circumstances. (default: 0)",
                  ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::GUI);
-    gArgs.AddArg("-windowtitle=<name>", _("Sets a window title which is appended to \"Raptoreum Core - \""),
+    gArgs.AddArg("-windowtitle=<name>", _("Sets a window title which is appended to \"HashmonkeyCoin Core - \""),
                  ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
     gArgs.AddArg("-minrefresh",
                  "Minimize UI refreshes.  Fully confirmed transactions will not update with each new block (default: false)",
@@ -456,8 +456,8 @@ int GuiMain(int argc, char *argv[]) {
     // Do not refer to data directory yet, this can be overridden by Intro::pickDataDirectory
 
     /// 1. Basic Qt initialization (not dependent on parameters or configuration)
-    Q_INIT_RESOURCE(raptoreum);
-    Q_INIT_RESOURCE(raptoreum_locale);
+    Q_INIT_RESOURCE(hashmonkeycoin);
+    Q_INIT_RESOURCE(hashmonkeycoin_locale);
 
     // Generate high-dpi pixmaps
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -535,7 +535,7 @@ int GuiMain(int argc, char *argv[]) {
     if (!Intro::pickDataDirectory(*node))
         return EXIT_SUCCESS;
 
-    /// 6. Determine availability of data and blocks directory and parse raptoreum.conf
+    /// 6. Determine availability of data and blocks directory and parse hashmonkeycoin.conf
     /// - Do not call GetDataDir(true) before this step finishes
     if (!CheckDataDirOption()) {
         node->initError(strprintf("Specified data directory \"%s\" does not exist.\n", gArgs.GetArg("-datadir", "")));
@@ -589,7 +589,7 @@ int GuiMain(int argc, char *argv[]) {
         exit(EXIT_SUCCESS);
 
     // Start up the payment server early, too, so impatient users that click on
-    // raptoreum: links repeatedly have their payment requests routed to this process:
+    // hashmonkeycoin: links repeatedly have their payment requests routed to this process:
     if (WalletModel::isWalletEnabled()) {
         app.createPaymentServer();
     }

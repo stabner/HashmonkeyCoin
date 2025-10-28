@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2019 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -355,7 +355,7 @@ bool CSuperblockManager::GetSuperblockPayments(int nBlockHeight, std::vector <CT
             CTxDestination dest;
             ExtractDestination(payment.script, dest);
 
-            // TODO: PRINT NICE N.N RAPTOREUM OUTPUT
+            // TODO: PRINT NICE N.N HASHMONKEYCOIN OUTPUT
 
             LogPrint(BCLog::GOBJECT,
                      "CSuperblockManager::GetSuperblockPayments -- NEW Superblock: output %d (addr %s, amount %lld)\n",
@@ -520,7 +520,7 @@ void CSuperblock::ParsePaymentSchedule(const std::string &strPaymentAddresses, c
         CTxDestination dest = DecodeDestination(vecParsed1[i]);
         if (!IsValidDestination(dest)) {
             std::ostringstream ostr;
-            ostr << "CSuperblock::ParsePaymentSchedule -- Invalid Raptoreum Address : " << vecParsed1[i];
+            ostr << "CSuperblock::ParsePaymentSchedule -- Invalid HashmonkeyCoin Address : " << vecParsed1[i];
             LogPrintf("%s\n", ostr.str());
             throw std::runtime_error(ostr.str());
         }

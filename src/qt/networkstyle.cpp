@@ -1,6 +1,6 @@
 // Copyright (c) 2014 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -66,7 +66,7 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
     // Allow for separate UI settings for testnets
     QApplication::setApplicationName(appName);
     // load pixmap
-    QPixmap appIconPixmap(":/icons/raptoreum");
+    QPixmap appIconPixmap(":/icons/hashmonkeycoin");
 
     if (iconColorHueShift != 0 && iconColorSaturationReduction != 0) {
         // generate QImage from QPixmap

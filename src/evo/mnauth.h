@@ -1,10 +1,10 @@
 // Copyright (c) 2019 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAPTOREUM_MNAUTH_H
-#define RAPTOREUM_MNAUTH_H
+#ifndef HASHMONKEYCOIN_MNAUTH_H
+#define HASHMONKEYCOIN_MNAUTH_H
 
 #include <bls/bls.h>
 #include <serialize.h>
@@ -61,4 +61,4 @@ public:
 };
 
 
-#endif //RAPTOREUM_MNAUTH_H
+#endif //HASHMONKEYCOIN_MNAUTH_H

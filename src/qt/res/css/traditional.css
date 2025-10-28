@@ -5,7 +5,7 @@ file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 ---------------------------------------------------------------------
 
-This file contains all changes for the raptoreum theme "Traditional".
+This file contains all changes for the hashmonkeycoin theme "Traditional".
 
 NOTE: This file gets not appended to the general.css. The Traditional
 theme is a standalone theme which just fixes some bugs in the OS default
@@ -38,7 +38,7 @@ QToolBar / QToolButton
 
 QToolBar QLabel#lblToolbarLogo {
     padding: 12px;
-    background-image: url(':/images/raptoreum_logo_toolbar_light');
+    background-image: url(':/images/hashmonkeycoin_logo_toolbar_light');
     height: 2.5em;
 }
 

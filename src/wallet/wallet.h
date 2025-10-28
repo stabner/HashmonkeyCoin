@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1011,7 +1011,7 @@ public:
                         const int nMinDepth = 0, const int nMaxDepth = 9999999) const;
 
     void AvailableCoins(std::vector <COutput> &vCoins, std::map <std::string, std::vector<COutput>> &mapAssetCoins,
-                        bool fGetRTM = true, bool fOnlyAssets = false, bool fOnlySafe = true,
+                        bool fGetHMNY = true, bool fOnlyAssets = false, bool fOnlySafe = true,
                         const CCoinControl *coinControl = nullptr, const CAmount &nMinimumAmount = 1,
                         const CAmount &nMaximumAmount = MAX_MONEY, const CAmount &nMinimumSumAmount = MAX_MONEY,
                         const uint64_t nMaximumCount = 0, const int nMinDepth = 0, const int nMaxDepth = 9999999) const
@@ -1076,7 +1076,7 @@ public:
     SelectCoinsGroupedByAddresses(bool fSkipDenominated = true, bool fAnonymizable = true, bool fSkipUnconfirmed = true,
                                   int nMaxOupointsPerAddress = -1) const;
 
-    /// Get collateral RTM output and keys which can be used for the Smartnode
+    /// Get collateral HMNY output and keys which can be used for the Smartnode
     bool GetSmartnodeOutpointAndKeys(COutPoint &outpointRet, CPubKey &pubKeyRet, CKey &keyRet,
                                      const std::string &strTxHash = "", const std::string &strOutputIndex = "");
 

@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 #endif
 
 #include <init.h>
@@ -147,10 +147,10 @@ static const char *DEFAULT_ASMAP_FILENAME = "ip_asn.map";
  * The PID file facilities.
  */
 #ifndef WIN32
-static const char *RAPTOREUM_PID_FILENAME = "raptoreumd.pid";
+static const char *HASHMONKEYCOIN_PID_FILENAME = "hashmonkeycoind.pid";
 
 static fs::path GetPidFile() {
-    return AbsPathForConfigVal(fs::path(gArgs.GetArg("-pid", RAPTOREUM_PID_FILENAME)));
+    return AbsPathForConfigVal(fs::path(gArgs.GetArg("-pid", HASHMONKEYCOIN_PID_FILENAME)));
 }
 
 [[nodiscard]] static bool CreatePidFile() {
@@ -546,7 +546,7 @@ void SetupServerArgs() {
 #ifndef WIN32
     gArgs.AddArg("-pid=<file>", strprintf(
             "Specify pid file. Relative paths will be prefixed by a net-specific datadir location. (default: %s)",
-            RAPTOREUM_PID_FILENAME), ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
+            HASHMONKEYCOIN_PID_FILENAME), ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
 #else
     hidden_args.emplace_back("-pid");
 #endif
@@ -853,11 +853,11 @@ void SetupServerArgs() {
     gArgs.AddArg("-printtoconsole",
                  "Send trace/debug info to console (default: 1 when no -daemon. To disable logging to file, set -nodebuglogfile)",
                  ArgsManager::ALLOW_ANY, OptionsCategory::DEBUG_TEST);
-    gArgs.AddArg("-pushversion", "Protocol version OVERRIDE to report to other Raptoreum nodes", ArgsManager::ALLOW_ANY,
+    gArgs.AddArg("-pushversion", "Protocol version OVERRIDE to report to other HashmonkeyCoin nodes", ArgsManager::ALLOW_ANY,
                  OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-shrinkdebugfile", "Shrink debug.log file on client startup (default: 1 when no -debug)",
                  ArgsManager::ALLOW_ANY, OptionsCategory::DEBUG_TEST);
-    gArgs.AddArg("-sporkaddr=<raptoreumaddress>",
+    gArgs.AddArg("-sporkaddr=<hashmonkeycoinaddress>",
                  "Override spork address. Only useful for regtest and devnet. Using this on mainnet or testnet will ban you.",
                  ArgsManager::ALLOW_ANY, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-sporkkey=<privatekey>", "Set the private key to be used for signing spork messages.",
@@ -878,7 +878,7 @@ void SetupServerArgs() {
                  "Set the smartnode BLS private key and enable the client to act as a smartnode",
                  ArgsManager::ALLOW_ANY, OptionsCategory::SMARTNODE);
     gArgs.AddArg("-platform-user=<user>",
-                 "Set the username for the \"platform user\", a restricted user intended to be used by Raptoreum Platform, to the specified username.",
+                 "Set the username for the \"platform user\", a restricted user intended to be used by HashmonkeyCoin Platform, to the specified username.",
                  ArgsManager::ALLOW_ANY, OptionsCategory::SMARTNODE);
 
     gArgs.AddArg("-acceptnonstdtxn",
@@ -979,8 +979,8 @@ void SetupServerArgs() {
 }
 
 std::string LicenseInfo() {
-    const std::string URL_SOURCE_CODE = "<https://github.com/Raptor3um/raptoreum>";
-    const std::string URL_WEBSITE = "<https://raptoreum.com>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/Raptor3um/hashmonkeycoin>";
+    const std::string URL_WEBSITE = "<https://hashmonkeycoin.com>";
 
     return CopyrightHolders(_("Copyright (C)"), 2014, COPYRIGHT_YEAR) + "\n" +
            "\n" +
@@ -1243,7 +1243,7 @@ void PeriodicStats() {
 }
 
 /** Sanity checks
- *  Ensure that Raptoreum Core is running in a usable environment with all
+ *  Ensure that HashmonkeyCoin Core is running in a usable environment with all
  *  necessary library support.
  */
 static bool InitSanityCheck() {
@@ -1749,7 +1749,7 @@ bool AppInitParameterInteraction() {
 }
 
 static bool LockDataDirectory(bool probeOnly) {
-    // Make sure only a single Raptoreum Core process is using the data directory.
+    // Make sure only a single HashmonkeyCoin Core process is using the data directory.
     fs::path datadir = GetDataDir();
     if (!DirIsWritable(datadir)) {
         return InitError(strprintf(_("Cannot write to data directory '%s'; check permissions."), datadir.string()));
@@ -1842,9 +1842,9 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     if (gArgs.IsArgSet("-datadir") && !fs::path(gArgs.GetArg("-datadir", "")).is_absolute()) {
         LogPrintf(
                 "Warning: relative datadir option '%s' specified, which will be interpreted relative to the " /* Continued */
-                "current working directory '%s'. This is fragile, because if Raptoreum Core is started in the future "
+                "current working directory '%s'. This is fragile, because if HashmonkeyCoin Core is started in the future "
                 "from a different location, it will be unable to locate the current data files. There could "
-                "also be data loss if Raptoreum Core is started while in a temporary directory.\n",
+                "also be data loss if HashmonkeyCoin Core is started while in a temporary directory.\n",
                 gArgs.GetArg("-datadir", ""), fs::current_path().string());
     }
 
@@ -2572,7 +2572,7 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
         }
     }
 
-    // ********************************************************* Step 10c: schedule Raptoreum-specific tasks
+    // ********************************************************* Step 10c: schedule HashmonkeyCoin-specific tasks
 
     node.scheduler->scheduleEvery(std::bind(&CNetFulfilledRequestManager::DoMaintenance, std::ref(netfulfilledman)),
                                   60000); // value in milliseconds

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2023 The HashmonkeyCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,7 +46,7 @@ class CDeterministicMNList;
 
 using CDeterministicMNListPtr = std::shared_ptr<CDeterministicMNList>;
 
-/** Model for Raptoreum network client. */
+/** Model for HashmonkeyCoin network client. */
 class ClientModel : public QObject {
     Q_OBJECT
 
