@@ -114,6 +114,9 @@ if BUILD_BITCOIN_WALLET
 endif
 endif
 
+# Genesis miner
+bin_PROGRAMS += genesis_miner
+
 .PHONY: FORCE check-symbols check-security
 # hashmonkeycoin core #
 BITCOIN_CORE_H = \
@@ -828,6 +831,26 @@ hashmonkeycoin_wallet_LDADD = \
   $(LIBUNIVALUE)
 
 hashmonkeycoin_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
+
+# genesis_miner binary #
+genesis_miner_SOURCES = genesis_miner.cpp
+genesis_miner_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+genesis_miner_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+genesis_miner_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+
+genesis_miner_LDADD = \
+  $(LIBBITCOIN_SERVER) \
+  $(LIBBITCOIN_COMMON) \
+  $(LIBUNIVALUE) \
+  $(LIBBITCOIN_UTIL) \
+  $(LIBBITCOIN_CONSENSUS) \
+  $(LIBBITCOIN_CRYPTO) \
+  $(LIBLEVELDB) \
+  $(LIBLEVELDB_SSE42) \
+  $(LIBMEMENV) \
+  $(LIBSECP256K1)
+
+genesis_miner_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
 #
 
 # hashmonkeycoinconsensus library #
