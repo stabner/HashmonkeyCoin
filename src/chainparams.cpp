@@ -246,13 +246,13 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1730070000, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1730070000, 1268, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1730070000, 0, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xf96216073564a56bbd40147a1d31fcaaba7739f494dfdbcc1f1b02c49c30922c"));
+               uint256S("0x8138c84e43e6d14f931933eaae3c26bd466f8db7ff6fb588bcb842d81889db9b"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x5563b13a46d047a6c93ba44d51b324cd9a45be6a0faa51abfede221b4e6d6ae4"));
+               uint256S("0x26a58f19eb603bc9ccffb862352536f46009b4a5a984ba352e9a72cf6d071826"));
 
         vSeeds.emplace_back("seed.hashmonkeycoin.com");
         vSeeds.emplace_back("seed2.hashmonkeycoin.com");
@@ -419,9 +419,9 @@ public:
 
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x2d2d29f1d74d9331399decd39112611ff41bc49a33c8c9edad8048ab7c9654f1"));
+               uint256S("0xf7767192c0ee09baa9af1e189c6c39af33ef7ede081ff1bddcd4413440a4af4f"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x5563b13a46d047a6c93ba44d51b324cd9a45be6a0faa51abfede221b4e6d6ae4"));
+               uint256S("0xb09f57b9dec90fbcfb2e4b2adc4a25511dfcfce43d14f446d82a8c3d5488d216"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
