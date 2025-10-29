@@ -18,6 +18,7 @@
 #include "crypto/common.h"
 #include "hash.h"
 #include "arith_uint256.h"
+#include "consensus/merkle.h"
 
 using namespace std;
 
@@ -51,7 +52,7 @@ CBlock CreateGenesisBlock(const string& pszTimestamp, const CScript& genesisOutp
     genesis.nBits = nBits;
     genesis.nNonce = nNonce;
     genesis.nVersion = nVersion;
-    genesis.vtx.push_back(txNew);
+    genesis.vtx.push_back(MakeTransactionRef(txNew));
     genesis.hashPrevBlock.SetNull();
 
     // compute merkle root
@@ -79,9 +80,9 @@ int main(int argc, char** argv)
     for (int i = 1; i < argc; ++i) {
         string a = argv[i];
         if (a == "-t" && i+1 < argc) { pszTimestamp = argv[++i]; }
-        else if (a == "-time" && i+1 < argc) { nTime = (uint32_t)atoi(argv[++i].c_str()); }
-        else if (a == "-bits" && i+1 < argc) { nBits = (uint32_t)strtoul(argv[++i].c_str(), nullptr, 0); }
-        else if (a == "-nonce" && i+1 < argc) { nNonce = (uint32_t)strtoul(argv[++i].c_str(), nullptr, 0); }
+        else if (a == "-time" && i+1 < argc) { nTime = (uint32_t)atoi(argv[++i]); }
+        else if (a == "-bits" && i+1 < argc) { nBits = (uint32_t)strtoul(argv[++i], nullptr, 0); }
+        else if (a == "-nonce" && i+1 < argc) { nNonce = (uint32_t)strtoul(argv[++i], nullptr, 0); }
     }
 
     cout << "Starting HashmonkeyCoin genesis miner\n";
