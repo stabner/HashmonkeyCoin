@@ -250,9 +250,9 @@ public:
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xf96216073564a56bbd40147a1d31fcaaba7739f494dfdbcc1f1b02c49c30922c"));
+               uint256S("0xb69b0c71cd059f534595ef6f8b6ab81066ad8c8f9ccebfe14a9482d3a55c150d"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x5563b13a46d047a6c93ba44d51b324cd9a45be6a0faa51abfede221b4e6d6ae4"));
+               uint256S("0x26a58f19eb603bc9ccffb862352536f46009b4a5a984ba352e9a72cf6d071826"));
 
         vSeeds.emplace_back("seed.hashmonkeycoin.com");
         vSeeds.emplace_back("seed2.hashmonkeycoin.com");
