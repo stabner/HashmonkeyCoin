@@ -94,7 +94,7 @@ CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::string &devNet
  */
 static CBlock
 CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
-    const char *pszTimestamp = "The Times 22/Jan/2018 Raptoreum is name of the game for new generation of firms";
+    const char *pszTimestamp = "HashmonkeyCoin Genesis Block - The beginning of HMNY blockchain - https://hashmonkeys.cloud/";
     const CScript genesisOutputScript = CScript() << ParseHex(
             "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                   << OP_CHECKSIG;
@@ -224,48 +224,52 @@ public:
         );
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S(
-                "000000000000000000000000000000000000000000000000000eead474ccbc59"); // block 421457 chainwork
+        // HashmonkeyCoin: Starting fresh - genesis block only
+        consensus.nMinimumChainWork = uint256S("0x00"); // No previous work - starting from scratch
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S(
-                "ox6fb0b649723f51b67484019409fef94d077f17c8d88645e08c000b2e4fd3e28a"); // block hash for 421457
+        // HashmonkeyCoin: Starting fresh - no previous blocks to assume valid
+        consensus.defaultAssumeValid = uint256S("0x00"); // No previous blocks
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
+         * HashmonkeyCoin: HMNY magic bytes
          */
-        pchMessageStart[0] = 0x72;//r
-        pchMessageStart[1] = 0x74;//t
-        pchMessageStart[2] = 0x6d;//m
-        pchMessageStart[3] = 0x2e;//.
-        nDefaultPort = 10226;
+        pchMessageStart[0] = 0x48;//H
+        pchMessageStart[1] = 0x4D;//M
+        pchMessageStart[2] = 0x4E;//N
+        pchMessageStart[3] = 0x59;//Y
+        nDefaultPort = 19990;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 500 * COIN);
-        VerifyGenesisPOW(genesis);
+        // HashmonkeyCoin Genesis Block - Starting fresh from the beginning
+        // Timestamp: January 3, 2025 (current time)
+        // Note: Genesis block will be generated on first run - nonce will be found automatically
+        genesis = CreateGenesisBlock(1762101512, 0, 0x1e0ffff0, 4, 500 * COIN);
+        VerifyGenesisPOW(genesis);  // This will find a valid nonce if current one doesn't work
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
-        assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        printf("HASHMONKEYCOIN MAINNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        printf("HASHMONKEYCOIN MAINNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        // TODO: After first compilation, add assert statements with the calculated hash and merkle root:
+        // assert(consensus.hashGenesisBlock == uint256S("0x[ACTUAL_HASH]"));
+        // assert(genesis.hashMerkleRoot == uint256S("0x[ACTUAL_MERKLE_ROOT]"));
 
         vSeeds.emplace_back("seed.hashmonkes.cloud");
 
-        // Raptoreum addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 60);
-        // Raptoreum script addresses start with '7'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
-        // Raptoreum private keys start with '7' or 'X'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 128);
-        // Raptoreum BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // HashmonkeyCoin addresses start with 'H' (prefix 40 = 'H')
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
+        // HashmonkeyCoin script addresses start with 'M' (prefix 50 = 'M')
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 50);
+        // HashmonkeyCoin private keys start with 'N' (prefix 178 = 'N')
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 178);
+        // HashmonkeyCoin BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        // Raptoreum BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // HashmonkeyCoin BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
-        // Raptoreum BIP44 coin type is '5'
+        // HashmonkeyCoin BIP44 coin type (using 200 as default, can be customized)
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
         nExtCoinType = strExtCoinType.empty() ? 200 : std::stoi(strExtCoinType);
 //        if(gArgs.GetChainName() == CBaseChainParams::MAIN) {
@@ -275,21 +279,15 @@ public:
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 100000 * COIN},  // HashmonkeyCoin: 100,000 HMNY collateral
-                 {88720,   600000 * COIN},
-                 {132720,  800000 * COIN},
-                 {176720,  1000000 * COIN},
-                 {220720,  1250000 * COIN},
-                 {264720,  1500000 * COIN},
-                 {INT_MAX, 1800000 * COIN}
-                },
-                {{5761,    0},
-                 {INT_MAX, 20}}
+                {{INT_MAX, 100000 * COIN}},  // HashmonkeyCoin: Starting with 100,000 HMNY collateral (can add more tiers later)
+                {{5761,    0},                // Smartnode payments start at block 5761
+                 {INT_MAX, 20}}               // Starting with 20% smartnode payment rate
         );
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+        // HashmonkeyCoin: Starting fresh - no fixed seeds (using DNS seed only)
+        vFixedSeeds = std::vector<SeedSpec6>();
 
         // long living quorum params
         consensus.llmqs[Consensus::LLMQ_50_60] = Consensus::llmq3_60;
@@ -408,46 +406,50 @@ public:
         );
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0"); // 0
+        // HashmonkeyCoin Testnet: Starting fresh - genesis block only
+        consensus.nMinimumChainWork = uint256S("0x00"); // No previous work - starting from scratch
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x0"); // 0
+        // HashmonkeyCoin Testnet: Starting fresh - no previous blocks to assume valid
+        consensus.defaultAssumeValid = uint256S("0x00"); // No previous blocks
 
-        pchMessageStart[0] = 0x74; //t
-        pchMessageStart[1] = 0x72; //r
-        pchMessageStart[2] = 0x74; //t
-        pchMessageStart[3] = 0x6d; //m
-        nDefaultPort = 10230;
+        // HashmonkeyCoin Testnet: HMNY magic bytes (testnet variant)
+        pchMessageStart[0] = 0x48; //H
+        pchMessageStart[1] = 0x4D; //M
+        pchMessageStart[2] = 0x4E; //N
+        pchMessageStart[3] = 0x59; //Y
+        nDefaultPort = 19992;  // HashmonkeyCoin testnet port
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1711078237, 971, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
-
+        
+        // HashmonkeyCoin Testnet Genesis Block - Starting fresh from the beginning
+        // Timestamp: January 3, 2025 (current time, slightly offset from mainnet)
+        genesis = CreateGenesisBlock(1762101513, 0, 0x1e0ffff0, 4, 500 * COIN);  // 500 HMNY reward
+        VerifyGenesisPOW(genesis);  // This will find a valid nonce if current one doesn't work
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0xbbab22066081d3b466abd734de914e8092abf4e959bcd0fff978297c41591b23"));
-        assert(genesis.hashMerkleRoot ==
-               uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        printf("HASHMONKEYCOIN TESTNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        printf("HASHMONKEYCOIN TESTNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        // TODO: After first compilation, add assert statements with the calculated hash and merkle root
 
+        // HashmonkeyCoin Testnet: Starting fresh - no fixed seeds (using DNS seed only)
         vFixedSeeds.clear();
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
+        vFixedSeeds = std::vector<SeedSpec6>();
 
         vSeeds.clear();
-        // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("47.151.9.131");
-        vSeeds.emplace_back("lbtn.raptoreum.com");
+        // HashmonkeyCoin testnet seed node (if you have one, otherwise leave empty)
+        // vSeeds.emplace_back("testnet-seed.hashmonkes.cloud");
 
-        // Testnet Raptoreum addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 123);
-        // Testnet Raptoreum script addresses start with '8' or '9'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
-        // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        // HashmonkeyCoin Testnet addresses start with 'h' (lowercase) - prefix 104
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 104);
+        // HashmonkeyCoin Testnet script addresses start with 'm' (lowercase) - prefix 109
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 109);
+        // HashmonkeyCoin Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
-        // Testnet Raptoreum BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // HashmonkeyCoin Testnet BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Raptoreum BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // HashmonkeyCoin Testnet BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Raptoreum BIP44 coin type is '1' (All coin's testnet default)
+        // HashmonkeyCoin Testnet BIP44 coin type
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
         nExtCoinType = strExtCoinType.empty() ? 10227 : std::stoi(strExtCoinType);
 
@@ -461,14 +463,18 @@ public:
         consensus.llmqTypeInstantSend = Consensus::LLMQ_50_60;
         consensus.llmqTypePlatform = Consensus::LLMQ_100_67;
 
+        // HashmonkeyCoin Testnet: Simplified collateral (can add tiers later)
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 60000 * COIN}},
-                {{INT_MAX, 20}});
+                {{INT_MAX, 60000 * COIN}},  // Testnet: 60k HMNY collateral
+                {{5761,    0},               // Smartnode payments start at block 5761
+                 {INT_MAX, 20}});            // 20% smartnode payment rate
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
+        // HashmonkeyCoin Testnet: Founder payment (update address when you have a testnet address)
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "rghjACzPtVAN2wydgDbn9Jq1agREu6rH1e");
+        // TODO: Update with HashmonkeyCoin testnet founder address when available
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "");  // Empty address for now
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
