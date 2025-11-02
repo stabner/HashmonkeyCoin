@@ -1183,7 +1183,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../raptoreum.qrc"/>
+  <include location="../hashmonkeycoin.qrc"/>
  </resources>
  <connections/>
  <buttongroups>

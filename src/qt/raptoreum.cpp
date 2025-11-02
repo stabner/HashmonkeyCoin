@@ -116,11 +116,11 @@ static void initTranslations(QTranslator &qtTranslatorBase, QTranslator &qtTrans
     if (qtTranslator.load("qt_" + lang_territory, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
         QApplication::installTranslator(&qtTranslator);
 
-    // Load e.g. bitcoin_de.qm (shortcut "de" needs to be defined in raptoreum.qrc)
+    // Load e.g. bitcoin_de.qm (shortcut "de" needs to be defined in hashmonkeycoin.qrc)
     if (translatorBase.load(lang, ":/translations/"))
         QApplication::installTranslator(&translatorBase);
 
-    // Load e.g. bitcoin_de_DE.qm (shortcut "de_DE" needs to be defined in raptoreum.qrc)
+    // Load e.g. bitcoin_de_DE.qm (shortcut "de_DE" needs to be defined in hashmonkeycoin.qrc)
     if (translator.load(lang_territory, ":/translations/"))
         QApplication::installTranslator(&translator);
 }
@@ -456,8 +456,8 @@ int GuiMain(int argc, char *argv[]) {
     // Do not refer to data directory yet, this can be overridden by Intro::pickDataDirectory
 
     /// 1. Basic Qt initialization (not dependent on parameters or configuration)
-    Q_INIT_RESOURCE(raptoreum);
-    Q_INIT_RESOURCE(raptoreum_locale);
+    Q_INIT_RESOURCE(hashmonkeycoin);
+    Q_INIT_RESOURCE(hashmonkeycoin_locale);
 
     // Generate high-dpi pixmaps
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
