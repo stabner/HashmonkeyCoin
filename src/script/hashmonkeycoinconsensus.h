@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_RAPTOREUMCONSENSUS_H
-#define BITCOIN_RAPTOREUMCONSENSUS_H
+#ifndef BITCOIN_HASHMONKEYCOINCONSENSUS_H
+#define BITCOIN_HASHMONKEYCOINCONSENSUS_H
 
 #include <stdint.h>
 
@@ -19,7 +19,7 @@
 #elif defined(HAVE_DEFAULT_VISIBILITY_ATTRIBUTE)
 #define EXPORT_SYMBOL __attribute__ ((visibility ("default")))
 #endif
-#elif defined(MSC_VER) && !defined(STATIC_LIBRAPTOREUMCONSENSUS)
+#elif defined(MSC_VER) && !defined(STATIC_LIBHASHMONKEYCOINCONSENSUS)
 #define EXPORT_SYMBOL __declspec(dllimport)
 #endif
 
@@ -31,39 +31,39 @@
 extern "C" {
 #endif
 
-#define RAPTOREUMCONSENSUS_API_VER 0
+#define HASHMONKEYCOINCONSENSUS_API_VER 0
 
-typedef enum raptoreumconsensus_error_t {
-    raptoreumconsensus_ERR_OK = 0,
-    raptoreumconsensus_ERR_TX_INDEX,
-    raptoreumconsensus_ERR_TX_SIZE_MISMATCH,
-    raptoreumconsensus_ERR_TX_DESERIALIZE,
-    raptoreumconsensus_ERR_INVALID_FLAGS,
-} raptoreumconsensus_error;
+typedef enum hashmonkeycoinconsensus_error_t {
+    hashmonkeycoinconsensus_ERR_OK = 0,
+    hashmonkeycoinconsensus_ERR_TX_INDEX,
+    hashmonkeycoinconsensus_ERR_TX_SIZE_MISMATCH,
+    hashmonkeycoinconsensus_ERR_TX_DESERIALIZE,
+    hashmonkeycoinconsensus_ERR_INVALID_FLAGS,
+} hashmonkeycoinconsensus_error;
 
 /** Script verification flags */
 enum {
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_NONE = 0,
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_P2SH = (1U << 0), // evaluate P2SH (BIP16) subscripts
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_DERSIG = (1U << 2), // enforce strict DER (BIP66) compliance
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY = (1U << 4), // enforce NULLDUMMY (BIP147)
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 9), // enable CHECKLOCKTIMEVERIFY (BIP65)
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY = (1U << 10), // enable CHECKSEQUENCEVERIFY (BIP112)
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_ALL =
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_P2SH | raptoreumconsensus_SCRIPT_FLAGS_VERIFY_DERSIG |
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY | raptoreumconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY |
-    raptoreumconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_NONE = 0,
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_P2SH = (1U << 0), // evaluate P2SH (BIP16) subscripts
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_DERSIG = (1U << 2), // enforce strict DER (BIP66) compliance
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY = (1U << 4), // enforce NULLDUMMY (BIP147)
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 9), // enable CHECKLOCKTIMEVERIFY (BIP65)
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY = (1U << 10), // enable CHECKSEQUENCEVERIFY (BIP112)
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_ALL =
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_P2SH | hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_DERSIG |
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY | hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY |
+    hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY
 };
 
 /// Returns 1 if the input nIn of the serialized transaction pointed to by
 /// txTo correctly spends the scriptPubKey pointed to by scriptPubKey under
 /// the additional constraints specified by flags.
 /// If not nullptr, err will contain an error/success code for the operation
-EXPORT_SYMBOL int raptoreumconsensus_verify_script(const unsigned char *scriptPubKey, unsigned int scriptPubKeyLen,
+EXPORT_SYMBOL int hashmonkeycoinconsensus_verify_script(const unsigned char *scriptPubKey, unsigned int scriptPubKeyLen,
                                                    const unsigned char *txTo, unsigned int txToLen,
-                                                   unsigned int nIn, unsigned int flags, raptoreumconsensus_error *err);
+                                                   unsigned int nIn, unsigned int flags, hashmonkeycoinconsensus_error *err);
 
-EXPORT_SYMBOL unsigned int raptoreumconsensus_version();
+EXPORT_SYMBOL unsigned int hashmonkeycoinconsensus_version();
 
 #ifdef __cplusplus
 } // extern "C"
@@ -71,4 +71,4 @@ EXPORT_SYMBOL unsigned int raptoreumconsensus_version();
 
 #undef EXPORT_SYMBOL
 
-#endif // BITCOIN_RAPTOREUMCONSENSUS_H
+#endif // BITCOIN_HASHMONKEYCOINCONSENSUS_H

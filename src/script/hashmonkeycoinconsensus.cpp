@@ -3,7 +3,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <script/raptoreumconsensus.h>
+#include <script/hashmonkeycoinconsensus.h>
 
 #include <primitives/transaction.h>
 #include <pubkey.h>
@@ -53,7 +53,7 @@ namespace {
         size_t m_remaining;
     };
 
-    inline int set_error(raptoreumconsensus_error *ret, raptoreumconsensus_error serror) {
+    inline int set_error(hashmonkeycoinconsensus_error *ret, hashmonkeycoinconsensus_error serror) {
         if (ret)
             *ret = serror;
         return 0;
@@ -68,36 +68,36 @@ namespace {
 
 /** Check that all specified flags are part of the libconsensus interface. */
 static bool verify_flags(unsigned int flags) {
-    return (flags & ~(raptoreumconsensus_SCRIPT_FLAGS_VERIFY_ALL)) == 0;
+    return (flags & ~(hashmonkeycoinconsensus_SCRIPT_FLAGS_VERIFY_ALL)) == 0;
 }
 
-int raptoreumconsensus_verify_script(const unsigned char *scriptPubKey, unsigned int scriptPubKeyLen,
+int hashmonkeycoinconsensus_verify_script(const unsigned char *scriptPubKey, unsigned int scriptPubKeyLen,
                                      const unsigned char *txTo, unsigned int txToLen,
-                                     unsigned int nIn, unsigned int flags, raptoreumconsensus_error *err) {
+                                     unsigned int nIn, unsigned int flags, hashmonkeycoinconsensus_error *err) {
     if (!verify_flags(flags)) {
-        return raptoreumconsensus_ERR_INVALID_FLAGS;
+        return hashmonkeycoinconsensus_ERR_INVALID_FLAGS;
     }
     try {
         TxInputStream stream(SER_NETWORK, PROTOCOL_VERSION, txTo, txToLen);
         CTransaction tx(deserialize, stream);
         if (nIn >= tx.vin.size())
-            return set_error(err, raptoreumconsensus_ERR_TX_INDEX);
+            return set_error(err, hashmonkeycoinconsensus_ERR_TX_INDEX);
         if (GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION) != txToLen)
-            return set_error(err, raptoreumconsensus_ERR_TX_SIZE_MISMATCH);
+            return set_error(err, hashmonkeycoinconsensus_ERR_TX_SIZE_MISMATCH);
 
         // Regardless of the verification result, the tx did not error.
-        set_error(err, raptoreumconsensus_ERR_OK);
+        set_error(err, hashmonkeycoinconsensus_ERR_OK);
 
         PrecomputedTransactionData txdata(tx);
         CAmount am(0);
         return VerifyScript(tx.vin[nIn].scriptSig, CScript(scriptPubKey, scriptPubKey + scriptPubKeyLen), flags,
                             TransactionSignatureChecker(&tx, nIn, am, txdata), nullptr);
     } catch (const std::exception &) {
-        return set_error(err, raptoreumconsensus_ERR_TX_DESERIALIZE); // Error deserializing
+        return set_error(err, hashmonkeycoinconsensus_ERR_TX_DESERIALIZE); // Error deserializing
     }
 }
 
-unsigned int raptoreumconsensus_version() {
+unsigned int hashmonkeycoinconsensus_version() {
     // Just use the API version for now
-    return RAPTOREUMCONSENSUS_API_VER;
+    return HASHMONKEYCOINCONSENSUS_API_VER;
 }
