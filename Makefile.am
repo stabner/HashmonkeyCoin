@@ -20,7 +20,7 @@ export PYTHONPATH
 
 if BUILD_BITCOIN_LIBS
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libraptoreumconsensus.pc
+pkgconfig_DATA = libhashmonkeycoinconsensus.pc
 endif
 
 BITCOIND_BIN=$(top_builddir)/src/$(BITCOIN_DAEMON_NAME)$(EXEEXT)
@@ -32,16 +32,16 @@ BITCOIN_WIN_INSTALLER=$(PACKAGE)-$(PACKAGE_VERSION)-win64-setup$(EXEEXT)
 empty :=
 space := $(empty) $(empty)
 
-OSX_APP=Raptoreum-Qt.app
+OSX_APP=HashmonkeyCoin-Qt.app
 OSX_VOLNAME = $(subst $(space),-,$(PACKAGE_NAME))
 OSX_DMG = $(OSX_VOLNAME).dmg
 OSX_DEPLOY_SCRIPT=$(top_srcdir)/contrib/macdeploy/macdeployqtplus
-OSX_INSTALLER_ICONS=$(top_srcdir)/src/qt/res/icons/raptoreum.icns
+OSX_INSTALLER_ICONS=$(top_srcdir)/src/qt/res/icons/hashmonkeycoin.icns
 OSX_PLIST=$(top_builddir)/share/qt/Info.plist #not installed
 
 DIST_DOCS = $(wildcard doc/*.md) $(wildcard doc/release-notes/*.md)
-DIST_CONTRIB = $(top_srcdir)/contrib/raptoreum-cli.bash-completion \
-	       $(top_srcdir)/contrib/raptoreumd.bash-completion \
+DIST_CONTRIB = $(top_srcdir)/contrib/hashmonkeycoin-cli.bash-completion \
+	       $(top_srcdir)/contrib/hashmonkeycoind.bash-completion \
 	       $(top_srcdir)/contrib/init
 DIST_SHARE = \
   $(top_srcdir)/share/genbuild.sh \

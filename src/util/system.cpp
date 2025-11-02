@@ -79,7 +79,7 @@ const std::string gCoinJoinName = "CoinJoin";
 */
 int nWalletBackups = 10;
 
-const char *const BITCOIN_CONF_FILENAME = "raptoreum.conf";
+const char *const BITCOIN_CONF_FILENAME = "hashmonkeycoin.conf";
 
 ArgsManager gArgs;
 
@@ -711,13 +711,13 @@ void PrintExceptionContinue(const std::exception_ptr pex, const char *pszExcepti
 }
 
 fs::path GetDefaultDataDir() {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\RaptoreumCore
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\RaptoreumCore
-    // Mac: ~/Library/Application Support/RaptoreumCore
-    // Unix: ~/.raptoreumcore
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\HashmonkeyCoin
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\HashmonkeyCoin
+    // Mac: ~/Library/Application Support/HashmonkeyCoin
+    // Unix: ~/.hashmonkeycoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "RaptoreumCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "HashmonkeyCoin";
 #else
     fs::path pathRet;
     char *pszHome = getenv("HOME");
@@ -727,10 +727,10 @@ fs::path GetDefaultDataDir() {
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/RaptoreumCore";
+    return pathRet / "Library/Application Support/HashmonkeyCoin";
 #else
     // Unix
-    return pathRet / ".raptoreumcore";
+    return pathRet / ".hashmonkeycoin";
 #endif
 #endif
 }

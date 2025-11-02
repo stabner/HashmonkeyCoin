@@ -245,7 +245,7 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1614369600, 1130, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
@@ -253,8 +253,7 @@ public:
         assert(genesis.hashMerkleRoot ==
                uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
-        vSeeds.emplace_back("lbdn.raptoreum.com");
-        vSeeds.emplace_back("51.89.21.112");
+        vSeeds.emplace_back("seed.hashmonkes.cloud");
 
         // Raptoreum addresses start with 'r'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 60);
@@ -276,7 +275,8 @@ public:
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{88720,   600000 * COIN},
+                {{INT_MAX, 100000 * COIN},  // HashmonkeyCoin: 100,000 HMNY collateral
+                 {88720,   600000 * COIN},
                  {132720,  800000 * COIN},
                  {176720,  1000000 * COIN},
                  {220720,  1250000 * COIN},

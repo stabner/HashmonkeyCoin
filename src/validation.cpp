@@ -1089,7 +1089,7 @@ GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consens
     //     std::cout << "This is Testnet only build" << endl;
     //     exit(1);
     // }
-    double nSubsidy = 5000;      // (declaring the reward variable and its original/default amount)
+    CAmount nSubsidy = 500 * COIN;  // HashmonkeyCoin: 500 HMNY per block
     const short owlings = 21262; // amount of blocks between 2 owlings
     int multiplier;              // integer number of owlings
     int tempHeight;              // number of blocks since last anchor

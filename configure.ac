@@ -6,10 +6,10 @@ define(_CLIENT_VERSION_BUILD, 01)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2024)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Raptoreum Core]])
-AC_INIT([Raptoreum Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/Raptor3um/raptoreum/issues],[raptoreumcore],[https://raptoreum.com/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[HashmonkeyCoin Core]])
+AC_INIT([HashmonkeyCoin Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/stabner/HashmonkeyCoin/issues],[hashmonkeycoin],[https://hashmonkeys.cloud/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
-AC_CONFIG_HEADERS([src/config/raptoreum-config.h])
+AC_CONFIG_HEADERS([src/config/hashmonkeycoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
@@ -19,10 +19,10 @@ if test "$PKG_CONFIG" = ""; then
   AC_MSG_ERROR([pkg-config not found])
 fi
 
-BITCOIN_DAEMON_NAME=raptoreumd
-BITCOIN_GUI_NAME=raptoreum-qt
-BITCOIN_CLI_NAME=raptoreum-cli
-BITCOIN_WALLET_TOOL_NAME=raptoreum-wallet
+BITCOIN_DAEMON_NAME=hashmonkeycoind
+BITCOIN_GUI_NAME=hashmonkeycoin-qt
+BITCOIN_CLI_NAME=hashmonkeycoin-cli
+BITCOIN_WALLET_TOOL_NAME=hashmonkeycoin-wallet
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR([ARFLAGS], [Flags for the archiver, defaults to <cr> if not set])
