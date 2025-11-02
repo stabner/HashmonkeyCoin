@@ -32,9 +32,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef RAPTOREUM_CONFIG_H])
-AH_TOP([#define RAPTOREUM_CONFIG_H])
-AH_BOTTOM([#endif //RAPTOREUM_CONFIG_H])
+AH_TOP([#ifndef HASHMONKEYCOIN_CONFIG_H])
+AH_TOP([#define HASHMONKEYCOIN_CONFIG_H])
+AH_BOTTOM([#endif //HASHMONKEYCOIN_CONFIG_H])
 
 dnl Automake init set-up and checks
 AM_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])

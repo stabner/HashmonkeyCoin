@@ -6,7 +6,7 @@
 
 #include <shutdown.h>
 
-#include <config/raptoreum-config.h>
+#include <config/hashmonkeycoin-config.h>
 
 #include <assert.h>
 #include <atomic>
