@@ -35,41 +35,41 @@ endif #ENABLE_STACKTRACES
 BITCOIN_INCLUDES=-I$(builddir) -I$(srcdir)/secp256k1/include -I$(srcdir)/$(UNIVALUE_INCLUDE_DIR_INT) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
 BITCOIN_INCLUDES+=-I$(srcdir)/dashbls/include -I$(srcdir)/dashbls/depends/relic/include -I$(srcdir)/dashbls/depends/minialloc/include
 
-LIBBITCOIN_SERVER=libraptoreum_server.a
-LIBBITCOIN_COMMON=libraptoreum_common.a
-LIBBITCOIN_CONSENSUS=libraptoreum_consensus.a
-LIBBITCOIN_CLI=libraptoreum_cli.a
-LIBBITCOIN_UTIL=libraptoreum_util.a
-LIBBITCOIN_CRYPTO=crypto/libraptoreum_crypto.a
-LIBBITCOINQT=qt/libraptoreumqt.a
+LIBBITCOIN_SERVER=libhashmonkeycoin_server.a
+LIBBITCOIN_COMMON=libhashmonkeycoin_common.a
+LIBBITCOIN_CONSENSUS=libhashmonkeycoin_consensus.a
+LIBBITCOIN_CLI=libhashmonkeycoin_cli.a
+LIBBITCOIN_UTIL=libhashmonkeycoin_util.a
+LIBBITCOIN_CRYPTO=crypto/libhashmonkeycoin_crypto.a
+LIBBITCOINQT=qt/libhashmonkeycoinqt.a
 LIBDASHBLS=dashbls/libdashbls.la
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libraptoreum_zmq.a
+LIBBITCOIN_ZMQ=libhashmonkeycoin_zmq.a
 endif
 if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libraptoreumconsensus.la
+LIBBITCOINCONSENSUS=libhashmonkeycoinconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libraptoreum_wallet.a
-LIBBITCOIN_WALLET_TOOL=libraptoreum_wallet_tool.a
+LIBBITCOIN_WALLET=libhashmonkeycoin_wallet.a
+LIBBITCOIN_WALLET_TOOL=libhashmonkeycoin_wallet_tool.a
 endif
 
 if ENABLE_SSE41
-LIBBITCOIN_CRYPTO_SSE41 = crypto/libraptoreum_crypto_sse41.a
+LIBBITCOIN_CRYPTO_SSE41 = crypto/libhashmonkeycoin_crypto_sse41.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SSE41)
 endif
 if ENABLE_AVX2
-LIBBITCOIN_CRYPTO_AVX2 = crypto/libraptoreum_crypto_avx2.a
+LIBBITCOIN_CRYPTO_AVX2 = crypto/libhashmonkeycoin_crypto_avx2.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_AVX2)
 endif
 if ENABLE_X86_SHANI
-LIBBITCOIN_CRYPTO_X86_SHANI = crypto/libraptoreum_crypto_x86_shani.a
+LIBBITCOIN_CRYPTO_X86_SHANI = crypto/libhashmonkeycoin_crypto_x86_shani.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_X86_SHANI)
 endif
 if ENABLE_ARM_SHANI
-LIBBITCOIN_CRYPTO_ARM_SHANI = crypto/libraptoreum_crypto_arm_shani.a
+LIBBITCOIN_CRYPTO_ARM_SHANI = crypto/libhashmonkeycoin_crypto_arm_shani.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_ARM_SHANI)
 endif
 
@@ -101,21 +101,21 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += raptoreumd
+  bin_PROGRAMS += hashmonkeycoind
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += raptoreum-cli
+  bin_PROGRAMS += hashmonkeycoin-cli
 endif
 
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += raptoreum-wallet
+  bin_PROGRAMS += hashmonkeycoin-wallet
 endif
 endif
 
 .PHONY: FORCE check-symbols check-security
-# raptoreum core #
+# hashmonkeycoin core #
 BITCOIN_CORE_H = \
   addrdb.h \
   addressindex.h \
@@ -339,15 +339,15 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libraptoreum_util_a-clientversion.$(OBJEXT): obj/build.h
+libhashmonkeycoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between raptoreumd and raptoreum-qt
+# server: shared between hashmonkeycoind and hashmonkeycoin-qt
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and GUI code (see node/README.md). Shared code should go in
-# libraptoreum_common or libraptoreum_util libraries instead.
-libraptoreum_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libraptoreum_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_server_a_SOURCES = \
+# libhashmonkeycoin_common or libhashmonkeycoin_util libraries instead.
+libhashmonkeycoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libhashmonkeycoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   banman.cpp \
@@ -447,16 +447,16 @@ libraptoreum_server_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if ENABLE_WALLET
-libraptoreum_server_a_SOURCES += wallet/init.cpp
+libhashmonkeycoin_server_a_SOURCES += wallet/init.cpp
 endif
 if !ENABLE_WALLET
-libraptoreum_server_a_SOURCES += dummywallet.cpp
+libhashmonkeycoin_server_a_SOURCES += dummywallet.cpp
 endif
 
 if ENABLE_ZMQ
-libraptoreum_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-libraptoreum_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_zmq_a_SOURCES = \
+libhashmonkeycoin_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libhashmonkeycoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp \
@@ -464,11 +464,11 @@ libraptoreum_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between raptoreumd and raptoreum-qt, but only linked
+# wallet: shared between hashmonkeycoind and hashmonkeycoin-qt, but only linked
 # when wallet enabled
-libraptoreum_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libraptoreum_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_wallet_a_SOURCES = \
+libhashmonkeycoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libhashmonkeycoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_wallet_a_SOURCES = \
   coinjoin/coinjoin-client.cpp \
   coinjoin/coinjoin-client-options.cpp \
   coinjoin/coinjoin-util.cpp \
@@ -490,16 +490,16 @@ libraptoreum_wallet_a_SOURCES = \
   wallet/coinselection.cpp \
   $(BITCOIN_CORE_H)
 
-libraptoreum_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libraptoreum_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_wallet_tool_a_SOURCES = \
+libhashmonkeycoin_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libhashmonkeycoin_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_wallet_tool_a_SOURCES = \
   wallet/wallettool.cpp \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libraptoreum_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
-crypto_libraptoreum_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
-crypto_libraptoreum_crypto_a_SOURCES = \
+crypto_libhashmonkeycoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
+crypto_libhashmonkeycoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
+crypto_libhashmonkeycoin_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha_poly_aead.h \
@@ -561,22 +561,22 @@ crypto_libraptoreum_crypto_a_SOURCES = \
   crypto/sha512.h
 
 if USE_ASM
-crypto_libraptoreum_crypto_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libhashmonkeycoin_crypto_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
-crypto_libraptoreum_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libraptoreum_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libraptoreum_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
-crypto_libraptoreum_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
-crypto_libraptoreum_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
+crypto_libhashmonkeycoin_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libhashmonkeycoin_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libhashmonkeycoin_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
+crypto_libhashmonkeycoin_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
+crypto_libhashmonkeycoin_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
 
-crypto_libraptoreum_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libraptoreum_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libraptoreum_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
-crypto_libraptoreum_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
-crypto_libraptoreum_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
+crypto_libhashmonkeycoin_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libhashmonkeycoin_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libhashmonkeycoin_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
+crypto_libhashmonkeycoin_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
+crypto_libhashmonkeycoin_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
 
-crypto_libraptoreum_crypto_a_SOURCES += \
+crypto_libhashmonkeycoin_crypto_a_SOURCES += \
   cryptonote/aesb.c \
   cryptonote/c_blake256.c \
   cryptonote/c_groestl.c \
@@ -604,22 +604,22 @@ crypto_libraptoreum_crypto_a_SOURCES += \
   cryptonote/wild_keccak.h \
   cryptonote/warnings.h
 
-crypto_libraptoreum_crypto_x86_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libraptoreum_crypto_x86_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libraptoreum_crypto_x86_shani_a_CXXFLAGS += $(X86_SHANI_CXXFLAGS)
-crypto_libraptoreum_crypto_x86_shani_a_CPPFLAGS += -DENABLE_X86_SHANI
-crypto_libraptoreum_crypto_x86_shani_a_SOURCES = crypto/sha256_x86_shani.cpp
+crypto_libhashmonkeycoin_crypto_x86_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libhashmonkeycoin_crypto_x86_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libhashmonkeycoin_crypto_x86_shani_a_CXXFLAGS += $(X86_SHANI_CXXFLAGS)
+crypto_libhashmonkeycoin_crypto_x86_shani_a_CPPFLAGS += -DENABLE_X86_SHANI
+crypto_libhashmonkeycoin_crypto_x86_shani_a_SOURCES = crypto/sha256_x86_shani.cpp
 
-crypto_libraptoreum_crypto_arm_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libraptoreum_crypto_arm_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libraptoreum_crypto_arm_shani_a_CXXFLAGS += $(ARM_SHANI_CXXFLAGS)
-crypto_libraptoreum_crypto_arm_shani_a_CPPFLAGS += -DENABLE_ARM_SHANI
-crypto_libraptoreum_crypto_arm_shani_a_SOURCES = crypto/sha256_arm_shani.cpp
+crypto_libhashmonkeycoin_crypto_arm_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libhashmonkeycoin_crypto_arm_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libhashmonkeycoin_crypto_arm_shani_a_CXXFLAGS += $(ARM_SHANI_CXXFLAGS)
+crypto_libhashmonkeycoin_crypto_arm_shani_a_CPPFLAGS += -DENABLE_ARM_SHANI
+crypto_libhashmonkeycoin_crypto_arm_shani_a_SOURCES = crypto/sha256_arm_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libraptoreum_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libraptoreum_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_consensus_a_SOURCES = \
+libhashmonkeycoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libhashmonkeycoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_consensus_a_SOURCES = \
   arith_uint256.cpp \
   arith_uint256.h \
   bls/bls.cpp \
@@ -646,7 +646,7 @@ libraptoreum_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/raptoreumconsensus.cpp \
+  script/hashmonkeycoinconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -663,10 +663,10 @@ libraptoreum_consensus_a_SOURCES = \
   util/strencodings.h \
   version.h
 
-# common: shared between raptoreumd, and raptoreum-qt and non-server tools
-libraptoreum_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libraptoreum_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_common_a_SOURCES = \
+# common: shared between hashmonkeycoind, and hashmonkeycoin-qt and non-server tools
+libhashmonkeycoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libhashmonkeycoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_common_a_SOURCES = \
   assets/assetstype.cpp \
   base58.cpp \
   bech32.cpp \
@@ -704,9 +704,9 @@ libraptoreum_common_a_SOURCES = \
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # sanity checks are linked.
-libraptoreum_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libraptoreum_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_util_a_SOURCES = \
+libhashmonkeycoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libhashmonkeycoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_util_a_SOURCES = \
   bls/bls_batchverifier.h \
   bls/bls_ies.cpp \
   bls/bls_ies.h \
@@ -742,29 +742,29 @@ libraptoreum_util_a_SOURCES = \
   util/validation.cpp \
   $(BITCOIN_CORE_H)
 
-# cli: shared between raptoreumd and raptoreum-qt
-libraptoreum_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libraptoreum_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraptoreum_cli_a_SOURCES = \
+# cli: shared between hashmonkeycoind and hashmonkeycoin-qt
+libhashmonkeycoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libhashmonkeycoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoin_cli_a_SOURCES = \
   compat/stdin.h \
   compat/stdin.cpp \
   rpc/client.cpp \
   $(BITCOIN_CORE_H)
 
-nodist_libraptoreum_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libhashmonkeycoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# raptoreumd binary #
-raptoreumd_SOURCES = raptoreumd.cpp
-raptoreumd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-raptoreumd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-raptoreumd_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# hashmonkeycoind binary #
+hashmonkeycoind_SOURCES = hashmonkeycoind.cpp
+hashmonkeycoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+hashmonkeycoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hashmonkeycoind_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-raptoreumd_SOURCES += raptoreumd-res.rc
+hashmonkeycoind_SOURCES += hashmonkeycoind-res.rc
 endif
 
-raptoreumd_LDADD = \
+hashmonkeycoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_SERVER) \
@@ -779,39 +779,39 @@ raptoreumd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-raptoreumd_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
+hashmonkeycoind_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
 
-# raptoreum-cli binary #
-raptoreum_cli_SOURCES = raptoreum-cli.cpp
-raptoreum_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-raptoreum_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-raptoreum_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# hashmonkeycoin-cli binary #
+hashmonkeycoin_cli_SOURCES = hashmonkeycoin-cli.cpp
+hashmonkeycoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+hashmonkeycoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hashmonkeycoin_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-raptoreum_cli_SOURCES += raptoreum-cli-res.rc
+hashmonkeycoin_cli_SOURCES += hashmonkeycoin-cli-res.rc
 endif
 
-raptoreum_cli_LDADD = \
+hashmonkeycoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-raptoreum_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(EVENT_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
+hashmonkeycoin_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(EVENT_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
 
-# raptoreum-wallet binary #
-raptoreum_wallet_SOURCES = raptoreum-wallet.cpp
-raptoreum_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-raptoreum_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-raptoreum_wallet_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# hashmonkeycoin-wallet binary #
+hashmonkeycoin_wallet_SOURCES = hashmonkeycoin-wallet.cpp
+hashmonkeycoin_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+hashmonkeycoin_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hashmonkeycoin_wallet_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-raptoreum_wallet_SOURCES += raptoreum-wallet-res.rc
+hashmonkeycoin_wallet_SOURCES += hashmonkeycoin-wallet-res.rc
 endif
 
 # Libraries below may be listed more than once to resolve circular dependencies (see
 # https://eli.thegreenplace.net/2013/07/09/library-order-in-static-linking#circular-dependency)
-raptoreum_wallet_LDADD = \
+hashmonkeycoin_wallet_LDADD = \
   $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
@@ -827,19 +827,19 @@ raptoreum_wallet_LDADD = \
   $(LIBSECP256K1) \
   $(LIBUNIVALUE)
 
-raptoreum_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
+hashmonkeycoin_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(ZMQ_LIBS) $(LIBDASHBLS) $(GMP_LIBS)
 #
 
-# raptoreumconsensus library #
+# hashmonkeycoinconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/raptoreumconsensus.h
-libraptoreumconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libraptoreum_crypto_a_SOURCES) $(libraptoreum_consensus_a_SOURCES)
+include_HEADERS = script/hashmonkeycoinconsensus.h
+libhashmonkeycoinconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libhashmonkeycoin_crypto_a_SOURCES) $(libhashmonkeycoin_consensus_a_SOURCES)
 
-libraptoreumconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
-libraptoreumconsensus_la_LIBADD = $(LIBSECP256K1) $(LIBDASHBLS) $(GMP_LIBS)
-libraptoreumconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libraptoreumconsensus_la_CPPFLAGS += -I$(srcdir)/dashbls/include -I$(srcdir)/dashbls/depends/relic/include -I$(srcdir)/dashbls/depends/minialloc/include
-libraptoreumconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libhashmonkeycoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+libhashmonkeycoinconsensus_la_LIBADD = $(LIBSECP256K1) $(LIBDASHBLS) $(GMP_LIBS)
+libhashmonkeycoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libhashmonkeycoinconsensus_la_CPPFLAGS += -I$(srcdir)/dashbls/include -I$(srcdir)/dashbls/depends/relic/include -I$(srcdir)/dashbls/depends/minialloc/include
+libhashmonkeycoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -873,12 +873,12 @@ EXTRA_DIST = \
   $(CTAES_DIST)   \
   $(LIBDASHBLS_DIST)
 
-config/raptoreum-config.h: config/stamp-h1
+config/hashmonkeycoin-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/raptoreum-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/hashmonkeycoin-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/raptoreum-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/raptoreum-config.h.in
+$(top_srcdir)/$(subdir)/config/hashmonkeycoin-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/hashmonkeycoin-config.h.in
 
 
 clean-local:
