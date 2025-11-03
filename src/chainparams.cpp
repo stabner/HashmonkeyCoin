@@ -101,6 +101,15 @@ CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVer
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
+static CBlock
+CreateTestnetGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
+    const char *pszTimestamp = "HashmonkeyCoin Testnet Genesis Block - Testing the HMNY blockchain - https://hashmonkeys.cloud/";
+    const CScript genesisOutputScript = CScript() << ParseHex(
+            "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
+                                                  << OP_CHECKSIG;
+    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
+}
+
 static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount &reward) {
     std::string devNetName = gArgs.GetDevNetName();
     assert(!devNetName.empty());
@@ -438,15 +447,17 @@ public:
         // HashmonkeyCoin Testnet Genesis Block - Starting fresh from the beginning
         // Timestamp: January 3, 2025 (current time, slightly offset from mainnet)
         // Using easier difficulty (0x207fffff) for faster genesis block generation
-        genesis = CreateGenesisBlock(1762101513, 0, 0x207fffff, 4, 500 * COIN);  // 500 HMNY reward
+        // Using unique testnet genesis message for completely separate genesis block
+        genesis = CreateTestnetGenesisBlock(1762101513, 0, 0x207fffff, 4, 500 * COIN);  // 500 HMNY reward
         VerifyGenesisPOW(genesis);  // This will find a valid nonce if current one doesn't work
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("HASHMONKEYCOIN TESTNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
         printf("HASHMONKEYCOIN TESTNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("HASHMONKEYCOIN TESTNET GENESIS NONCE: %u\n", genesis.nNonce);
-        // Verify genesis block hash and merkle root are correct
-        assert(consensus.hashGenesisBlock == uint256S("0x5156ccf8a83e3ef5fb24789415026937600411c8cdf3c8cbf61e1b47a7b176b1"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc7bf42a8e13cb88501cc8d64331d425a423009662f2860edb9ca8d92c3828144"));
+        // Verify genesis block hash and merkle root are correct (will be updated after new genesis generation)
+        // TODO: After first run with new testnet genesis, update these asserts with actual values
+        // assert(consensus.hashGenesisBlock == uint256S("0x[NEW_TESTNET_HASH]"));
+        // assert(genesis.hashMerkleRoot == uint256S("0x[NEW_TESTNET_MERKLE_ROOT]"));
 
         // HashmonkeyCoin Testnet: Starting fresh - no fixed seeds (using DNS seed only)
         vFixedSeeds.clear();
