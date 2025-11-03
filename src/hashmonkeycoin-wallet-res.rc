@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Raptoreum Core"
-            VALUE "FileDescription",    "raptoreum-wallet (CLI tool for " PACKAGE_NAME " wallets)"
+            VALUE "CompanyName",        "HashmonkeyCoin"
+            VALUE "FileDescription",    "hashmonkeycoin-wallet (CLI tool for " PACKAGE_NAME " wallets)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "raptoreum-wallet"
+            VALUE "InternalName",       "hashmonkeycoin-wallet"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "raptoreum-wallet.exe"
-            VALUE "ProductName",        "raptoreum-wallet"
+            VALUE "OriginalFilename",   "hashmonkeycoin-wallet.exe"
+            VALUE "ProductName",        "hashmonkeycoin-wallet"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END
