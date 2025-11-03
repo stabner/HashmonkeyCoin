@@ -780,8 +780,8 @@ public:
         genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Regtest genesis block - assertion removed as it may vary
-        // Regtest uses easier difficulty and can have different genesis blocks
+        // Regtest genesis block hash verification (optional - regtest is for testing)
+        assert(consensus.hashGenesisBlock == uint256S("0xda043362f8c5ffde1fc20d503fe7945c67257d2b58d87617d241f2f24c25fcfc"));
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
