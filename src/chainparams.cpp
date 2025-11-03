@@ -454,10 +454,9 @@ public:
         printf("HASHMONKEYCOIN TESTNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
         printf("HASHMONKEYCOIN TESTNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("HASHMONKEYCOIN TESTNET GENESIS NONCE: %u\n", genesis.nNonce);
-        // Verify genesis block hash and merkle root are correct (will be updated after new genesis generation)
-        // TODO: After first run with new testnet genesis, update these asserts with actual values
-        // assert(consensus.hashGenesisBlock == uint256S("0x[NEW_TESTNET_HASH]"));
-        // assert(genesis.hashMerkleRoot == uint256S("0x[NEW_TESTNET_MERKLE_ROOT]"));
+        // Verify genesis block hash and merkle root are correct
+        assert(consensus.hashGenesisBlock == uint256S("0x9e0f15f69b0b7353c4e5a273366bb88c3a05e608497b3d620268fa124ef91b3f"));
+        assert(genesis.hashMerkleRoot == uint256S("0x9923008b76713b3e8600288ef6518bf568ebb1c1f3d1e7f5e568281649603078"));
 
         // HashmonkeyCoin Testnet: Starting fresh - no fixed seeds (using DNS seed only)
         vFixedSeeds.clear();
