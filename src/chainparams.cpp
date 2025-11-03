@@ -126,8 +126,8 @@ static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount &rew
 }
 
 /// Verify the POW hash is valid for the genesis block
-/// If starting Nonce is not valid, search for one
-static void VerifyGenesisPOW(const CBlock &genesis) {
+/// If starting Nonce is not valid, search for one and update the block
+static void VerifyGenesisPOW(CBlock &genesis) {
     arith_uint256 bnTarget;
     bnTarget.SetCompact(genesis.nBits);
 
@@ -136,13 +136,13 @@ static void VerifyGenesisPOW(const CBlock &genesis) {
         uint256 hash = block.GetPOWHash();
         if (UintToArith256(hash) <= bnTarget) {
             if (genesis.nNonce != block.nNonce) {
-                std::cerr << "VerifyGenesisPOW:  provided nNonce (" << genesis.nNonce << ") invalid" << std::endl;
-                std::cerr << "   nonce: " << block.nNonce << ", pow hash: 0x" << hash.ToString()
+                std::cerr << "VerifyGenesisPOW:  provided nNonce (" << genesis.nNonce << ") invalid, found valid nonce: " << block.nNonce << std::endl;
+                std::cerr << "   pow hash: 0x" << hash.ToString()
                           << ", block hash: 0x" << block.GetHash().ToString() << std::endl;
-                assert(genesis.nNonce == block.nNonce);
-            } else {
-                return;
+                // Update genesis block with the valid nonce
+                genesis.nNonce = block.nNonce;
             }
+            return;
         }
         ++block.nNonce;
     } while (block.nNonce != 0);
@@ -253,6 +253,7 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("HASHMONKEYCOIN MAINNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
         printf("HASHMONKEYCOIN MAINNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        printf("HASHMONKEYCOIN MAINNET GENESIS NONCE: %u\n", genesis.nNonce);
         // TODO: After first compilation, add assert statements with the calculated hash and merkle root:
         // assert(consensus.hashGenesisBlock == uint256S("0x[ACTUAL_HASH]"));
         // assert(genesis.hashMerkleRoot == uint256S("0x[ACTUAL_MERKLE_ROOT]"));
@@ -428,6 +429,7 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("HASHMONKEYCOIN TESTNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
         printf("HASHMONKEYCOIN TESTNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        printf("HASHMONKEYCOIN TESTNET GENESIS NONCE: %u\n", genesis.nNonce);
         // TODO: After first compilation, add assert statements with the calculated hash and merkle root
 
         // HashmonkeyCoin Testnet: Starting fresh - no fixed seeds (using DNS seed only)
