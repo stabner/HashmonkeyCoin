@@ -802,11 +802,12 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+        const uint256 expectedRegtestHash = uint256S("0xda043362f8c5ffde1fc20d503fe7945c67257d2b58d87617d241f2f24c25fcfc");
+        genesis = CreateGenesisBlock(1614369600, 3, 0x207fffff, 4, 5000 * COIN);  // Use nonce 3 (already found)
+        VerifyGenesisPOW(genesis, expectedRegtestHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
         // Regtest genesis block hash verification (optional - regtest is for testing)
-        assert(consensus.hashGenesisBlock == uint256S("0xda043362f8c5ffde1fc20d503fe7945c67257d2b58d87617d241f2f24c25fcfc"));
+        assert(consensus.hashGenesisBlock == expectedRegtestHash);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
