@@ -713,7 +713,7 @@ QToolBar > QToolButton:disabled {
 }
 
 QToolBar QLabel#lblToolbarLogo {
-  background-image: url(':/images/raptoreum_logo_toolbar_dark');
+  background-image: url(':/images/hashmonkeycoin_logo_toolbar_dark');
 }
 
 /******************************************************
