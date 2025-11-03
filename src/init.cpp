@@ -1876,6 +1876,7 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     } else {
         vSporkAddresses = Params().SporkAddresses();
     }
+    int validSporkAddresses = 0;
     for (const auto &address: vSporkAddresses) {
         if (!sporkManager.SetSporkAddress(address)) {
             // For testnet/devnet during initial setup, allow invalid addresses as a warning
@@ -1888,11 +1889,21 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
             }
             return InitError(_("Invalid spork address specified with -sporkaddr"));
         }
+        validSporkAddresses++;
     }
 
-    int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
-    if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
-        return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
+    // Only validate min spork keys if we have valid spork addresses
+    // For testnet/devnet with no valid addresses, spork functionality is disabled anyway
+    if (validSporkAddresses > 0) {
+        int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
+        if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
+            return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
+        }
+    } else if (Params().NetworkIDString() == CBaseChainParams::TESTNET || 
+               Params().NetworkIDString() == CBaseChainParams::DEVNET) {
+        // No valid spork addresses for testnet/devnet - this is expected during initial setup
+        LogPrintf("Warning: No valid spork addresses configured for %s. Spork functionality will be disabled.\n",
+                  Params().NetworkIDString());
     }
 
 
