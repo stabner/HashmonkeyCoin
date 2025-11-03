@@ -136,7 +136,25 @@ static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount &rew
 
 /// Verify the POW hash is valid for the genesis block
 /// If starting Nonce is not valid, search for one and update the block
-static void VerifyGenesisPOW(CBlock &genesis) {
+/// Only runs POW verification if genesis block doesn't already match expected hash
+static void VerifyGenesisPOW(CBlock &genesis, const uint256 &expectedHash) {
+    // Check if genesis block already matches expected hash - if so, skip POW verification
+    uint256 currentHash = genesis.GetHash();
+    if (currentHash == expectedHash) {
+        // Genesis block already matches expected hash - verify POW is valid but don't search
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(genesis.nBits);
+        uint256 powHash = genesis.GetPOWHash();
+        if (UintToArith256(powHash) <= bnTarget) {
+            // POW is valid, genesis block is correct - skip verification
+            return;
+        }
+        // If POW doesn't match but hash does, something is wrong - this shouldn't happen
+        error("VerifyGenesisPOW: Genesis block hash matches but POW is invalid!");
+        assert(false);
+    }
+    
+    // Genesis block doesn't match expected hash - need to find valid nonce
     arith_uint256 bnTarget;
     bnTarget.SetCompact(genesis.nBits);
 
@@ -268,16 +286,14 @@ public:
         m_assumed_chain_state_size = 2;
         // HashmonkeyCoin Genesis Block - Starting fresh from the beginning
         // Timestamp: January 3, 2025 (current time)
-        // Note: Genesis block will be generated on first run - nonce will be found automatically
+        // Genesis block is already mined and locked in - nonce 3, hash matches expected
         // Using easier difficulty (0x207fffff) for faster genesis block generation - difficulty adjusts normally after genesis
-        genesis = CreateGenesisBlock(1762101512, 0, 0x207fffff, 4, 500 * COIN);
-        VerifyGenesisPOW(genesis);  // This will find a valid nonce if current one doesn't work
+        const uint256 expectedMainnetHash = uint256S("0xeb99ba8a336cd68e13606115ca3c1453e87310de82f7e86b67e5ff6ef297665b");
+        genesis = CreateGenesisBlock(1762101512, 3, 0x207fffff, 4, 500 * COIN);  // Use nonce 3 (already found)
+        VerifyGenesisPOW(genesis, expectedMainnetHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
-        printf("HASHMONKEYCOIN MAINNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
-        printf("HASHMONKEYCOIN MAINNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("HASHMONKEYCOIN MAINNET GENESIS NONCE: %u\n", genesis.nNonce);
         // Verify genesis block hash and merkle root are correct
-        assert(consensus.hashGenesisBlock == uint256S("0xeb99ba8a336cd68e13606115ca3c1453e87310de82f7e86b67e5ff6ef297665b"));
+        assert(consensus.hashGenesisBlock == expectedMainnetHash);
         assert(genesis.hashMerkleRoot == uint256S("0xc7bf42a8e13cb88501cc8d64331d425a423009662f2860edb9ca8d92c3828144"));
 
         vSeeds.emplace_back("seed.hashmonkes.cloud");
@@ -446,16 +462,15 @@ public:
         
         // HashmonkeyCoin Testnet Genesis Block - Starting fresh from the beginning
         // Timestamp: January 3, 2025 (current time, slightly offset from mainnet)
+        // Genesis block is already mined and locked in - nonce 0, hash matches expected
         // Using easier difficulty (0x207fffff) for faster genesis block generation
         // Using unique testnet genesis message for completely separate genesis block
-        genesis = CreateTestnetGenesisBlock(1762101513, 0, 0x207fffff, 4, 500 * COIN);  // 500 HMNY reward
-        VerifyGenesisPOW(genesis);  // This will find a valid nonce if current one doesn't work
+        const uint256 expectedTestnetHash = uint256S("0x9e0f15f69b0b7353c4e5a273366bb88c3a05e608497b3d620268fa124ef91b3f");
+        genesis = CreateTestnetGenesisBlock(1762101513, 0, 0x207fffff, 4, 500 * COIN);  // 500 HMNY reward, nonce 0 (already found)
+        VerifyGenesisPOW(genesis, expectedTestnetHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
-        printf("HASHMONKEYCOIN TESTNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
-        printf("HASHMONKEYCOIN TESTNET MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("HASHMONKEYCOIN TESTNET GENESIS NONCE: %u\n", genesis.nNonce);
         // Verify genesis block hash and merkle root are correct
-        assert(consensus.hashGenesisBlock == uint256S("0x9e0f15f69b0b7353c4e5a273366bb88c3a05e608497b3d620268fa124ef91b3f"));
+        assert(consensus.hashGenesisBlock == expectedTestnetHash);
         assert(genesis.hashMerkleRoot == uint256S("0x9923008b76713b3e8600288ef6518bf568ebb1c1f3d1e7f5e568281649603078"));
 
         // HashmonkeyCoin Testnet: Starting fresh - no fixed seeds (using DNS seed only)

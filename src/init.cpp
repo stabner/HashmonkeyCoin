@@ -1893,17 +1893,19 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     }
 
     // Only validate min spork keys if we have valid spork addresses
-    // For testnet/devnet with no valid addresses, spork functionality is disabled anyway
+    // For testnet/devnet/mainnet with no valid addresses, spork functionality is disabled
+    // This allows the daemon to start and generate wallets/spork keys
     if (validSporkAddresses > 0) {
         int minsporkkeys = gArgs.GetArg("-minsporkkeys", Params().MinSporkKeys());
         if (!sporkManager.SetMinSporkKeys(minsporkkeys)) {
             return InitError(_("Invalid minimum number of spork signers specified with -minsporkkeys"));
         }
-    } else if (Params().NetworkIDString() == CBaseChainParams::TESTNET || 
-               Params().NetworkIDString() == CBaseChainParams::DEVNET) {
-        // No valid spork addresses for testnet/devnet - this is expected during initial setup
-        LogPrintf("Warning: No valid spork addresses configured for %s. Spork functionality will be disabled.\n",
+    } else {
+        // No valid spork addresses - this is expected during initial setup
+        // Allow daemon to start so spork keys can be generated
+        LogPrintf("Warning: No valid spork addresses configured for %s. Spork functionality will be disabled until valid addresses are set.\n",
                   Params().NetworkIDString());
+        LogPrintf("You can generate spork keys by: 1) Creating a wallet, 2) Generating addresses, 3) Updating chainparams.cpp with the new addresses.\n");
     }
 
 
