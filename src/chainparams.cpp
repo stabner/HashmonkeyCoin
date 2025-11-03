@@ -260,7 +260,8 @@ public:
         // HashmonkeyCoin Genesis Block - Starting fresh from the beginning
         // Timestamp: January 3, 2025 (current time)
         // Note: Genesis block will be generated on first run - nonce will be found automatically
-        genesis = CreateGenesisBlock(1762101512, 0, 0x1e0ffff0, 4, 500 * COIN);
+        // Using easier difficulty (0x207fffff) for faster genesis block generation - difficulty adjusts normally after genesis
+        genesis = CreateGenesisBlock(1762101512, 0, 0x207fffff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);  // This will find a valid nonce if current one doesn't work
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("HASHMONKEYCOIN MAINNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
@@ -436,7 +437,8 @@ public:
         
         // HashmonkeyCoin Testnet Genesis Block - Starting fresh from the beginning
         // Timestamp: January 3, 2025 (current time, slightly offset from mainnet)
-        genesis = CreateGenesisBlock(1762101513, 0, 0x1e0ffff0, 4, 500 * COIN);  // 500 HMNY reward
+        // Using easier difficulty (0x207fffff) for faster genesis block generation
+        genesis = CreateGenesisBlock(1762101513, 0, 0x207fffff, 4, 500 * COIN);  // 500 HMNY reward
         VerifyGenesisPOW(genesis);  // This will find a valid nonce if current one doesn't work
         consensus.hashGenesisBlock = genesis.GetHash();
         printf("HASHMONKEYCOIN TESTNET GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
