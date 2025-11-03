@@ -623,12 +623,12 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
+        const uint256 expectedDevnetHash = uint256S("0x6d195b5563f3fea862d1ad151f3de7e568bb139ea3d8ee68b398580e493a504c");
         genesis = CreateGenesisBlock(1688535726, 2841, 0x20001fff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+        VerifyGenesisPOW(genesis, expectedDevnetHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
 //      std::cout << "hash: " << consensus.hashGenesisBlock.ToString() << std::endl;
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x6d195b5563f3fea862d1ad151f3de7e568bb139ea3d8ee68b398580e493a504c"));
+        assert(consensus.hashGenesisBlock == expectedDevnetHash);
         assert(genesis.hashMerkleRoot ==
                uint256S("0xe87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
