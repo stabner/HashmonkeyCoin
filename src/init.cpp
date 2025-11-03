@@ -1878,6 +1878,14 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     }
     for (const auto &address: vSporkAddresses) {
         if (!sporkManager.SetSporkAddress(address)) {
+            // For testnet/devnet during initial setup, allow invalid addresses as a warning
+            // This allows the daemon to start and generate proper addresses
+            if (Params().NetworkIDString() == CBaseChainParams::TESTNET || 
+                Params().NetworkIDString() == CBaseChainParams::DEVNET) {
+                LogPrintf("Warning: Invalid spork address '%s' for %s. Spork functionality will be disabled until valid addresses are set.\n", 
+                          address, Params().NetworkIDString());
+                continue;
+            }
             return InitError(_("Invalid spork address specified with -sporkaddr"));
         }
     }
