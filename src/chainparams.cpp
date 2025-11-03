@@ -132,6 +132,11 @@ static void VerifyGenesisPOW(CBlock &genesis) {
     bnTarget.SetCompact(genesis.nBits);
 
     CBlock block(genesis);
+    uint32_t startNonce = block.nNonce;
+    uint32_t checkInterval = 100000; // Print progress every 100k attempts
+    
+    std::cerr << "VerifyGenesisPOW: Searching for valid nonce starting from " << startNonce << std::endl;
+    
     do {
         uint256 hash = block.GetPOWHash();
         if (UintToArith256(hash) <= bnTarget) {
@@ -141,10 +146,17 @@ static void VerifyGenesisPOW(CBlock &genesis) {
                           << ", block hash: 0x" << block.GetHash().ToString() << std::endl;
                 // Update genesis block with the valid nonce
                 genesis.nNonce = block.nNonce;
+            } else {
+                std::cerr << "VerifyGenesisPOW: Provided nonce " << block.nNonce << " is valid!" << std::endl;
             }
             return;
         }
         ++block.nNonce;
+        
+        // Print progress every checkInterval attempts
+        if ((block.nNonce % checkInterval) == 0) {
+            std::cerr << "VerifyGenesisPOW: Tried nonce " << block.nNonce << " (searched " << (block.nNonce - startNonce) << " values)..." << std::endl;
+        }
     } while (block.nNonce != 0);
 
     // We should never get here
