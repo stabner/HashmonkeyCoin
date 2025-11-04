@@ -1042,9 +1042,19 @@ bool ReadBlockFromDisk(CBlock &block, const FlatFilePos &pos, const Consensus::P
     if (!CheckPOW(block, consensusParams)) {
         // Special handling for potential genesis block mismatch - if this block has a null previous hash
         // and doesn't match the expected genesis, the genesis block has likely changed
-        if (block.hashPrevBlock.IsNull() && block.GetHash() != consensusParams.hashGenesisBlock) {
-            return error("ReadBlockFromDisk: Genesis block POW check failed at %s. The genesis block has changed. "
-                         "Please delete old blockchain data and restart, or use -reindex.", pos.ToString());
+        if (block.hashPrevBlock.IsNull()) {
+            if (block.GetHash() != consensusParams.hashGenesisBlock) {
+                return error("ReadBlockFromDisk: Genesis block POW check failed at %s. The genesis block has changed.\n"
+                             "Read block hash: %s\n"
+                             "Expected genesis: %s\n"
+                             "Please delete old blockchain data and restart, or use -reindex.", 
+                             pos.ToString(), block.GetHash().ToString(), consensusParams.hashGenesisBlock.ToString());
+            }
+            // If hash matches but POW fails, the genesis block file might be corrupted
+            return error("ReadBlockFromDisk: Genesis block POW check failed at %s. The genesis block file may be corrupted.\n"
+                         "Expected genesis: %s\n"
+                         "Please delete old blockchain data and restart, or use -reindex.", 
+                         pos.ToString(), consensusParams.hashGenesisBlock.ToString());
         }
         return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
     }

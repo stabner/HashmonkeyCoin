@@ -2262,34 +2262,49 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
                             _("Transaction index can't be disabled with governance validation enabled. Either start with -disablegovernance command line switch or enable transaction index."));
                 }
 
-                // If the loaded chain has a wrong genesis, bail out immediately
-                // (we're likely using a testnet datadir, or the other way around, or genesis changed)
-                if (!::BlockIndex().empty() &&
-                    !LookupBlockIndex(chainparams.GetConsensus().hashGenesisBlock)) {
-                    // Check if there's a different genesis block in the index
+                // Check for genesis block mismatch BEFORE trying to read blocks from disk
+                // This prevents crashes when old genesis blocks are on disk
+                if (!::BlockIndex().empty()) {
                     const uint256 expectedGenesis = chainparams.GetConsensus().hashGenesisBlock;
-                    std::string genesisInfo = strprintf(_("\nExpected genesis: %s\n"), expectedGenesis.ToString());
+                    const CBlockIndex* pindexExpectedGenesis = LookupBlockIndex(expectedGenesis);
                     
-                    // Find what genesis block IS in the database
-                    const CBlockIndex* pindexGenesis = nullptr;
+                    // Find what genesis block IS in the database (height 0)
+                    const CBlockIndex* pindexActualGenesis = nullptr;
                     for (const auto& entry : ::BlockIndex()) {
                         if (entry.second->nHeight == 0) {
-                            pindexGenesis = entry.second;
+                            pindexActualGenesis = entry.second;
                             break;
                         }
                     }
                     
-                    if (pindexGenesis) {
-                        genesisInfo += strprintf(_("Found in database: %s\n\n"
-                                                   "The genesis block has changed. Please delete the old blockchain data and restart:\n"
-                                                   "Windows: Delete %%APPDATA%%\\HashmonkeyCoin\\blocks and %%APPDATA%%\\HashmonkeyCoin\\chainstate\n"
-                                                   "Or restart with -reindex flag."), 
-                                                   pindexGenesis->GetBlockHash().ToString());
-                    } else {
-                        genesisInfo += _("\nNo genesis block found in database. Wrong datadir for network?");
+                    // If we have a genesis block but it's not the expected one, we have a mismatch
+                    if (pindexActualGenesis && pindexActualGenesis->GetBlockHash() != expectedGenesis) {
+                        std::string genesisInfo = strprintf(_("\nExpected genesis: %s\n"
+                                                               "Found in database: %s\n\n"
+                                                               "The genesis block has changed. The blockchain database contains old data that is incompatible with the new genesis block.\n\n"
+                                                               "Please delete the old blockchain data and restart:\n"
+                                                               "Windows: Delete %%APPDATA%%\\HashmonkeyCoin\\%s\\blocks and %%APPDATA%%\\HashmonkeyCoin\\%s\\chainstate\n"
+                                                               "Or restart with -reindex flag to rebuild the database."), 
+                                                               expectedGenesis.ToString(),
+                                                               pindexActualGenesis->GetBlockHash().ToString(),
+                                                               chainparams.DataDir(),
+                                                               chainparams.DataDir());
+                        return InitError(_("Incorrect genesis block found. The genesis block has changed.") + genesisInfo);
                     }
                     
-                    return InitError(_("Incorrect or no genesis block found. Wrong datadir for network?") + genesisInfo);
+                    // If expected genesis is not found but we have blocks, something is wrong
+                    if (!pindexExpectedGenesis && pindexActualGenesis) {
+                        std::string genesisInfo = strprintf(_("\nExpected genesis: %s\n"
+                                                               "Found in database: %s\n\n"
+                                                               "The genesis block has changed. Please delete the old blockchain data and restart:\n"
+                                                               "Windows: Delete %%APPDATA%%\\HashmonkeyCoin\\%s\\blocks and %%APPDATA%%\\HashmonkeyCoin\\%s\\chainstate\n"
+                                                               "Or restart with -reindex flag."), 
+                                                               expectedGenesis.ToString(),
+                                                               pindexActualGenesis->GetBlockHash().ToString(),
+                                                               chainparams.DataDir(),
+                                                               chainparams.DataDir());
+                        return InitError(_("Incorrect or no genesis block found. Wrong datadir for network?") + genesisInfo);
+                    }
                 }
 
                 if (!chainparams.GetConsensus().hashDevnetGenesisBlock.IsNull() && !::BlockIndex().empty() &&
