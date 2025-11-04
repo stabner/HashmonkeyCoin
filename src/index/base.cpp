@@ -118,8 +118,18 @@ void BaseIndex::ThreadSync() {
 
             CBlock block;
             if (!ReadBlockFromDisk(block, pindex, consensus_params)) {
-                FatalError("%s: Failed to read block %s from disk",
-                           __func__, pindex->GetBlockHash().ToString());
+                // Check if this is a genesis block mismatch
+                if (pindex->nHeight == 0 && block.hashPrevBlock.IsNull() && 
+                    block.GetHash() != consensus_params.hashGenesisBlock) {
+                    FatalError("%s: Genesis block mismatch detected. The genesis block has changed.\n"
+                               "Read block hash: %s\n"
+                               "Expected genesis: %s\n"
+                               "Please delete old blockchain data (blocks and chainstate) and restart, or use -reindex.",
+                               __func__, block.GetHash().ToString(), consensus_params.hashGenesisBlock.ToString());
+                } else {
+                    FatalError("%s: Failed to read block %s from disk",
+                               __func__, pindex->GetBlockHash().ToString());
+                }
                 return;
             }
             if (!WriteBlock(block, pindex)) {
