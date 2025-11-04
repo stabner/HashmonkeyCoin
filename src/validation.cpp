@@ -3915,13 +3915,16 @@ bool CheckBlock(const CBlock &block, CValidationState &state, const Consensus::P
                                                state.GetDebugMessage()));
     }
 
-    unsigned int nSigOps = 0;
-    for (const auto &tx: block.vtx) {
-        nSigOps += GetLegacySigOpCount(*tx);
+    // Skip sigops counting for genesis block (matches ConnectBlock behavior)
+    if (block.GetHash() != consensusParams.hashGenesisBlock) {
+        unsigned int nSigOps = 0;
+        for (const auto &tx: block.vtx) {
+            nSigOps += GetLegacySigOpCount(*tx);
+        }
+        // sigops limits (relaxed)
+        if (nSigOps > MaxBlockSigOps())
+            return state.DoS(100, false, REJECT_INVALID, "bad-blk-sigops", false, "out-of-bounds SigOpCount");
     }
-    // sigops limits (relaxed)
-    if (nSigOps > MaxBlockSigOps())
-        return state.DoS(100, false, REJECT_INVALID, "bad-blk-sigops", false, "out-of-bounds SigOpCount");
 
     if (fCheckPOW && fCheckMerkleRoot)
         block.fChecked = true;
