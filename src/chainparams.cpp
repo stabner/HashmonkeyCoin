@@ -136,58 +136,73 @@ static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount &rew
 
 /// Verify the POW hash is valid for the genesis block
 /// If starting Nonce is not valid, search for one and update the block
-/// Only runs POW verification if genesis block doesn't already match expected hash
+/// Verifies and ensures genesis block has valid POW
+/// Always verifies POW, even if hash matches - they use different hashes
 static void VerifyGenesisPOW(CBlock &genesis, const uint256 &expectedHash) {
-    // Check if genesis block already matches expected hash - if so, skip POW verification
-    uint256 currentHash = genesis.GetHash();
-    if (currentHash == expectedHash) {
-        // Genesis block already matches expected hash - verify POW is valid but don't search
-        arith_uint256 bnTarget;
-        bnTarget.SetCompact(genesis.nBits);
-        uint256 powHash = genesis.GetPOWHash();
-        if (UintToArith256(powHash) <= bnTarget) {
-            // POW is valid, genesis block is correct - skip verification
-            return;
-        }
-        // If POW doesn't match but hash does, something is wrong - this shouldn't happen
-        error("VerifyGenesisPOW: Genesis block hash matches but POW is invalid!");
-        assert(false);
-    }
-    
-    // Genesis block doesn't match expected hash - need to find valid nonce
     arith_uint256 bnTarget;
     bnTarget.SetCompact(genesis.nBits);
-
+    
+    uint256 currentHash = genesis.GetHash();
+    uint256 powHash = genesis.GetPOWHash(false); // Don't use cache during verification
+    
+    // Check if both hash and POW are valid
+    bool hashMatches = (currentHash == expectedHash);
+    bool powValid = (UintToArith256(powHash) <= bnTarget);
+    
+    if (hashMatches && powValid) {
+        // Both are valid - genesis block is correct
+        std::cerr << "VerifyGenesisPOW: Genesis block is valid (hash and POW match)" << std::endl;
+        return;
+    }
+    
+    // Need to search for valid nonce - either hash doesn't match or POW is invalid
+    if (hashMatches && !powValid) {
+        std::cerr << "VerifyGenesisPOW: WARNING - Hash matches but POW is invalid. Searching for valid nonce..." << std::endl;
+    } else if (!hashMatches) {
+        std::cerr << "VerifyGenesisPOW: Hash doesn't match expected. Searching for valid nonce..." << std::endl;
+        std::cerr << "  Expected: " << expectedHash.ToString() << std::endl;
+        std::cerr << "  Current:  " << currentHash.ToString() << std::endl;
+    }
+    
     CBlock block(genesis);
     uint32_t startNonce = block.nNonce;
     uint32_t checkInterval = 100000; // Print progress every 100k attempts
+    uint32_t attempts = 0;
     
     std::cerr << "VerifyGenesisPOW: Searching for valid nonce starting from " << startNonce << std::endl;
     
     do {
-        uint256 hash = block.GetPOWHash();
-        if (UintToArith256(hash) <= bnTarget) {
+        uint256 testHash = block.GetHash();
+        uint256 testPowHash = block.GetPOWHash(false); // Don't use cache
+        
+        // Check if both hash and POW are valid
+        bool hashOk = (testHash == expectedHash);
+        bool powOk = (UintToArith256(testPowHash) <= bnTarget);
+        
+        if (hashOk && powOk) {
+            // Found valid nonce that satisfies both hash and POW
             if (genesis.nNonce != block.nNonce) {
-                std::cerr << "VerifyGenesisPOW:  provided nNonce (" << genesis.nNonce << ") invalid, found valid nonce: " << block.nNonce << std::endl;
-                std::cerr << "   pow hash: 0x" << hash.ToString()
-                          << ", block hash: 0x" << block.GetHash().ToString() << std::endl;
-                // Update genesis block with the valid nonce
+                std::cerr << "VerifyGenesisPOW: Found valid nonce: " << block.nNonce << " (was " << genesis.nNonce << ")" << std::endl;
+                std::cerr << "   Block hash: 0x" << testHash.ToString() << std::endl;
+                std::cerr << "   POW hash: 0x" << testPowHash.ToString() << std::endl;
                 genesis.nNonce = block.nNonce;
             } else {
-                std::cerr << "VerifyGenesisPOW: Provided nonce " << block.nNonce << " is valid!" << std::endl;
+                std::cerr << "VerifyGenesisPOW: Nonce " << block.nNonce << " is valid!" << std::endl;
             }
             return;
         }
+        
         ++block.nNonce;
+        ++attempts;
         
         // Print progress every checkInterval attempts
-        if ((block.nNonce % checkInterval) == 0) {
-            std::cerr << "VerifyGenesisPOW: Tried nonce " << block.nNonce << " (searched " << (block.nNonce - startNonce) << " values)..." << std::endl;
+        if ((attempts % checkInterval) == 0) {
+            std::cerr << "VerifyGenesisPOW: Tried nonce " << block.nNonce << " (searched " << attempts << " values)..." << std::endl;
         }
-    } while (block.nNonce != 0);
+    } while (block.nNonce != startNonce); // Loop until we wrap around
 
-    // We should never get here
-    error("VerifyGenesisPOW: could not find valid Nonce for genesis block");
+    // We should never get here if difficulty is reasonable
+    error("VerifyGenesisPOW: could not find valid Nonce for genesis block after searching all possibilities");
     assert(false);
 }
 
