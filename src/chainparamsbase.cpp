@@ -43,6 +43,10 @@ void SetupChainParamsBaseOptions() {
                  "This is intended for regression testing tools and app development.",
                  ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::CHAINPARAMS);
     gArgs.AddArg("-testnet", "Use the test chain", ArgsManager::ALLOW_ANY, OptionsCategory::CHAINPARAMS);
+    gArgs.AddArg("-enablemainnet",
+                 "Enable mainnet mode (HashmonkeyCoin mainnet is disabled by default for safety). "
+                 "Use this flag at your own risk to enable mainnet. Use -testnet for testing instead.",
+                 ArgsManager::ALLOW_ANY, OptionsCategory::CHAINPARAMS);
     gArgs.AddArg(
             "-vbparams=<deployment>:<start>:<end>(:<window>:<threshold/thresholdstart>(:<thresholdmin>:<falloffcoeff>))",
             "Use given start/end times for specified version bits deployment (regtest-only). "
