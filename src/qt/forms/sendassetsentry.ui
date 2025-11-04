@@ -87,7 +87,7 @@
       <item>
        <widget class="QValidatedLineEdit" name="payTo">
         <property name="toolTip">
-         <string>The Raptoreum address to send the payment to</string>
+         <string>The HashmonkeyCoin address to send the payment to</string>
         </property>
        </widget>
       </item>
@@ -330,7 +330,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>123456 RTM</string>
+         <string>123456 HMNY</string>
         </property>
         <property name="margin">
          <number>0</number>

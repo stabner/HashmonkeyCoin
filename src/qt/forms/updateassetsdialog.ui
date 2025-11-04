@@ -180,7 +180,7 @@
           <item row="3" column="0">
            <widget class="QLabel" name="addressLabel">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RTM address that will own this asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;HMNY address that will own this asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Owner Address:</string>
@@ -192,10 +192,10 @@
             <item>
              <widget class="QValidatedLineEdit" name="targetaddressText">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The RTM address that will receive the minted asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The HMNY address that will receive the minted asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="placeholderText">
-               <string>The RTM address that will receive the minted asset</string>
+               <string>The HMNY address that will receive the minted asset</string>
               </property>
              </widget>
             </item>
@@ -204,7 +204,7 @@
           <item row="14" column="0">
            <widget class="QLabel" name="targetLabel">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The RTM address that will receive the minted asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The HMNY address that will receive the minted asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Target Address:</string>
@@ -371,13 +371,13 @@
             <item>
              <widget class="QValidatedLineEdit" name="owneraddressText">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RTM address that will own this asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;HMNY address that will own this asset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
                <string/>
               </property>
               <property name="placeholderText">
-               <string>The RTM address that own this asset</string>
+               <string>The HMNY address that own this asset</string>
               </property>
              </widget>
             </item>
@@ -997,7 +997,7 @@
           <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
-          <string>123.456 RTM</string>
+          <string>123.456 HMNY</string>
          </property>
          <property name="textInteractionFlags">
           <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
