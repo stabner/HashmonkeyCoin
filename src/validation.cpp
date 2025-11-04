@@ -3834,7 +3834,9 @@ static bool
 CheckBlockHeader(const CBlockHeader &block, CValidationState &state, const Consensus::Params &consensusParams,
                  bool fCheckPOW = true) {
     // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckPOW(block, consensusParams)) {
+    // Skip POW check for genesis block (matches AcceptBlockHeader behavior - genesis blocks are trusted)
+    // This ensures consistency: genesis blocks skip POW validation everywhere
+    if (fCheckPOW && block.GetHash() != consensusParams.hashGenesisBlock && !CheckPOW(block, consensusParams)) {
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
     }
 
@@ -3861,9 +3863,8 @@ bool CheckBlock(const CBlock &block, CValidationState &state, const Consensus::P
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    // Skip POW check for genesis block (matches AcceptBlockHeader behavior - genesis blocks are trusted)
-    bool shouldCheckPOW = fCheckPOW && (block.GetHash() != consensusParams.hashGenesisBlock);
-    if (!CheckBlockHeader(block, state, consensusParams, shouldCheckPOW))
+    // Note: CheckBlockHeader automatically skips POW for genesis blocks
+    if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW))
         return false;
 
     // Check the merkle root.
