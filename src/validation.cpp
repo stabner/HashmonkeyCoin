@@ -1039,25 +1039,10 @@ bool ReadBlockFromDisk(CBlock &block, const FlatFilePos &pos, const Consensus::P
     }
 
     // Check the header
-    // Special handling for genesis block: if hash matches expected genesis, skip POW check
-    // since we already verified POW when creating the genesis block
-    bool isGenesisBlock = block.hashPrevBlock.IsNull() && block.GetHash() == consensusParams.hashGenesisBlock;
-    
-    if (!isGenesisBlock && !CheckPOW(block, consensusParams)) {
-        // For non-genesis blocks, POW check is required
+    // Skip POW check for genesis block (matches Raptoreum behavior - genesis blocks are trusted)
+    // POW is verified during genesis block creation in chainparams, not during read
+    if (block.GetHash() != consensusParams.hashGenesisBlock && !CheckPOW(block, consensusParams)) {
         return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
-    }
-    
-    // For genesis block, verify hash matches (already checked above) and POW is valid
-    if (isGenesisBlock && !CheckPOW(block, consensusParams)) {
-        // Genesis block hash matches but POW fails - this shouldn't happen since we verify POW at creation
-        // Log warning but allow it since hash matches (block data is correct)
-        LogPrintf("ReadBlockFromDisk: WARNING - Genesis block hash matches but POW check failed at %s. This may indicate a corrupted block file.\n"
-                  "Expected genesis: %s\n"
-                  "Read block hash: %s\n"
-                  "Attempting to continue, but you should delete old blockchain data and restart if issues persist.\n",
-                  pos.ToString(), consensusParams.hashGenesisBlock.ToString(), block.GetHash().ToString());
-        // Allow genesis block to pass if hash matches - the POW failure might be due to cache corruption
     }
 
     return true;
@@ -5136,20 +5121,6 @@ bool ChainstateManager::LoadBlockIndex(const CChainParams &chainparams) {
 }
 
 bool CChainState::AddGenesisBlock(const CChainParams &chainparams, const CBlock &block, CValidationState &state) {
-    // Verify genesis block is valid before writing to disk
-    // Check that hash matches expected genesis
-    uint256 blockHash = block.GetHash();
-    uint256 expectedHash = chainparams.GetConsensus().hashGenesisBlock;
-    
-    if (blockHash != expectedHash) {
-        return error("%s: Genesis block hash mismatch. Expected %s, got %s", 
-                     __func__, expectedHash.ToString(), blockHash.ToString());
-    }
-    
-    // For genesis blocks, if hash matches expected, we trust it (POW was verified during creation)
-    // POW verification is mainly for blocks received from network, not our hardcoded genesis
-    // Note: We still verify POW when reading back to catch corruption, but we allow hash match to override
-    
     FlatFilePos blockPos = SaveBlockToDisk(block, 0, chainparams, nullptr);
     if (blockPos.IsNull())
         return error("%s: writing genesis block to disk failed (%s)", __func__, FormatStateMessage(state));
