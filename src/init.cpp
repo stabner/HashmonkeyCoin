@@ -2233,7 +2233,25 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
                 // Note that it also sets fReindex based on the disk flag!
                 // From here on out fReindex and fReset mean something different!
                 if (!chainman.LoadBlockIndex(chainparams)) {
-                    strLoadError = _("Error loading block database");
+                    // Check if we have blocks but the genesis doesn't match - this indicates
+                    // the genesis block has changed and old data needs to be cleared
+                    if (!::BlockIndex().empty()) {
+                        const uint256 expectedGenesis = chainparams.GetConsensus().hashGenesisBlock;
+                        const CBlockIndex* pindex = ::ChainActive().Tip();
+                        if (pindex && pindex->GetBlockHash() != expectedGenesis) {
+                            strLoadError = strprintf(_("The genesis block has changed. The blockchain database contains old data that is incompatible with the new genesis block.\n\n"
+                                                       "Expected genesis: %s\n"
+                                                       "Found in database: %s\n\n"
+                                                       "Please delete the old blockchain data and restart, or use -reindex to rebuild:\n"
+                                                       "Windows: Delete %%APPDATA%%\\HashmonkeyCoin\\blocks and %%APPDATA%%\\HashmonkeyCoin\\chainstate\n"
+                                                       "Or restart with -reindex flag."), 
+                                                       expectedGenesis.ToString(), pindex->GetBlockHash().ToString());
+                        } else {
+                            strLoadError = _("Error loading block database. The genesis block may have changed. Try restarting with -reindex or delete the old blockchain data.");
+                        }
+                    } else {
+                        strLoadError = _("Error loading block database");
+                    }
                     break;
                 }
 
@@ -2245,10 +2263,33 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
                 }
 
                 // If the loaded chain has a wrong genesis, bail out immediately
-                // (we're likely using a testnet datadir, or the other way around).
+                // (we're likely using a testnet datadir, or the other way around, or genesis changed)
                 if (!::BlockIndex().empty() &&
                     !LookupBlockIndex(chainparams.GetConsensus().hashGenesisBlock)) {
-                    return InitError(_("Incorrect or no genesis block found. Wrong datadir for network?"));
+                    // Check if there's a different genesis block in the index
+                    const uint256 expectedGenesis = chainparams.GetConsensus().hashGenesisBlock;
+                    std::string genesisInfo = strprintf(_("\nExpected genesis: %s\n"), expectedGenesis.ToString());
+                    
+                    // Find what genesis block IS in the database
+                    const CBlockIndex* pindexGenesis = nullptr;
+                    for (const auto& entry : ::BlockIndex()) {
+                        if (entry.second->nHeight == 0) {
+                            pindexGenesis = entry.second;
+                            break;
+                        }
+                    }
+                    
+                    if (pindexGenesis) {
+                        genesisInfo += strprintf(_("Found in database: %s\n\n"
+                                                   "The genesis block has changed. Please delete the old blockchain data and restart:\n"
+                                                   "Windows: Delete %%APPDATA%%\\HashmonkeyCoin\\blocks and %%APPDATA%%\\HashmonkeyCoin\\chainstate\n"
+                                                   "Or restart with -reindex flag."), 
+                                                   pindexGenesis->GetBlockHash().ToString());
+                    } else {
+                        genesisInfo += _("\nNo genesis block found in database. Wrong datadir for network?");
+                    }
+                    
+                    return InitError(_("Incorrect or no genesis block found. Wrong datadir for network?") + genesisInfo);
                 }
 
                 if (!chainparams.GetConsensus().hashDevnetGenesisBlock.IsNull() && !::BlockIndex().empty() &&
