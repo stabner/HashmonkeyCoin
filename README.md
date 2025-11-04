@@ -21,6 +21,8 @@ HashmonkeyCoin Network Parameters:
 - **Ticker:** HMNY
 - **Website:** https://hashmonkeys.cloud/
 
+**Important:** HashmonkeyCoin mainnet is **disabled by default** for safety. To use testnet, simply run with `-testnet` flag. To enable mainnet (at your own risk), use the `-enablemainnet=1` flag. See `hashmonkeycoind -help` for more details.
+
 License
 -------
 

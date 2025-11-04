@@ -1501,12 +1501,21 @@ bool AppInitParameterInteraction() {
     // also see: InitParameterInteraction()
 
     // Prevent mainnet access unless explicitly enabled
+    // This is a LOCAL safety check to prevent accidental mainnet startup.
+    // Network-wide control is managed by spork keys (see spork.h), but sporks
+    // require network connectivity to check, so this flag acts as a pre-network
+    // safety gate. Spork key holders can use sporks to control network features
+    // once the network is running, but this prevents nodes from starting mainnet
+    // until explicitly enabled by the user.
     if (chainparams.NetworkIDString() == CBaseChainParams::MAIN) {
         if (!gArgs.GetBoolArg("-enablemainnet", false)) {
             return InitError(
                 _("Mainnet is currently disabled. HashmonkeyCoin is in testnet-only mode.\n"
                   "To enable mainnet (at your own risk), use: -enablemainnet=1\n"
-                  "For now, please use testnet: -testnet"));
+                  "For now, please use testnet: -testnet\n"
+                  "Note: Spork keys control network-wide features, but this flag prevents\n"
+                  "accidental mainnet startup. Spork key holders can control the network\n"
+                  "once it is running."));
         }
     }
 
