@@ -384,7 +384,7 @@ namespace GUIUtil {
     }
 
     QString formatBitcoinURI(const SendCoinsRecipient &info) {
-        QString ret = QString("raptoreum:%1").arg(info.address);
+        QString ret = QString("hashmonkeycoin:%1").arg(info.address);
         int paramCount = 0;
 
         if (info.amount) {

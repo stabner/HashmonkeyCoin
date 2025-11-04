@@ -262,7 +262,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
     {
         std::vector <std::pair<std::string, std::string>> vOrderForm;
         for (const SendCoinsRecipient &rcp: transaction.getRecipients()) {
-            if (!rcp.message.isEmpty()) // Message from normal raptoreum:URI (raptoreum:XyZ...?message=example)
+            if (!rcp.message.isEmpty()) // Message from normal hashmonkeycoin:URI (hashmonkeycoin:XyZ...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 
@@ -421,7 +421,7 @@ WalletModel::SendAssetsReturn WalletModel::sendAssets(WalletModelTransaction &tr
     {
         std::vector <std::pair<std::string, std::string>> vOrderForm;
         for (const SendCoinsRecipient &rcp: transaction.getRecipients()) {
-            if (!rcp.message.isEmpty()) // Message from normal raptoreum:URI (raptoreum:XyZ...?message=example)
+            if (!rcp.message.isEmpty()) // Message from normal hashmonkeycoin:URI (hashmonkeycoin:XyZ...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 

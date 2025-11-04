@@ -407,7 +407,7 @@ void BitcoinGUI::createActions() {
     coinJoinCoinsMenuAction->setToolTip(coinJoinCoinsMenuAction->statusTip());
 
     receiveCoinsMenuAction = new QAction(tr(" Receive"), this);
-    receiveCoinsMenuAction->setStatusTip(tr("Request payments (generates QR codes and raptoreum: URIs)"));
+    receiveCoinsMenuAction->setStatusTip(tr("Request payments (generates QR codes and hashmonkeycoin: URIs)"));
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
 
     sendAssetsMenuAction = new QAction(tr(" Send Asset"), this);
@@ -500,7 +500,7 @@ void BitcoinGUI::createActions() {
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a raptoreum: URI"));
+    openAction->setStatusTip(tr("Open a hashmonkeycoin: URI"));
 
     m_open_wallet_action = new QAction(tr("Open Wallet"), this);
     m_open_wallet_action->setEnabled(false);

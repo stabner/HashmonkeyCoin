@@ -47,11 +47,11 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Raptoreum"
-#define QAPP_ORG_DOMAIN "raptoreum.com"
-#define QAPP_APP_NAME_DEFAULT "Raptoreum-Qt"
-#define QAPP_APP_NAME_TESTNET "Raptoreum-Qt-testnet"
-#define QAPP_APP_NAME_DEVNET "Raptoreum-Qt-%s"
-#define QAPP_APP_NAME_REGTEST "Raptoreum-Qt-regtest"
+#define QAPP_ORG_NAME "HashmonkeyCoin"
+#define QAPP_ORG_DOMAIN "hashmonkeys.cloud"
+#define QAPP_APP_NAME_DEFAULT "HashmonkeyCoin-Qt"
+#define QAPP_APP_NAME_TESTNET "HashmonkeyCoin-Qt-testnet"
+#define QAPP_APP_NAME_DEVNET "HashmonkeyCoin-Qt-%s"
+#define QAPP_APP_NAME_REGTEST "HashmonkeyCoin-Qt-regtest"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

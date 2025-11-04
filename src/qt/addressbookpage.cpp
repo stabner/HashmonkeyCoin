@@ -233,7 +233,7 @@ void AddressBookPage::on_showAddressQRCode_clicked() {
     QRDialog *dialog = new QRDialog(this);
 
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setInfo(tr("QR code"), "raptoreum:" + strAddress, "", strAddress);
+    dialog->setInfo(tr("QR code"), "hashmonkeycoin:" + strAddress, "", strAddress);
     dialog->show();
 }
 
