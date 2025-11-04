@@ -2279,6 +2279,7 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
                     
                     // If we have a genesis block but it's not the expected one, we have a mismatch
                     if (pindexActualGenesis && pindexActualGenesis->GetBlockHash() != expectedGenesis) {
+                        std::string dataDirName = BaseParams().DataDir();
                         std::string genesisInfo = strprintf(_("\nExpected genesis: %s\n"
                                                                "Found in database: %s\n\n"
                                                                "The genesis block has changed. The blockchain database contains old data that is incompatible with the new genesis block.\n\n"
@@ -2287,13 +2288,14 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
                                                                "Or restart with -reindex flag to rebuild the database."), 
                                                                expectedGenesis.ToString(),
                                                                pindexActualGenesis->GetBlockHash().ToString(),
-                                                               chainparams.DataDir(),
-                                                               chainparams.DataDir());
+                                                               dataDirName.empty() ? "" : dataDirName,
+                                                               dataDirName.empty() ? "" : dataDirName);
                         return InitError(_("Incorrect genesis block found. The genesis block has changed.") + genesisInfo);
                     }
                     
                     // If expected genesis is not found but we have blocks, something is wrong
                     if (!pindexExpectedGenesis && pindexActualGenesis) {
+                        std::string dataDirName = BaseParams().DataDir();
                         std::string genesisInfo = strprintf(_("\nExpected genesis: %s\n"
                                                                "Found in database: %s\n\n"
                                                                "The genesis block has changed. Please delete the old blockchain data and restart:\n"
@@ -2301,8 +2303,8 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
                                                                "Or restart with -reindex flag."), 
                                                                expectedGenesis.ToString(),
                                                                pindexActualGenesis->GetBlockHash().ToString(),
-                                                               chainparams.DataDir(),
-                                                               chainparams.DataDir());
+                                                               dataDirName.empty() ? "" : dataDirName,
+                                                               dataDirName.empty() ? "" : dataDirName);
                         return InitError(_("Incorrect or no genesis block found. Wrong datadir for network?") + genesisInfo);
                     }
                 }
