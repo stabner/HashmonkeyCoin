@@ -3897,19 +3897,23 @@ bool CheckBlock(const CBlock &block, CValidationState &state, const Consensus::P
         ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION) > MaxBlockSize())
         return state.DoS(100, false, REJECT_INVALID, "bad-blk-length", false, "size limits failed");
 
-    // First transaction must be coinbase, the rest must not be
-    if (block.vtx.empty() || !block.vtx[0]->IsCoinBase())
-        return state.DoS(100, false, REJECT_INVALID, "bad-cb-missing", false, "first tx is not coinbase");
-    for (unsigned int i = 1; i < block.vtx.size(); i++)
-        if (block.vtx[i]->IsCoinBase())
-            return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
-    CAmount blockReward = GetBlockSubsidy(1, nHeight - 1, Params().GetConsensus(), false);
-    // Check transactions
-    for (const auto &tx: block.vtx)
-        if (!CheckTransaction(*tx, state, nHeight - 1, blockReward))
-            return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
-                                 strprintf("Transaction check failed (tx hash %s) %s", tx->GetHash().ToString(),
-                                           state.GetDebugMessage()));
+    // Special case for genesis block: skip transaction validation (matches ConnectBlock behavior)
+    // Genesis block coinbase doesn't need to meet normal coinbase requirements
+    if (block.GetHash() != consensusParams.hashGenesisBlock) {
+        // First transaction must be coinbase, the rest must not be
+        if (block.vtx.empty() || !block.vtx[0]->IsCoinBase())
+            return state.DoS(100, false, REJECT_INVALID, "bad-cb-missing", false, "first tx is not coinbase");
+        for (unsigned int i = 1; i < block.vtx.size(); i++)
+            if (block.vtx[i]->IsCoinBase())
+                return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
+        CAmount blockReward = GetBlockSubsidy(1, nHeight - 1, Params().GetConsensus(), false);
+        // Check transactions
+        for (const auto &tx: block.vtx)
+            if (!CheckTransaction(*tx, state, nHeight - 1, blockReward))
+                return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
+                                     strprintf("Transaction check failed (tx hash %s) %s", tx->GetHash().ToString(),
+                                               state.GetDebugMessage()));
+    }
 
     unsigned int nSigOps = 0;
     for (const auto &tx: block.vtx) {
