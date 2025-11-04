@@ -64,7 +64,15 @@ void CSporkManager::Clear() {
 void CSporkManager::CheckAndRemove() {
     LOCK(cs);
     bool fSporkAddressIsSet = !setSporkPubKeyIDs.empty();
-    assert(fSporkAddressIsSet);
+    
+    // If no spork addresses are set (e.g., during initial setup), skip spork validation
+    // This allows the daemon to start without valid spork keys
+    if (!fSporkAddressIsSet) {
+        // Clear any cached sporks since we can't validate them without addresses
+        mapSporksByHash.clear();
+        mapSporksActive.clear();
+        return;
+    }
 
     auto itActive = mapSporksActive.begin();
     while (itActive != mapSporksActive.end()) {
