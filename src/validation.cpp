@@ -3836,8 +3836,15 @@ CheckBlockHeader(const CBlockHeader &block, CValidationState &state, const Conse
     // Check proof of work matches claimed amount
     // Skip POW check for genesis block (matches AcceptBlockHeader behavior - genesis blocks are trusted)
     // This ensures consistency: genesis blocks skip POW validation everywhere
-    if (fCheckPOW && block.GetHash() != consensusParams.hashGenesisBlock && !CheckPOW(block, consensusParams)) {
-        return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
+    if (fCheckPOW && block.GetHash() != consensusParams.hashGenesisBlock) {
+        if (!CheckProofOfWork(block.GetPOWHash(), block.nBits, consensusParams)) {
+            LogPrintf("CheckBlockHeader: CheckProofOfWork failed for %s, retesting without POW cache\n",
+                      block.GetHash().ToString());
+            // Retest without POW cache in case cache was corrupted:
+            if (!CheckProofOfWork(block.GetPOWHash(false), block.nBits, consensusParams)) {
+                return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
+            }
+        }
     }
 
     // Check DevNet
