@@ -1500,6 +1500,16 @@ bool AppInitParameterInteraction() {
 
     // also see: InitParameterInteraction()
 
+    // Prevent mainnet access unless explicitly enabled
+    if (chainparams.NetworkIDString() == CBaseChainParams::MAIN) {
+        if (!gArgs.GetBoolArg("-enablemainnet", false)) {
+            return InitError(
+                _("Mainnet is currently disabled. HashmonkeyCoin is in testnet-only mode.\n"
+                  "To enable mainnet (at your own risk), use: -enablemainnet=1\n"
+                  "For now, please use testnet: -testnet"));
+        }
+    }
+
     if (!fs::is_directory(GetBlocksDir())) {
         return InitError(
                 strprintf(_("Specified blocks directory \"%s\" does not exist."), gArgs.GetArg("-blocksdir", "")));
