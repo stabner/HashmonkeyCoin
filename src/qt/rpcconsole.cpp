@@ -1275,7 +1275,7 @@ void RPCConsole::setButtonIcons() {
 
 void RPCConsole::reloadThemedWidgets() {
     clear();
-    ui->promptLabel->setHidden(GUIUtil::raptoreumThemeActive());
+    ui->promptLabel->setHidden(GUIUtil::hashmonkeycoinThemeActive());
     // Adjust button icon colors on theme changes
     setButtonIcons();
 }
