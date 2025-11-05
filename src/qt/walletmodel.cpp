@@ -195,7 +195,7 @@ WalletModel::prepareTransaction(WalletModelTransaction &transaction, const CCoin
     for (const SendCoinsRecipient &rcp: recipients) {
         if (rcp.fSubtractFeeFromAmount)
             fSubtractFeeFromAmount = true;
-        {   // User-entered raptoreum address / amount:
+        {   // User-entered hashmonkeycoin address / amount:
             if (!validateAddress(rcp.address)) {
                 return InvalidAddress;
             }
@@ -332,7 +332,7 @@ WalletModel::prepareAssetTransaction(WalletModelTransaction &transaction, const 
         if (rcp.fSubtractFeeFromAmount)
             fSubtractFeeFromAmount = true;
 
-        {   // User-entered raptoreum address / amount:
+        {   // User-entered hashmonkeycoin address / amount:
             if (!validateAddress(rcp.address)) {
                 return InvalidAddress;
             }

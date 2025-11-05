@@ -95,13 +95,13 @@ AddressBookPage::AddressBookPage(Mode _mode, Tabs _tab, QWidget *parent) :
     switch (tab) {
         case SendingTab:
             ui->labelExplanation->setText(
-                    tr("These are your Raptoreum addresses for sending payments. Always check the amount and the receiving address before sending coins."));
+                    tr("These are your HashmonkeyCoin addresses for sending payments. Always check the amount and the receiving address before sending coins."));
             ui->deleteAddress->setVisible(true);
             ui->newAddress->setVisible(true);
             break;
         case ReceivingTab:
             ui->labelExplanation->setText(
-                    tr("These are your Raptoreum addresses for receiving payments. It is recommended to use a new receiving address for each transaction."));
+                    tr("These are your HashmonkeyCoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction."));
             ui->deleteAddress->setVisible(false);
             ui->newAddress->setVisible(false);
             break;
@@ -305,7 +305,7 @@ void AddressBookPage::on_exportButton_clicked() {
     writer.addColumn("Address", AddressTableModel::Address, Qt::EditRole);
 
     if (!writer.write()) {
-        //: %1 is a name of the file (e.g.: "addressbook.csv") that the Raptoreum addresses were exported to.
+        //: %1 is a name of the file (e.g.: "addressbook.csv") that the HashmonkeyCoin addresses were exported to.
         QMessageBox::critical(this, tr("Exporting Failed"),
                               tr("There was an error trying to save the address list to %1. Please try again.",
                                  "An error message.").arg(filename));

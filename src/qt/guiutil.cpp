@@ -268,7 +268,7 @@ namespace GUIUtil {
 
         // We don't want translators to use own addresses in translations
         // and this is the only place, where this address is supplied.
-        widget->setPlaceholderText(QObject::tr("Enter a Raptoreum address (e.g. %1)").arg(
+        widget->setPlaceholderText(QObject::tr("Enter a HashmonkeyCoin address (e.g. %1)").arg(
                 QString::fromStdString(DummyAddress(Params()))));
         widget->setValidator(new BitcoinAddressEntryValidator(parent, fAllowURI));
         widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -281,7 +281,7 @@ namespace GUIUtil {
             QDialog dlg(parent);
             dlg.setObjectName("AppearanceSetup");
             dlg.setWindowTitle(QObject::tr("Appearance Setup"));
-            dlg.setWindowIcon(QIcon(":icons/raptoreum"));
+            dlg.setWindowIcon(QIcon(":icons/hashmonkeycoin"));
             // And the widgets we add to it
             QLabel lblHeading(
                     QObject::tr("Please choose your preferred settings for the appearance of %1").arg(PACKAGE_NAME),
@@ -320,8 +320,8 @@ namespace GUIUtil {
     }
 
     bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out) {
-        // return if URI is not valid or is no raptoreum: URI
-        if (!uri.isValid() || uri.scheme() != QString("raptoreum"))
+        // return if URI is not valid or is no hashmonkeycoin: URI
+        if (!uri.isValid() || uri.scheme() != QString("hashmonkeycoin"))
             return false;
 
         SendCoinsRecipient rv;
@@ -565,7 +565,7 @@ namespace GUIUtil {
     void openConfigfile() {
         fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME));
 
-        /* Open raptoreum.conf with the associated application */
+        /* Open hashmonkeycoin.conf with the associated application */
         if (fs::exists(pathConfig))
             QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
     }
@@ -731,15 +731,15 @@ namespace GUIUtil {
     {
         std::string chain = gArgs.GetChainName();
         if (chain == CBaseChainParams::MAIN)
-            return GetSpecialFolderPath(CSIDL_STARTUP) / "Raptoreum Core.lnk";
+            return GetSpecialFolderPath(CSIDL_STARTUP) / "HashmonkeyCoin Core.lnk";
         if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-            return GetSpecialFolderPath(CSIDL_STARTUP) / "Raptoreum Core (testnet).lnk";
-        return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Raptoreum Core (%s).lnk", chain);
+            return GetSpecialFolderPath(CSIDL_STARTUP) / "HashmonkeyCoin Core (testnet).lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("HashmonkeyCoin Core (%s).lnk", chain);
     }
 
     bool GetStartOnSystemStartup()
     {
-        // check for "Raptoreum Core*.lnk"
+        // check for "HashmonkeyCoin Core*.lnk"
         return fs::exists(StartupShortcutPath());
     }
 
@@ -814,8 +814,8 @@ namespace GUIUtil {
     {
         std::string chain = gArgs.GetChainName();
         if (chain == CBaseChainParams::MAIN)
-            return GetAutostartDir() / "raptoreumcore.desktop";
-        return GetAutostartDir() / strprintf("raptoreumcore-%s.desktop", chain);
+            return GetAutostartDir() / "hashmonkeycoincore.desktop";
+        return GetAutostartDir() / strprintf("hashmonkeycoincore-%s.desktop", chain);
     }
 
     bool GetStartOnSystemStartup()
@@ -855,13 +855,13 @@ namespace GUIUtil {
             if (!optionFile.good())
                 return false;
             std::string chain = gArgs.GetChainName();
-            // Write a raptoreumcore.desktop file to the autostart directory:
+            // Write a hashmonkeycoincore.desktop file to the autostart directory:
             optionFile << "[Desktop Entry]\n";
             optionFile << "Type=Application\n";
             if (chain == CBaseChainParams::MAIN)
-                optionFile << "Name=Raptoreum Core\n";
+                optionFile << "Name=HashmonkeyCoin Core\n";
             else
-                optionFile << strprintf("Name=Raptoreum Core (%s)\n", chain);
+                optionFile << strprintf("Name=HashmonkeyCoin Core (%s)\n", chain);
             optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
             optionFile << "Terminal=false\n";
             optionFile << "Hidden=false\n";
@@ -997,7 +997,7 @@ namespace GUIUtil {
 
             std::vector <QString> vecFiles;
             // If light/dark theme is used load general styles first
-            if (raptoreumThemeActive()) {
+            if (hashmonkeycoinThemeActive()) {
                 vecFiles.push_back(pathToFile(generalTheme));
             }
             vecFiles.push_back(pathToFile(getActiveTheme()));
@@ -1623,7 +1623,7 @@ namespace GUIUtil {
         return theme;
     }
 
-    bool raptoreumThemeActive() {
+    bool hashmonkeycoinThemeActive() {
         QSettings settings;
         QString theme = settings.value("theme", defaultTheme).toString();
         return theme != traditionalTheme;
@@ -1639,7 +1639,7 @@ namespace GUIUtil {
 #ifdef Q_OS_MAC
         for (const auto& c : w->findChildren<QWidget*>()) {
             if (c->testAttribute(Qt::WA_MacShowFocusRect)) {
-                c->setAttribute(Qt::WA_MacShowFocusRect, !raptoreumThemeActive());
+                c->setAttribute(Qt::WA_MacShowFocusRect, !hashmonkeycoinThemeActive());
                 setRectsDisabled.emplace(c);
             }
         }
@@ -1652,7 +1652,7 @@ namespace GUIUtil {
         auto it = setRectsDisabled.begin();
         while (it != setRectsDisabled.end()) {
             if (allWidgets.contains(*it)) {
-                (*it)->setAttribute(Qt::WA_MacShowFocusRect, !raptoreumThemeActive());
+                (*it)->setAttribute(Qt::WA_MacShowFocusRect, !hashmonkeycoinThemeActive());
                 ++it;
             } else {
                 it = setRectsDisabled.erase(it);

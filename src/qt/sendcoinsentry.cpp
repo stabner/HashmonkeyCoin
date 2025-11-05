@@ -34,7 +34,7 @@ SendCoinsEntry::SendCoinsEntry(QWidget *parent, bool hideFuture) :
 
     setButtonIcons();
 
-    // normal raptoreum address field
+    // normal hashmonkeycoin address field
     GUIUtil::setupAddressWidget(ui->payTo, this, true);
 
     GUIUtil::setFont({ui->payToLabel,

@@ -38,8 +38,8 @@
 #include <QStringList>
 #include <QUrlQuery>
 
-const int RAPTOREUM_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString RAPTOREUM_IPC_PREFIX("hashmonkeycoin:");
+const int HASHMONKEYCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
+const QString HASHMONKEYCOIN_IPC_PREFIX("hashmonkeycoin:");
 
 //
 // Create a name that is unique for:
@@ -84,7 +84,7 @@ void PaymentServer::ipcParseCommandLine(interfaces::Node &node, int argc, char *
         // network as that would require fetching and parsing the payment request.
         // That means clicking such an URI which contains a testnet payment request
         // will start a mainnet instance and throw a "wrong network" error.
-        if (arg.startsWith(RAPTOREUM_IPC_PREFIX, Qt::CaseInsensitive)) // hashmonkeycoin: URI
+        if (arg.startsWith(HASHMONKEYCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // hashmonkeycoin: URI
         {
             savedPaymentRequests.append(arg);
 
@@ -116,7 +116,7 @@ bool PaymentServer::ipcSendCommandLine() {
     for (const QString &r: savedPaymentRequests) {
         QLocalSocket *socket = new QLocalSocket();
         socket->connectToServer(ipcServerName(), QIODevice::WriteOnly);
-        if (!socket->waitForConnected(RAPTOREUM_IPC_CONNECT_TIMEOUT)) {
+        if (!socket->waitForConnected(HASHMONKEYCOIN_IPC_CONNECT_TIMEOUT)) {
             delete socket;
             socket = nullptr;
             return false;
@@ -130,7 +130,7 @@ bool PaymentServer::ipcSendCommandLine() {
 
         socket->write(block);
         socket->flush();
-        socket->waitForBytesWritten(RAPTOREUM_IPC_CONNECT_TIMEOUT);
+        socket->waitForBytesWritten(HASHMONKEYCOIN_IPC_CONNECT_TIMEOUT);
         socket->disconnectFromServer();
 
         delete socket;
@@ -207,7 +207,7 @@ void PaymentServer::handleURIOrFile(const QString &s) {
     if (s.startsWith("hashmonkeycoin://", Qt::CaseInsensitive)) {
         Q_EMIT message(tr("URI handling"), tr("'hashmonkeycoin://' is not a valid URI. Use 'hashmonkeycoin:' instead."),
                        CClientUIInterface::MSG_ERROR);
-    } else if (s.startsWith(RAPTOREUM_IPC_PREFIX, Qt::CaseInsensitive)) // hashmonkeycoin: URI
+    } else if (s.startsWith(HASHMONKEYCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // hashmonkeycoin: URI
     {
         QUrlQuery uri((QUrl(s)));
         // normal URI

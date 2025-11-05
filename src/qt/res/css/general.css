@@ -1003,11 +1003,11 @@ AboutDialog
 
 QDialog#AboutDialog QLabel#label,
 QDialog#AboutDialog QLabel#copyrightLabel,
-QDialog#AboutDialog QLabel#label_2 { /* About Raptoreum Contents */
+QDialog#AboutDialog QLabel#label_2 { /* About HashmonkeyCoin Contents */
     margin-left: 10px;
 }
 
-QDialog#AboutDialog QLabel#label_2 { /* Margin for About Raptoreum text */
+QDialog#AboutDialog QLabel#label_2 { /* Margin for About HashmonkeyCoin text */
     margin-right: 10px;
 }
 

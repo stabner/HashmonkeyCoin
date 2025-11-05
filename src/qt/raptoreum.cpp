@@ -374,7 +374,7 @@ void BitcoinApplication::shutdownResult() {
 
 void BitcoinApplication::handleRunawayException(const QString &message) {
     QMessageBox::critical(nullptr, "Runaway exception", BitcoinGUI::tr(
-            "A fatal error occurred. Raptoreum Core can no longer continue safely and will quit.") + QString("\n\n") +
+            "A fatal error occurred. HashmonkeyCoin Core can no longer continue safely and will quit.") + QString("\n\n") +
                                                         message);
     ::exit(EXIT_FAILURE);
 }
@@ -427,7 +427,7 @@ static void SetupUIArgs() {
     gArgs.AddArg("-debug-ui",
                  "Updates the UI's stylesheets in realtime with changes made to the css files in -custom-css-dir and forces some widgets to show up which are usually only visible under certain circumstances. (default: 0)",
                  ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::GUI);
-    gArgs.AddArg("-windowtitle=<name>", _("Sets a window title which is appended to \"Raptoreum Core - \""),
+    gArgs.AddArg("-windowtitle=<name>", _("Sets a window title which is appended to \"HashmonkeyCoin Core - \""),
                  ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
     gArgs.AddArg("-minrefresh",
                  "Minimize UI refreshes.  Fully confirmed transactions will not update with each new block (default: false)",
@@ -535,7 +535,7 @@ int GuiMain(int argc, char *argv[]) {
     if (!Intro::pickDataDirectory(*node))
         return EXIT_SUCCESS;
 
-    /// 6. Determine availability of data and blocks directory and parse raptoreum.conf
+    /// 6. Determine availability of data and blocks directory and parse hashmonkeycoin.conf
     /// - Do not call GetDataDir(true) before this step finishes
     if (!CheckDataDirOption()) {
         node->initError(strprintf("Specified data directory \"%s\" does not exist.\n", gArgs.GetArg("-datadir", "")));

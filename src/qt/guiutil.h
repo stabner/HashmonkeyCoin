@@ -53,7 +53,7 @@ class QWidget;
 
 QT_END_NAMESPACE
 
-/** Utility functions used by the Raptoreum Qt UI.
+/** Utility functions used by the HashmonkeyCoin Qt UI.
  */
 namespace GUIUtil {
     /* Enumeration of possible "colors" */
@@ -214,7 +214,7 @@ namespace GUIUtil {
     // Open debug.log
     void openDebugLogfile();
 
-    // Open raptoreum.conf
+    // Open hashmonkeycoin.conf
     void openConfigfile();
 
     // Browse backup folder
@@ -386,7 +386,7 @@ namespace GUIUtil {
     /** get font size with GUIUtil::fontScale applied */
     double getScaledFontSize(int nSize);
 
-    /** Load raptoreum specific appliciation fonts */
+    /** Load hashmonkeycoin specific appliciation fonts */
     bool loadFonts();
 
     /** Check if the fonts have been loaded successfully */
@@ -439,8 +439,8 @@ namespace GUIUtil {
     /** Return the name of the currently active theme.*/
     QString getActiveTheme();
 
-    /** Check if a raptoreum specific theme is activated (light/dark).*/
-    bool raptoreumThemeActive();
+    /** Check if a hashmonkeycoin specific theme is activated (light/dark).*/
+    bool hashmonkeycoinThemeActive();
 
     /** Load the theme and update all UI elements according to the appearance settings. */
     void loadTheme(bool fForce = false);
