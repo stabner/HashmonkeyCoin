@@ -1096,7 +1096,7 @@ GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consens
     int multiplier;              // integer number of owlings
     int tempHeight;              // number of blocks since last anchor
     if (nPrevHeight < 720) {
-        nSubsidy = Params().NetworkIDString() == CBaseChainParams::TESTNET ? 20000 : 4;
+        nSubsidy = 500;  // HashmonkeyCoin: 500 HMNY per block for early blocks (both mainnet and testnet)
     } else if ((nPrevHeight > 553531) && (nPrevHeight < 2105657)) {
         tempHeight = nPrevHeight - 553532;
         multiplier = tempHeight / owlings;
