@@ -28,7 +28,7 @@
   - Testnet: 19992 (P2P), 19993 (RPC default, customizable)
   - Devnet: 39990 (P2P), 39991 (RPC)
   - Regtest: 19991 (P2P), 19992 (RPC)
-- **Seed Node**: seednode.hashmonkeys.cloud (testnet: 192.168.1.49:19992)
+- **Seed Node**: seednode.hashmonkeys.cloud
 - **Address Prefixes**: 
   - Mainnet: 'H' (16), Script: 'M' (20), Private: 'N' (21)
   - Testnet: 'h' (111) or 'j' (testnet addresses), Script: 'm' (19), Private: '9' (239)
@@ -270,7 +270,7 @@ rpcport=11230
 rpcuser=your_username
 rpcpassword=your_secure_password
 rpcallowip=127.0.0.1
-rpcallowip=192.168.1.0/24
+rpcallowip=YOUR_NETWORK/24
 ```
 
 ## 🔧 Development
@@ -310,7 +310,7 @@ rpcport=19993
 rpcuser=hashmonkeycoin
 rpcpassword=$(openssl rand -hex 32)
 rpcallowip=127.0.0.1
-rpcallowip=192.168.1.0/24
+rpcallowip=YOUR_NETWORK/24
 EOF
 
 # Start seed node
@@ -332,8 +332,8 @@ rpcport=11230
 rpcuser=stabner
 rpcpassword=your_secure_password
 rpcallowip=127.0.0.1
-rpcallowip=192.168.1.0/24
-connect=192.168.1.49:19992
+rpcallowip=YOUR_NETWORK/24
+connect=seednode.hashmonkeys.cloud:19992
 EOF
 
 # Start mining node
