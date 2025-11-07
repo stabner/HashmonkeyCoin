@@ -519,8 +519,8 @@ public:
 
         // HashmonkeyCoin Testnet: Founder payment (update address when you have a testnet address)
         std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
-        // TODO: Update with HashmonkeyCoin testnet founder address when available
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "");  // Empty address for now
+        // Using a valid testnet address for founder payments (testnet addresses start with 'h' or 'j')
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "jBtqkaroaGSy6TAPLa3XeGp9cKgwNCVr8t");  // Testnet founder address
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
