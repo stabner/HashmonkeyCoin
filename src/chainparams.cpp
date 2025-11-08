@@ -299,7 +299,7 @@ public:
         assert(consensus.hashGenesisBlock == expectedMainnetHash);
         assert(genesis.hashMerkleRoot == uint256S("0xc7bf42a8e13cb88501cc8d64331d425a423009662f2860edb9ca8d92c3828144"));
 
-        vSeeds.emplace_back("seed.hashmonkes.cloud");
+        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
         // HashmonkeyCoin addresses start with 'H' (prefix 40 = 'H')
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
