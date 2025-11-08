@@ -816,7 +816,7 @@ void BitcoinGUI::createToolBars() {
         connect(historyButton, &QToolButton::clicked, this, &BitcoinGUI::gotoHistoryPage);
 
         for (auto button : tabGroup->buttons()) {
-            GUIUtil::setFont({button}, GUIUtil::FontWeight::Normal, 10);
+            GUIUtil::setFont({button}, GUIUtil::FontWeight::Normal, 12);
             button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
             button->setToolTip(button->statusTip());
             button->setCheckable(true);
@@ -1448,7 +1448,7 @@ void BitcoinGUI::updateWidth() {
         nWidthWidestButton = std::max<int>(nWidthWidestButton, GUIUtil::TextWidth(fm, button->text()));
     }
 
-    nWidth = nWidthWidestButton + 65;
+    nWidth = nWidthWidestButton + 90;
     appToolBar->setMaximumWidth(nWidth);
     // 980 is the minimum required to show all tab's contents
     int minWidth = 980;
