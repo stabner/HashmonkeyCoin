@@ -730,6 +730,7 @@ QToolBar > QToolButton {
     background-size: 10px;
     background-position: left;
     font-weight: 500;
+    font-size: 12pt;
 }
 
 QToolBar > QToolButton:hover:!checked {
