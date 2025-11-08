@@ -84,9 +84,11 @@ QComboBox,
 QComboBox:editable,
 QPlainTextEdit,
 QLineEdit {
-    background-color: #F3DFD9;
-    border-color: #323642;
-    color: #111522;
+    background-color: #F0F8FF;
+    border-color: #87CEEB;
+    color: #1A1A1A;
+    border-radius: 8px;
+    padding: 8px 12px;
 }
 
 BitcoinAmountField:hover:!focus,
@@ -94,8 +96,8 @@ QAbstractSpinBox:hover:!focus,
 QComboBox:hover:!focus,
 QPlainTextEdit:hover:!focus,
 QLineEdit:hover:!focus {
-    background-color: #E5CFC9;
-    border-color: #FF6B46;
+    background-color: #E6F3FF;
+    border-color: #6BB6FF;
 }
 
 
@@ -105,8 +107,8 @@ QComboBox:checked,
 QComboBox:focus,
 QPlainTextEdit:focus,
 QLineEdit:focus {
-    background-color: #E5CFC9;
-    border-color: #FF6B46;
+    background-color: #E6F3FF;
+    border-color: #87CEEB;
 }
 
 BitcoinAmountField:disabled,
@@ -280,13 +282,19 @@ QHeaderView
 ******************************************************/
 
 QHeaderView::section { /* Table Header Sections */
-    background-color: #EFBDB1;
-    color: #111522;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #87CEEB, stop: 1 #6BB6FF);
+    color: #1A1A1A;
+    font-weight: 600;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #B0E0E6;
 }
 
 QHeaderView::section:hover { /* Table Header Sections */
-    background-color: #FF6B46;
-    color: #111522;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #A0D8EF, stop: 1 #87CEEB);
+    color: #1A1A1A;
 }
 
 /******************************************************
@@ -309,9 +317,9 @@ QMenu::item {
 }
 
 QMenu::item:selected:!disabled {
-    background-color: #FFFFFF;
-    border: 1px solid #FF6B46;
-    color: #111522;
+    background-color: #E6F3FF;
+    border: 1px solid #87CEEB;
+    color: #1A1A1A;
 }
 
 QMenu::item:disabled {
@@ -332,12 +340,12 @@ QMenuBar {
 }
 
 QMenuBar::item:hover {
-  color: #B74426;
+  color: #0066CC;
 }
 
 QMenuBar::item:selected {
   background-color: #EFBDB1;
-  color: #B74426;
+  color: #0066CC;
 }
 
 /******************************************************
@@ -366,16 +374,24 @@ QPushButton
 ******************************************************/
 
 QPushButton {
-    background-color: #FF6B46;
-    color: #111522;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #87CEEB, stop: 1 #6BB6FF);
+    color: #1A1A1A;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 600;
+    min-height: 36px;
 }
 
 QPushButton:hover {
-    background-color: #D1593A;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #A0D8EF, stop: 1 #87CEEB);
 }
 
 QPushButton:pressed {
-    background-color: #FF6B46;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #6BB6FF, stop: 1 #4A9EFF);
 }
 
 QPushButton:disabled {
@@ -513,7 +529,9 @@ QPushButton - Special case, tabbar replacement buttons
 #btnSignMessage:hover:checked,
 #btnVerifyMessage:hover:checked {
     border: none;
-    color: #B74426;
+    background: rgba(135, 206, 250, 0.2);
+    color: #0066CC;
+    border-bottom: 3px solid #87CEEB;
 }
 
 /* Debug window buttons */
@@ -533,7 +551,8 @@ QPushButton - Special case, tabbar replacement buttons
 #btnSignMessage:hover:!checked,
 #btnVerifyMessage:hover:!checked {
     border: none;
-    color: #B74426;
+    background: rgba(135, 206, 250, 0.1);
+    color: #0066CC;
 }
 
 /* Debug window buttons */
@@ -553,7 +572,10 @@ QPushButton - Special case, tabbar replacement buttons
 #btnSignMessage:checked,
 #btnVerifyMessage:checked {
     border: none;
-    color: #B74426;
+    background: rgba(135, 206, 250, 0.25);
+    color: #0066CC;
+    border-bottom: 3px solid #87CEEB;
+    font-weight: 600;
 }
 
 /******************************************************
@@ -602,10 +624,10 @@ QSlider
 ******************************************************/
 
 QSlider::handle:horizontal {
-	background-color: #B74426;
+	background-color: #87CEEB;
 }
 QSlider::handle:horizontal:hover {
-	background-color: #FF6B46;
+	background-color: #A0D8EF;
 }
 QSlider::sub-page:horizontal {
 	background-color: #C2C0C0;
@@ -676,32 +698,41 @@ QToolBar / QToolButton
 ******************************************************/
 
 QToolBar {
-    background-color: #EFBDB1;
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                                stop: 0 #F0F8FF, stop: 1 #E6F3FF);
+    border-right: 2px solid rgba(135, 206, 250, 0.4);
+    padding: 8px 0px;
 }
 
 QToolBar > QToolButton {
     border: none;
-    border: 1px solid #EFBDB1;
-    background-color: #EFBDB1;
-    color: #111522;
-    padding-left: 15px;
-    padding-right: 15px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    color: #1A1A1A;
+    padding: 12px 20px;
+    margin: 4px 8px;
+    border-radius: 8px;
     background-repeat: no-repeat;
     background-size: 10px;
     background-position: left;
+    font-weight: 500;
 }
 
 QToolBar > QToolButton:hover:!checked {
-    background-color: #EFBDB1;
-    border: 1px solid #FF6B46;
-    border-radius: 5px;
-    color: #111522;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(135, 206, 250, 0.25), stop: 1 rgba(107, 182, 255, 0.2));
+    border: 2px solid rgba(135, 206, 250, 0.6);
+    border-radius: 8px;
+    color: #0066CC;
 }
 
 QToolBar > QToolButton:checked {
-    background-color: #EFBDB1;
-    border: 1px solid #EFBDB1;
-    color: #B74426;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(135, 206, 250, 0.35), stop: 1 rgba(107, 182, 255, 0.25));
+    border: 2px solid #87CEEB;
+    border-radius: 8px;
+    color: #0066CC;
+    font-weight: 600;
 }
 
 QToolBar > QToolButton:disabled {
@@ -712,6 +743,16 @@ QToolBar > QToolButton:disabled {
 
 QToolBar QLabel#lblToolbarLogo {
   background-image: url(':/images/hashmonkeycoin_logo_toolbar_light');
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 80px;
+  max-height: 80px;
+  padding: 15px;
+  background-size: contain;
+  border-radius: 12px;
+  background-color: rgba(135, 206, 250, 0.2);
+  border: 2px solid rgba(135, 206, 250, 0.5);
+  margin: 8px;
 }
 
 /******************************************************
