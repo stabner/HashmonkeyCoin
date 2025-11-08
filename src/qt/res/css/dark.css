@@ -53,7 +53,7 @@ WalletFrame {
 }
 
 QWidget { /* override text selection background color for all text widgets */
-    selection-color: #111522;
+    selection-color: #1A1A1A;
     selection-background-color: #C2C0C0;
 }
 
@@ -244,21 +244,21 @@ QComboBox
 ******************************************************/
 
 QComboBox QListView {
-    background-color: #1B1F2C;
-    border: 0.5px solid #373D50;
+    background-color: #252525;
+    border: 0.5px solid #404040;
 }
 
 QComboBox::item {
-    color: #C2C0C0;
+    color: #E0E0E0;
 }
 
 QComboBox::item:alternate {
-    background-color: #1B1F2C;
+    background-color: #252525;
 }
 
 QComboBox::item:selected {
-    background-color: #1B1F2C;
-    border: 1px solid #B45A46;
+    background-color: #3A3A3A;
+    border: 1px solid #87CEEB;
     border-radius: 2px;
 }
 
@@ -373,8 +373,9 @@ QProgressDialog
 ******************************************************/
 
 QProgressDialog {
-    background-color: #111522;
-    color: #C2C0C0;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #1A1A1A, stop: 1 #2D2D2D);
+    color: #E0E0E0;
 }
 
 /******************************************************
@@ -413,6 +414,12 @@ QPushButton:disabled {
     color: #FFFFFF;
 }
 
+QDialogButtonBox QPushButton {
+    font-size: 11pt;
+    padding: 7px 16px;
+    min-width: 80px;
+}
+
 /******************************************************
 QPushButton - Special case, light buttons
 ******************************************************/
@@ -435,7 +442,9 @@ QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton,
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM,
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM {
     background-color: #80869A;
-    color: #111522;
+    color: #1A1A1A;
+    font-size: 11pt;
+    padding: 7px 16px;
 }
 
 QWidget#AddressBookPage QPushButton#newAddress:hover,
@@ -456,7 +465,7 @@ QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton:hover,
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM:hover,
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM:hover {
     background-color: #C2C0C0;
-    color: #111522;
+    color: #1A1A1A;
 }
 
 QWidget#AddressBookPage QPushButton#newAddress:pressed,
@@ -477,7 +486,7 @@ QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton:pressed,
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM:pressed,
 QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM:pressed {
     background-color: #80869A;
-    color: #111522;
+    color: #1A1A1A;
 }
 
 QWidget#AddressBookPage QPushButton#newAddress:disabled,
@@ -689,9 +698,9 @@ QTableWidget
 ******************************************************/
 
 .QTableWidget {
-    background-color: #111522;
-    border-color: #80869A;
-    color: #FFFFFF;
+    background-color: #252525;
+    border-color: #404040;
+    color: #E0E0E0;
 }
 
 /******************************************************
@@ -932,8 +941,9 @@ HelpMessageDialog
 ******************************************************/
 
 HelpMessageDialog QWidget#scrollAreaWidgetContents {
-    background-color: #373D50;
-    border-color: #555B70;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #1A1A1A, stop: 1 #2D2D2D);
+    border-color: #404040;
 }
 
 /******************************************************
@@ -947,12 +957,13 @@ ModalOverlay
 ******************************************************/
 
 QWidget#bgWidget { /* The frame overlaying the overview-page */
-    background-color: #1B1F2C;
+    background-color: #1A1A1A;
 }
 
 QWidget#contentWidget { /* The actual content with the text/buttons/etc... */
-    background-color: #111522;
-    border-color: #373D50;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #1A1A1A, stop: 1 #2D2D2D);
+    border-color: #404040;
 }
 
 /******************************************************
@@ -1001,12 +1012,13 @@ RPCConsole
 ******************************************************/
 
 QWidget#RPCConsole { /* Tools window background */
-    background-color: #1B1F2C;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #1A1A1A, stop: 1 #2D2D2D);
 }
 
 QWidget#RPCConsole #detailWidget{ /* Peers detailed information table */
-    background-color: #111522;
-    border: 1px solid #373D50;
+    background-color: #252525;
+    border: 1px solid #404040;
 }
 
 QWidget#RPCConsole .QGroupBox #line { /* Network In Line */
@@ -1022,21 +1034,21 @@ RPCConsole QTableView {
 }
 
 #rpcAutoCompleter {
-    background-color: #1B1F2C;
-    border-color: #373D50;
+    background-color: #252525;
+    border-color: #404040;
 }
 
 #rpcAutoCompleter::item {
-    color: #C2C0C0;
+    color: #E0E0E0;
 }
 
 #rpcAutoCompleter::item:hover {
-    border: 1px solid #B45A46;
+    border: 1px solid #87CEEB;
 }
 
 #rpcAutoCompleter::item:selected {
-    color: #C2C0C0;
-    border: 1px solid #B45A46;
+    color: #E0E0E0;
+    border: 1px solid #87CEEB;
 }
 
 /******************************************************
@@ -1092,7 +1104,8 @@ ShutdownWindow
 ******************************************************/
 
 QWidget#ShutdownWindow {
-    background-color: #1B1F2C;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #1A1A1A, stop: 1 #2D2D2D);
 }
 
 /******************************************************
