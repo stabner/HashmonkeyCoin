@@ -761,8 +761,8 @@ QToolBar QLabel#lblToolbarLogo {
   background-image: url(':/images/hashmonkeycoin_logo_toolbar_dark');
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 80px;
-  max-height: 80px;
+  min-height: 120px;
+  max-height: 120px;
   padding: 8px;
   background-size: contain;
   border-radius: 12px;
