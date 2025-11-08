@@ -1448,7 +1448,7 @@ void BitcoinGUI::updateWidth() {
         nWidthWidestButton = std::max<int>(nWidthWidestButton, GUIUtil::TextWidth(fm, button->text()));
     }
 
-    nWidth = nWidthWidestButton + 90;
+    nWidth = nWidthWidestButton + 105;
     appToolBar->setMaximumWidth(nWidth);
     // 980 is the minimum required to show all tab's contents
     int minWidth = 980;
