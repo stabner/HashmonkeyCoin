@@ -481,8 +481,8 @@ public:
         vFixedSeeds = std::vector<SeedSpec6>();
 
         vSeeds.clear();
-        // HashmonkeyCoin testnet seed node (if you have one, otherwise leave empty)
-        // vSeeds.emplace_back("testnet-seed.hashmonkes.cloud");
+        // HashmonkeyCoin testnet seed node
+        vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
         // HashmonkeyCoin Testnet addresses start with 'h' (lowercase) - prefix 104
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 104);
