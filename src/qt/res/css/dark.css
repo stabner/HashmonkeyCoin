@@ -307,7 +307,8 @@ QMenu
 ******************************************************/
 
 QMenu {
-    background-color: #2D2D2D;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #1A1A1A, stop: 1 #2D2D2D);
     border-color: #404040;
 }
 
@@ -334,7 +335,8 @@ QMenuBar
 ******************************************************/
 
 QMenuBar {
-    background-color: #252525;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #1A1A1A, stop: 1 #252525);
     color: #E0E0E0;
 }
 
