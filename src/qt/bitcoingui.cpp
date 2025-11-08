@@ -816,7 +816,7 @@ void BitcoinGUI::createToolBars() {
         connect(historyButton, &QToolButton::clicked, this, &BitcoinGUI::gotoHistoryPage);
 
         for (auto button : tabGroup->buttons()) {
-            GUIUtil::setFont({button}, GUIUtil::FontWeight::Normal, 12);
+            GUIUtil::setFont({button}, GUIUtil::FontWeight::Normal, 10);
             button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
             button->setToolTip(button->statusTip());
             button->setCheckable(true);
