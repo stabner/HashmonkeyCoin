@@ -146,7 +146,7 @@ namespace GUIUtil {
             {ThemedColor::BLUE,                    QColor(97, 123, 209)},
             {ThemedColor::GREEN,                   QColor(10, 173, 6)}, 
             {ThemedColor::ORANGE,                  QColor(235, 127, 0)},
-            {ThemedColor::PRIMARY,                 QColor(183, 68, 38)},
+            {ThemedColor::PRIMARY,                 QColor(135, 206, 250)},
             {ThemedColor::RED,                     QColor(243, 35, 73)},
             {ThemedColor::SECONDARY,               QColor(194, 192, 192)},
     };
@@ -164,7 +164,7 @@ namespace GUIUtil {
             {ThemedColor::BLUE,                    QColor(171, 186, 237)},
             {ThemedColor::GREEN,                   QColor(10, 173, 6)},
             {ThemedColor::ORANGE,                  QColor(235, 127, 0)},
-            {ThemedColor::PRIMARY,                 QColor(180, 90, 70)},
+            {ThemedColor::PRIMARY,                 QColor(135, 206, 250)},
             {ThemedColor::RED,                     QColor(243, 35, 72)},
             {ThemedColor::SECONDARY,               QColor(128, 134, 154)},
     };

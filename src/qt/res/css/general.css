@@ -912,10 +912,13 @@ QToolBar > QToolButton:disabled {
 
 QToolBar QLabel#lblToolbarLogo {
     background-repeat: no-repeat;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    background-position: left bottom;
-    margin: 0px 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-position: center;
+    margin: 8px 12px;
+    min-height: 100px;
+    max-height: 100px;
+    background-size: contain;
 }
 
 /******************************************************
@@ -1439,7 +1442,7 @@ QWidget .QFrame#frame .QLabel#label_5 { /* Wallet Label */
 
 QWidget .QFrame#frame .QLabel#labelWalletStatus { /* Wallet Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #a84832;
+    color: #87CEEB;
 }
 
 QWidget .QFrame#frame .QLabel#labelSpendable { /* Spendable Header */
@@ -1463,6 +1466,7 @@ QWidget .QFrame#frame .QLabel#labelBalance { /* Available Balance */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
     margin-bottom: -1px;
     margin-left: 0px;
+    font-size: 11pt;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchAvailable { /* Watch-only Balance */
@@ -1482,6 +1486,7 @@ QWidget .QFrame#frame .QLabel#labelUnconfirmed { /* Pending Balance */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
     margin-bottom: -2px;
     margin-left: 0px;
+    font-size: 11pt;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchPending { /* Watch-only Pending Balance */
@@ -1520,6 +1525,7 @@ QWidget .QFrame#frame .QLabel#labelTotal { /* Total Balance */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
     margin-bottom: -2px;
     margin-left: 0px;
+    font-size: 11pt;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchTotal { /* Watch-only Total Balance */
@@ -1550,7 +1556,7 @@ QWidget .QFrame#frameCoinJoin .QLabel#labelCoinJoinHeader { /* CoinJoin Header *
 
 QWidget .QFrame#frameCoinJoin .QLabel#labelCoinJoinSyncStatus { /* CoinJoin Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #a84832;
+    color: #87CEEB;
 }
 
 QWidget .QFrame#frameCoinJoin  .QLabel#labelCoinJoinEnabledText { /* CoinJoin Enabled Status Label */
@@ -1638,7 +1644,7 @@ QWidget .QFrame#frame_2 .QLabel#label_4 { /* Recent Transactions Label */
 
 QWidget .QFrame#frame_2 .QLabel#labelTransactionsStatus { /* Recent Transactions Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #a84832;
+    color: #87CEEB;
 }
 
 QWidget .QFrame#frame_2 QListView { /* Transaction List */

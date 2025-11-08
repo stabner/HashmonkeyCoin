@@ -717,6 +717,15 @@ void BitcoinGUI::createToolBars() {
         QLabel *logoLabel = new QLabel();
         logoLabel->setObjectName("lblToolbarLogo");
         logoLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+        // Set splash image as logo if available
+        QString theme = GUIUtil::getActiveTheme();
+        QPixmap splashPixmap = theme.startsWith("Dark") ? QPixmap(":/images/splash_dark") : QPixmap(":/images/splash_light");
+        if (!splashPixmap.isNull()) {
+            // Scale splash image to fit toolbar (max height ~100px, maintain aspect ratio)
+            QPixmap scaledPixmap = splashPixmap.scaledToHeight(100, Qt::SmoothTransformation);
+            logoLabel->setPixmap(scaledPixmap);
+            logoLabel->setAlignment(Qt::AlignCenter);
+        }
         appToolBarLogoAction = toolbar->addWidget(logoLabel);
 
         tabGroup = new QButtonGroup(this);

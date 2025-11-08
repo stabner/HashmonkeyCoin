@@ -60,7 +60,7 @@ public:
 
         // Draw first line (with slightly bigger font than the second line will get)
         // Content: Date/Time, Optional IS indicator, Amount
-        painter->setFont(GUIUtil::getFont(GUIUtil::FontWeight::Normal, false, initialFontSize * 1.17));
+        painter->setFont(GUIUtil::getFont(GUIUtil::FontWeight::Normal, false, initialFontSize * 1.05));
         // Date/Time
         colorForeground = qvariant_cast<QColor>(indexDate.data(Qt::ForegroundRole));
         QString strDate = indexDate.data(Qt::DisplayRole).toString();
@@ -119,12 +119,12 @@ OverviewPage::OverviewPage(QWidget *parent) :
     GUIUtil::setFont({ui->label_4,
                       ui->label_5,
                       ui->labelCoinJoinHeader
-                     }, GUIUtil::FontWeight::Bold, 16);
+                     }, GUIUtil::FontWeight::Bold, 13);
 
     GUIUtil::setFont({ui->labelTotalText,
                       ui->labelWatchTotal,
                       ui->labelTotal
-                     }, GUIUtil::FontWeight::Bold, 14);
+                     }, GUIUtil::FontWeight::Bold, 12);
 
     GUIUtil::setFont({ui->labelBalanceText,
                       ui->labelPendingText,
