@@ -1135,38 +1135,38 @@ QScrollBar
 
 QScrollBar::add-page,
 QScrollBar::sub-page {
-    background-color: #111522;
-    border: 1px solid #555B70;
+    background-color: #1A1A1A;
+    border: 1px solid #404040;
 }
 QScrollBar::handle:vertical,
 QScrollBar::handle:horizontal {
-    background-color: #C2C0C0;
+    background-color: #87CEEB;
 }
 QScrollBar:handle:horizontal:hover,
 QScrollBar:handle:vertical:hover {
-    background-color: #B45A46;
+    background-color: #A0D8EF;
 }
 QScrollBar:handle:horizontal:pressed,
 QScrollBar:handle:vertical:pressed {
-    background-color: #C2C0C0;
+    background-color: #6BB6FF;
 }
 QScrollBar::add-line:vertical,
 QScrollBar::sub-line:vertical,
 QScrollBar::add-line:horizontal,
 QScrollBar::sub-line:horizontal {
-    background-color: #111522;
+    background-color: #1A1A1A;
 }
 QScrollBar::add-line:vertical:hover,
 QScrollBar::sub-line:vertical:hover,
 QScrollBar::add-line:horizontal:hover,
 QScrollBar::sub-line:horizontal:hover {
-    background-color: #111522;
+    background-color: #2D2D2D;
 }
 QScrollBar::add-line:vertical:pressed,
 QScrollBar::sub-line:vertical:pressed,
 QScrollBar::add-line:horizontal:pressed,
 QScrollBar::sub-line:horizontal:pressed {
-    background-color: #111522;
+    background-color: #1A1A1A;
 }
 
 QScrollBar:up-arrow {
