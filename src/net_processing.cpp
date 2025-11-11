@@ -2526,11 +2526,17 @@ bool static ProcessMessage(CNode *pfrom, const std::string &strCommand, CDataStr
             if (fListen && !::ChainstateActive().IsInitialBlockDownload()) {
                 CAddress addr = GetLocalAddress(&pfrom->addr, pfrom->GetLocalServices());
                 FastRandomContext insecure_rand;
+                // Always use default port when advertising to peers
+                // This ensures peers can connect even if we're listening on a non-standard port
+                // Applies to both mainnet and testnet for better peer connectivity
+                addr.SetPort(Params().GetDefaultPort());
                 if (addr.IsRoutable()) {
                     LogPrint(BCLog::NET, "ProcessMessages: advertising address %s\n", addr.ToString());
                     pfrom->PushAddress(addr, insecure_rand);
                 } else if (IsPeerAddrLocalGood(pfrom)) {
                     addr.SetIP(addrMe);
+                    // Ensure we use default port here too
+                    addr.SetPort(Params().GetDefaultPort());
                     LogPrint(BCLog::NET, "ProcessMessages: advertising address %s\n", addr.ToString());
                     pfrom->PushAddress(addr, insecure_rand);
                 }

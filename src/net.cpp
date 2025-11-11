@@ -189,6 +189,11 @@ CAddress GetLocalAddress(const CNetAddr *paddrPeer, ServiceFlags nLocalServices)
     CService addr;
     if (GetLocal(addr, paddrPeer)) {
         ret = CAddress(addr, nLocalServices);
+        // Always advertise the default port to peers (not the actual listening port)
+        // This ensures peers can connect even if we're listening on a non-standard port
+        // This applies to both mainnet and testnet for better peer connectivity
+        // Smartnodes can still use different ports via their own configuration
+        ret.SetPort(Params().GetDefaultPort());
     }
     ret.nTime = GetAdjustedTime();
     return ret;
@@ -224,6 +229,10 @@ void AdvertiseLocal(CNode *pnode) {
                                            rng.randbits((GetnScore(addrLocal) > LOCAL_MANUAL) ? 3 : 1) == 0)) {
             addrLocal.SetIP(pnode->GetAddrLocal());
         }
+        // Always use default port when advertising to peers
+        // This ensures peers can connect even if we're listening on a non-standard port
+        // Applies to both mainnet and testnet for better peer connectivity
+        addrLocal.SetPort(Params().GetDefaultPort());
         if (addrLocal.IsRoutable() || gArgs.GetBoolArg("-addrmantest", false)) {
             LogPrint(BCLog::NET, "AdvertiseLocal: advertising address %s\n", addrLocal.ToString());
             pnode->PushAddress(addrLocal, rng);

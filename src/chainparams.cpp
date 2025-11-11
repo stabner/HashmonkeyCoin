@@ -318,12 +318,12 @@ public:
 //        	std::cout << "mainnet is disable" << endl;
 //        	exit(0);
 //        }
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 250);
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 100000 * COIN}},  // HashmonkeyCoin: Starting with 100,000 HMNY collateral (can add more tiers later)
                 {{5761,    0},                // Smartnode payments start at block 5761
-                 {INT_MAX, 20}}               // Starting with 20% smartnode payment rate
+                 {INT_MAX, 7}}                // Starting with 7% smartnode payment rate
         );
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
@@ -513,12 +513,12 @@ public:
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 60000 * COIN}},  // Testnet: 60k HMNY collateral
                 {{5761,    0},               // Smartnode payments start at block 5761
-                 {INT_MAX, 20}});            // 20% smartnode payment rate
+                 {INT_MAX, 20}});            // 20% smartnode payment rate (REVERTED - testing peer fix first)
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         // HashmonkeyCoin Testnet: Founder payment (update address when you have a testnet address)
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever (REVERTED - testing peer fix first)
         // Using a valid testnet address for founder payments (testnet addresses start with 'h' or 'j')
         consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "jBtqkaroaGSy6TAPLa3XeGp9cKgwNCVr8t");  // Testnet founder address
 
@@ -637,11 +637,11 @@ public:
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yYhBxduZLMnancMkpzvcLFCiTgZRSk8wun");
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 60000 * COIN}},
-                {{INT_MAX, 20}});
+                {{INT_MAX, 7}});
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -791,7 +791,7 @@ public:
         consensus.nCollaterals = SmartnodeCollaterals(
                 {{INT_MAX, 10 * COIN}},
                 {{240,     0},
-                 {INT_MAX, 20}});
+                 {INT_MAX, 7}});
 
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0xc1;
@@ -836,7 +836,7 @@ public:
         nMinSporkKeys = 1;
         // regtest usually has no smartnodes in most tests, so don't check for upgraged MNs
         fBIP9CheckSmartnodesUpgraded = false;
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         consensus.nFounderPayment = FounderPayment(rewardStructures, 500, "yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc");
 
         checkpointData = {
