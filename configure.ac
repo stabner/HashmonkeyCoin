@@ -1361,7 +1361,7 @@ if test "$use_boost" = "yes"; then
   dnl Check for boost libs
   AX_BOOST_BASE([1.64.0],[],[AC_MSG_ERROR([Boost is not available!])])
   if test "$want_boost" = "no"; then
-    AC_MSG_ERROR([only libraptoreumconsensus can be built without boost])
+    AC_MSG_ERROR([only libhashmonkeycoinconsensus can be built without boost])
   fi
   AX_BOOST_FILESYSTEM
   AX_BOOST_SYSTEM
@@ -1497,7 +1497,7 @@ AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test $build_bitcoin_libs = "yes"])
 if test "$build_bitcoin_libs" = "yes"; then
   AC_DEFINE([HAVE_CONSENSUS_LIB], [1], [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libraptoreumconsensus.pc:libraptoreumconsensus.pc.in])
+  AC_CONFIG_FILES([libhashmonkeycoinconsensus.pc:libhashmonkeycoinconsensus.pc.in])
 fi
 AC_MSG_RESULT($build_bitcoin_libs)
 
