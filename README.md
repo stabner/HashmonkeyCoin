@@ -35,7 +35,7 @@
   - Devnet: 'd' (30), Script: '8' (19), Private: '9' (239)
 
 ### **Technical Specifications**
-- **Genesis Block**: January 2025 Launch
+- **Genesis Block**: November 17, 2025 Launch (Mined with GhostRiderV2)
 - **Message Start**: 
   - Mainnet: 0x48, 0x4d, 0x4e, 0x59 (HMNY)
   - Testnet: 0x4a, 0x73, 0x4d, 0x5b (JsM[)
@@ -75,12 +75,11 @@ HashmonkeyCoin has a **finite total supply of 210,034,688 HMNY** with a deflatio
 ## 🚀 Launch Information
 
 ### **Current Status**
-HashmonkeyCoin is now ready for launch! All genesis blocks have been properly mined and configured:
+HashmonkeyCoin is now ready for launch! All genesis blocks have been properly mined and configured with GhostRiderV2:
 
-- **Mainnet Genesis**: `00000244c20bce60d57c422a1b20aa80587cb6d443dd10177be62b7f3ac98550`
-- **Testnet Genesis**: `00000e94f50fd37963fb24dc86f3462a0b535b47519517ce6515f7a857da6e88`
-- **Devnet Genesis**: `000001250c4a1a43fbf4a169832ad4ac1ef0930c87ac1b27c8f6a06c17c2ed69`
-- **Regtest Genesis**: `0a1feaeed6f547dd6da45f62e76aa20c19b7399c4cd0434788d2118a2a8710f0`
+- **Mainnet Genesis**: `2d35946991239eeae4971d348968ce60a02907c6fa53c8277858ef741d4f8c1d` (Timestamp: November 17, 2025, Nonce: 1)
+- **Testnet Genesis**: `1698f1b1bcf54f11ef070a298d7a9c3e335abbb5cee1ab5bd52106d5af9f3730` (Timestamp: November 17, 2025, Nonce: 1)
+- **Regtest Genesis**: `2c4a4a63e70fc32ed1ec94e3e20f2b0e734e7f047085d9d8452b87280ff1dead` (Timestamp: November 17, 2025, Nonce: 3)
 
 ### **Recent Updates (v2.0.03.01)**
 - ✅ **Algorithm Upgrade**: Migrated to GhostRiderV2 for enhanced security and performance

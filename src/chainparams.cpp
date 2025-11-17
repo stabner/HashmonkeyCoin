@@ -301,15 +301,13 @@ public:
         // NOTE: Genesis block needs to be mined with new GhostRiderV2 POW algorithm
         // The VerifyGenesisPOW function will automatically find a valid nonce if hash doesn't match
         // Using easier difficulty (0x207fffff) for faster genesis block generation - difficulty adjusts normally after genesis
-        const uint256 expectedMainnetHash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // Placeholder - will be updated after mining
-        genesis = CreateGenesisBlock(1761955200, 0, 0x207fffff, 4, 500 * COIN);  // Timestamp: November 1, 2025 00:00:00 UTC
+        const uint256 expectedMainnetHash = uint256S("0x2d35946991239eeae4971d348968ce60a02907c6fa53c8277858ef741d4f8c1d");
+        genesis = CreateGenesisBlock(1763410255, 1, 0x207fffff, 4, 500 * COIN);  // Timestamp: November 17, 2025 - Mined with GhostRiderV2
         VerifyGenesisPOW(genesis, expectedMainnetHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
-        // NOTE: Assert statements are commented out during genesis block mining
-        // After mining, update expectedMainnetHash and expectedMerkleRoot, then uncomment these
         // Verify genesis block hash and merkle root are correct
-        // assert(consensus.hashGenesisBlock == expectedMainnetHash);
-        // assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")); // Update after mining
+        assert(consensus.hashGenesisBlock == expectedMainnetHash);
+        assert(genesis.hashMerkleRoot == uint256S("0x55d00421a748e55c0db0e8c8a8e5678186f7e2f0fb184faf2fcbcf5955ba27e8"));
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -481,15 +479,13 @@ public:
         // The VerifyGenesisPOW function will automatically find a valid nonce if hash doesn't match
         // Using easier difficulty (0x207fffff) for faster genesis block generation
         // Using unique testnet genesis message for completely separate genesis block
-        const uint256 expectedTestnetHash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // Placeholder - will be updated after mining
-        genesis = CreateTestnetGenesisBlock(1761955201, 0, 0x207fffff, 4, 500 * COIN);  // Timestamp: November 1, 2025 00:00:01 UTC
+        const uint256 expectedTestnetHash = uint256S("0x1698f1b1bcf54f11ef070a298d7a9c3e335abbb5cee1ab5bd52106d5af9f3730");
+        genesis = CreateTestnetGenesisBlock(1763410256, 1, 0x207fffff, 4, 500 * COIN);  // Timestamp: November 17, 2025 - Mined with GhostRiderV2
         VerifyGenesisPOW(genesis, expectedTestnetHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
-        // NOTE: Assert statements are commented out during genesis block mining
-        // After mining, update expectedTestnetHash and expectedMerkleRoot, then uncomment these
         // Verify genesis block hash and merkle root are correct
-        // assert(consensus.hashGenesisBlock == expectedTestnetHash);
-        // assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")); // Update after mining
+        assert(consensus.hashGenesisBlock == expectedTestnetHash);
+        assert(genesis.hashMerkleRoot == uint256S("0x5598b9b8489eae853c959c9b601555afc385276f9aa013fa6e41d08df07badbb"));
 
         // HashmonkeyCoin Testnet: Starting fresh - no fixed seeds (using DNS seed only)
         vFixedSeeds.clear();
@@ -824,14 +820,12 @@ public:
         // Timestamp: January 2025 (will be updated when mining)
         // NOTE: Genesis block needs to be mined with new GhostRiderV2 POW algorithm
         // The VerifyGenesisPOW function will automatically find a valid nonce
-        const uint256 expectedRegtestHash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // Placeholder - will be updated after mining
-        genesis = CreateRegtestGenesisBlock(1761955202, 0, 0x207fffff, 4, 5000 * COIN);  // Timestamp: November 1, 2025 00:00:02 UTC
+        const uint256 expectedRegtestHash = uint256S("0x2c4a4a63e70fc32ed1ec94e3e20f2b0e734e7f047085d9d8452b87280ff1dead");
+        genesis = CreateRegtestGenesisBlock(1763410257, 3, 0x207fffff, 4, 5000 * COIN);  // Timestamp: November 17, 2025 - Mined with GhostRiderV2
         VerifyGenesisPOW(genesis, expectedRegtestHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
-        // NOTE: Assert statement is commented out during genesis block mining
-        // After mining, update expectedRegtestHash, then uncomment this
-        // Regtest genesis block hash verification (optional - regtest is for testing)
-        // assert(consensus.hashGenesisBlock == expectedRegtestHash);
+        // Regtest genesis block hash verification
+        assert(consensus.hashGenesisBlock == expectedRegtestHash);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
