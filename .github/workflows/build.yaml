@@ -1,4 +1,4 @@
-name: Raptoreum Build
+name: HashmonkeyCoin Build
 on:
   push:
     branches:
@@ -13,10 +13,10 @@ on:
   workflow_dispatch:
 
 env:
-  COIN_NAME: raptoreum
-  BUILD_DIR: raptoreum-build
-  COMPRESS_DIR: raptoreum-compress
-  TEST_DIR: raptoreum-test
+  COIN_NAME: hashmonkeycoin
+  BUILD_DIR: hashmonkeycoin-build
+  COMPRESS_DIR: hashmonkeycoin-compress
+  TEST_DIR: hashmonkeycoin-test
 
 jobs:
   get-version:
@@ -90,9 +90,9 @@ jobs:
         run: |
           make -j$(nproc)
           mkdir -p ${BUILD_DIR} ${BUILD_DIR}_not_strip ${TEST_DIR}
-          cp src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}/
-          mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}_not_strip/
-          mv src/test/test_raptoreum ${TEST_DIR}
+          cp src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}/
+          mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}_not_strip/
+          mv src/test/test_hashmonkeycoin ${TEST_DIR}
           strip ${BUILD_DIR}/*
 
       - name: Build Debug Binaries
@@ -103,7 +103,7 @@ jobs:
           ./configure --prefix=`pwd`/depends/x86_64-pc-linux-gnu --disable-tests --enable-debug --enable-crash-hooks
           make -j$(nproc)
           mkdir -p ${BUILD_DIR}_debug
-          mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}_debug/
+          mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}_debug/
 
       - name: Generate Checksum and Compress
         run: |
@@ -176,8 +176,8 @@ jobs:
       - name: Run Unit Tests
         id: Tests
         run: |
-          chmod +x test_raptoreum
-          ./test_raptoreum --log_format=JUNIT > unit_test_results.xml
+          chmod +x test_hashmonkeycoin
+          ./test_hashmonkeycoin --log_format=JUNIT > unit_test_results.xml
 
       - name: Upload Test Artifacts
         uses: actions/upload-artifact@v3
@@ -227,9 +227,9 @@ jobs:
         run: |
           make -j$(nproc)
           mkdir -p ${BUILD_DIR} ${BUILD_DIR}_not_strip ${TEST_DIR}
-          cp src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}/
-          mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}_not_strip/
-          mv src/test/test_raptoreum ${TEST_DIR}
+          cp src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}/
+          mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}_not_strip/
+          mv src/test/test_hashmonkeycoin ${TEST_DIR}
           strip ${BUILD_DIR}/*
 
       - name: Build Debug Binaries
@@ -240,7 +240,7 @@ jobs:
           ./configure --prefix=`pwd`/depends/x86_64-pc-linux-gnu --disable-tests --enable-debug --enable-crash-hooks
           make -j$(nproc)
           mkdir -p ${BUILD_DIR}_debug
-          mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}_debug/
+          mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}_debug/
 
       - name: Generate Checksum and Compress
         run: |
@@ -313,8 +313,8 @@ jobs:
       - name: Run Unit Tests
         id: Tests
         run: |
-          chmod +x test_raptoreum
-          ./test_raptoreum --log_format=JUNIT > unit_test_results.xml
+          chmod +x test_hashmonkeycoin
+          ./test_hashmonkeycoin --log_format=JUNIT > unit_test_results.xml
 
       - name: Upload Test Artifacts
         uses: actions/upload-artifact@v3
@@ -362,9 +362,9 @@ jobs:
         run: |
           make -j8
           mkdir -p ${BUILD_DIR} ${BUILD_DIR}_not_strip ${TEST_DIR}
-          cp src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}/
-          mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}_not_strip/
-          mv src/test/test_raptoreum ${TEST_DIR}
+          cp src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}/
+          mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}_not_strip/
+          mv src/test/test_hashmonkeycoin ${TEST_DIR}
           strip ${BUILD_DIR}/*
 
       - name: Generate Checksum and Compress
@@ -416,10 +416,10 @@ jobs:
         run: |
           make deploy
           mkdir -p macos-dmg
-          mv Raptoreum-Core.dmg macos-dmg/
+          mv HashmonkeyCoin-Core.dmg macos-dmg/
           cd macos-dmg
-          echo "sha256: `shasum Raptoreum-Core.dmg`" >> checksums.txt
-          echo "openssl-sha256: `openssl sha256 Raptoreum-Core.dmg`" >> checksums.txt
+          echo "sha256: `shasum HashmonkeyCoin-Core.dmg`" >> checksums.txt
+          echo "openssl-sha256: `openssl sha256 HashmonkeyCoin-Core.dmg`" >> checksums.txt
           cd ..
 
       - name: Upload dmg file
@@ -442,8 +442,8 @@ jobs:
       - name: Run Unit Tests
         id: Tests
         run: |
-          chmod +x test_raptoreum
-          ./test_raptoreum --log_format=JUNIT > unit_test_results.xml
+          chmod +x test_hashmonkeycoin
+          ./test_hashmonkeycoin --log_format=JUNIT > unit_test_results.xml
 
       - name: Upload Test Artifacts
         uses: actions/upload-artifact@v3
@@ -490,8 +490,8 @@ jobs:
   #       run: |
   #         make -j$(nproc)
   #         mkdir -p ${BUILD_DIR} ${TEST_DIR}
-  #         mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}/
-  #         mv src/test/test_raptoreum ${TEST_DIR}
+  #         mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}/
+  #         mv src/test/test_hashmonkeycoin ${TEST_DIR}
 
   #     - name: Build Debug Binaries
   #       run: |
@@ -501,7 +501,7 @@ jobs:
   #         ./configure --prefix=`pwd`/depends/arm-linux-gnueabihf --disable-tests --enable-debug
   #         make -j$(nproc)
   #         mkdir -p ${BUILD_DIR}_debug
-  #         mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}_debug/
+  #         mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}_debug/
 
   #     - name: Generate Checksum and Compress
   #       run: |
@@ -570,8 +570,8 @@ jobs:
   #         copy_artifact_path: unit_test_results.xml
   #         copy_artifacts_on_fail: yes
   #         commands: |
-  #           chmod +x test_raptoreum
-  #           ./test_raptoreum --log_format=JUNIT > unit_test_results.xml
+  #           chmod +x test_hashmonkeycoin
+  #           ./test_hashmonkeycoin --log_format=JUNIT > unit_test_results.xml
 
   #     - name: Upload Test Artifacts
   #       uses: actions/upload-artifact@v3
@@ -618,8 +618,8 @@ jobs:
         run: |
           make -j$(nproc)
           mkdir -p ${BUILD_DIR} ${TEST_DIR}
-          mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}/
-          mv src/test/test_raptoreum ${TEST_DIR}/
+          mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}/
+          mv src/test/test_hashmonkeycoin ${TEST_DIR}/
 
       - name: Build Debug Binaries
         run: |
@@ -629,7 +629,7 @@ jobs:
           ./configure --prefix=`pwd`/depends/aarch64-linux-gnu --disable-tests --enable-debug --enable-crash-hooks
           make -j$(nproc)
           mkdir -p ${BUILD_DIR}_debug
-          mv src/{raptoreum-cli,raptoreumd,qt/raptoreum-qt} ${BUILD_DIR}_debug/
+          mv src/{hashmonkeycoin-cli,hashmonkeycoind,qt/hashmonkeycoin-qt} ${BUILD_DIR}_debug/
 
       - name: Generate Checksum and Compress
         run: |
@@ -697,8 +697,8 @@ jobs:
           copy_artifact_path: unit_test_results.xml
           copy_artifacts_on_fail: yes
           commands: |
-            chmod +x test_raptoreum
-            ./test_raptoreum --log_format=JUNIT > unit_test_results.xml
+            chmod +x test_hashmonkeycoin
+            ./test_hashmonkeycoin --log_format=JUNIT > unit_test_results.xml
 
       - name: Upload Test Artifacts
         uses: actions/upload-artifact@v3
@@ -750,9 +750,9 @@ jobs:
         run: |
           make -j$(nproc)
           mkdir -p ${BUILD_DIR} ${BUILD_DIR}_not_strip ${TEST_DIR}
-          cp src/{raptoreum-cli.exe,raptoreumd.exe,qt/raptoreum-qt.exe} ${BUILD_DIR}/
-          mv src/{raptoreum-cli.exe,raptoreumd.exe,qt/raptoreum-qt.exe} ${BUILD_DIR}_not_strip/
-          mv src/test/test_raptoreum.exe ${TEST_DIR}
+          cp src/{hashmonkeycoin-cli.exe,hashmonkeycoind.exe,qt/hashmonkeycoin-qt.exe} ${BUILD_DIR}/
+          mv src/{hashmonkeycoin-cli.exe,hashmonkeycoind.exe,qt/hashmonkeycoin-qt.exe} ${BUILD_DIR}_not_strip/
+          mv src/test/test_hashmonkeycoin.exe ${TEST_DIR}
           strip ${BUILD_DIR}/*
 
       - name: Generate Checksum and Compress
@@ -837,7 +837,7 @@ jobs:
         run: |
           pwd
           dir
-          .\test_raptoreum.exe --log_format=JUNIT > unit_test_results.xml
+          .\test_hashmonkeycoin.exe --log_format=JUNIT > unit_test_results.xml
 
       - name: Upload Test Artifacts
         uses: actions/upload-artifact@v3
