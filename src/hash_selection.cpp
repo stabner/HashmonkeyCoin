@@ -66,39 +66,38 @@ std::vector<int> HashSelection::getRandomIndexes(std::vector<int> indexes) {
 std::string HashSelection::getHashSelectionString() {
     std::string selectedAlgoes;
     int i = 0;
+    // Updated for 12-round pattern: 5 coreHash → 1 CN → 5 coreHash → 1 SHA512
     for (; i < 5; i++) {
-        //int hashSelection = getHashSelection(i);
         int selectedAlgoIndex = this->algoIndexes[i];
         std::string selectedAlgo = this->algoMap[selectedAlgoIndex];
         selectedAlgoes.append(selectedAlgo);
     }
-    std::string selectedCN_1 = this->cnVariantMap[this->cnIndexes[0]];
-    selectedAlgoes.append(selectedCN_1);
+    // Single CN variant (reduced from 3)
+    if (this->cnIndexes.size() > 0) {
+        std::string selectedCN = this->cnVariantMap[this->cnIndexes[0]];
+        selectedAlgoes.append(selectedCN);
+    }
     for (; i < 10; i++) {
-        //int hashSelection = getHashSelection(i);
         int selectedAlgoIndex = this->algoIndexes[i];
         std::string selectedAlgo = this->algoMap[selectedAlgoIndex];
         selectedAlgoes.append(selectedAlgo);
     }
-    std::string selectedCN_2 = this->cnVariantMap[this->cnIndexes[1]];
-    selectedAlgoes.append(selectedCN_2);
-    for (; i < 15; i++) {
-        //int hashSelection = getHashSelection(i);
-        int selectedAlgoIndex = this->algoIndexes[i];
-        std::string selectedAlgo = this->algoMap[selectedAlgoIndex];
-        selectedAlgoes.append(selectedAlgo);
-    }
-    std::string selectedCN_3 = this->cnVariantMap[this->cnIndexes[2]];
-    selectedAlgoes.append(selectedCN_3);
+    // Final SHA512 (Intel-optimized)
+    selectedAlgoes.append("Sha512");
     return selectedAlgoes;
 }
 
 void coreHash(const void *toHash, uint512 *hash, int lenToHash, int hashSelection) {
-    sph_blake512_context ctx_blake;      //0
+    // Safety check: if hashSelection is invalid, return without hashing
+    if (hashSelection < 0 || hashSelection > 15) {
+        return;
+    }
+    
+    sph_blake512_context ctx_blake;      //0 - Intel-friendly
     sph_bmw512_context ctx_bmw;        //1
-    sph_groestl512_context ctx_groestl;    //2
+    sph_groestl512_context ctx_groestl;    //2 - Intel-friendly, GPU-friendly
     sph_jh512_context ctx_jh;         //3
-    sph_keccak512_context ctx_keccak;     //4
+    sph_keccak512_context ctx_keccak;     //4 - GPU-friendly
     sph_skein512_context ctx_skein;      //5
     sph_luffa512_context ctx_luffa;      //6
     sph_cubehash512_context ctx_cubehash;   //7
@@ -109,7 +108,7 @@ void coreHash(const void *toHash, uint512 *hash, int lenToHash, int hashSelectio
     sph_fugue512_context ctx_fugue;      //C
     sph_shabal512_context ctx_shabal;     //D
     sph_whirlpool_context ctx_whirlpool;  //E
-    sph_sha512_context ctx_sha512;     //F
+    sph_sha512_context ctx_sha512;     //F - Intel-optimized, GPU-friendly
     switch (hashSelection) {
         case 0:
             sph_blake512_init(&ctx_blake);
@@ -195,6 +194,11 @@ void coreHash(const void *toHash, uint512 *hash, int lenToHash, int hashSelectio
 }
 
 void cnHash(uint512 *toHash, uint512 *hash, int lenToHash, int hashSelection) {
+    // Safety check: if hashSelection is invalid, just copy input to output
+    if (hashSelection < 0 || hashSelection > 5) {
+        *hash = *toHash;
+        return;
+    }
 
     const char *input = reinterpret_cast<char *>(toHash->begin());
     char *output = reinterpret_cast<char *>(hash->begin());
@@ -213,10 +217,16 @@ void cnHash(uint512 *toHash, uint512 *hash, int lenToHash, int hashSelection) {
             crypto::cryptonight_cnlite_hash(input, output, lenToHash, 1);
             break;
         case 4 :
+            // CNTurtle - PREFERRED: Lighter scratchpad (262KB), better for Intel/GPU
             crypto::cryptonight_turtle_hash(input, output, lenToHash, 1);
             break;
         case 5 :
+            // CNTurtleLite - PREFERRED: Lightest scratchpad, best for Intel/GPU
             crypto::cryptonight_turtlelite_hash(input, output, lenToHash, 1);
+            break;
+        default:
+            // Should not reach here due to check above, but safety fallback
+            *hash = *toHash;
             break;
     }
 }

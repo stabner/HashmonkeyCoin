@@ -1,7 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2024 The Raptoreum developers
+// Copyright (c) 2025 The HashmonkeyCoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -229,7 +230,7 @@ public:
         std::pair<bool, std::string> found_result(false, std::string());
 
         // We pass "true" to GetArgHelper in order to return the last
-        // argument value seen from the command line (so "raptoreumd -foo=bar
+        // argument value seen from the command line (so "hashmonkeycoind -foo=bar
         // -foo=baz" gives GetArg(am,"foo")=={true,"baz"}
         found_result = GetArgHelper(am.m_override_args, arg, true);
         if (found_result.first) {
@@ -1253,11 +1254,11 @@ int GetNumCores() {
 
 std::string CopyrightHolders(const std::string &strPrefix, unsigned int nStartYear, unsigned int nEndYear) {
     const auto copyright_info = strprintf(_(COPYRIGHT_HOLDERS), COPYRIGHT_HOLDERS_SUBSTITUTION);
-    std::string strCopyrightHolders = strPrefix + strprintf(" %u-%u ", 2021, nEndYear) + copyright_info;
+    std::string strCopyrightHolders = strPrefix + strprintf(" %u-%u ", 2025, nEndYear) + copyright_info;
 
-    // Check for untranslated substitution to make sure Raptoreum Core copyright is not removed by accident
+    // Raptoreum copyright: 2020-2024 (fixed end year, not extending to current year)
     if (copyright_info.find("Raptoreum") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2020, nEndYear) + "The Raptoreum developers";
+        strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2020, 2024) + "The Raptoreum developers";
     }
     // Check for untranslated substitution to make sure Bitcoin Core copyright is not removed by accident
     if (copyright_info.find("Dash Core") == std::string::npos) {

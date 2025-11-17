@@ -69,8 +69,8 @@ public:
                 "CNDarklite",    //1
                 "CNFast",        //2
                 "CNLite",        //3
-                "CNTurtle",      //4
-                "CNTurtlelite"   //5
+                "CNTurtle",      //4 - PREFERRED: Lighter, better for Intel/GPU
+                "CNTurtlelite"   //5 - PREFERRED: Lightest, best for Intel/GPU
 
         };
         //printf("before getRandomIndexes cnIndexes\n");

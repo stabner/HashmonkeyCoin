@@ -1,7 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2024 The Raptoreum developers
+// Copyright (c) 2025 The HashmonkeyCoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -979,8 +980,8 @@ void SetupServerArgs() {
 }
 
 std::string LicenseInfo() {
-    const std::string URL_SOURCE_CODE = "<https://github.com/Raptor3um/raptoreum>";
-    const std::string URL_WEBSITE = "<https://raptoreum.com>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/stabner/HashmonkeyCoin>";
+    const std::string URL_WEBSITE = "<https://hashmonkeys.cloud>";
 
     return CopyrightHolders(_("Copyright (C)"), 2014, COPYRIGHT_YEAR) + "\n" +
            "\n" +

@@ -62,7 +62,7 @@ extern std::string alsoHashString;
 // the wallet component. Calling `generatetoaddress` with an address returned by
 // `getnewaddress` gives the same functionality as the old `generate` method.
 
-// To continue using `generate` in v0.17, restart raptoreumd with the
+// To continue using `generate` in v0.17, restart hashmonkeycoind with the
 // `-deprecatedrpc=generate` configuration.
 
 

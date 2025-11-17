@@ -1,7 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2024 The Raptoreum developers
+// Copyright (c) 2025 The HashmonkeyCoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -392,7 +393,7 @@ static UniValue CallRPC(BaseRequestHandler *rh, const std::string &strMethod, co
                                              http_errorstring(response.error));
         }
         throw CConnectionFailed(strprintf(
-                "Could not connect to the server %s:%d%s\n\nMake sure the raptoreumd server is running and that you are connecting to the correct RPC port.",
+                "Could not connect to the server %s:%d%s\n\nMake sure the hashmonkeycoind server is running and that you are connecting to the correct RPC port.",
                 host, port, responseErrorMessage));
     } else if (response.status == HTTP_UNAUTHORIZED) {
         if (failedToGetAuthCookie) {

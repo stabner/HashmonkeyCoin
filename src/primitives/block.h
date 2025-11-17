@@ -54,10 +54,10 @@ public:
     /// Compute the Header Hash from the block
     uint256 GetHash() const;
 
-    /// Compute the POW hash using GhostRider algorithm
+    /// Compute the POW hash using GhostRiderV2 algorithm
     uint256 ComputeHash() const;
 
-    /// Caching lookup/computation of POW hash using GhostRider algorithm
+    /// Caching lookup/computation of POW hash using GhostRiderV2 algorithm
     uint256 GetPOWHash(bool readCache = true) const;
 
     int64_t GetBlockTime() const {

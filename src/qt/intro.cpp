@@ -229,7 +229,7 @@ bool Intro::pickDataDirectory(interfaces::Node &node) {
     }
     /* Only override -datadir if different from the default, to make it possible to
      * override -datadir in the raptoreum.conf file in the default data directory
-     * (to be consistent with raptoreumd behavior)
+     * (to be consistent with hashmonkeycoind behavior)
      */
     if (dataDir != GUIUtil::getDefaultDataDirectory()) {
         node.softSetArg("-datadir", GUIUtil::qstringToBoostPath(dataDir).string()); // use OS locale for path setting

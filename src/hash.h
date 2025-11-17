@@ -321,16 +321,33 @@ uint64_t SipHashUint256(uint64_t k0, uint64_t k1, const uint256 &val);
 
 uint64_t SipHashUint256Extra(uint64_t k0, uint64_t k1, const uint256 &val, uint32_t extra);
 
-/* ----------- Ghost Rider Hash ------------------------------------------------ */
+/* ----------- Ghost Rider V2 Hash (OPTIMIZED for Intel/GPU) ------------------------------------------------ */
+/* 
+ * OPTIMIZATION CHANGES:
+ * - Reduced from 18 to 12 rounds (33% reduction)
+ * - Reduced CN variants from 3 to 1 (66% reduction) 
+ * - Prefer lighter CN variants (Turtle/TurtleLite) for better Intel/GPU performance
+ * - Pattern: 5 coreHash → 1 CN → 5 coreHash → 1 final SHA512
+ * 
+ * Expected performance impact:
+ * - AMD: -15% to -30% (reduced advantage)
+ * - Intel: +20% to +40% (better performance)
+ * - GPU: +10% to +25% (more competitive)
+ */
 template<typename T1>
 inline uint256 HashGR(const T1 pbegin, const T1 pend, const uint256 PrevBlockHash) {
     static unsigned char pblank[1];
 
-    uint512 hash[18];
-    HashSelection hashSelection(PrevBlockHash, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}, {0, 1, 2, 3, 4, 5});
+    // Reduced from 18 to 12 rounds for better Intel/GPU performance
+    uint512 hash[12];
+    
+    // Prefer lighter CN variants (4=Turtle, 5=TurtleLite) - better for Intel/GPU
+    // Only need 1 CN variant now (reduced from 3)
+    HashSelection hashSelection(PrevBlockHash, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, {4, 5});
     std::vector<int> randomCNs(hashSelection.getCnIndexes());
     std::vector<int> coreHashIndexes(hashSelection.getAlgoIndexes());
-    for (int i = 0; i < 18; ++i) {
+    
+    for (int i = 0; i < 12; ++i) {
         const void *toHash;
         int lenToHash;
         if (i == 0) {
@@ -342,24 +359,30 @@ inline uint256 HashGR(const T1 pbegin, const T1 pend, const uint256 PrevBlockHas
         }
         int coreSelection = -1;
         int cnSelection = -1;
+        
+        // New pattern: 5 coreHash → 1 CN → 5 coreHash → 1 final SHA512
         if (i < 5) {
+            // First 5 rounds: coreHash algorithms
             coreSelection = coreHashIndexes[i];
         } else if (i == 5) {
+            // Round 6: Single CN variant (lighter - Turtle/TurtleLite)
             cnSelection = randomCNs[0];
         } else if (i < 11) {
+            // Rounds 7-11: More coreHash algorithms
             coreSelection = coreHashIndexes[i - 1];
         } else if (i == 11) {
-            cnSelection = randomCNs[1];
-        } else if (i < 17) {
-            coreSelection = coreHashIndexes[i - 2];
-        } else if (i == 17) {
-            cnSelection = randomCNs[2];
+            // Final round: SHA512 (Intel-optimized, GPU-friendly)
+            coreSelection = 15; // SHA512
         }
 
-        coreHash(toHash, &hash[i], lenToHash, coreSelection);
-        cnHash(&hash[i - 1], &hash[i], lenToHash, cnSelection);
+        // Only call the appropriate hash function
+        if (coreSelection >= 0) {
+            coreHash(toHash, &hash[i], lenToHash, coreSelection);
+        } else if (cnSelection >= 0) {
+            cnHash(&hash[i - 1], &hash[i], lenToHash, cnSelection);
+        }
     }
-    return hash[17].trim256();
+    return hash[11].trim256();
 }
 
 #endif // BITCOIN_HASH_H

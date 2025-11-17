@@ -359,7 +359,7 @@ static UniValue getrawtransaction(const JSONRPCRequest &request) {
                                                                     {RPCResult::Type::ARR, "addresses", "",
                                                                      {
                                                                              {RPCResult::Type::STR, "address",
-                                                                              "raptoreum address"},
+                                                                              "hashmonkeycoin address"},
                                                                      }},
                                                             }},
                                                    }},
@@ -640,7 +640,7 @@ static UniValue createrawtransaction(const JSONRPCRequest &request) {
                                 {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
                                  {
                                          {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO,
-                                          "A key-value pair. The key (string) is the Raptoreum address, the value (float or string) is the amount in " +
+                                          "A key-value pair. The key (string) is the HashmonkeyCoin address, the value (float or string) is the amount in " +
                                           CURRENCY_UNIT},
                                  },
                                 },
@@ -753,7 +753,7 @@ static UniValue decoderawtransaction(const JSONRPCRequest &request) {
                                                           {RPCResult::Type::ARR, "addresses", "",
                                                            {
                                                                    {RPCResult::Type::STR, "address",
-                                                                    "Raptoreum address"},
+                                                                    "HashmonkeyCoin address"},
                                                            }},
                                                   }},
                                          }},
@@ -806,7 +806,7 @@ static UniValue decodescript(const JSONRPCRequest &request) {
                                {RPCResult::Type::NUM, "reqSigs", "The required signatures"},
                                {RPCResult::Type::ARR, "addresses", "",
                                 {
-                                        {RPCResult::Type::STR, "address", "Raptoreum address"},
+                                        {RPCResult::Type::STR, "address", "HashmonkeyCoin address"},
                                 }},
                                {RPCResult::Type::STR, "p2sh",
                                 "address of P2SH script wrapping this redeem script (not returned if the script is already a P2SH)"},

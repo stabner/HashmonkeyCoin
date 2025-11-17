@@ -1,17 +1,17 @@
 AC_PREREQ([2.69])
-define(_CLIENT_VERSION_MAJOR, 2)
+define(_CLIENT_VERSION_MAJOR, 1)
 define(_CLIENT_VERSION_MINOR, 0)
-define(_CLIENT_VERSION_REVISION, 03)
-define(_CLIENT_VERSION_BUILD, 01)
+define(_CLIENT_VERSION_REVISION, 0)
+define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
-define(_COPYRIGHT_YEAR, 2024)
+define(_COPYRIGHT_YEAR, 2025)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[HashmonkeyCoin Core]])
 AC_INIT([HashmonkeyCoin Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/stabner/HashmonkeyCoin/issues],[hashmonkeycoin],[https://hashmonkeys.cloud/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/hashmonkeycoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
-AC_CONFIG_MACRO_DIR([build-aux/m4])
+AC_CONFIG_MACRO_DIRS([build-aux/m4])
 
 m4_ifndef([PKG_PROG_PKG_CONFIG], [m4_fatal([PKG_PROG_PKG_CONFIG macro not found. Please install pkg-config and re-run autogen.sh])])
 PKG_PROG_PKG_CONFIG
@@ -411,7 +411,7 @@ if test "$CXXFLAGS_overridden" = "no"; then
   AX_CHECK_COMPILE_FLAG([-Wduplicated-branches],       [WARN_CXXFLAGS="$WARN_CXXFLAGS -Wduplicated-branches"],       [], [$CXXFLAG_WERROR])
   AX_CHECK_COMPILE_FLAG([-Wduplicated-cond],           [WARN_CXXFLAGS="$WARN_CXXFLAGS -Wduplicated-cond"],           [], [$CXXFLAG_WERROR])
   AX_CHECK_COMPILE_FLAG([-Wlogical-op],                [WARN_CXXFLAGS="$WARN_CXXFLAGS -Wlogical-op"],                [], [$CXXFLAG_WERROR])
-  AX_CHECK_COMPILE_FLAG([-Woverloaded-virtual],        [WARN_CXXFLAGS="$WARN_CXXFLAGS -Woverloded-virtual"],         [], [$CXXFLAG_WERROR])
+  AX_CHECK_COMPILE_FLAG([-Woverloaded-virtual],        [WARN_CXXFLAGS="$WARN_CXXFLAGS -Woverloaded-virtual"],         [], [$CXXFLAG_WERROR])
   dnl -Wsuggest-override is broken with GCC before 9.2
   dnl https://gcc.gnu.org/bugzilla/show_bug.cgi?id=78010
   AX_CHECK_COMPILE_FLAG([-Wsuggest-override], [WARN_CXXFLAGS="$WARN_CXXFLAGS -Wsuggest-override"],                               [], [$CXXFLAG_WERROR],

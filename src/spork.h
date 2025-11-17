@@ -209,7 +209,7 @@ public:
     void Serialize(Stream &s) const {
         // We don't serialize pubkey ids cus pubkeys should be
         // hardcoded instead or be set with cmdline or options.
-        // Should not reuse pubkeys from previous raptoreumd run.
+        // Should not reuse pubkeys from previous hashmonkeycoind run.
         // We don't serialize private key to prevent its leakage.
         LOCK(cs);
         s << SERIALIZATION_VERSION_STRING << mapSporksByHash << mapSporksActive;

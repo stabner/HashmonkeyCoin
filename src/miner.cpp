@@ -625,8 +625,9 @@ void static RaptoreumMiner(const CChainParams& chainparams, NodeContext& node) {
                 return;
             }
             CBlock *pblock = &pblocktemplate->block;
-            HashSelection hashSelection(pblock->hashPrevBlock, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14},
-                                        {0, 1, 2, 3, 4, 5});
+            // Updated to match optimized POW: only use Turtle/TurtleLite CN variants (4, 5)
+            HashSelection hashSelection(pblock->hashPrevBlock, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
+                                        {4, 5});
             alsoHashString.clear();
             alsoHashString.append(hashSelection.getHashSelectionString());
             LogPrintf("Algos: %s\n", hashSelection.getHashSelectionString());

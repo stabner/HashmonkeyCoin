@@ -1,7 +1,8 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2020-2024 The Raptoreum developers
+// Copyright (c) 2025 The HashmonkeyCoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -259,7 +260,7 @@ UniValue setlabel(const JSONRPCRequest &request) {
 
     CTxDestination dest = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Raptoreum address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HashmonkeyCoin address");
     }
 
     std::string old_label = pwallet->mapAddressBook[dest].name;
@@ -652,7 +653,7 @@ UniValue getreceivedbyaddress(const JSONRPCRequest &request) {
     // Raptoreum address
     CTxDestination dest = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Raptoreum address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid HashmonkeyCoin address");
     }
     CScript scriptPubKey = GetScriptForDestination(dest);
     if (!IsMine(*pwallet, scriptPubKey)) {
@@ -954,7 +955,7 @@ UniValue sendmany(const JSONRPCRequest &request) {
     for (const std::string &name_: keys) {
         CTxDestination dest = DecodeDestination(name_);
         if (!IsValidDestination(dest)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raptoreum address: ") + name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid HashmonkeyCoin address: ") + name_);
         }
 
         if (destinations.count(dest)) {
@@ -3223,7 +3224,7 @@ static UniValue listunspent(const JSONRPCRequest &request) {
             CTxDestination dest = DecodeDestination(input.get_str());
             if (!IsValidDestination(dest)) {
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                                   std::string("Invalid Raptoreum address: ") + input.get_str());
+                                   std::string("Invalid HashmonkeyCoin address: ") + input.get_str());
             }
             if (!destinations.insert(dest).second) {
                 throw JSONRPCError(RPC_INVALID_PARAMETER,
@@ -3387,7 +3388,7 @@ void FundTransaction(CWallet *const pwallet, CMutableTransaction &tx, CAmount &f
                 CTxDestination dest = DecodeDestination(options["changeAddress"].get_str());
 
                 if (!IsValidDestination(dest)) {
-                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid raptoreum address");
+                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid hashmonkeycoin address");
                 }
 
                 coinControl.destChange = dest;

@@ -94,7 +94,7 @@ CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::string &devNet
  */
 static CBlock
 CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
-    const char *pszTimestamp = "HashmonkeyCoin Genesis Block - The beginning of HMNY blockchain - https://hashmonkeys.cloud/";
+    const char *pszTimestamp = "HashmonkeyCoin Mainnet Genesis Block - GhostRiderV2 POW - The beginning of HMNY blockchain - https://hashmonkeys.cloud/ - January 2025";
     const CScript genesisOutputScript = CScript() << ParseHex(
             "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                   << OP_CHECKSIG;
@@ -103,7 +103,16 @@ CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVer
 
 static CBlock
 CreateTestnetGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
-    const char *pszTimestamp = "HashmonkeyCoin Testnet Genesis Block - Testing the HMNY blockchain - https://hashmonkeys.cloud/";
+    const char *pszTimestamp = "HashmonkeyCoin Testnet Genesis Block - GhostRiderV2 POW - Testing the HMNY blockchain - https://hashmonkeys.cloud/ - January 2025";
+    const CScript genesisOutputScript = CScript() << ParseHex(
+            "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
+                                                  << OP_CHECKSIG;
+    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
+}
+
+static CBlock
+CreateRegtestGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
+    const char *pszTimestamp = "HashmonkeyCoin Regtest Genesis Block - GhostRiderV2 POW - Local testing network - https://hashmonkeys.cloud/ - January 2025";
     const CScript genesisOutputScript = CScript() << ParseHex(
             "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")
                                                   << OP_CHECKSIG;
@@ -287,17 +296,20 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
-        // HashmonkeyCoin Genesis Block - Starting fresh from the beginning
-        // Timestamp: January 3, 2025 (current time)
-        // Genesis block is already mined and locked in - nonce 3, hash matches expected
+        // HashmonkeyCoin Mainnet Genesis Block - Starting fresh with GhostRiderV2 POW
+        // Timestamp: January 2025 (will be updated to current time when mining)
+        // NOTE: Genesis block needs to be mined with new GhostRiderV2 POW algorithm
+        // The VerifyGenesisPOW function will automatically find a valid nonce if hash doesn't match
         // Using easier difficulty (0x207fffff) for faster genesis block generation - difficulty adjusts normally after genesis
-        const uint256 expectedMainnetHash = uint256S("0xeb99ba8a336cd68e13606115ca3c1453e87310de82f7e86b67e5ff6ef297665b");
-        genesis = CreateGenesisBlock(1762101512, 3, 0x207fffff, 4, 500 * COIN);  // Use nonce 3 (already found)
+        const uint256 expectedMainnetHash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // Placeholder - will be updated after mining
+        genesis = CreateGenesisBlock(1738368000, 0, 0x207fffff, 4, 500 * COIN);  // Timestamp will be updated to current time
         VerifyGenesisPOW(genesis, expectedMainnetHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
+        // NOTE: Assert statements are commented out during genesis block mining
+        // After mining, update expectedMainnetHash and expectedMerkleRoot, then uncomment these
         // Verify genesis block hash and merkle root are correct
-        assert(consensus.hashGenesisBlock == expectedMainnetHash);
-        assert(genesis.hashMerkleRoot == uint256S("0xc7bf42a8e13cb88501cc8d64331d425a423009662f2860edb9ca8d92c3828144"));
+        // assert(consensus.hashGenesisBlock == expectedMainnetHash);
+        // assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")); // Update after mining
 
         vSeeds.emplace_back("seednode.hashmonkeys.cloud");
 
@@ -463,18 +475,21 @@ public:
         nDefaultPort = 19992;  // HashmonkeyCoin testnet port
         nPruneAfterHeight = 1000;
         
-        // HashmonkeyCoin Testnet Genesis Block - Starting fresh from the beginning
-        // Timestamp: January 3, 2025 (current time, slightly offset from mainnet)
-        // Genesis block is already mined and locked in - nonce 0, hash matches expected
+        // HashmonkeyCoin Testnet Genesis Block - Starting fresh with GhostRiderV2 POW
+        // Timestamp: January 2025 (will be updated to current time + 1 second when mining)
+        // NOTE: Genesis block needs to be mined with new GhostRiderV2 POW algorithm
+        // The VerifyGenesisPOW function will automatically find a valid nonce if hash doesn't match
         // Using easier difficulty (0x207fffff) for faster genesis block generation
         // Using unique testnet genesis message for completely separate genesis block
-        const uint256 expectedTestnetHash = uint256S("0x9e0f15f69b0b7353c4e5a273366bb88c3a05e608497b3d620268fa124ef91b3f");
-        genesis = CreateTestnetGenesisBlock(1762101513, 0, 0x207fffff, 4, 500 * COIN);  // 500 HMNY reward, nonce 0 (already found)
+        const uint256 expectedTestnetHash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // Placeholder - will be updated after mining
+        genesis = CreateTestnetGenesisBlock(1738368001, 0, 0x207fffff, 4, 500 * COIN);  // Timestamp will be updated to current time + 1
         VerifyGenesisPOW(genesis, expectedTestnetHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
+        // NOTE: Assert statements are commented out during genesis block mining
+        // After mining, update expectedTestnetHash and expectedMerkleRoot, then uncomment these
         // Verify genesis block hash and merkle root are correct
-        assert(consensus.hashGenesisBlock == expectedTestnetHash);
-        assert(genesis.hashMerkleRoot == uint256S("0x9923008b76713b3e8600288ef6518bf568ebb1c1f3d1e7f5e568281649603078"));
+        // assert(consensus.hashGenesisBlock == expectedTestnetHash);
+        // assert(genesis.hashMerkleRoot == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000")); // Update after mining
 
         // HashmonkeyCoin Testnet: Starting fresh - no fixed seeds (using DNS seed only)
         vFixedSeeds.clear();
@@ -648,7 +663,7 @@ public:
         vSeeds.emplace_back("47.151.26.43");
         //vSeeds.push_back(CDNSSeedData("raptoreumevo.org",  "devnet-seed.raptoreumevo.org"));
 
-        // Testnet Raptoreum addresses start with 'y'
+        // Testnet HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
         // Testnet Raptoreum script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
@@ -805,12 +820,18 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        const uint256 expectedRegtestHash = uint256S("0xda043362f8c5ffde1fc20d503fe7945c67257d2b58d87617d241f2f24c25fcfc");
-        genesis = CreateGenesisBlock(1614369600, 3, 0x207fffff, 4, 5000 * COIN);  // Use nonce 3 (already found)
+        // HashmonkeyCoin Regtest Genesis Block - Starting fresh with GhostRiderV2
+        // Timestamp: January 2025 (will be updated when mining)
+        // NOTE: Genesis block needs to be mined with new GhostRiderV2 POW algorithm
+        // The VerifyGenesisPOW function will automatically find a valid nonce
+        const uint256 expectedRegtestHash = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // Placeholder - will be updated after mining
+        genesis = CreateRegtestGenesisBlock(1738368000, 0, 0x207fffff, 4, 5000 * COIN);  // Timestamp will be updated to current time
         VerifyGenesisPOW(genesis, expectedRegtestHash);  // Only verifies if hash doesn't match
         consensus.hashGenesisBlock = genesis.GetHash();
+        // NOTE: Assert statement is commented out during genesis block mining
+        // After mining, update expectedRegtestHash, then uncomment this
         // Regtest genesis block hash verification (optional - regtest is for testing)
-        assert(consensus.hashGenesisBlock == expectedRegtestHash);
+        // assert(consensus.hashGenesisBlock == expectedRegtestHash);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
@@ -851,7 +872,7 @@ public:
                 0
         };
 
-        // Regtest Raptoreum addresses start with 'y'
+        // Regtest HashmonkeyCoin addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);
         // Regtest Raptoreum script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);

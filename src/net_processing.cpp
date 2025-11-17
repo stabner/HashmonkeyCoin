@@ -2552,6 +2552,74 @@ bool static ProcessMessage(CNode *pfrom, const std::string &strCommand, CDataStr
                 pfrom->fGetAddr = true;
             }
             connman->MarkAddressGood(pfrom->addr);
+        } else {
+            // For inbound connections (wallets connecting to us), proactively share peer addresses
+            // This helps new wallets discover peers automatically without needing to send GETADDR
+            if (fListen && !::ChainstateActive().IsInitialBlockDownload()) {
+                // Share addresses from currently connected peers (more reliable than address manager)
+                std::vector<CAddress> vAddrToShare;
+                FastRandomContext insecure_rand;
+                
+                // Collect addresses from currently connected peers
+                // IMPORTANT: Only share OUTBOUND peers (peers we connected TO)
+                // Inbound peers (peers that connected TO us) are often behind NAT/firewall
+                // and cannot accept connections, so they're not useful to share
+                connman->ForEachNode([&](CNode* pnode) {
+                    if (pnode != pfrom && pnode->fSuccessfullyConnected && pnode->addr.IsRoutable()) {
+                        // Only share OUTBOUND peers (we connected to them, so they can accept connections)
+                        // Skip INBOUND peers (they connected to us, but we can't connect to them)
+                        if (pnode->fInbound) {
+                            // This is an inbound peer - they connected to us
+                            // We likely cannot connect back to them (NAT/firewall)
+                            // Skip sharing them as they're not useful to other wallets
+                            return;
+                        }
+                        
+                        // This is an outbound peer - we connected to them
+                        // They can accept connections, so they're useful to share
+                        // IMPORTANT: For outbound connections, we connected TO them on the default port
+                        // The source port (ephemeral port) doesn't matter - we always share with default port
+                        // Use the connection address (which has the correct IP) and set to default port
+                        CService peerAddr = pnode->addr;
+                        peerAddr.SetPort(Params().GetDefaultPort());
+                        
+                        // We always use the connection address with default port for outbound peers
+                        // This ensures we share the correct IP and port, regardless of:
+                        // - What source port was used (ephemeral port, e.g., 29758, 53302)
+                        // - What the peer advertises (addrlocal might be wrong)
+                        // Since we successfully connected TO them on the default port, we know they're listening on it
+                        
+                        // Create address with service flags from the peer
+                        CAddress addr(peerAddr, pnode->nServices.load());
+                        // Set address time to current time so wallet will accept it
+                        addr.nTime = GetAdjustedTime();
+                        if (!banman->IsBanned(addr) && addr.IsRoutable()) {
+                            vAddrToShare.push_back(addr);
+                        }
+                    }
+                });
+                
+                // Also get some from address manager if we don't have enough connected peers
+                if (vAddrToShare.size() < 5) {
+                    std::vector<CAddress> vAddr = connman->GetAddresses();
+                    size_t needed = std::min((size_t)(5 - vAddrToShare.size()), vAddr.size());
+                    for (size_t i = 0; i < needed; i++) {
+                        if (!banman->IsBanned(vAddr[i]) && vAddr[i].IsRoutable()) {
+                            vAddrToShare.push_back(vAddr[i]);
+                        }
+                    }
+                }
+                
+                // Limit to 10 addresses and send them immediately
+                size_t maxAddrsToShare = std::min((size_t)10, vAddrToShare.size());
+                if (maxAddrsToShare > 0) {
+                    // Shuffle and send immediately via ADDR message
+                    Shuffle(vAddrToShare.begin(), vAddrToShare.end(), insecure_rand);
+                    std::vector<CAddress> vAddrFinal(vAddrToShare.begin(), vAddrToShare.begin() + maxAddrsToShare);
+                    connman->PushMessage(pfrom, CNetMsgMaker(nSendVersion).Make(NetMsgType::ADDR, vAddrFinal));
+                    LogPrint(BCLog::NET, "ProcessMessages: proactively sharing %d addresses with inbound peer %d\n", maxAddrsToShare, pfrom->GetId());
+                }
+            }
         }
 
         std::string remoteAddr;

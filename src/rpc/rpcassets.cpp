@@ -1,4 +1,5 @@
-// Copyright (c) 2023 The Raptoreum developers
+// Copyright (c) 2020-2024 The Raptoreum developers
+// Copyright (c) 2025 The HashmonkeyCoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -657,7 +658,7 @@ UniValue sendasset(const JSONRPCRequest &request) {
     std::string to_address = request.params[2].get_str();
     CTxDestination to_dest = DecodeDestination(to_address);
     if (!IsValidDestination(to_dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raptoreum address: ") + to_address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid HashmonkeyCoin address: ") + to_address);
     }
 
     CAmount nAmount = AmountFromValue(request.params[1]);
@@ -805,6 +806,7 @@ UniValue listassetsbalance(const JSONRPCRequest &request) {
                 + HelpExampleCli("listassetsbalance", "")
         );
 
+#ifdef ENABLE_WALLET
     std::shared_ptr <CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     if (!wallet) return NullUniValue;
     CWallet *const pwallet = wallet.get();
@@ -847,6 +849,9 @@ UniValue listassetsbalance(const JSONRPCRequest &request) {
     }
 
     return result;
+#else
+    throw JSONRPCError(RPC_WALLET_ERROR, "Wallet functionality is not available");
+#endif // ENABLE_WALLET
 }
 
 UniValue listunspentassets(const JSONRPCRequest& request)
@@ -860,9 +865,9 @@ UniValue listunspentassets(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. minconf          (numeric, optional, default=1) The minimum confirmations to filter\n"
             "2. maxconf          (numeric, optional, default=9999999) The maximum confirmations to filter\n"
-            "3. \"addresses\"      (string) A json array of raptoreum addresses to filter\n"
+            "3. \"addresses\"      (string) A json array of hashmonkeycoin addresses to filter\n"
             "    [\n"
-            "      \"address\"     (string) raptoreum address\n"
+            "      \"address\"     (string) hashmonkeycoin address\n"
             "      ,...\n"
             "    ]\n"
             "4. include_unsafe (bool, optional, default=true) Include outputs that are not safe to spend\n"
@@ -882,9 +887,9 @@ UniValue listunspentassets(const JSONRPCRequest& request)
             "  {\n"
             "    \"txid\" : \"txid\",          (string) the transaction id \n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"address\" : \"address\",    (string) the raptoreum address\n"
+            "    \"address\" : \"address\",    (string) the hashmonkeycoin address\n"
             "    \"label\" : \"label\",        (string) The associated label, or \"\" for the default label\n"
-            "    \"account\" : \"account\",    (string) DEPRECATED. This field will be removed in V0.18. To see this deprecated field, start raptoreumd with -deprecatedrpc=accounts. The associated account, or \"\" for the default account\n"
+            "    \"account\" : \"account\",    (string) DEPRECATED. This field will be removed in V0.18. To see this deprecated field, start hashmonkeycoind with -deprecatedrpc=accounts. The associated account, or \"\" for the default account\n"
             "    \"scriptPubKey\" : \"key\",   (string) the script key\n"
             "    \"amount\" : x.xxx,         (numeric) the transaction output amount in " + CURRENCY_UNIT + "\n"
             "    \"confirmations\" : n,      (numeric) The number of confirmations\n"
@@ -907,6 +912,7 @@ UniValue listunspentassets(const JSONRPCRequest& request)
             + HelpExampleRpc("listunspentassets", "6, 9999999, [] , true, { \"minimumAmount\": 0.005 } ")
         );
 
+#ifdef ENABLE_WALLET
     std::shared_ptr <CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     if (!wallet) return NullUniValue;
     CWallet *const pwallet = wallet.get();
@@ -931,7 +937,7 @@ UniValue listunspentassets(const JSONRPCRequest& request)
             const UniValue& input = inputs[idx];
             CTxDestination dest = DecodeDestination(input.get_str());
             if (!IsValidDestination(dest)) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raptoreum address: ") + input.get_str());
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid HashmonkeyCoin address: ") + input.get_str());
             }
             if (!destinations.insert(dest).second) {
                 throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ") + input.get_str());
@@ -1042,6 +1048,9 @@ UniValue listunspentassets(const JSONRPCRequest& request)
     }
 
     return results;
+#else
+    throw JSONRPCError(RPC_WALLET_ERROR, "Wallet functionality is not available");
+#endif // ENABLE_WALLET
 }
 
 UniValue listassets(const JSONRPCRequest &request) {
@@ -1218,7 +1227,7 @@ UniValue listassetbalancesbyaddress(const JSONRPCRequest& request)
             "\nReturns a list of all asset balances for an address.\n"
 
             "\nArguments:\n"
-            "1. \"address\"                  (string, required) a raptoreum address\n"
+            "1. \"address\"                  (string, required) a hashmonkeycoin address\n"
             "2. \"onlytotal\"                (boolean, optional, default=false) when false result is just a list of assets balances -- when true the result is just a single number representing the number of assets\n"
             "3. \"count\"                    (integer, optional, default=50000, MAX=50000) truncates results to include only the first _count_ assets found\n"
             "4. \"start\"                    (integer, optional, default=0) results skip over the first _start_ assets found (if negative it skips back from the end)\n"
@@ -1239,7 +1248,7 @@ UniValue listassetbalancesbyaddress(const JSONRPCRequest& request)
     std::string address = request.params[0].get_str();
     CTxDestination destination = DecodeDestination(address);
     if (!IsValidDestination(destination)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raptoreum address: ") + address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid HashmonkeyCoin address: ") + address);
     }
 
     bool fOnlyTotal = false;

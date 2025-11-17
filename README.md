@@ -18,10 +18,10 @@
   - **Developer/Founder**: 15 HMNY (3%)
 - **Smartnode Collateral**: 100,000 HMNY
 - **Fair Distribution**: No pre-mine, no ICO, community-driven launch
-- **Mining Algorithm**: GhostRider (ASIC-resistant, CPU/GPU friendly)
+- **Mining Algorithm**: GhostRiderV2 (ASIC-resistant, CPU/GPU friendly)
 
 ### **Network & Security**
-- **Consensus Algorithm**: GhostRider (RandomX + SHA256)
+- **Consensus Algorithm**: GhostRiderV2 (Optimized multi-algorithm POW)
 - **Smartnodes**: Enabled with 100,000 HMNY collateral
 - **Network Ports**: 
   - Mainnet: 19990 (P2P), 19991 (RPC)
@@ -82,7 +82,7 @@ HashmonkeyCoin is now ready for launch! All genesis blocks have been properly mi
 - **Devnet Genesis**: `000001250c4a1a43fbf4a169832ad4ac1ef0930c87ac1b27c8f6a06c17c2ed69`
 - **Regtest Genesis**: `0a1feaeed6f547dd6da45f62e76aa20c19b7399c4cd0434788d2118a2a8710f0`
 
-### **Recent Updates (v2.0.03.01)**
+### **Recent Updates (v1.0.0.0)**
 - ✅ Fixed block reward: Set to 500 HMNY for early blocks (both mainnet and testnet)
 - ✅ Updated testnet founder address for proper reward distribution
 - ✅ Fixed coinbase transaction structure for MiningCore compatibility
@@ -168,7 +168,7 @@ HashmonkeyCoin is built by the community, for the community. We believe in:
 - **RAM**: 4GB minimum, 8GB recommended
 - **Storage**: 10GB free space (more for full node)
 - **Network**: Stable internet connection
-- **CPU**: Multi-core recommended for mining (GhostRider algorithm)
+- **CPU**: Multi-core recommended for mining (GhostRiderV2 algorithm)
 
 ### **Quick Start**
 
@@ -259,7 +259,7 @@ HashmonkeyCoin is compatible with MiningCore. Use the following `coin.json` conf
     "symbol": "HMNY",
     "family": "bitcoin",
     "coinbaseHasher": { "hash": "sha256d" },
-    "headerHasher": { "hash": "ghostrider" },
+    "headerHasher": { "hash": "ghostrider-v2" },
     "blockHasher": {
       "hash": "reverse",
       "args": [{ "hash": "sha256d" }]
@@ -374,7 +374,7 @@ EOF
 ## 🛡️ Security
 
 HashmonkeyCoin inherits the robust security features from the Raptoreum codebase:
-- **GhostRider Algorithm**: Combines RandomX and SHA256 for ASIC resistance
+- **GhostRiderV2 Algorithm**: Optimized 12-round multi-algorithm POW for Intel/GPU performance
 - **InstantSend**: Near-instant transaction confirmations
 - **ChainLocks**: Protection against 51% attacks
 - **LLMQ**: Long Living Masternode Quorums for consensus
