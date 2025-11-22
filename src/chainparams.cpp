@@ -529,7 +529,7 @@ public:
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
         // HashmonkeyCoin Testnet: Founder payment (update address when you have a testnet address)
-        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% founder/dev fee forever (REVERTED - testing peer fix first)
+        std::vector <FounderRewardStructure> rewardStructures = {{INT_MAX, 3}};// 3% founder/dev fee forever
         // Using a valid testnet address for founder payments (testnet addresses start with 'h' or 'j')
         consensus.nFounderPayment = FounderPayment(rewardStructures, 100, "jBtqkaroaGSy6TAPLa3XeGp9cKgwNCVr8t");  // Testnet founder address
 
