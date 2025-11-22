@@ -627,13 +627,13 @@ static UniValue getblocktemplate(const JSONRPCRequest &request) {
     " is not connected!");
 
     if (::ChainstateActive().IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Raptoreum Core is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "HashmonkeyCoin Core is downloading blocks...");
 
     // next bock is a superblock and we need governance info to correctly construct it
     if (AreSuperblocksEnabled()
         && !smartnodeSync.IsSynced()
         && CSuperblock::IsValidBlockHeight(::ChainActive().Height() + 1))
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Raptoreum Core is syncing with network...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "HashmonkeyCoin Core is syncing with network...");
 
     static unsigned int nTransactionsUpdatedLast;
     const CTxMemPool &mempool = EnsureMemPool(request.context);
